@@ -1,0 +1,22 @@
+{
+	"Opium Dummy Component": {
+		"prefix": ["op", "react"],
+		"body": [
+			"import React, { FC } from 'react'",
+			"import { Font, Box, Align, Gap } from 'themeor'",
+			"",
+			"",
+			"export interface I${1:Component}Props {$2}",
+			"",
+			"",
+			"export const ${1:Component}: FC<I${1:Component}Props> = () => {",
+			"  return (",
+			"    <Align>",
+			"      <Font></Font>",
+			"    </Align>",
+			"  )",
+			"}",
+			"",
+		]
+	}
+}
