@@ -1,6 +1,6 @@
 import { Fit, Gap } from 'themeor'
 
-export type Props = React.HTMLAttributes<HTMLElement> & {
+type Props = React.HTMLAttributes<HTMLElement> & {
   gutter?: any,
 }
 

@@ -4,7 +4,7 @@ import {MoovingSpots} from '../mooving-spots'
 import SideMenu from '../side-menu'
 import {LimitWidth} from '../limit-width'
 
-export type Props = React.AllHTMLAttributes<HTMLElement> & {}
+type Props = React.AllHTMLAttributes<HTMLElement> & {}
 
 export function AppLayout (p: Props) {
   const { mainMenu, applyTrigger } = useContext()

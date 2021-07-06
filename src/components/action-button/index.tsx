@@ -1,7 +1,7 @@
 import { Align, Fit, Box, Font, Line, Gap, Icon, Reaction } from 'themeor'
 import {MakeButton} from '../make-button'
 
-export type Props = React.AllHTMLAttributes<HTMLElement> & {
+type Props = React.AllHTMLAttributes<HTMLElement> & {
   label?: string,
   icon?: string,
   primary?: boolean,

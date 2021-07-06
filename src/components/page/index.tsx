@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet'
 
-export type Props = any & React.AllHTMLAttributes<HTMLElement> & {
+type Props = any & React.AllHTMLAttributes<HTMLElement> & {
   title?: string
 }
 

@@ -1,12 +1,13 @@
+import {FC} from 'react'
 import { Align, Fit, Box, Font, Line, Gap, Icon, Reaction } from 'themeor'
 
-export type Props = {
+type Props = {
   checked?: boolean,
   label?: string,
   onChange?: (value: boolean) => void,
 }
 
-export const Toggle = ({ checked, label, onChange, ...props }: any) => {
+export const Toggle: FC<Props> = ({ checked, label, onChange, ...props }: any) => {
 
   function handleChange() {
     onChange && onChange(!checked)

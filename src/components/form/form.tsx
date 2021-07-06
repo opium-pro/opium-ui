@@ -1,7 +1,7 @@
 import {useState} from 'react'
 import Context from './context'
 
-export type Props = React.AllHTMLAttributes<HTMLElement> & {
+type Props = React.AllHTMLAttributes<HTMLElement> & {
   fields: any,
   onSubmit: any,
 }

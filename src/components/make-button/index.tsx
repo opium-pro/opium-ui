@@ -1,6 +1,6 @@
 import { Align, Fit, Box, Font, Line, Gap, Icon, Reaction } from 'themeor'
 
-export type Props = React.HTMLAttributes<HTMLAnchorElement> & {
+type Props = React.HTMLAttributes<HTMLAnchorElement> & {
   offset?: string,
   disabled?: boolean,
   radius?: string,

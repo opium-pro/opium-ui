@@ -3,7 +3,7 @@ import { Theme, Align, Fit, Box, Font, Line, Gap } from 'themeor'
 import themeConfig from '../../theme/config.json'
 import icons from '../../theme/icons'
 
-export type Props = React.AllHTMLAttributes<HTMLElement> & {}
+type Props = React.AllHTMLAttributes<HTMLElement> & {}
 
 export function AppTheme ({ children }: Props) {
   return (

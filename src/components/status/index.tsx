@@ -1,6 +1,6 @@
 import { Align, Fit, Box, Font, Line, Gap, Icon, Reaction } from 'themeor'
 
-export type Props = React.HTMLAttributes<HTMLElement> & {
+type Props = React.HTMLAttributes<HTMLElement> & {
   label: string,
   type: string,
 } | any

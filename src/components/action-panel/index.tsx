@@ -3,7 +3,7 @@ import { Align, Fit, Box, Font, Line, Gap, Icon, Effect } from 'themeor'
 import {LimitWidth} from '../limit-width'
 
 
-export type Props = React.AllHTMLAttributes<HTMLElement> & {
+type Props = React.AllHTMLAttributes<HTMLElement> & {
   width?: number,
   show?: boolean,
   status?: string,

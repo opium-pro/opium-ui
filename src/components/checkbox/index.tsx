@@ -1,7 +1,7 @@
 import { Align, Fit, Box, Font, Line, Gap, Icon, Reaction, Effect } from 'themeor'
 import MakeButton from '../make-button'
 
-export type Props = Omit<React.HTMLAttributes<HTMLElement>, 'onChange'> & {
+type Props = Omit<React.HTMLAttributes<HTMLElement>, 'onChange'> & {
   checked?: boolean,
   multiple?: boolean,
   label?: string,

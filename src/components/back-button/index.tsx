@@ -1,7 +1,7 @@
 import { Align, Fit, Box, Font, Line, Gap, Icon, Reaction } from 'themeor'
 import {MakeButton} from '../make-button'
 
-export type Props = React.HTMLAttributes<HTMLElement> & {}
+type Props = React.HTMLAttributes<HTMLElement> & {}
 
 export function BackButton ({onClick}: Props) {
   return (
