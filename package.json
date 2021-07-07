@@ -24,7 +24,7 @@
     "start": "react-scripts start",
     "build-docs": "react-scripts build",
     "parse-icons": "node ./scripts/parse-icons",
-    "build": "rm -fr ./dist && tsc -p tsconfig.dist.json"
+    "build": "rm -fr ./dist && cd ./src && rsync -R ./**/**/**/*.svg ../dist && cd ../ && tsc -p tsconfig.dist.json"
   },
   "eslintConfig": {
     "extends": [

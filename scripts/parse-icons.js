@@ -44,16 +44,20 @@ function correctName(name) {
 }
 
 function offerName(name) {
+  if (['delete', 'function'].includes(name)) {
+    name = '_' + name
+  }
+
   for (const file of fileList) {
     if (file.name === name) {
       const splitName = name.split('_')
-      const counter =  parseInt(splitName[splitName.length - 1])
+      const counter = parseInt(splitName[splitName.length - 1])
 
       if (counter > 1) {
         splitName.pop()
-        return offerName(`${splitName.join('_')}_${counter+1}`)
+        return offerName(`${splitName.join('_')}_${counter + 1}`)
       }
-      return  offerName(`${name}_2`)
+      return offerName(`${name}_2`)
     }
   }
   return name
@@ -63,7 +67,9 @@ readFiles(rootDir)
 
 let text = ''
 for (const file of fileList) {
-  text += `export { ReactComponent as ${file.name} } from "./icons/${file.path}"
+  text += `import ${file.name} from "./icons/${file.path}"
+  const ${file.name}_____component = ${file.name}.ReactComponent
+  export {${file.name}_____component as ${file.name}}
 `
 }
 
