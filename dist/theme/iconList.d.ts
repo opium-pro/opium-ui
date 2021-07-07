@@ -1,2 +1,2 @@
-declare const icons: {};
+declare const icons: any;
 export default icons;
