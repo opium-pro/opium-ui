@@ -65,12 +65,19 @@ function offerName(name) {
 
 readFiles(rootDir)
 
-let text = ''
+let text = `import React from 'react'
+const icons: any = {}
+`
+
 for (const file of fileList) {
   text += `import ${file.name} from "./icons/${file.path}"
-  const ${file.name}_____component = ${file.name}.ReactComponent
-  export {${file.name}_____component as ${file.name}}
+  const Icon__${file.name} = () => <div dangerouslySetInnerHTML={{__html: ${file.name}}} />
+  icons.md.${file.name} = Icon__${file.name}
+  icons.sm.${file.name} = Icon__${file.name}
+  icons.lg.${file.name} = Icon__${file.name}
 `
 }
 
-fs.writeFile('./src/theme/iconList.ts', text, () => { })
+text += `export default icons`
+
+fs.writeFile('./src/theme/iconList.tsx', text, () => { })
