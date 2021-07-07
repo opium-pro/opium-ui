@@ -66,7 +66,7 @@ function offerName(name) {
 readFiles(rootDir)
 
 let text = `import React from 'react'
-const icons: any = {}
+const icons: any = {sm:{}, md:{}, lg:{}}
 `
 
 for (const file of fileList) {

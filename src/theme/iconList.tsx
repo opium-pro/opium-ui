@@ -1,5 +1,5 @@
 import React from 'react'
-const icons: any = {}
+const icons: any = {sm:{}, md:{}, lg:{}}
 import d_square from "./icons/interface-essential/2d-square.svg"
   const Icon__d_square = () => <div dangerouslySetInnerHTML={{__html: d_square}} />
   icons.md.d_square = Icon__d_square
