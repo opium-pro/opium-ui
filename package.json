@@ -2,7 +2,7 @@
   "name": "opium-ui",
   "version": "0.1.0",
   "private": true,
-  "main": "src/index.ts",
+  "main": "dist/index.js",
   "dependencies": {
     "react-helmet": "^6.1.0",
     "react-tooltip": "^4.2.21",
@@ -23,7 +23,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build-docs": "react-scripts build",
-    "parse-icons": "node ./scripts/parse-icons"
+    "parse-icons": "node ./scripts/parse-icons",
+    "build": "rm -fr ./dist && tsc -p tsconfig.dist.json"
   },
   "eslintConfig": {
     "extends": [
