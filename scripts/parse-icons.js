@@ -71,7 +71,6 @@ const icons: any = {sm:{}, md:{}, lg:{}}
 
 for (const file of fileList) {
   text += `import ${file.name} from "./icons/${file.path}"
-  console.log( ${file.name})
   const Icon__${file.name} = () => <div dangerouslySetInnerHTML={{__html: ${file.name}}} />
   icons.md.${file.name} = Icon__${file.name}
   icons.sm.${file.name} = Icon__${file.name}

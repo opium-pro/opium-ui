@@ -2,7 +2,7 @@ import React from 'react';
 import ReactTooltip from 'react-tooltip';
 import { Theme, Fit, Box, Font } from 'themeor';
 import themeConfig from '../../theme/config.json';
-import { icons } from '../../theme/iconList';
+import icons from '../../theme/iconList';
 export function AppTheme(_a) {
     var children = _a.children;
     return (React.createElement(Theme, { config: themeConfig, icons: icons, reset: true, global: true },
