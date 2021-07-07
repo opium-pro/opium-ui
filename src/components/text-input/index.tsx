@@ -1,3 +1,4 @@
+import React from 'react'
 import { forwardRef } from 'react'
 import { Gap, Box, Align, Font, Icon, Fit, Reaction, Effect } from 'themeor'
 import newId from 'themeor/dist/utils/new-id'

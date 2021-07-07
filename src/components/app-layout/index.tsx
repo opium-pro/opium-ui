@@ -1,3 +1,4 @@
+import React from 'react'
 import { FC } from 'react'
 import { Align, Fit, Box, Font, Line, Gap } from 'themeor'
 import { MoovingSpots } from '../mooving-spots'

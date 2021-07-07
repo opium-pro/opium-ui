@@ -1,3 +1,4 @@
+import React from 'react'
 import { Align, Fit, Box, Font, Line, Gap, Icon } from 'themeor'
 
 type Props = React.AllHTMLAttributes<HTMLElement> & {

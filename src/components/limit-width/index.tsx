@@ -1,3 +1,4 @@
+import React from 'react'
 import { Fit, Gap } from 'themeor'
 
 type Props = React.HTMLAttributes<HTMLElement> & {

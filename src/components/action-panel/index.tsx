@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import React from 'react'
 import { Align, Fit, Box, Font, Line, Gap, Icon, Effect } from 'themeor'
 import {LimitWidth} from '../limit-width'
 
