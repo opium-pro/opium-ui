@@ -3,6 +3,8 @@ const path = require("path")
 
 const fileList = []
 
+const rootDir = './src/theme/icons'
+
 function readFiles(dir, level) {
   const files = fs.readdirSync(dir)
 
@@ -12,16 +14,20 @@ function readFiles(dir, level) {
     let name = splitPath.pop()
 
     if (fs.statSync(fullPath).isDirectory()) {
-      const newLevel = `${level ? level + '/' : ''}${correctName(name)}`
+      // const newLevel = `${level ? level + '/' : ''}${correctName(name)}`
+      const newLevel = `${level ? level + '/' : ''}${name}`
       readFiles(fullPath, newLevel)
     } else {
       const splitName = name.split('.')
       const ext = splitName.pop()
       let onlyName = correctName(splitName.join(''))
       onlyName = offerName(onlyName)
-      const newPath = `${level ? level + '/' : ''}${onlyName}.${ext}`
+      // const newPath = `${level ? level + '/' : ''}${onlyName}.${ext}`
+      const newPath = `${level ? level + '/' : ''}${name}`
 
-      // fs.rename(fullPath)
+      // fs.rename(fullPath, rootDir+newPath, (e) => {
+      //   console.log(e);
+      // })
 
       if (ext === 'svg') {
         fileList.push({
@@ -53,7 +59,7 @@ function offerName(name) {
   return name
 }
 
-readFiles('./src/theme/icons')
+readFiles(rootDir)
 
 let text = ''
 for (const file of fileList) {
