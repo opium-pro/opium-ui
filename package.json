@@ -19,7 +19,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build"
+    "build": "react-scripts build",
+    "parse-icons": "node ./scripts/parse-icons"
   },
   "eslintConfig": {
     "extends": [
