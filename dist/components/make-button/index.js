@@ -20,6 +20,7 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
+import React from 'react';
 import { Fit, Box, Reaction } from 'themeor';
 export var MakeButton = function (_a) {
     var children = _a.children, _b = _a.offset, offset = _b === void 0 ? "10px" : _b, disabled = _a.disabled, _c = _a.radius, radius = _c === void 0 ? "md" : _c, _d = _a.track, track = _d === void 0 ? ["hover", "active"] : _d, fade = _a.fade, rest = __rest(_a, ["children", "offset", "disabled", "radius", "track", "fade"]);

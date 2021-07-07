@@ -1,3 +1,4 @@
+import React from 'react';
 import { Align, Icon } from 'themeor';
 import { MakeButton } from '../make-button';
 export function BackButton(_a) {

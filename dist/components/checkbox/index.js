@@ -20,8 +20,9 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
+import React from 'react';
 import { Align, Fit, Box, Font, Gap, Reaction, Effect } from 'themeor';
-import MakeButton from '../make-button';
+import { MakeButton } from '../make-button';
 export var Checkbox = function (_a) {
     var checked = _a.checked, multiple = _a.multiple, label = _a.label, onChange = _a.onChange, props = __rest(_a, ["checked", "multiple", "label", "onChange"]);
     function handleChange(event) {

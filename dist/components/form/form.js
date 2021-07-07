@@ -9,6 +9,7 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
+import React from 'react';
 import { useState } from 'react';
 import Context from './context';
 export function Form(_a) {

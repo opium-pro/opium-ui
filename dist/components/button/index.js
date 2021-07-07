@@ -20,6 +20,7 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
+import React from 'react';
 import { Align, Fit, Box, Font, Gap, Reaction } from 'themeor';
 export var Button = function (_a) {
     var label = _a.label, primary = _a.primary, _b = _a.type, type = _b === void 0 ? "button" : _b, disabled = _a.disabled, mini = _a.mini, rest = __rest(_a, ["label", "primary", "type", "disabled", "mini"]);

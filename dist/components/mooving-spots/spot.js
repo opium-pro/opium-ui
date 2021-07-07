@@ -1,10 +1,11 @@
+import React from 'react';
 import { Box, Fit } from 'themeor';
 import spot1path from './img/spot1.svg';
 import spot2path from './img/spot2.svg';
 import purple1path from './img/purple1.svg';
 import purple2path from './img/purple2.svg';
 import purple3path from './img/purple3.svg';
-import random from '../_utils_/random';
+import random from '../../utils/random';
 var size = 930;
 var spotList = [spot1path, spot2path];
 var spotListPurple = [purple1path, purple2path, purple3path];

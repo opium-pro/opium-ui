@@ -1,4 +1,4 @@
-/// <reference types="react" />
+import React from 'react';
 declare type Props = React.AllHTMLAttributes<HTMLElement> & {
     width?: number;
     show?: boolean;

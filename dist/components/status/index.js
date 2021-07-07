@@ -20,6 +20,7 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
+import React from 'react';
 import { Align, Box, Font, Gap } from 'themeor';
 export var Status = function (_a) {
     var label = _a.label, type = _a.type, large = _a.large, props = __rest(_a, ["label", "type", "large"]);

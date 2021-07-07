@@ -1,4 +1,4 @@
-/// <reference types="react" />
+import React from 'react';
 declare type Props = React.HTMLAttributes<HTMLAnchorElement> & {
     offset?: string;
     disabled?: boolean;

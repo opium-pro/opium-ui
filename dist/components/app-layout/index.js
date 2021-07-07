@@ -1,3 +1,4 @@
+import React from 'react';
 import { Align, Fit } from 'themeor';
 import { MoovingSpots } from '../mooving-spots';
 import { AppTheme } from '../app-theme';

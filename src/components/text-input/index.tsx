@@ -39,7 +39,7 @@ export const TextInput = withForm(forwardRef(({
 
   return (
     <Reaction cursor="text" onFocus={handleFocus} onBlur={handleBlur} {...props}>
-      {(rProps, r) => (
+      {(rProps: any, r: any) => (
         <Fit.TryTagless height={height}>
           <Box
             fill={(r.focus && "base") || (r.hover && "faint") || "faint-down"}

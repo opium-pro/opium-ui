@@ -20,6 +20,7 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
+import React from 'react';
 import { Align, Fit, Box, Gap } from 'themeor';
 export function Wrapper(_a) {
     var children = _a.children, rest = __rest(_a, ["children"]);

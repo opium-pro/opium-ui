@@ -1,3 +1,4 @@
+import React from 'react';
 import { Align, Fit, Box, Font, Gap } from 'themeor';
 export var Counter = function (_a) {
     var value = _a.value, attention = _a.attention, base = _a.base;

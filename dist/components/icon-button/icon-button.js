@@ -20,6 +20,7 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
+import React from 'react';
 import { Align, Fit, Box, Icon, Reaction } from 'themeor';
 export var IconButton = function (_a) {
     var icon = _a.icon, fill = _a.fill, line = _a.line, rest = __rest(_a, ["icon", "fill", "line"]);

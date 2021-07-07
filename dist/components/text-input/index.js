@@ -20,6 +20,7 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
+import React from 'react';
 import { forwardRef } from 'react';
 import { Gap, Box, Align, Font, Fit, Reaction } from 'themeor';
 import newId from 'themeor/dist/utils/new-id';

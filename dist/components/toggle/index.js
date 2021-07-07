@@ -20,6 +20,7 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
+import React from 'react';
 import { Align, Fit, Box, Gap, Icon, Reaction } from 'themeor';
 export var Toggle = function (_a) {
     var checked = _a.checked, label = _a.label, onChange = _a.onChange, props = __rest(_a, ["checked", "label", "onChange"]);

@@ -9,6 +9,7 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
+import React from 'react';
 import { useState } from 'react';
 import { Fit, Font } from 'themeor';
 export var LineCut = function (_a) {

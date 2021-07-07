@@ -1,4 +1,4 @@
-/// <reference types="react" />
+import React from 'react';
 declare type Props = any & React.AllHTMLAttributes<HTMLElement> & {
     title?: string;
 };

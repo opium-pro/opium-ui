@@ -1,4 +1,4 @@
-/// <reference types="react" />
+import React from 'react';
 declare type Props = React.HTMLAttributes<HTMLElement> & {
     label: string;
     type: string;

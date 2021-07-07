@@ -1,3 +1,4 @@
+import React from 'react';
 import { Align, Fit, Box, Font } from 'themeor';
 export var Ava = function (_a) {
     var abbr = _a.abbr, _b = _a.fill, fill = _b === void 0 ? "accent" : _b;

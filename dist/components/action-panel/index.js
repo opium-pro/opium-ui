@@ -1,3 +1,4 @@
+import React from 'react';
 import { Align, Fit, Box, Font, Gap } from 'themeor';
 import { LimitWidth } from '../limit-width';
 export var ActionPanel = function (_a) {

@@ -1,3 +1,4 @@
+import React from 'react';
 import ReactTooltip from 'react-tooltip';
 import { Theme, Fit, Box, Font } from 'themeor';
 import themeConfig from '../../theme/config.json';

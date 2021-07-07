@@ -20,6 +20,7 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
+import React from 'react';
 import { Align, Fit, Box } from 'themeor';
 import { LimitWidth } from '../limit-width';
 export function Wrapper(_a) {

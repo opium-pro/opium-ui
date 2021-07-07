@@ -1,3 +1,4 @@
+import React from 'react';
 import { FC } from 'react';
 declare type Props = React.AllHTMLAttributes<HTMLElement> & {
     sideMenu?: any;

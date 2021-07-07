@@ -20,6 +20,7 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
+import React from 'react';
 import { useContext } from 'react';
 import Context from './context';
 export var withForm = function (Component) { return function (_a) {
