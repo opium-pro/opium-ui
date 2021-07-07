@@ -1,7 +1,7 @@
 import ReactTooltip from 'react-tooltip';
 import { Theme, Fit, Box, Font } from 'themeor';
 import themeConfig from '../../theme/config.json';
-import * as icons from '../../theme/icons';
+import * as icons from '../../theme/iconList';
 var configIcons = {
     sm: icons,
     md: icons,

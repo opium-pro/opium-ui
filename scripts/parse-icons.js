@@ -67,4 +67,4 @@ for (const file of fileList) {
 `
 }
 
-fs.writeFile('./src/theme/icons.ts', text, () => { })
+fs.writeFile('./src/theme/iconList.ts', text, () => { })
