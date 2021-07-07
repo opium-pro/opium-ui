@@ -1,13 +1,19 @@
 import ReactTooltip from 'react-tooltip'
 import { Theme, Align, Fit, Box, Font, Line, Gap } from 'themeor'
 import themeConfig from '../../theme/config.json'
-import icons from '../../theme/icons'
+import * as icons from '../../theme/icons'
 
 type Props = React.AllHTMLAttributes<HTMLElement> & {}
 
+const configIcons = {
+  sm: icons,
+  md: icons,
+  lg: icons,
+}
+
 export function AppTheme ({ children }: Props) {
   return (
-    <Theme config={themeConfig} icons={icons} reset global>
+    <Theme config={themeConfig} icons={configIcons} reset global>
       <Fit.TryTagless minHeight="100vh">
         <Box.TryTagless fill="faint-down">
           <Font.TryTagless family="regular" fill="base" size="sm" weight="500" lineHeight="md">
