@@ -8,26 +8,33 @@ function readFiles(dir, level) {
 
   for (const file of files) {
     const fullPath = path.join(dir, file)
-
-    const name = fullPath.split('/').pop()
+    const splitPath = fullPath.split('/')
+    let name = splitPath.pop()
 
     if (fs.statSync(fullPath).isDirectory()) {
-      const newLevel = `${level ? level + '/' : ''}${name}`
+      const newLevel = `${level ? level + '/' : ''}${correctName(name)}`
       readFiles(fullPath, newLevel)
     } else {
       const splitName = name.split('.')
       const ext = splitName.pop()
-      let onlyName = splitName.join().replace(/[^a-zA-Z]/g, "_").replace(/__/g, "_").replace(/__/g, "_").replace(/^_/, "").replace(/_$/, "")
+      let onlyName = correctName(splitName.join(''))
       onlyName = offerName(onlyName)
+      const newPath = `${level ? level + '/' : ''}${onlyName}.${ext}`
+
+      // fs.rename(fullPath)
 
       if (ext === 'svg') {
         fileList.push({
           name: onlyName,
-          path: `${level ? level + '/' : ''}${name}`,
+          path: newPath,
         })
       }
     }
   }
+}
+
+function correctName(name) {
+  return name.replace(/[^a-zA-Z]/g, "_").replace(/__/g, "_").replace(/__/g, "_").replace(/^_/, "").replace(/_$/, "")
 }
 
 function offerName(name) {
