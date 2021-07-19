@@ -1,19 +1,20 @@
-import React, {useContext, useState, useEffect} from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import Context from './context'
 
-export const withForm = (Component: any) => ({onChange, value, name, ...rest}: any) => {
-  if (!name) {
-    return (
-      <Component
-        {...rest}
-        value={value}
-        name={name}
-        onChange={onChange}
-      />
-    )
-  }
-
+export const withForm = (Component: any) => ({
+  onChange,
+  value,
+  name,
+  match,
+  error,
+  onBlur,
+  mask,
+  disabled,
+  ...rest
+}: any) => {
   const [changed, setChanged]: any = useState(false)
+  const [hasError, setError]: any = useState(error)
+
   const fields = useContext(Context)
   const setField = fields.setField
   let fieldValue: string = fields[name]
@@ -23,10 +24,30 @@ export const withForm = (Component: any) => ({onChange, value, name, ...rest}: a
     setField(name, fieldValue)
   }
 
+  function handleBlur(value) {
+    if (disabled) {
+      return
+    }
+
+    onBlur?.(value)
+
+    if (match && changed) {
+      let errorText = ''
+      for (const matchItem of match) {
+        if (!fieldValue?.match(matchItem[0])) {
+          errorText = errorText + ' ' + matchItem[1]
+        }
+      }
+
+      setError(errorText || false)
+    }
+  }
+
   function handleChange(value) {
+    setError(false)
     !changed && setChanged(true)
     const result = onChange?.(value)
-    const newValue = typeof result === 'string' ? result : value
+    let newValue = typeof result === 'string' ? result : value
     setField(name, newValue)
   }
 
@@ -35,7 +56,10 @@ export const withForm = (Component: any) => ({onChange, value, name, ...rest}: a
       {...rest}
       value={fieldValue}
       name={name}
-      onChange={handleChange}
+      onChange={!disabled && handleChange}
+      onBlur={!disabled && handleBlur}
+      error={hasError}
+      disabled={disabled}
     />
   )
 }

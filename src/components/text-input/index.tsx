@@ -2,7 +2,7 @@ import React from 'react'
 import { forwardRef } from 'react'
 import { Gap, Box, Align, Font, Icon, Fit, Reaction, Effect } from 'themeor'
 import newId from 'themeor/dist/utils/new-id'
-import {withForm} from '../form'
+import { withForm } from '../form'
 
 export interface ITextInputProps {
   type?: string
@@ -13,7 +13,11 @@ export interface ITextInputProps {
   placeholder?: string
   onChange?: any
   onFocus?: any
+  onBlur?: any
   id?: string
+  error?: string | boolean
+  name?: string
+  disabled?: boolean
 }
 
 
@@ -21,7 +25,7 @@ export const TextInput = withForm(forwardRef(({
   type = "text",
   height = "50px",
   valueFont,
-  label, value, placeholder, onChange, onFocus, id,
+  label, value, placeholder, onChange, onFocus, id, error, name, disabled, onBlur,
   ...props
 }: ITextInputProps, ref) => {
   const fieldId = id || newId()
@@ -39,6 +43,7 @@ export const TextInput = withForm(forwardRef(({
   }
 
   function handleBlur() {
+    onBlur?.(value)
     if (!inputRef) { return }
     inputRef.blur()
   }
@@ -49,15 +54,19 @@ export const TextInput = withForm(forwardRef(({
   }
 
   return (
-    <Reaction cursor="text" onFocus={handleFocus} onBlur={handleBlur} {...props}>
-      {(rProps: any, r: any) => (
+    <Reaction cursor="text"
+      {...props}
+      onFocus={!disabled && handleFocus}
+      onBlur={!disabled && handleBlur}
+    >
+      {(rProps: any, r: any) => (<>
         <Fit.TryTagless height={height}>
           <Box
-            fill={(r.focus && "base") || (r.hover && "faint") || "faint-down"}
+            fill={(disabled && "base") || (r.focus && "base") || (r.hover && "faint") || "faint-down"}
             radius="md"
-            tabIndex={0}
-            borderFill={(r.focus && "base") || "none"}
+            borderFill={(disabled && "faint") || (r.focus && "base") || (error && 'critic') || "none"}
             style={{ transition: "all 0.25s ease" }}
+            tabIndex={disabled ? -1 : 0}
             {...rProps}
           >
             <Fit.TryTagless
@@ -74,7 +83,7 @@ export const TextInput = withForm(forwardRef(({
             >
               <Align.TryTagless vert="center">
                 <Font.TryTagless
-                  fill="faint-down"
+                  fill={(error && 'critic') || "faint-down"}
                   size={(value || r.focus) ? "x2s" : "xs"}
                   style={{ transition: "all 0.1s ease" }}
                   align="left"
@@ -94,7 +103,7 @@ export const TextInput = withForm(forwardRef(({
                 <Align.TryTagless vert="center">
                   <Font.TryTagless
                     size="sm"
-                    fill="base"
+                    fill={(disabled && "faint") || "base"}
                     weight="500"
                     align="left"
                     family="regular"
@@ -111,20 +120,26 @@ export const TextInput = withForm(forwardRef(({
                           width="100%"
                           bottom="0"
                         >
-                            <textarea
-                              id={fieldId}
-                              onChange={handleChange}
-                              value={value}
-                            />
-                        </Fit.TryTagless>
-                      ) : (
-                          <input
+                          <textarea
                             id={fieldId}
-                            type={type}
                             onChange={handleChange}
                             value={value}
+                            name={name}
+                            disabled={disabled}
+                            tabIndex={-1}
                           />
-                        )}
+                        </Fit.TryTagless>
+                      ) : (
+                        <input
+                          id={fieldId}
+                          type={type}
+                          onChange={handleChange}
+                          value={value}
+                          name={name}
+                          disabled={disabled}
+                          tabIndex={-1}
+                        />
+                      )}
                     </Gap.TryTagless>
                   </Font.TryTagless>
                 </Align.TryTagless>
@@ -156,7 +171,15 @@ export const TextInput = withForm(forwardRef(({
 
           </Box>
         </Fit.TryTagless>
-      )}
+
+        {typeof error === 'string' && (<>
+          <Gap size="xs" />
+
+          <Font fill="critic" size="sm">
+            {error}
+          </Font>
+        </>)}
+      </>)}
     </Reaction>
   )
 }))

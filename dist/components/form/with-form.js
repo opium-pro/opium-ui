@@ -23,11 +23,9 @@ var __rest = (this && this.__rest) || function (s, e) {
 import React, { useContext, useState } from 'react';
 import Context from './context';
 export var withForm = function (Component) { return function (_a) {
-    var onChange = _a.onChange, value = _a.value, name = _a.name, rest = __rest(_a, ["onChange", "value", "name"]);
-    if (!name) {
-        return (React.createElement(Component, __assign({}, rest, { value: value, name: name, onChange: onChange })));
-    }
+    var onChange = _a.onChange, value = _a.value, name = _a.name, match = _a.match, error = _a.error, onBlur = _a.onBlur, mask = _a.mask, disabled = _a.disabled, rest = __rest(_a, ["onChange", "value", "name", "match", "error", "onBlur", "mask", "disabled"]);
     var _b = useState(false), changed = _b[0], setChanged = _b[1];
+    var _c = useState(error), hasError = _c[0], setError = _c[1];
     var fields = useContext(Context);
     var setField = fields.setField;
     var fieldValue = fields[name];
@@ -35,11 +33,28 @@ export var withForm = function (Component) { return function (_a) {
         fieldValue = value;
         setField(name, fieldValue);
     }
+    function handleBlur(value) {
+        if (disabled) {
+            return;
+        }
+        onBlur === null || onBlur === void 0 ? void 0 : onBlur(value);
+        if (match && changed) {
+            var errorText = '';
+            for (var _i = 0, match_1 = match; _i < match_1.length; _i++) {
+                var matchItem = match_1[_i];
+                if (!(fieldValue === null || fieldValue === void 0 ? void 0 : fieldValue.match(matchItem[0]))) {
+                    errorText = errorText + ' ' + matchItem[1];
+                }
+            }
+            setError(errorText || false);
+        }
+    }
     function handleChange(value) {
+        setError(false);
         !changed && setChanged(true);
         var result = onChange === null || onChange === void 0 ? void 0 : onChange(value);
         var newValue = typeof result === 'string' ? result : value;
         setField(name, newValue);
     }
-    return (React.createElement(Component, __assign({}, rest, { value: fieldValue, name: name, onChange: handleChange })));
+    return (React.createElement(Component, __assign({}, rest, { value: fieldValue, name: name, onChange: !disabled && handleChange, onBlur: !disabled && handleBlur, error: hasError, disabled: disabled })));
 }; };

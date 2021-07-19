@@ -6,6 +6,7 @@ type Props = React.AllHTMLAttributes<HTMLElement> & {
   primary?: boolean,
   type?: string,
   mini?: boolean,
+  critic?: boolean,
 }
 
 export const Button = ({
@@ -14,6 +15,7 @@ export const Button = ({
   type = "button",
   disabled,
   mini,
+  critic,
   ...rest
 }: Props) => (
   <Reaction smooth track={['hover', 'focus', 'active']}>
@@ -29,7 +31,7 @@ export const Button = ({
             <Align.TryTagless vert="center" hor="center">
               <Font.TryTagless
                 nowrap
-                fill={disabled ? "faint-down" : "base"}
+                fill={(critic && "ctiric") || (disabled && "faint-down") || "base"}
                 weight={primary ? "600" : "500"}
                 size="sm"
                 family="regular"
