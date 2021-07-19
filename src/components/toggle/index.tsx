@@ -1,17 +1,39 @@
 import React from 'react'
 import {FC} from 'react'
 import { Align, Fit, Box, Font, Line, Gap, Icon, Reaction } from 'themeor'
+import {withForm} from '../form'
 
 type Props = {
   checked?: boolean,
   label?: string,
+  name?: string,
+  value?: string,
+  initialValue?: string,
+  radio?: boolean,
   onChange?: (value: boolean) => void,
 }
 
-export const Toggle: FC<Props> = ({ checked, label, onChange, ...props }: any) => {
+export const Toggle: FC<Props> = withForm(({ name, value, initialValue, radio, checked, label, onChange, ...props }: any) => {
+  if (checked === undefined && name !== undefined) {
+    if (radio) {
+      checked = (initialValue === value)
+    } else {
+      checked = value === 'on'
+    }
+  }
 
   function handleChange() {
-    onChange && onChange(!checked)
+    if (!radio && value === 'off') {
+      value = 'on'
+    } else if (!radio && value === 'on') {
+      value = 'off'
+    } else if (value === initialValue) {
+      value = undefined
+    } else {
+      value = initialValue
+    }
+
+    onChange?.(value)
   }
 
   return (
@@ -51,4 +73,4 @@ export const Toggle: FC<Props> = ({ checked, label, onChange, ...props }: any) =
       )}
     </Reaction>
   )
-}
+})

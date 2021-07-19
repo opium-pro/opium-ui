@@ -3,7 +3,7 @@ import { Align, Fit, Box, Font, Line, Gap, Icon, Reaction, Effect } from 'themeo
 import { MakeButton } from '../make-button'
 import { withForm } from '../form'
 
-type Props = Omit<React.HTMLAttributes<HTMLElement>, 'onChange' | 'onClick'> & {
+type Props = Omit<React.HTMLAttributes<HTMLElement>, 'onChange'> & {
   checked?: boolean,
   indeterminate?: boolean,
   label?: string,
@@ -12,10 +12,9 @@ type Props = Omit<React.HTMLAttributes<HTMLElement>, 'onChange' | 'onClick'> & {
   initialValue?: string,
   radio?: boolean,
   onChange?: (value: boolean | string) => void,
-  onClick?: (value: boolean | string) => void,
 }
 
-export const Checkbox = withForm(({ name, value, radio, initialValue, checked, indeterminate, label, onChange, onClick, ...props }: Props) => {
+export const Checkbox = withForm(({ name, value, radio, initialValue, checked, indeterminate, label, onChange, ...props }: Props) => {
   if (checked === undefined && name !== undefined) {
     if (radio) {
       checked = (initialValue === value)
