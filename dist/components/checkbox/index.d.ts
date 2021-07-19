@@ -1,2 +1,2 @@
 /// <reference types="react" />
-export declare const Checkbox: ({ onChange, value, name, match, error, onBlur, mask, disabled, ...rest }: any) => JSX.Element;
+export declare const Checkbox: ({ onChange, value, name, match, error, onBlur, mask, disabled, radio, ...rest }: any) => JSX.Element;

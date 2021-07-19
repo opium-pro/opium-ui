@@ -20,20 +20,29 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Align, Fit, Box, Font, Gap, Reaction, Effect } from 'themeor';
 import { MakeButton } from '../make-button';
 import { withForm } from '../form';
 export var Checkbox = withForm(function (_a) {
-    var name = _a.name, value = _a.value, checked = _a.checked, multiple = _a.multiple, label = _a.label, onChange = _a.onChange, props = __rest(_a, ["name", "value", "checked", "multiple", "label", "onChange"]);
-    useEffect(function () {
-        if (checked === undefined && name !== undefined) {
-            checked = (name === value);
+    var name = _a.name, value = _a.value, radio = _a.radio, initialValue = _a.initialValue, checked = _a.checked, indeterminate = _a.indeterminate, label = _a.label, onChange = _a.onChange, props = __rest(_a, ["name", "value", "radio", "initialValue", "checked", "indeterminate", "label", "onChange"]);
+    if (checked === undefined && name !== undefined) {
+        if (radio) {
+            checked = (initialValue === value);
         }
-    });
+        else {
+            checked = value === 'on';
+        }
+    }
     function handleChange(event) {
-        var isOn = event.target.value === 'on';
-        onChange && onChange(isOn ? (name || true) : false);
+        var value = event.target.value;
+        if (!radio && value === 'off') {
+            value = 'on';
+        }
+        else if (!radio && value === 'on') {
+            value = 'off';
+        }
+        onChange === null || onChange === void 0 ? void 0 : onChange(value);
     }
     return (React.createElement(Reaction, __assign({ cursor: "pointer" }, props), function (rProps, r) { return (React.createElement(Fit, __assign({}, rProps),
         React.createElement(Align.TryTagless, { row: true, vert: "center" },
@@ -41,7 +50,7 @@ export var Checkbox = withForm(function (_a) {
                 React.createElement(MakeButton, { radius: "max", offset: "14px", track: ["hover", "active"] },
                     React.createElement(Fit.TryTagless, { maxWidth: "0", maxHeight: "0", clip: true },
                         React.createElement(Effect, { transparency: "max" },
-                            React.createElement("input", { value: !!checked ? 'on' : 'off', type: "checkbox", onChange: handleChange }))),
+                            React.createElement("input", { value: radio ? initialValue : value, type: "checkbox", onChange: handleChange }))),
                     React.createElement(Fit.TryTagless, { width: "20px", height: "20px" },
                         React.createElement(Box.TryTagless, { radius: "max", borderFill: checked ? "complement" : "faint-up", fill: "none" },
                             React.createElement(Align, { vert: "center", hor: "center", style: { transition: "all 0.2s ease" } }, !!checked && (React.createElement(Fit.TryTagless, { width: "8px", height: "8px" },

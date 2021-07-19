@@ -22,10 +22,31 @@ var __rest = (this && this.__rest) || function (s, e) {
 };
 import React from 'react';
 import { Align, Fit, Box, Gap, Icon, Reaction } from 'themeor';
-export var Toggle = function (_a) {
-    var checked = _a.checked, label = _a.label, onChange = _a.onChange, props = __rest(_a, ["checked", "label", "onChange"]);
+import { withForm } from '../form';
+export var Toggle = withForm(function (_a) {
+    var name = _a.name, value = _a.value, initialValue = _a.initialValue, radio = _a.radio, checked = _a.checked, label = _a.label, onChange = _a.onChange, props = __rest(_a, ["name", "value", "initialValue", "radio", "checked", "label", "onChange"]);
+    if (checked === undefined && name !== undefined) {
+        if (radio) {
+            checked = (initialValue === value);
+        }
+        else {
+            checked = value === 'on';
+        }
+    }
     function handleChange() {
-        onChange && onChange(!checked);
+        if (!radio && value === 'off') {
+            value = 'on';
+        }
+        else if (!radio && value === 'on') {
+            value = 'off';
+        }
+        else if (value === initialValue) {
+            value = undefined;
+        }
+        else {
+            value = initialValue;
+        }
+        onChange === null || onChange === void 0 ? void 0 : onChange(value);
     }
     return (React.createElement(Reaction, __assign({ track: "hover" }, props), function (rProps, r) { return (React.createElement(Align, { hor: "left" },
         React.createElement(Align, __assign({ row: true, vert: "center" }, rProps, { onClick: handleChange }),
@@ -36,4 +57,4 @@ export var Toggle = function (_a) {
                             React.createElement(Box, { fill: "base", radius: "max", shadow: "sm" }, checked && React.createElement(Icon, { name: "Check", size: "sm", fill: "success", line: false })))))),
             label && React.createElement(Gap, { size: "xs" }),
             label))); }));
-};
+});
