@@ -7,7 +7,7 @@ type Props = React.HTMLAttributes<HTMLElement> & {}
 export function Wrapper ({ children, ...rest }: Props) {
   return (
     <Fit.TryTagless {...rest}>
-      <Box.TryTagless fill="base" shadow="sm">
+      <Box fill="base" shadow="sm">
         <Align hor="stretch">
 
           <Gap hor="none">
@@ -40,7 +40,7 @@ export function Wrapper ({ children, ...rest }: Props) {
           </MakeButton> */}
         </Align>
 
-      </Box.TryTagless>
+      </Box>
     </Fit.TryTagless>
   )
 }

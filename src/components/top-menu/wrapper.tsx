@@ -1,6 +1,5 @@
 import React from 'react'
-import { Align, Fit, Box, Font, Line, Gap, Icon, Reaction } from 'themeor'
-import { Ava } from '../ava'
+import { Align, Box } from 'themeor'
 import { LimitWidth } from '../limit-width'
 
 type Props = React.HTMLAttributes<HTMLElement> & {}

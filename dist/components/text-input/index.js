@@ -21,12 +21,11 @@ var __rest = (this && this.__rest) || function (s, e) {
     return t;
 };
 import React from 'react';
-import { forwardRef } from 'react';
 import { Gap, Box, Align, Font, Fit, Reaction } from 'themeor';
 import newId from 'themeor/dist/utils/new-id';
 import { withForm } from '../form';
-export var TextInput = withForm(forwardRef(function (_a, ref) {
-    var _b = _a.type, type = _b === void 0 ? "text" : _b, _c = _a.height, height = _c === void 0 ? "50px" : _c, valueFont = _a.valueFont, label = _a.label, value = _a.value, placeholder = _a.placeholder, onChange = _a.onChange, onFocus = _a.onFocus, id = _a.id, error = _a.error, name = _a.name, disabled = _a.disabled, onBlur = _a.onBlur, props = __rest(_a, ["type", "height", "valueFont", "label", "value", "placeholder", "onChange", "onFocus", "id", "error", "name", "disabled", "onBlur"]);
+export var TextInput = withForm(function (_a, ref) {
+    var _b = _a.type, type = _b === void 0 ? "text" : _b, _c = _a.height, height = _c === void 0 ? "50px" : _c, valueFont = _a.valueFont, label = _a.label, value = _a.value, placeholder = _a.placeholder, initialValue = _a.initialValue, onChange = _a.onChange, forwardRef = _a.forwardRef, onFocus = _a.onFocus, id = _a.id, error = _a.error, name = _a.name, disabled = _a.disabled, onBlur = _a.onBlur, props = __rest(_a, ["type", "height", "valueFont", "label", "value", "placeholder", "initialValue", "onChange", "forwardRef", "onFocus", "id", "error", "name", "disabled", "onBlur"]);
     var fieldId = id || newId();
     var inputRef;
     function handleChange(event) {
@@ -51,6 +50,7 @@ export var TextInput = withForm(forwardRef(function (_a, ref) {
         if (!fRef) {
             return;
         }
+        typeof forwardRef === 'function' && forwardRef(fRef);
         inputRef = fRef;
     }
     return (React.createElement(Reaction, __assign({ cursor: "text" }, props, { onFocus: !disabled && handleFocus, onBlur: !disabled && handleBlur }), function (rProps, r) { return (React.createElement(React.Fragment, null,
@@ -75,4 +75,4 @@ export var TextInput = withForm(forwardRef(function (_a, ref) {
         typeof error === 'string' && (React.createElement(React.Fragment, null,
             React.createElement(Gap, { size: "xs" }),
             React.createElement(Font, { fill: "critic", size: "sm" }, error))))); }));
-}));
+});

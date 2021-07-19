@@ -26,12 +26,12 @@ export var withForm = function (Component) { return function (_a) {
     var onChange = _a.onChange, value = _a.value, name = _a.name, match = _a.match, error = _a.error, onBlur = _a.onBlur, mask = _a.mask, disabled = _a.disabled, radio = _a.radio, rest = __rest(_a, ["onChange", "value", "name", "match", "error", "onBlur", "mask", "disabled", "radio"]);
     var _b = useState(false), changed = _b[0], setChanged = _b[1];
     var _c = useState(error), hasError = _c[0], setError = _c[1];
-    var fields = useContext(Context);
-    var setField = fields.setField;
+    var fields = useContext(Context) || {};
+    var setField = fields === null || fields === void 0 ? void 0 : fields.setField;
     var fieldValue = fields[name];
-    if (!changed && fieldValue === undefined && value && !radio) {
+    if (fieldValue === undefined && value && !radio) {
         fieldValue = value;
-        setField(name, fieldValue);
+        setField === null || setField === void 0 ? void 0 : setField(name, fieldValue);
     }
     function handleBlur(value) {
         if (disabled) {
@@ -50,11 +50,11 @@ export var withForm = function (Component) { return function (_a) {
         }
     }
     function handleChange(value) {
-        setError(false);
+        hasError && setError(false);
         !changed && setChanged(true);
         var result = onChange === null || onChange === void 0 ? void 0 : onChange(value);
         var newValue = typeof result === 'string' ? result : value;
-        setField(name, newValue);
+        setField === null || setField === void 0 ? void 0 : setField(name, newValue);
     }
     return (React.createElement(Component, __assign({}, rest, { value: fieldValue, initialValue: value, name: name, onChange: !disabled && handleChange, onBlur: !disabled && handleBlur, error: hasError, disabled: disabled, radio: radio })));
 }; };

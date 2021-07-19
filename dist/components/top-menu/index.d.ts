@@ -3,5 +3,4 @@ import { Item } from './item';
 export declare type TopMenuType = typeof Wrapper & {
     Item?: typeof Item;
 };
-declare const TopMenu: TopMenuType;
-export { TopMenu };
+export declare const TopMenu: TopMenuType;

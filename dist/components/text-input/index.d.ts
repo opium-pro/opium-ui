@@ -13,5 +13,7 @@ export interface ITextInputProps {
     error?: string | boolean;
     name?: string;
     disabled?: boolean;
+    forwardRef?: any;
+    initialValue?: string;
 }
 export declare const TextInput: ({ onChange, value, name, match, error, onBlur, mask, disabled, radio, ...rest }: any) => JSX.Element;

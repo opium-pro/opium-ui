@@ -1,6 +1,5 @@
 import React from 'react'
-import { forwardRef } from 'react'
-import { Gap, Box, Align, Font, Icon, Fit, Reaction, Effect } from 'themeor'
+import { Gap, Box, Align, Font, Fit, Reaction } from 'themeor'
 import newId from 'themeor/dist/utils/new-id'
 import { withForm } from '../form'
 
@@ -18,14 +17,27 @@ export interface ITextInputProps {
   error?: string | boolean
   name?: string
   disabled?: boolean
+  forwardRef?: any
+  initialValue?: string
 }
 
 
-export const TextInput = withForm(forwardRef(({
+export const TextInput = withForm(({
   type = "text",
   height = "50px",
   valueFont,
-  label, value, placeholder, onChange, onFocus, id, error, name, disabled, onBlur,
+  label,
+  value,
+  placeholder,
+  initialValue,
+  onChange,
+  forwardRef,
+  onFocus,
+  id,
+  error,
+  name,
+  disabled,
+  onBlur,
   ...props
 }: ITextInputProps, ref) => {
   const fieldId = id || newId()
@@ -50,6 +62,7 @@ export const TextInput = withForm(forwardRef(({
 
   function handleRef(fRef) {
     if (!fRef) { return }
+    typeof forwardRef === 'function' && forwardRef(fRef)
     inputRef = fRef
   }
 
@@ -182,4 +195,4 @@ export const TextInput = withForm(forwardRef(({
       </>)}
     </Reaction>
   )
-}))
+})

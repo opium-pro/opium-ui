@@ -24,12 +24,15 @@ import React from 'react';
 import { Align, Fit, Font, Gap, Icon } from 'themeor';
 import { MakeButton } from '../make-button';
 export function Item(_a) {
-    var label = _a.label, active = _a.active, icon = _a.icon, rest = __rest(_a, ["label", "active", "icon"]);
+    var label = _a.label, active = _a.active, icon = _a.icon, prompt = _a.prompt, rest = __rest(_a, ["label", "active", "icon", "prompt"]);
     return (React.createElement(MakeButton, __assign({ offset: "0", radius: "none" }, rest),
         React.createElement(Fit.TryTagless, { width: "100%" },
             React.createElement(Gap.TryTagless, { hor: "xs", vert: "md" },
                 React.createElement(Align, { hor: "center" },
-                    React.createElement(Icon, { name: icon || "Placeholder", fill: active ? "complement" : "base" }),
+                    React.createElement(Icon, { name: icon || "Placeholder", fill: active ? "complement" : "base" })),
+                React.createElement(Gap, { size: "x2s" }),
+                React.createElement(Font, { align: "center", size: "x2s", noselect: true, fill: active ? "complement" : "base" }, label),
+                prompt && (React.createElement(React.Fragment, null,
                     React.createElement(Gap, { size: "x2s" }),
-                    React.createElement(Font, { align: "center", size: "x2s", noselect: true, fill: active ? "complement" : "base" }, label))))));
+                    React.createElement(Font, { align: "center", size: "x3s", noselect: true, fill: "faint" }, prompt)))))));
 }

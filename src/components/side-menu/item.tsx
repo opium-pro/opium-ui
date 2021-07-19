@@ -1,14 +1,15 @@
 import React from 'react'
 import { Align, Fit, Box, Font, Line, Gap, Icon, Reaction } from 'themeor'
-import {MakeButton} from '../make-button'
+import { MakeButton } from '../make-button'
 
 type Props = React.HTMLAttributes<HTMLElement> & {
   label?: string,
   icon?: string,
   active?: boolean,
+  prompt?: string,
 }
 
-export function Item ({label, active, icon, ...rest}: Props) {
+export function Item({ label, active, icon, prompt, ...rest }: Props) {
   return (
     <MakeButton offset="0" radius="none" {...rest}>
       <Fit.TryTagless width="100%">
@@ -18,6 +19,8 @@ export function Item ({label, active, icon, ...rest}: Props) {
               name={icon || "Placeholder"}
               fill={active ? "complement" : "base"}
             />
+          </Align>
+
             <Gap size="x2s" />
             <Font
               align="center"
@@ -27,7 +30,19 @@ export function Item ({label, active, icon, ...rest}: Props) {
             >
               {label}
             </Font>
-          </Align>
+
+            {prompt && (<>
+              <Gap size="x2s"/>
+              <Font
+                align="center"
+                size="x3s"
+                noselect
+                fill="faint"
+              >
+                {prompt}
+              </Font>
+            </>)}
+
         </Gap.TryTagless>
       </Fit.TryTagless>
     </MakeButton>
