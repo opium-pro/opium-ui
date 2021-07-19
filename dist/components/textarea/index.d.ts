@@ -1,2 +1,3 @@
 import React from 'react';
-export declare const TextArea: React.ForwardRefExoticComponent<Pick<any, string | number | symbol> & React.RefAttributes<unknown>>;
+import { ITextInputProps } from '../text-input';
+export declare const TextArea: React.ForwardRefExoticComponent<ITextInputProps & React.RefAttributes<unknown>>;

@@ -26,7 +26,7 @@ import { Gap, Box, Align, Font, Fit, Reaction } from 'themeor';
 import newId from 'themeor/dist/utils/new-id';
 import { withForm } from '../form';
 export var TextInput = withForm(forwardRef(function (_a, ref) {
-    var _b = _a.type, type = _b === void 0 ? "text" : _b, _c = _a.height, height = _c === void 0 ? "50px" : _c, valueFont = _a.valueFont, label = _a.label, value = _a.value, placeholder = _a.placeholder, onChange = _a.onChange, onFocus = _a.onFocus, id = _a.id, useForm = _a.useForm, props = __rest(_a, ["type", "height", "valueFont", "label", "value", "placeholder", "onChange", "onFocus", "id", "useForm"]);
+    var _b = _a.type, type = _b === void 0 ? "text" : _b, _c = _a.height, height = _c === void 0 ? "50px" : _c, valueFont = _a.valueFont, label = _a.label, value = _a.value, placeholder = _a.placeholder, onChange = _a.onChange, onFocus = _a.onFocus, id = _a.id, props = __rest(_a, ["type", "height", "valueFont", "label", "value", "placeholder", "onChange", "onFocus", "id"]);
     var fieldId = id || newId();
     var inputRef;
     function handleChange(event) {

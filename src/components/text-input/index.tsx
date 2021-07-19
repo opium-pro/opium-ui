@@ -4,15 +4,26 @@ import { Gap, Box, Align, Font, Icon, Fit, Reaction, Effect } from 'themeor'
 import newId from 'themeor/dist/utils/new-id'
 import {withForm} from '../form'
 
+export interface ITextInputProps {
+  type?: string
+  height?: string
+  valueFont?: any
+  label?: string
+  value?: string
+  placeholder?: string
+  onChange?: any
+  onFocus?: any
+  id?: string
+}
+
 
 export const TextInput = withForm(forwardRef(({
   type = "text",
   height = "50px",
   valueFont,
   label, value, placeholder, onChange, onFocus, id,
-  useForm,
   ...props
-}: any, ref) => {
+}: ITextInputProps, ref) => {
   const fieldId = id || newId()
   let inputRef
 

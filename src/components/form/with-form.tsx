@@ -1,8 +1,12 @@
 import React from 'react'
-import {useState, useContext, createContext} from 'react'
+import {useContext} from 'react'
 import Context from './context'
 
-export const withForm = (Component: any) => ({useForm, ...rest}) => {
+export interface IWithFormProps {
+  useForm?: any
+}
+
+export const withForm = (Component: any) => ({useForm, ...rest}: any) => {
   const fields = useContext(Context)
   const field = {...fields[useForm]}
   const setField = fields.setField

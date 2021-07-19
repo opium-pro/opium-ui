@@ -1,11 +1,9 @@
 import React from 'react'
 import { forwardRef } from 'react'
-import { Gap, Box, Align, Font, Icon, Fit, Reaction, Effect } from 'themeor'
-import newId from 'themeor/dist/utils/new-id'
-import {TextInput} from '../text-input'
+import {TextInput, ITextInputProps} from '../text-input'
 
 
-export const TextArea = forwardRef(({ ...props }: any, ref) => {
+export const TextArea = forwardRef(({ ...props }: ITextInputProps, ref) => {
   return (
     <TextInput
       {...props}
