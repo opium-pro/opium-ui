@@ -13,8 +13,8 @@ import React from 'react';
 import { useState } from 'react';
 import Context from './context';
 export function Form(_a) {
-    var children = _a.children, onSubmit = _a.onSubmit, fields = _a.fields;
-    var _b = useState(fields), context = _b[0], setContext = _b[1];
+    var children = _a.children, onSubmit = _a.onSubmit;
+    var _b = useState({}), context = _b[0], setContext = _b[1];
     function setField(name, value) {
         var _a;
         var newContext = __assign(__assign({}, context), (_a = {}, _a[name] = value, _a));

@@ -20,17 +20,26 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import React from 'react';
-import { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import Context from './context';
 export var withForm = function (Component) { return function (_a) {
-    var useForm = _a.useForm, rest = __rest(_a, ["useForm"]);
-    var fields = useContext(Context);
-    var field = __assign({}, fields[useForm]);
-    var setField = fields.setField;
-    function handleChange(value) {
-        field.value = value;
-        setField(useForm, field);
+    var onChange = _a.onChange, value = _a.value, name = _a.name, rest = __rest(_a, ["onChange", "value", "name"]);
+    if (!name) {
+        return (React.createElement(Component, __assign({}, rest, { value: value, name: name, onChange: onChange })));
     }
-    return (React.createElement(Component, __assign({}, rest, field, { onChange: handleChange })));
+    var _b = useState(false), changed = _b[0], setChanged = _b[1];
+    var fields = useContext(Context);
+    var setField = fields.setField;
+    var fieldValue = fields[name];
+    if (!changed && fieldValue === undefined && value) {
+        fieldValue = value;
+        setField(name, fieldValue);
+    }
+    function handleChange(value) {
+        !changed && setChanged(true);
+        var result = onChange === null || onChange === void 0 ? void 0 : onChange(value);
+        var newValue = typeof result === 'string' ? result : value;
+        setField(name, newValue);
+    }
+    return (React.createElement(Component, __assign({}, rest, { value: fieldValue, name: name, onChange: handleChange })));
 }; };

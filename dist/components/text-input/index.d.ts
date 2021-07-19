@@ -10,4 +10,4 @@ export interface ITextInputProps {
     onFocus?: any;
     id?: string;
 }
-export declare const TextInput: ({ useForm, ...rest }: any) => JSX.Element;
+export declare const TextInput: ({ onChange, value, name, ...rest }: any) => JSX.Element;

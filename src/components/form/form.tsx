@@ -3,12 +3,11 @@ import {useState} from 'react'
 import Context from './context'
 
 type Props = React.AllHTMLAttributes<HTMLElement> & {
-  fields?: any,
   onSubmit?: any,
 }
 
-export function Form ({children, onSubmit, fields}: Props) {
-  const [context, setContext] = useState(fields)
+export function Form ({children, onSubmit}: Props) {
+  const [context, setContext] = useState({})
 
   function setField(name, value) {
     const newContext = {...context, [name]: value}

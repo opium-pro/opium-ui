@@ -1,22 +1,39 @@
-import React from 'react'
-import {useContext} from 'react'
+import React, {useContext, useState, useEffect} from 'react'
 import Context from './context'
 
-export const withForm = (Component: any) => ({onChange, name, ...rest}: any) => {
+export const withForm = (Component: any) => ({onChange, value, name, ...rest}: any) => {
+  if (!name) {
+    return (
+      <Component
+        {...rest}
+        value={value}
+        name={name}
+        onChange={onChange}
+      />
+    )
+  }
+
+  const [changed, setChanged]: any = useState(false)
   const fields = useContext(Context)
-  const field = {...fields[name]}
   const setField = fields.setField
+  let fieldValue: string = fields[name]
+
+  if (!changed && fieldValue === undefined && value) {
+    fieldValue = value
+    setField(name, fieldValue)
+  }
 
   function handleChange(value) {
-    onChange?.(value)
-    field.value = onChange?.(value) || value
-    setField(name, field)
+    !changed && setChanged(true)
+    const result = onChange?.(value)
+    const newValue = typeof result === 'string' ? result : value
+    setField(name, newValue)
   }
 
   return (
     <Component
       {...rest}
-      {...field}
+      value={fieldValue}
       name={name}
       onChange={handleChange}
     />
