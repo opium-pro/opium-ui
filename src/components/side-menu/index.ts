@@ -5,7 +5,5 @@ export type SideMenuType = typeof Wrapper & {
   Item?: typeof Item
 }
 
-const SideMenu: SideMenuType = Wrapper
+export const SideMenu: SideMenuType = Wrapper
 SideMenu.Item = Item
-
-export {SideMenu}

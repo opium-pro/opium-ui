@@ -5,7 +5,5 @@ export type TopMenuType = typeof Wrapper & {
   Item?: typeof Item
 }
 
-const TopMenu: TopMenuType = Wrapper
+export const TopMenu: TopMenuType = Wrapper
 TopMenu.Item = Item
-
-export {TopMenu}

@@ -19,7 +19,12 @@ export function Item ({label, active, icon, ...rest}: Props) {
               fill={active ? "complement" : "base"}
             />
             <Gap size="x2s" />
-            <Font align="center" size="x2s" noselect>
+            <Font
+              align="center"
+              size="x2s"
+              noselect
+              fill={active ? "complement" : "base"}
+            >
               {label}
             </Font>
           </Align>

@@ -31,5 +31,5 @@ export function Item(_a) {
                 React.createElement(Align, { hor: "center" },
                     React.createElement(Icon, { name: icon || "Placeholder", fill: active ? "complement" : "base" }),
                     React.createElement(Gap, { size: "x2s" }),
-                    React.createElement(Font, { align: "center", size: "x2s", noselect: true }, label))))));
+                    React.createElement(Font, { align: "center", size: "x2s", noselect: true, fill: active ? "complement" : "base" }, label))))));
 }
