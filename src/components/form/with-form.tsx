@@ -2,24 +2,22 @@ import React from 'react'
 import {useContext} from 'react'
 import Context from './context'
 
-export interface IWithFormProps {
-  useForm?: any
-}
-
-export const withForm = (Component: any) => ({useForm, ...rest}: any) => {
+export const withForm = (Component: any) => ({onChange, name, ...rest}: any) => {
   const fields = useContext(Context)
-  const field = {...fields[useForm]}
+  const field = {...fields[name]}
   const setField = fields.setField
 
   function handleChange(value) {
-    field.value = value
-    setField(useForm, field)
+    onChange?.(value)
+    field.value = onChange?.(value) || value
+    setField(name, field)
   }
 
   return (
     <Component
       {...rest}
       {...field}
+      name={name}
       onChange={handleChange}
     />
   )

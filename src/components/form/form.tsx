@@ -3,8 +3,8 @@ import {useState} from 'react'
 import Context from './context'
 
 type Props = React.AllHTMLAttributes<HTMLElement> & {
-  fields: any,
-  onSubmit: any,
+  fields?: any,
+  onSubmit?: any,
 }
 
 export function Form ({children, onSubmit, fields}: Props) {
