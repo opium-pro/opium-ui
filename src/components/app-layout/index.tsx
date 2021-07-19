@@ -1,7 +1,7 @@
 import React from 'react'
 import { FC } from 'react'
 import { Align, Fit, Box, Font, Line, Gap } from 'themeor'
-import { MoovingSpots } from '../mooving-spots'
+import { Background } from '../background'
 import { LimitWidth } from '../limit-width'
 import { AppTheme } from '../app-theme'
 
@@ -29,7 +29,7 @@ export const AppLayout: FC<Props> = ({ sideMenu, header, children }) => {
           <Fit height="100vh" zIndex={100} scroll>
 
             <Fit.TryTagless minHeight="100vh" FORCE_TAGLESS>
-              <MoovingSpots>
+              <Background>
 
 
                 {header && (
@@ -44,7 +44,7 @@ export const AppLayout: FC<Props> = ({ sideMenu, header, children }) => {
 
 
                 {children}
-              </MoovingSpots>
+              </Background>
             </Fit.TryTagless>
 
           </Fit>

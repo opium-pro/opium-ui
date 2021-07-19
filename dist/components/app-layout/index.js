@@ -1,6 +1,6 @@
 import React from 'react';
 import { Align, Fit } from 'themeor';
-import { MoovingSpots } from '../mooving-spots';
+import { Background } from '../background';
 import { AppTheme } from '../app-theme';
 export var AppLayout = function (_a) {
     var sideMenu = _a.sideMenu, header = _a.header, children = _a.children;
@@ -10,7 +10,7 @@ export var AppLayout = function (_a) {
             React.createElement(Align.Spacer, null,
                 React.createElement(Fit, { height: "100vh", zIndex: 100, scroll: true },
                     React.createElement(Fit.TryTagless, { minHeight: "100vh", FORCE_TAGLESS: true },
-                        React.createElement(MoovingSpots, null,
+                        React.createElement(Background, null,
                             header && (React.createElement(Fit.TryTagless, { style: {
                                     position: 'sticky',
                                     top: '0',

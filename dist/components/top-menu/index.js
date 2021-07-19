@@ -1,4 +1,5 @@
 import { Wrapper } from './wrapper';
 import { Item } from './item';
-export { Wrapper as TopMenu };
-Wrapper.Item = Item;
+var TopMenu = Wrapper;
+TopMenu.Item = Item;
+export { TopMenu };

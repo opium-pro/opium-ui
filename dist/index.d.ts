@@ -12,7 +12,7 @@ export * from './components/icon-button';
 export * from './components/limit-width';
 export * from './components/line-cut';
 export * from './components/make-button';
-export * from './components/mooving-spots';
+export * from './components/background';
 export * from './components/page';
 export * from './components/side-menu';
 export * from './components/status';

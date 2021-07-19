@@ -1,5 +1,11 @@
 import {Wrapper} from './wrapper'
 import {Item} from './item'
 
-export {Wrapper as SideMenu}
-(Wrapper as any).Item = Item
+export type SideMenuType = typeof Wrapper & {
+  Item?: typeof Item
+}
+
+const SideMenu: SideMenuType = Wrapper
+SideMenu.Item = Item
+
+export {SideMenu}

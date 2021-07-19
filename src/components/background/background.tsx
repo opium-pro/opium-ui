@@ -1,10 +1,12 @@
-import React from 'react'
+import React, {FC} from 'react'
 import {Fit} from 'themeor'
 import {Spot} from './spot'
 
-export function MoovingSpots({children, ...rest}) {
-  const altSpotSet = window.location.pathname.includes('banking-software')
+export interface IBackground {
+  altSpotSet?: boolean
+}
 
+export const Background: FC<IBackground> = ({children, altSpotSet, ...rest}) => {
   return(
     <Fit {...rest}>
       <Fit clip cover="parent">

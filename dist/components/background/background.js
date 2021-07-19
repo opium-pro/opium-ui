@@ -23,9 +23,8 @@ var __rest = (this && this.__rest) || function (s, e) {
 import React from 'react';
 import { Fit } from 'themeor';
 import { Spot } from './spot';
-export function MoovingSpots(_a) {
-    var children = _a.children, rest = __rest(_a, ["children"]);
-    var altSpotSet = window.location.pathname.includes('banking-software');
+export var Background = function (_a) {
+    var children = _a.children, altSpotSet = _a.altSpotSet, rest = __rest(_a, ["children", "altSpotSet"]);
     return (React.createElement(Fit, __assign({}, rest),
         React.createElement(Fit, { clip: true, cover: "parent" },
             React.createElement(Spot, { reset: true, altSpotSet: altSpotSet }),
@@ -42,4 +41,4 @@ export function MoovingSpots(_a) {
             React.createElement(Spot, { reset: false, altSpotSet: altSpotSet }),
             React.createElement(Spot, { reset: false, altSpotSet: altSpotSet })),
         React.createElement(Fit, null, children)));
-}
+};
