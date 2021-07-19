@@ -1,2 +1,4 @@
-/// <reference types="react" />
-export declare function Spot({ reset, altSpotSet }: any): JSX.Element;
+export function Spot({ reset, altSpotSet }: {
+    reset: any;
+    altSpotSet: any;
+}): JSX.Element;

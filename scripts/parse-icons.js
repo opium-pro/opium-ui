@@ -25,14 +25,11 @@ function readFiles(dir, level) {
       // const newPath = `${level ? level + '/' : ''}${onlyName}.${ext}`
       const newPath = `${level ? level + '/' : ''}${name}`
 
-      // fs.rename(fullPath, rootDir+newPath, (e) => {
-      //   console.log(e);
-      // })
-
       if (ext === 'svg') {
         fileList.push({
           name: onlyName,
           path: newPath,
+          data: fs.readFileSync(fullPath)
         })
       }
     }
@@ -66,12 +63,12 @@ function offerName(name) {
 readFiles(rootDir)
 
 let text = `import React from 'react'
-const icons: any = {sm:{}, md:{}, lg:{}}
+const icons = {sm:{}, md:{}, lg:{}}
 `
 
 for (const file of fileList) {
-  text += `import ${file.name} from "./icons/${file.path}"
-  const Icon__${file.name} = () => <div dangerouslySetInnerHTML={{__html: ${file.name}}} />
+  text += `
+  const Icon__${file.name} = (props) => <div {...props} dangerouslySetInnerHTML={{__html: '${file.data}'}} />
   icons.md.${file.name} = Icon__${file.name}
   icons.sm.${file.name} = Icon__${file.name}
   icons.lg.${file.name} = Icon__${file.name}
@@ -80,4 +77,4 @@ for (const file of fileList) {
 
 text += `export default icons`
 
-fs.writeFile('./src/theme/iconList.tsx', text, () => { })
+fs.writeFile('./src/theme/iconList.jsx', text, () => { })

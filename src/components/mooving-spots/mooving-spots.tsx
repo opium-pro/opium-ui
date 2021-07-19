@@ -9,18 +9,18 @@ export function MoovingSpots({children, ...rest}) {
     <Fit {...rest}>
       <Fit clip cover="parent">
         <Spot reset altSpotSet={altSpotSet}/>
-        <Spot altSpotSet={altSpotSet}/>
-        <Spot altSpotSet={altSpotSet}/>
-        <Spot altSpotSet={altSpotSet}/>
-        <Spot altSpotSet={altSpotSet}/>
-        <Spot altSpotSet={altSpotSet}/>
-        <Spot altSpotSet={altSpotSet}/>
-        <Spot altSpotSet={altSpotSet}/>
-        <Spot altSpotSet={altSpotSet}/>
-        <Spot altSpotSet={altSpotSet}/>
-        <Spot altSpotSet={altSpotSet}/>
-        <Spot altSpotSet={altSpotSet}/>
-        <Spot altSpotSet={altSpotSet}/>
+        <Spot reset={false} altSpotSet={altSpotSet}/>
+        <Spot reset={false} altSpotSet={altSpotSet}/>
+        <Spot reset={false} altSpotSet={altSpotSet}/>
+        <Spot reset={false} altSpotSet={altSpotSet}/>
+        <Spot reset={false} altSpotSet={altSpotSet}/>
+        <Spot reset={false} altSpotSet={altSpotSet}/>
+        <Spot reset={false} altSpotSet={altSpotSet}/>
+        <Spot reset={false} altSpotSet={altSpotSet}/>
+        <Spot reset={false} altSpotSet={altSpotSet}/>
+        <Spot reset={false} altSpotSet={altSpotSet}/>
+        <Spot reset={false} altSpotSet={altSpotSet}/>
+        <Spot reset={false} altSpotSet={altSpotSet}/>
       </Fit>
 
       <Fit>
