@@ -25,7 +25,11 @@ import { Align, Box } from 'themeor';
 import { LimitWidth } from '../limit-width';
 export function Wrapper(_a) {
     var children = _a.children, rest = __rest(_a, ["children"]);
-    return (React.createElement(Box, __assign({ fill: "base", shadow: "md" }, rest),
+    return (React.createElement(Box, __assign({ fill: "base", shadow: "md", style: {
+            position: 'sticky',
+            top: '0',
+            zIndex: 100,
+        } }, rest),
         React.createElement(LimitWidth, null,
             React.createElement(Align, { row: true, vert: "center" }, children))));
 }

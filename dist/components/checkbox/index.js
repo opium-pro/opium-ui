@@ -20,16 +20,22 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Align, Fit, Box, Font, Gap, Reaction, Effect } from 'themeor';
 import { MakeButton } from '../make-button';
-export var Checkbox = function (_a) {
-    var checked = _a.checked, multiple = _a.multiple, label = _a.label, onChange = _a.onChange, props = __rest(_a, ["checked", "multiple", "label", "onChange"]);
+import { withForm } from '../form';
+export var Checkbox = withForm(function (_a) {
+    var name = _a.name, value = _a.value, checked = _a.checked, multiple = _a.multiple, label = _a.label, onChange = _a.onChange, props = __rest(_a, ["name", "value", "checked", "multiple", "label", "onChange"]);
+    useEffect(function () {
+        if (checked === undefined && name !== undefined) {
+            checked = (name === value);
+        }
+    });
     function handleChange(event) {
-        var value = event.target.value === 'on';
-        onChange && onChange(!value);
+        var isOn = event.target.value === 'on';
+        onChange && onChange(isOn ? (name || true) : false);
     }
-    return (React.createElement(Reaction, __assign({ cursor: "pointer" }, props), function (rProps, r) { return (React.createElement(Fit, __assign({}, rProps, { inline: true }),
+    return (React.createElement(Reaction, __assign({ cursor: "pointer" }, props), function (rProps, r) { return (React.createElement(Fit, __assign({}, rProps),
         React.createElement(Align.TryTagless, { row: true, vert: "center" },
             React.createElement("label", null,
                 React.createElement(MakeButton, { radius: "max", offset: "14px", track: ["hover", "active"] },
@@ -42,5 +48,5 @@ export var Checkbox = function (_a) {
                                 React.createElement(Box, { radius: "max", fill: "complement", strong: true }))))))),
                 label && (React.createElement(React.Fragment, null,
                     React.createElement(Gap, { size: "sm" }),
-                    React.createElement(Font, { size: "x2s", fill: "base", weight: "400" }, label))))))); }));
-};
+                    React.createElement(Font, { size: "sm", fill: "base", weight: "400" }, label))))))); }));
+});

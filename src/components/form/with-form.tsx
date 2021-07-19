@@ -10,6 +10,7 @@ export const withForm = (Component: any) => ({
   onBlur,
   mask,
   disabled,
+  radio,
   ...rest
 }: any) => {
   const [changed, setChanged]: any = useState(false)
@@ -19,7 +20,7 @@ export const withForm = (Component: any) => ({
   const setField = fields.setField
   let fieldValue: string = fields[name]
 
-  if (!changed && fieldValue === undefined && value) {
+  if (!changed && fieldValue === undefined && value && !radio) {
     fieldValue = value
     setField(name, fieldValue)
   }
@@ -55,11 +56,13 @@ export const withForm = (Component: any) => ({
     <Component
       {...rest}
       value={fieldValue}
+      initialValue={value}
       name={name}
       onChange={!disabled && handleChange}
       onBlur={!disabled && handleBlur}
       error={hasError}
       disabled={disabled}
+      radio={radio}
     />
   )
 }

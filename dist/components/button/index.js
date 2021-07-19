@@ -28,7 +28,7 @@ export var Button = function (_a) {
         React.createElement(Fit.TryTagless, { inline: true, height: mini ? "32px" : "48px" },
             React.createElement(Box.TryTagless, { fill: (disabled && "faint-up") || (primary ? ((r.active && 'accent-up') || (r.hoverOrFocus ? "accent-down" : "accent")) : (r.hoverOrFocus ? "faint" : "none")), borderFill: primary ? "none" : "faint-up", strong: primary && !disabled, radius: "xs" },
                 React.createElement(Align.TryTagless, { vert: "center", hor: "center" },
-                    React.createElement(Font.TryTagless, { nowrap: true, fill: (critic && "ctiric") || (disabled && "faint-down") || "base", weight: primary ? "600" : "500", size: "sm", family: "regular" },
+                    React.createElement(Font.TryTagless, { nowrap: true, fill: (disabled && "faint-down") || (critic && "critic") || "base", weight: primary ? "600" : "500", size: "sm", family: "regular" },
                         React.createElement(Gap.TryTagless, { hor: "xl" },
                             React.createElement("button", __assign({ disabled: disabled }, rProps, rest, { type: type }), label)))))))); }));
 };

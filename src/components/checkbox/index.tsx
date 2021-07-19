@@ -1,35 +1,52 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Align, Fit, Box, Font, Line, Gap, Icon, Reaction, Effect } from 'themeor'
-import {MakeButton} from '../make-button'
+import { MakeButton } from '../make-button'
+import { withForm } from '../form'
 
-type Props = Omit<React.HTMLAttributes<HTMLElement>, 'onChange'> & {
+type Props = Omit<React.HTMLAttributes<HTMLElement>, 'onChange' | 'onClick'> & {
   checked?: boolean,
-  multiple?: boolean,
+  indeterminate?: boolean,
   label?: string,
-  onChange?: (value: boolean) => void,
+  name?: string,
+  value?: string,
+  initialValue?: string,
+  radio?: boolean,
+  onChange?: (value: boolean | string) => void,
+  onClick?: (value: boolean | string) => void,
 }
 
-export const Checkbox = ({ checked, multiple, label, onChange, ...props }: Props) => {
+export const Checkbox = withForm(({ name, value, radio, initialValue, checked, indeterminate, label, onChange, onClick, ...props }: Props) => {
+  if (checked === undefined && name !== undefined) {
+    if (radio) {
+      checked = (initialValue === value)
+    } else {
+      checked = value === 'on'
+    }
+  }
 
   function handleChange(event) {
-    const value = event.target.value === 'on'
-    onChange && onChange(!value)
+    let value = event.target.value
+
+    if (!radio && value === 'off') {
+      value = 'on'
+    } else if (!radio && value === 'on') {
+      value = 'off'
+    }
+
+    onChange?.(value)
   }
 
   return (
     <Reaction cursor="pointer" {...props}>
       {(rProps, r) => (
-        <Fit
-          {...rProps}
-          inline
-        >
+        <Fit {...rProps}>
           <Align.TryTagless row vert="center">
             <label>
               <MakeButton radius="max" offset="14px" track={["hover", "active"]}>
                 <Fit.TryTagless maxWidth="0" maxHeight="0" clip>
                   <Effect transparency="max">
                     <input
-                      value={!!checked ? 'on' : 'off'}
+                      value={radio ? initialValue : value}
                       type="checkbox"
                       onChange={handleChange}
                     />
@@ -41,7 +58,7 @@ export const Checkbox = ({ checked, multiple, label, onChange, ...props }: Props
                     radius="max"
                     borderFill={checked ? "complement" : "faint-up"}
                     fill="none"
-                    // strong={!!checked}
+                  // strong={!!checked}
                   >
                     <Align
                       vert="center"
@@ -64,7 +81,7 @@ export const Checkbox = ({ checked, multiple, label, onChange, ...props }: Props
 
               {label && (<>
                 <Gap size="sm" />
-                <Font size="x2s" fill="base" weight="400">{label}</Font>
+                <Font size="sm" fill="base" weight="400">{label}</Font>
               </>)}
             </label>
           </Align.TryTagless>
@@ -72,4 +89,4 @@ export const Checkbox = ({ checked, multiple, label, onChange, ...props }: Props
       )}
     </Reaction>
   )
-}
+})

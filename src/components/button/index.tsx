@@ -31,7 +31,7 @@ export const Button = ({
             <Align.TryTagless vert="center" hor="center">
               <Font.TryTagless
                 nowrap
-                fill={(critic && "ctiric") || (disabled && "faint-down") || "base"}
+                fill={(disabled && "faint-down") || (critic && "critic") || "base"}
                 weight={primary ? "600" : "500"}
                 size="sm"
                 family="regular"
