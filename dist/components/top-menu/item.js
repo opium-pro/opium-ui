@@ -27,6 +27,6 @@ export function Item(_a) {
     var label = _a.label, icon = _a.icon, active = _a.active, rest = __rest(_a, ["label", "icon", "active"]);
     return (React.createElement(MakeButton, __assign({ offset: "0", radius: "none", disabled: active }, rest),
         React.createElement(Fit.TryTagless, { width: "100%" },
-            React.createElement(Gap.TryTagless, { hor: "md", vert: "md" },
+            React.createElement(Gap.TryTagless, { hor: "lg", vert: "md" },
                 React.createElement(Font, { align: "center", size: "x2s", noselect: true, fill: active ? "base" : "faint-down" }, label)))));
 }

@@ -356,11 +356,6 @@ const icons = {sm:{}, md:{}, lg:{}}
   icons.sm.bluetooth = Icon__bluetooth
   icons.lg.bluetooth = Icon__bluetooth
 
-  const Icon__book_open_text = (props) => <div {...props} dangerouslySetInnerHTML={{__html: '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none"><path d="M0 0h24v24H0Z"/><g stroke-linecap="round" stroke-width="1.5" stroke="#323232" fill="none" stroke-linejoin="round"><path d="M12 7.99v12.6"/><path d="M6 8.5l3 0"/><path d="M6 12l3 0"/><path d="M6 15.5l3 0"/><path d="M15 8.5l3 0"/><path d="M15 12l3 0"/><path d="M15 15.5l3 0"/><path d="M12 21v0l-.01-.01c-.62-1.23-1.87-2.01-3.24-2H4.48l-.01 0c-.83 0-1.5-.68-1.5-1.5 -.001-.01-.001-.01 0-.01H2.96V5.47l-.001-.01c-.01-.83.67-1.5 1.49-1.5 0-.001 0 0 0 0h3.5l0 0c2.2 0 3.99 1.79 3.99 3.99v0l0 0c-.01-2.21 1.79-4 3.99-4 0 0 0-.001 0-.001h3.5l-.01 0c.82-.01 1.49.67 1.49 1.49 0 0 0 0 0 0v12l0-.01c0 .82-.67 1.49-1.5 1.49h-4.27l0 0c-1.38-.01-2.63.77-3.24 1.99Z"/></g></g></svg>'}} />
-  icons.md.book_open_text = Icon__book_open_text
-  icons.sm.book_open_text = Icon__book_open_text
-  icons.lg.book_open_text = Icon__book_open_text
-
   const Icon__book = (props) => <div {...props} dangerouslySetInnerHTML={{__html: '<?xml version="1.0" encoding="UTF-8"?><svg version="1.1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M12 5c-2.23-2.23-5.703-2.459-8.188-.687 -.518.369-.812.981-.812 1.617v12.956c0 .774.825 1.223 1.508.859 2.407-1.283 5.464-.91 7.492 1.119v-15.864c2.23-2.23 5.703-2.459 8.188-.687 .518.369.812.981.812 1.617v12.956c0 .774-.825 1.224-1.508.859 -2.407-1.283-5.464-.91-7.492 1.119" stroke-linecap="round" stroke-width="1.5" stroke="#323232" fill="none" stroke-linejoin="round"></path><path fill="none" d="M0 0h24v24h-24Z"></path></svg>'}} />
   icons.md.book = Icon__book
   icons.sm.book = Icon__book

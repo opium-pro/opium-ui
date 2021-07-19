@@ -8,7 +8,7 @@ export function Wrapper ({ children, ...rest }: Props) {
   return (
     <Fit.TryTagless {...rest}>
       <Box.TryTagless fill="base" shadow="sm">
-        <Align hor="center">
+        <Align hor="stretch">
 
           <Gap hor="none">
             <Align gapVert="x3s">
@@ -16,7 +16,7 @@ export function Wrapper ({ children, ...rest }: Props) {
             </Align>
           </Gap>
 
-          <Align.Spacer />
+          {/* <Align.Spacer /> */}
 
           {/* <Fit width="100%">
             <Line fill="faint" />

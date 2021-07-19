@@ -72,7 +72,6 @@ declare namespace icons {
         export { Icon__bluetooth_circle as bluetooth_circle };
         export { Icon__bluetooth_square as bluetooth_square };
         export { Icon__bluetooth as bluetooth };
-        export { Icon__book_open_text as book_open_text };
         export { Icon__book as book };
         export { Icon__bookmark_cross as bookmark_cross };
         export { Icon__bookmark_favorite_add as bookmark_favorite_add };
@@ -344,7 +343,6 @@ declare namespace icons {
         export { Icon__bluetooth_circle as bluetooth_circle };
         export { Icon__bluetooth_square as bluetooth_square };
         export { Icon__bluetooth as bluetooth };
-        export { Icon__book_open_text as book_open_text };
         export { Icon__book as book };
         export { Icon__bookmark_cross as bookmark_cross };
         export { Icon__bookmark_favorite_add as bookmark_favorite_add };
@@ -616,7 +614,6 @@ declare namespace icons {
         export { Icon__bluetooth_circle as bluetooth_circle };
         export { Icon__bluetooth_square as bluetooth_square };
         export { Icon__bluetooth as bluetooth };
-        export { Icon__book_open_text as book_open_text };
         export { Icon__book as book };
         export { Icon__bookmark_cross as bookmark_cross };
         export { Icon__bookmark_favorite_add as bookmark_favorite_add };
@@ -888,7 +885,6 @@ declare function Icon__block_delete_stop(props: any): JSX.Element;
 declare function Icon__bluetooth_circle(props: any): JSX.Element;
 declare function Icon__bluetooth_square(props: any): JSX.Element;
 declare function Icon__bluetooth(props: any): JSX.Element;
-declare function Icon__book_open_text(props: any): JSX.Element;
 declare function Icon__book(props: any): JSX.Element;
 declare function Icon__bookmark_cross(props: any): JSX.Element;
 declare function Icon__bookmark_favorite_add(props: any): JSX.Element;

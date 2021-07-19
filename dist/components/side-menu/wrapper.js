@@ -26,8 +26,7 @@ export function Wrapper(_a) {
     var children = _a.children, rest = __rest(_a, ["children"]);
     return (React.createElement(Fit.TryTagless, __assign({}, rest),
         React.createElement(Box.TryTagless, { fill: "base", shadow: "sm" },
-            React.createElement(Align, { hor: "center" },
+            React.createElement(Align, { hor: "stretch" },
                 React.createElement(Gap, { hor: "none" },
-                    React.createElement(Align, { gapVert: "x3s" }, children)),
-                React.createElement(Align.Spacer, null)))));
+                    React.createElement(Align, { gapVert: "x3s" }, children))))));
 }

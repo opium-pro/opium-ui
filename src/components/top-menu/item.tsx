@@ -17,7 +17,7 @@ export function Item ({ label, icon, active, ...rest }: Props) {
       {...rest}
     >
       <Fit.TryTagless width="100%">
-        <Gap.TryTagless hor="md" vert="md">
+        <Gap.TryTagless hor="lg" vert="md">
             <Font
               align="center"
               size="x2s"

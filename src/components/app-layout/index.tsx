@@ -18,8 +18,10 @@ export const AppLayout: FC<Props> = ({ sideMenu, header, children }) => {
         {sideMenu && (
           <Fit.TryTagless
             maxHeight="100vh"
-            scroll zIndex={200}
+            scroll
+            zIndex={200}
             width="120px"
+            FORCE_TAGLESS
           >
             {sideMenu}
           </Fit.TryTagless>

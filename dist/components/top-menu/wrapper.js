@@ -21,12 +21,11 @@ var __rest = (this && this.__rest) || function (s, e) {
     return t;
 };
 import React from 'react';
-import { Align, Fit, Box } from 'themeor';
+import { Align, Box } from 'themeor';
 import { LimitWidth } from '../limit-width';
 export function Wrapper(_a) {
     var children = _a.children, rest = __rest(_a, ["children"]);
-    return (React.createElement(Fit.TryTagless, __assign({ left: "-16px" }, rest),
-        React.createElement(Box, { fill: "base", shadow: "md" },
-            React.createElement(LimitWidth, null,
-                React.createElement(Align, { row: true, gapHor: "x3s", vert: "center" }, children)))));
+    return (React.createElement(Box, __assign({ fill: "base", shadow: "md" }, rest),
+        React.createElement(LimitWidth, null,
+            React.createElement(Align, { row: true, vert: "center" }, children))));
 }
