@@ -16,15 +16,14 @@ export const AppLayout: FC<Props> = ({ sideMenu, header, children }) => {
       <Align row vert="stretch">
 
         {sideMenu && (
-          <Fit.TryTagless
+          <Fit
             maxHeight="100vh"
             scroll
             zIndex={200}
             width="120px"
-            FORCE_TAGLESS
           >
             {sideMenu}
-          </Fit.TryTagless>
+          </Fit>
         )}
 
         <Align.Spacer>

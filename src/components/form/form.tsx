@@ -3,10 +3,10 @@ import {useState} from 'react'
 import Context from './context'
 
 type Props = React.AllHTMLAttributes<HTMLElement> & {
-  onSubmit?: any,
+  onSubmit?: any
 }
 
-export function Form ({children, onSubmit}: Props) {
+export function Form ({children, onSubmit, ...rest}: Props) {
   const [context, setContext] = useState({})
 
   function setField(name, value) {
@@ -21,7 +21,7 @@ export function Form ({children, onSubmit}: Props) {
 
   return (
     <Context.Provider value={{...context, setField}}>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} {...rest}>
         {children}
       </form>
     </Context.Provider>

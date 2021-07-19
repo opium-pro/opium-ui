@@ -4,6 +4,7 @@ import { Align, Fit, Box, Font } from 'themeor'
 export const SIZE = {
   sm: {circle: '40px', font: 'x2s'},
   md: {circle: '80px', font: 'lg'},
+  lg: {circle: '160px', font: 'xl'},
 }
 
 export interface IAvatarProps {

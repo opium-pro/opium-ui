@@ -8,6 +8,10 @@ export declare const SIZE: {
         circle: string;
         font: string;
     };
+    lg: {
+        circle: string;
+        font: string;
+    };
 };
 export interface IAvatarProps {
     name?: string;

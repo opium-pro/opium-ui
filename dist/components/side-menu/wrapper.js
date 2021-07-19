@@ -24,7 +24,7 @@ import React from 'react';
 import { Align, Fit, Box, Gap } from 'themeor';
 export function Wrapper(_a) {
     var children = _a.children, rest = __rest(_a, ["children"]);
-    return (React.createElement(Fit.TryTagless, __assign({}, rest),
+    return (React.createElement(Fit.TryTagless, __assign({}, rest, { minHeight: "100%" }),
         React.createElement(Box, { fill: "base", shadow: "sm" },
             React.createElement(Align, { hor: "stretch" },
                 React.createElement(Gap, { hor: "none" },

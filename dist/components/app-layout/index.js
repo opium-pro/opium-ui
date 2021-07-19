@@ -6,7 +6,7 @@ export var AppLayout = function (_a) {
     var sideMenu = _a.sideMenu, header = _a.header, children = _a.children;
     return (React.createElement(AppTheme, null,
         React.createElement(Align, { row: true, vert: "stretch" },
-            sideMenu && (React.createElement(Fit.TryTagless, { maxHeight: "100vh", scroll: true, zIndex: 200, width: "120px", FORCE_TAGLESS: true }, sideMenu)),
+            sideMenu && (React.createElement(Fit, { maxHeight: "100vh", scroll: true, zIndex: 200, width: "120px" }, sideMenu)),
             React.createElement(Align.Spacer, null,
                 React.createElement(Fit, { height: "100vh", zIndex: 100, scroll: true },
                     React.createElement(Fit.TryTagless, { minHeight: "100vh", FORCE_TAGLESS: true },

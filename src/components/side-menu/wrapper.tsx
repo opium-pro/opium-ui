@@ -6,7 +6,7 @@ type Props = React.HTMLAttributes<HTMLElement> & {}
 
 export function Wrapper ({ children, ...rest }: Props) {
   return (
-    <Fit.TryTagless {...rest}>
+    <Fit.TryTagless {...rest} minHeight="100%">
       <Box fill="base" shadow="sm">
         <Align hor="stretch">
 

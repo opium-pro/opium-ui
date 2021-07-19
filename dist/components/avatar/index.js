@@ -3,6 +3,7 @@ import { Align, Fit, Box, Font } from 'themeor';
 export var SIZE = {
     sm: { circle: '40px', font: 'x2s' },
     md: { circle: '80px', font: 'lg' },
+    lg: { circle: '160px', font: 'xl' },
 };
 export var Avatar = function (_a) {
     var name = _a.name, _b = _a.size, size = _b === void 0 ? "md" : _b, img = _a.img, _c = _a.fill, fill = _c === void 0 ? "accent" : _c;
