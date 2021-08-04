@@ -56,7 +56,7 @@ export const Toggle: FC<Props> = withForm(({ name, value, initialValue, radio, c
                     left={checked && '16px'}
                   >
                     <Box fill="base" radius="max" shadow="sm">
-                      {checked && <Icon name="Check" size="sm" fill="success" line={false} />}
+                      {checked && <Icon name="Check" size="sm" fill="success" />}
                     </Box>
                   </Fit.TryTagless>
 

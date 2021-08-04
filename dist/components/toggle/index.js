@@ -54,7 +54,7 @@ export var Toggle = withForm(function (_a) {
                 React.createElement(Box.TryTagless, { strong: checked, fill: (checked && "success") || (r.hoverOrFocus ? "faint-up" : "faint"), radius: "max" },
                     React.createElement(Gap, { size: "x3s" },
                         React.createElement(Fit.TryTagless, { width: "16px", height: "16px", left: checked && '16px' },
-                            React.createElement(Box, { fill: "base", radius: "max", shadow: "sm" }, checked && React.createElement(Icon, { name: "Check", size: "sm", fill: "success", line: false })))))),
+                            React.createElement(Box, { fill: "base", radius: "max", shadow: "sm" }, checked && React.createElement(Icon, { name: "Check", size: "sm", fill: "success" })))))),
             label && React.createElement(Gap, { size: "xs" }),
             label))); }));
 });

@@ -30,5 +30,5 @@ export var IconButton = function (_a) {
                 React.createElement(Box, { style: { transition: "all, 0.2s ease" }, radius: "max", fill: r.active ? "faint" : "--hovereffect" })),
             React.createElement(Fit.TryTagless, { width: "20px", height: "20px" },
                 React.createElement(Align, { vert: "center", hor: "center" },
-                    React.createElement(Icon, { name: icon, fill: fill, line: line })))))); }));
+                    React.createElement(Icon, { name: icon, fill: fill, forceLine: line })))))); }));
 };

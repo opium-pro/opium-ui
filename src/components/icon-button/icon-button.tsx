@@ -35,7 +35,7 @@ export const IconButton = ({ icon, fill, line, ...rest }: Props) => (
 
           <Fit.TryTagless width="20px" height="20px">
               <Align vert="center" hor="center">
-                <Icon name={icon} fill={fill} line={line} />
+                <Icon name={icon} fill={fill} forceLine={line} />
               </Align>
           </Fit.TryTagless>
 

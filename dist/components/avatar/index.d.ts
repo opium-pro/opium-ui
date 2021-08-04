@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC } from "react";
 export declare const SIZE: {
     sm: {
         circle: string;
@@ -18,5 +18,6 @@ export interface IAvatarProps {
     img?: string;
     fill?: string;
     size?: keyof typeof SIZE;
+    icon?: string;
 }
 export declare const Avatar: FC<IAvatarProps>;
