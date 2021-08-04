@@ -6,7 +6,7 @@
   "dependencies": {
     "react-helmet": "^6.1.0",
     "react-tooltip": "^4.2.21",
-    "themeor": "^0.2.1"
+    "themeor": "^1.0.4"
   },
   "devDependencies": {
     "@types/node": "^16.0.0",
