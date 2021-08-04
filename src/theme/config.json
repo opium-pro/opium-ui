@@ -7,8 +7,7 @@
   },
 
   "themeContext": {
-    "shallInverseOn": ["base", "faint", "complement", "critic", "success", "--darkblur", "--notification", "--error"],
-    "lineIcons": true
+    "shallInverseOn": ["base", "faint", "complement", "critic", "success", "--darkblur", "--notification", "--error"]
   },
 
   "customVariables": {
