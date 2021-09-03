@@ -1,9 +1,10 @@
-import {Wrapper} from './wrapper'
-import {Item} from './item'
+import { Wrapper } from './wrapper'
+import { Item } from './item'
 
 export type SideMenuType = typeof Wrapper & {
-  Item?: typeof Item
+  Item: typeof Item
 }
 
-export const SideMenu: SideMenuType = Wrapper
-SideMenu.Item = Item
+export const SideMenu: SideMenuType = Object.assign(Wrapper, {
+  Item
+})
