@@ -6,4 +6,4 @@ export declare type Props = React.HTMLAttributes<HTMLElement> & {
     active?: boolean;
     link?: string;
 };
-export default function ({ label, active, icon, counter, link, ...rest }: Props): JSX.Element;
+export default function ({ label, active, icon, counter, link, onClick, ...rest }: Props): JSX.Element;
