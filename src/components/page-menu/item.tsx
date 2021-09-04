@@ -1,6 +1,7 @@
+import React from 'react'
 import { Align, Fit, Box, Font, Line, Gap, Icon, Reaction } from 'themeor'
-import { MakeButton } from 'opium-ui'
-import { Counter } from 'opium-ui'
+import { MakeButton } from '../make-button'
+import { Counter } from '../counter'
 import { Link } from 'react-router-dom'
 
 export type Props = React.HTMLAttributes<HTMLElement> & {

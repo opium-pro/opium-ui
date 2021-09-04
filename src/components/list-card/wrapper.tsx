@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import { Font, Box, Align, Gap, Reaction, Fit } from 'themeor'
-import { Avatar } from 'opium-ui'
+import { Avatar } from '../avatar'
 import {Link} from 'react-router-dom'
 
 
