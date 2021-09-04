@@ -12,11 +12,10 @@ var __assign = (this && this.__assign) || function () {
 import React from 'react';
 import { Font, Box, Align, Gap, Reaction, Fit } from 'themeor';
 import { Avatar } from '../avatar';
-import { Link } from 'react-router-dom';
 export var Wrapper = function (_a) {
     var title = _a.title, img = _a.img, link = _a.link, children = _a.children;
     return (React.createElement(Reaction, { smooth: true }, function (rProps, r) { return (React.createElement(Fit.TryTagless, __assign({ tabIndex: 0, top: r.hoverOrFocus ? '-4px' : '0', clip: true, FORCE_TAGLESS: true }, rProps),
-        React.createElement(Link, { to: link },
+        React.createElement("a", { href: link },
             React.createElement(Box, { fill: "base", radius: "md", shadow: r.hoverOrFocus ? "xl" : "md" },
                 React.createElement(Gap, null,
                     React.createElement(Align, { row: true, vert: "center" },

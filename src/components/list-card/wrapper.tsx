@@ -1,7 +1,6 @@
 import React, { FC } from 'react'
 import { Font, Box, Align, Gap, Reaction, Fit } from 'themeor'
 import { Avatar } from '../avatar'
-import {Link} from 'react-router-dom'
 
 
 export interface IWrapperProps {
@@ -28,7 +27,7 @@ export const Wrapper: FC<IWrapperProps> = ({
           FORCE_TAGLESS
           {...rProps}
         >
-          <Link to={link}>
+          <a href={link}>
             <Box
               fill="base"
               radius="md"
@@ -51,7 +50,7 @@ export const Wrapper: FC<IWrapperProps> = ({
                 </Align>
               </Gap>
             </Box>
-          </Link>
+          </a>
         </Fit.TryTagless>
       )}
     </Reaction>
