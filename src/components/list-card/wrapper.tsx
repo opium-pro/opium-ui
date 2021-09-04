@@ -1,0 +1,59 @@
+import React, { FC } from 'react'
+import { Font, Box, Align, Gap, Reaction, Fit } from 'themeor'
+import { Avatar } from 'opium-ui'
+import {Link} from 'react-router-dom'
+
+
+export interface IWrapperProps {
+  img?: string
+  title?: string
+  link?: string
+}
+
+
+export const Wrapper: FC<IWrapperProps> = ({
+  title,
+  img,
+  link,
+  children,
+}) => {
+
+  return (
+    <Reaction smooth>
+      {(rProps, r) => (
+        <Fit.TryTagless
+          tabIndex={0}
+          top={r.hoverOrFocus ? '-4px' : '0'}
+          clip
+          FORCE_TAGLESS
+          {...rProps}
+        >
+          <Link to={link}>
+            <Box
+              fill="base"
+              radius="md"
+              shadow={r.hoverOrFocus ? "xl" : "md"}
+            >
+              <Gap>
+                <Align row vert="center">
+                  <Avatar img={img} name={title} />
+                  <Gap />
+                  <Align gapVert="x2s">
+                    <Font
+                      size="lg"
+                      weight="600"
+                      fill="base"
+                    >
+                      {title}
+                    </Font>
+                    {children}
+                  </Align>
+                </Align>
+              </Gap>
+            </Box>
+          </Link>
+        </Fit.TryTagless>
+      )}
+    </Reaction>
+  )
+}
