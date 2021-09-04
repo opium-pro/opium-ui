@@ -7,6 +7,7 @@ export interface IWrapperProps {
   img?: string
   title?: string
   link?: string
+  onClick?: any
 }
 
 
