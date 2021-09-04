@@ -15,10 +15,11 @@ export const Wrapper: FC<IWrapperProps> = ({
   img,
   link,
   children,
+  ...rest
 }) => {
 
   return (
-    <Reaction smooth>
+    <Reaction smooth {...rest}>
       {(rProps, r) => (
         <Fit.TryTagless
           tabIndex={0}
@@ -35,7 +36,7 @@ export const Wrapper: FC<IWrapperProps> = ({
             >
               <Gap>
                 <Align row vert="center">
-                  <Avatar img={img} name={title} />
+                  {img && <Avatar img={img} name={title} />}
                   <Gap />
                   <Align gapVert="x2s">
                     <Font
