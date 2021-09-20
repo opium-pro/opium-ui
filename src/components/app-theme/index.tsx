@@ -21,7 +21,6 @@ export function AppTheme ({ children }: Props) {
               multiline={true}
               className="tooltip"
             />
-
             {children}
           </Font.TryTagless>
         </Box.TryTagless>

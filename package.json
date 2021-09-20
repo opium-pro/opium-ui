@@ -14,6 +14,7 @@
     "@types/react-dom": "^17.0.8",
     "@types/react-helmet": "^6.1.1",
     "@types/react-router-dom": "^5.1.7",
+    "nodemon": "^2.0.12",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-router-dom": "^5.2.0",
@@ -22,9 +23,13 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build-docs": "react-scripts build",
-    "parse-icons": "node ./scripts/parse-icons",
-    "build": "npm run parse-icons && rm -fr ./dist && cd ./src && rsync -R ./**/**/**/*.svg ../dist && cd ../ && tsc -p tsconfig.dist.json"
+    "watch": "npm run clear && npm run parse:icons && nodemon -e ts,tsx,json,svg,png -w ./src -x npm run build",
+    "link": "npm link react",
+    "unlink": "npm unlink react",
+    "build:docs": "react-scripts build",
+    "clear": "rm -fr ./dist && mkdir dist",
+    "parse:icons": "node ./scripts/parse-icons && rsync -a --include '*/' --include '*.svg' --exclude '*' src/* dist",
+    "build": "tsc -p tsconfig.dist.json"
   },
   "eslintConfig": {
     "extends": [

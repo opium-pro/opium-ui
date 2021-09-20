@@ -1,13 +1,13 @@
 import React, { FC } from 'react'
 import { Font, Box, Align, Gap, Reaction, Fit } from 'themeor'
 import { Avatar } from '../avatar'
+import {Link} from 'react-router-dom'
 
 
 export interface IWrapperProps {
   img?: string
   title?: string
   link?: string
-  onClick?: any
 }
 
 
@@ -16,11 +16,10 @@ export const Wrapper: FC<IWrapperProps> = ({
   img,
   link,
   children,
-  ...rest
 }) => {
 
   return (
-    <Reaction smooth {...rest}>
+    <Reaction smooth>
       {(rProps, r) => (
         <Fit.TryTagless
           tabIndex={0}
@@ -29,7 +28,7 @@ export const Wrapper: FC<IWrapperProps> = ({
           FORCE_TAGLESS
           {...rProps}
         >
-          <a href={link}>
+          <Link to={link}>
             <Box
               fill="base"
               radius="md"
@@ -37,7 +36,7 @@ export const Wrapper: FC<IWrapperProps> = ({
             >
               <Gap>
                 <Align row vert="center">
-                  {img && <Avatar img={img} name={title} />}
+                  <Avatar img={img} name={title} />
                   <Gap />
                   <Align gapVert="x2s">
                     <Font
@@ -52,7 +51,7 @@ export const Wrapper: FC<IWrapperProps> = ({
                 </Align>
               </Gap>
             </Box>
-          </a>
+          </Link>
         </Fit.TryTagless>
       )}
     </Reaction>

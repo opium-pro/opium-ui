@@ -2,6 +2,7 @@ import React from 'react'
 import { Align, Fit, Box, Font, Line, Gap, Icon, Reaction } from 'themeor'
 import { MakeButton } from '../make-button'
 import { Counter } from '../counter'
+import { Link } from 'react-router-dom'
 
 export type Props = React.HTMLAttributes<HTMLElement> & {
   label?: string,
@@ -17,16 +18,15 @@ export default function ({
   icon,
   counter,
   link,
-  onClick,
   ...rest
 }: Props) {
   return (
-    <MakeButton
-      offset="0"
-      disabled={active}
-      {...rest}
-    >
-      <a href={link} onClick={onClick}>
+    <Link to={link}>
+      <MakeButton
+        offset="0"
+        disabled={active}
+        {...rest}
+      >
         <Fit.TryTagless width="100%" height="42px">
           <Gap.TryTagless hor="md">
             <Align row gapHor="xs" vert="center">
@@ -44,7 +44,7 @@ export default function ({
             </Align>
           </Gap.TryTagless>
         </Fit.TryTagless>
-      </a>
-    </MakeButton>
+      </MakeButton>
+    </Link>
   )
 }
