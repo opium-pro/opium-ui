@@ -21,13 +21,14 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "watch": "npm run clear && npm run parse:icons && nodemon -e ts,tsx,json,svg,png -w ./src -x npm run build",
+    "watch": "npm run clear && npm run icons && nodemon -e ts,tsx,json,svg,png -w ./src -x npm run build",
     "link": "npm link react",
     "unlink": "npm unlink react",
     "build:docs": "react-scripts build",
     "clear": "rm -fr ./dist && mkdir dist",
-    "parse:icons": "node ./scripts/parse-icons && rsync -a --include '*/' --include '*.svg' --exclude '*' src/* dist",
-    "build": "tsc -p tsconfig.dist.json"
+    "icons": "node ./scripts/parse-icons && rsync -a --include '*/' --include '*.svg' --exclude '*' src/* dist",
+    "build": "tsc -p tsconfig.dist.json",
+    "publish": "npm run clear && npm run icons && npm run build && npm publish"
   },
   "eslintConfig": {
     "extends": [
