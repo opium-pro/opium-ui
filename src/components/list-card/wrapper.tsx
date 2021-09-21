@@ -1,13 +1,13 @@
 import React, { FC } from 'react'
 import { Font, Box, Align, Gap, Reaction, Fit } from 'themeor'
 import { Avatar } from '../avatar'
-import {Link} from 'react-router-dom'
 
 
 export interface IWrapperProps {
   img?: string
   title?: string
   link?: string
+  onClick?: any
 }
 
 
@@ -16,10 +16,11 @@ export const Wrapper: FC<IWrapperProps> = ({
   img,
   link,
   children,
+  ...rest
 }) => {
 
   return (
-    <Reaction smooth>
+    <Reaction smooth {...rest}>
       {(rProps, r) => (
         <Fit.TryTagless
           tabIndex={0}
@@ -28,30 +29,28 @@ export const Wrapper: FC<IWrapperProps> = ({
           FORCE_TAGLESS
           {...rProps}
         >
-          <Link to={link}>
-            <Box
-              fill="base"
-              radius="md"
-              shadow={r.hoverOrFocus ? "xl" : "md"}
-            >
-              <Gap>
-                <Align row vert="center">
-                  <Avatar img={img} name={title} />
-                  <Gap />
-                  <Align gapVert="x2s">
-                    <Font
-                      size="lg"
-                      weight="600"
-                      fill="base"
-                    >
-                      {title}
-                    </Font>
-                    {children}
-                  </Align>
+          <Box
+            fill="base"
+            radius="md"
+            shadow={r.hoverOrFocus ? "xl" : "md"}
+          >
+            <Gap>
+              <Align row vert="center">
+                <Avatar img={img} name={title} />
+                <Gap />
+                <Align gapVert="x2s">
+                  <Font
+                    size="lg"
+                    weight="600"
+                    fill="base"
+                  >
+                    {title}
+                  </Font>
+                  {children}
                 </Align>
-              </Gap>
-            </Box>
-          </Link>
+              </Align>
+            </Gap>
+          </Box>
         </Fit.TryTagless>
       )}
     </Reaction>
