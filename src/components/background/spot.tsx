@@ -22,18 +22,18 @@ export function Spot({ reset, altSpotSet }) {
   const shift = shiftList[random(0, shiftList.length - 1)]
   const opacity = opacityList[random(0, opacityList.length - 1)]
 
-  if (!Spot.lastStick) {
+  if (!(Spot as any).lastStick) {
     stick = stickList[random(0, 1)]
   } else {
-    stick = stickList.filter((item) => item !== Spot.lastStick)[0]
+    stick = stickList.filter((item) => item !== (Spot as any).lastStick)[0]
   }
 
-  Spot.lastStick = stick
+  (Spot as any).lastStick = stick
 
-  if (!Spot.top || reset) {
-    Spot.top = 1
+  if (!(Spot as any).top || reset) {
+    (Spot as any).top = 1
   } else {
-    Spot.top += size / [1, 2, 2.5][random(0, 2)]
+    (Spot as any).top += size / [1, 2, 2.5][random(0, 2)]
   }
 
   return (
@@ -43,7 +43,7 @@ export function Spot({ reset, altSpotSet }) {
       height={`${size}px`}
       left={stick === 'left' && `${shift}px`}
       right={stick === 'right' && `${shift}px`}
-      top={Spot.top}
+      top={(Spot as any).top}
       stick={stick}
     >
       <Box
