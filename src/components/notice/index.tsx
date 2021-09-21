@@ -20,12 +20,18 @@ export const Notice: FC<NoticeProps> = ({ title, text, type = 'base', onClose, c
   }
 
   return (
-    <Animate
+    <Animate.TryTagless
       mounted={show}
       onMount="backInDown"
       onUnmount="backOutUp"
     >
-      <Fit.TryTagless cover="screen" stick="top" width="100%" clip>
+      <Fit.TryTagless
+        cover="screen"
+        stick="top"
+        width="100%"
+        maxWidth="100%"
+        clip zIndex={1000}
+      >
         <Align.TryTagless hor="center">
           <Box.TryTagless strong fill={type}>
             <Gap>
@@ -43,6 +49,6 @@ export const Notice: FC<NoticeProps> = ({ title, text, type = 'base', onClose, c
           </Box.TryTagless>
         </Align.TryTagless>
       </Fit.TryTagless>
-    </Animate>
+    </Animate.TryTagless>
   )
 }

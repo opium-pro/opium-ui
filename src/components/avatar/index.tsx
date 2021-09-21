@@ -15,21 +15,33 @@ export interface IAvatarProps {
   icon?: string;
 }
 
+const fills = ['accent', 'base', 'faint', 'complement', 'critic', 'warning', 'success']
+
 export const Avatar: FC<IAvatarProps> = ({
   name,
   size = "md",
   img,
-  fill = "accent",
+  fill,
   icon,
-}) => (
-  <Fit.TryTagless width={SIZE[size].circle} height={SIZE[size].circle}>
-    <Align.TryTagless vert="center" hor="center">
-      <Box.TryTagless img={img} fill={fill} strong radius="max">
-        <Icon name={icon} />
-        <Font fill="base" weight="600" size={SIZE[size].font as any}>
-          {!img && name}
-        </Font>
-      </Box.TryTagless>
-    </Align.TryTagless>
-  </Fit.TryTagless>
-);
+}) => {
+  const abbr = name?.slice(0,2)?.toUpperCase()
+  const index = abbr?.charCodeAt(0) % 7 || 0
+
+  return (
+    <Fit.TryTagless width={SIZE[size].circle} height={SIZE[size].circle}>
+      <Align.TryTagless vert="center" hor="center">
+        <Box.TryTagless
+          img={img}
+          fill={fill || fills[index]}
+          strong
+          radius="max"
+        >
+          {icon && <Icon name={icon} />}
+          <Font fill="base" weight="600" size={SIZE[size].font as any}>
+            {!img && abbr}
+          </Font>
+        </Box.TryTagless>
+      </Align.TryTagless>
+    </Fit.TryTagless>
+  )
+}

@@ -18,9 +18,9 @@ export const withForm = (Component: any) => ({
 
   const fields = useContext(Context) || {}
   const setField = fields?.setField
-  let fieldValue: string = fields[name]
+  let fieldValue: string = fields[name] || ''
 
-  if (fieldValue === undefined && value && !radio) {
+  if (!fieldValue && value && !radio) {
     fieldValue = value
     setField?.(name, fieldValue)
   }
