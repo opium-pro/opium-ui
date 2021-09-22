@@ -6,20 +6,12 @@ type Props = React.HTMLAttributes<HTMLElement> & {
   type: string,
 } | any
 
-export const Status = ({ label, type, large, ...props }: Props) => {
-
-  const map = {
-    done: 'success',
-    error: 'critic',
-    bank: 'warning',
-    client: 'faint',
-  }
-
+export const Tag = ({ label, type = 'base', size='sm', ...props }: Props) => {
   return (
-    <Box.TryTagless radius="md" fill={map[type]}>
-      <Gap vert="x2s" hor="xs">
+    <Box.TryTagless strong radius="max" fill={type}>
+      <Gap vert="x2s" hor="md">
         <Align {...props} row>
-          <Font size={large ? "xs" : "x2s"} weight="500" fill={map[type]}>
+          <Font size={size} weight="600">
             {label}
           </Font>
         </Align>

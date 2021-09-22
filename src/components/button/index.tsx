@@ -18,13 +18,17 @@ export const Button = ({
   critic,
   ...rest
 }: Props) => (
-  <Reaction smooth track={['hover', 'focus', 'active']}>
+  <Reaction
+    smooth
+    track={!disabled && ['hover', 'focus', 'active']}
+    cursor={disabled ? 'default' : 'pointer'}
+  >
     {(rProps, r) => (
       <div>
         <Fit.TryTagless inline height={mini ? "32px" : "48px"}>
           <Box.TryTagless
             fill={(disabled && "faint-up") || (primary ? ((r.active && 'accent-up') || (r.hoverOrFocus ? "accent-down" : "accent")) : (r.hoverOrFocus ? "faint" : "none"))}
-            borderFill={primary ? "none" : "faint-up"}
+            borderFill={(primary || disabled) ? "none" : "faint-up"}
             strong={primary && !disabled}
             radius="xs"
           >

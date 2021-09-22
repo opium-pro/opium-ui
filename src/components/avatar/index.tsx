@@ -26,7 +26,10 @@ export const Avatar: FC<IAvatarProps> = ({
   icon,
 }) => {
   const abbr = name?.slice(0, 2)?.toUpperCase()
-  const index = abbr?.charCodeAt(0) % 7 || 0
+
+  let index = 0
+  for (const char of name || '') { index += char.charCodeAt(0) }
+  index = index % fills.length || 0
 
   return (
     <Fit.TryTagless width={SIZE[size].circle} height={SIZE[size].circle}>

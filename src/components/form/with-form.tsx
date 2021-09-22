@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react'
-import Context from './context'
+import React, { useEffect, useState } from 'react'
+import { useForm } from './context'
 
 export const withForm = (Component: any) => ({
   onChange,
@@ -15,25 +15,33 @@ export const withForm = (Component: any) => ({
 }: any) => {
   const [changed, setChanged]: any = useState(false)
   const [hasError, setError]: any = useState(error)
+  const {
+    setField,
+    changed: formChanged,
+    setChanged: setFormChanged,
+    fields,
+    setInitialValue,
+  } = useForm()
 
-  const fields = useContext(Context)
-  const setField = fields?.setField
-  let fieldValue: string = fields[name] || ''
+  const fieldValue = (changed && formChanged) ? fields?.[name] : (value || '')
 
   useEffect(() => {
-    if (!fieldValue && value && !radio) {
-      fieldValue = value
-      setField?.(name, fieldValue)
-    }
-  })
+    setInitialValue?.(name, value)
+  }, [])
+
+  useEffect(() => {
+    setField?.(name, value)
+  }, [value])
+
+  // useEffect(() => {
+  //   if (!fieldValue && value && !radio) {
+  //     setField?.(name, value)
+  //   }
+  // })
 
   function handleBlur(value) {
-    if (disabled) {
-      return
-    }
-
+    if (disabled) { return }
     onBlur?.(value)
-
     if (match && changed) {
       let errorText = ''
       for (const matchItem of match) {
@@ -41,15 +49,14 @@ export const withForm = (Component: any) => ({
           errorText = errorText + ' ' + matchItem[1]
         }
       }
-
       setError(errorText || false)
     }
   }
 
   function handleChange(value) {
+    !formChanged && setFormChanged?.(true)
     hasError && setError(false)
     !changed && setChanged(true)
-
     const result = onChange?.(value)
     let newValue = typeof result === 'string' ? result : value
     setField?.(name, newValue)

@@ -1,3 +1,5 @@
-import {createContext} from 'react'
+import {createContext, useContext} from 'react'
 
-export default createContext({} as {[key: string]: any})
+export const FormContext = createContext({} as {[key: string]: any})
+
+export const useForm = () => useContext(FormContext)
