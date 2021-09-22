@@ -8,7 +8,7 @@ type Props = React.AllHTMLAttributes<HTMLElement> & {}
 
 export function AppTheme ({ children }: Props) {
   return (
-    <Theme config={themeConfig} icons={icons} reset global>
+    <Theme config={themeConfig} icons={icons} reset>
       <Fit.TryTagless minHeight="100vh">
         <Box.TryTagless fill="faint-down">
           <Font.TryTagless family="regular" fill="base" size="sm" weight="500" lineHeight="md">

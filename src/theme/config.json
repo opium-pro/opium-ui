@@ -131,6 +131,7 @@
   },
 
   "gap": {
+    "default": "16px",
     "x3s": "2px",
     "x2s": "4px",
     "xs": "8px",

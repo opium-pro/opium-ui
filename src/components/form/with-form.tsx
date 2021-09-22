@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Context from './context'
 
 export const withForm = (Component: any) => ({
@@ -16,14 +16,16 @@ export const withForm = (Component: any) => ({
   const [changed, setChanged]: any = useState(false)
   const [hasError, setError]: any = useState(error)
 
-  const fields = useContext(Context) || {}
+  const fields = useContext(Context)
   const setField = fields?.setField
   let fieldValue: string = fields[name] || ''
 
-  if (!fieldValue && value && !radio) {
-    fieldValue = value
-    setField?.(name, fieldValue)
-  }
+  useEffect(() => {
+    if (!fieldValue && value && !radio) {
+      fieldValue = value
+      setField?.(name, fieldValue)
+    }
+  })
 
   function handleBlur(value) {
     if (disabled) {

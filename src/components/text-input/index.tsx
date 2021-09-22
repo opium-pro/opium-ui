@@ -67,8 +67,10 @@ export const TextInput = withForm(({
   }
 
   return (
-    <Reaction cursor="text"
+    <Reaction
       {...props}
+      track={!disabled && ['focus', 'hover']}
+      cursor={disabled ? "default" : "text"}
       onFocus={!disabled && handleFocus}
       onBlur={!disabled && handleBlur}
     >

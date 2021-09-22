@@ -16,7 +16,7 @@ export function Wrapper ({ children, ...rest }: Props) {
             </Align>
           </Gap>
 
-          {/* <Align.Spacer /> */}
+          {/* <Gap stretch /> */}
 
           {/* <Fit width="100%">
             <Line fill="faint" />

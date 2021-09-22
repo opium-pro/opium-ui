@@ -4,9 +4,10 @@ import Context from './context'
 
 type Props = React.AllHTMLAttributes<HTMLElement> & {
   onSubmit?: any
+  onChange?: any
 }
 
-export function Form ({children, onSubmit, ...rest}: Props) {
+export function Form ({children, onSubmit, onChange, ...rest}: Props) {
   const [context, setContext] = useState({})
 
   function setField(name, value) {
@@ -16,12 +17,17 @@ export function Form ({children, onSubmit, ...rest}: Props) {
 
   function handleSubmit(e) {
     e.preventDefault()
-    onSubmit(context)
+    onSubmit?.(context)
+  }
+
+  function handleChange(e) {
+    e.preventDefault()
+    onChange?.(context)
   }
 
   return (
     <Context.Provider value={{...context, setField}}>
-      <form onSubmit={handleSubmit} {...rest}>
+      <form {...rest} onSubmit={handleSubmit} onChange={handleChange}>
         {children}
       </form>
     </Context.Provider>

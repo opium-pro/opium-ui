@@ -16,7 +16,7 @@ export function Item({ label, active, icon, prompt, ...rest }: Props) {
         <Gap.TryTagless hor="xs" vert="md">
           <Align hor="center">
             <Icon
-              name={icon || "Placeholder"}
+              name={icon}
               fill={active ? "complement" : "base"}
             />
           </Align>

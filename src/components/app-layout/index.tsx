@@ -1,9 +1,7 @@
 import React from 'react'
 import { FC } from 'react'
-import { Align, Fit, Box, Font, Line, Gap } from 'themeor'
+import { Align, Fit } from 'themeor'
 import { Background } from '../background'
-import { LimitWidth } from '../limit-width'
-import { AppTheme } from '../app-theme'
 
 type Props = React.AllHTMLAttributes<HTMLElement> & {
   sideMenu?: any,

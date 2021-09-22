@@ -4,7 +4,8 @@ import { Align, Fit, Box, Font, Icon } from "themeor";
 export const SIZE = {
   sm: { circle: "40px", font: "x2s" },
   md: { circle: "80px", font: "lg" },
-  lg: { circle: "160px", font: "xl" },
+  lg: { circle: "120px", font: "x2l" },
+  xl: { circle: "160px", font: "x3l" },
 };
 
 export interface IAvatarProps {
@@ -24,7 +25,7 @@ export const Avatar: FC<IAvatarProps> = ({
   fill,
   icon,
 }) => {
-  const abbr = name?.slice(0,2)?.toUpperCase()
+  const abbr = name?.slice(0, 2)?.toUpperCase()
   const index = abbr?.charCodeAt(0) % 7 || 0
 
   return (
@@ -38,7 +39,7 @@ export const Avatar: FC<IAvatarProps> = ({
         >
           {icon && <Icon name={icon} />}
           <Font fill="base" weight="600" size={SIZE[size].font as any}>
-            {!img && abbr}
+            {abbr}
           </Font>
         </Box.TryTagless>
       </Align.TryTagless>

@@ -9,7 +9,7 @@ export const TextArea = forwardRef(({ ...props }: ITextInputProps, ref) => {
       {...props}
       type="textarea"
       height="114px"
-      ref={ref}
+      forwardRef={ref}
     />
   )
 })
