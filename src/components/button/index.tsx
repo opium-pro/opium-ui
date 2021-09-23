@@ -7,6 +7,7 @@ type Props = React.AllHTMLAttributes<HTMLElement> & {
   type?: string,
   mini?: boolean,
   critic?: boolean,
+  hint?: string,
 }
 
 export const Button = ({
@@ -16,6 +17,7 @@ export const Button = ({
   disabled,
   mini,
   critic,
+  hint,
   ...rest
 }: Props) => (
   <Reaction
