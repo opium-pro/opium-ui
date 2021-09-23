@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { Font, Box, Align, Gap, Reaction, Fit, Animate } from 'themeor'
+import { Font, Box, Align, Gap, Reaction, Fit } from 'themeor'
 import { Avatar } from '../avatar'
 
 
@@ -20,41 +20,39 @@ export const Wrapper: FC<IWrapperProps> = ({
 }) => {
 
   return (
-    <Animate onMount="fadeInUp" duration={300}>
-      <Reaction smooth {...rest}>
-        {(rProps, r) => (
-          <Fit.TryTagless
-            tabIndex={0}
-            top={r.hoverOrFocus ? '-4px' : '0'}
-            clip
-            FORCE_TAGLESS
-            {...rProps}
+    <Reaction smooth {...rest}>
+      {(rProps, r) => (
+        <Fit.TryTagless
+          tabIndex={0}
+          top={r.hoverOrFocus ? '-4px' : '0'}
+          clip
+          FORCE_TAGLESS
+          {...rProps}
+        >
+          <Box
+            fill="base"
+            radius="md"
+            shadow={r.hoverOrFocus ? "xl" : "md"}
           >
-            <Box
-              fill="base"
-              radius="md"
-              shadow={r.hoverOrFocus ? "xl" : "md"}
-            >
-              <Gap>
-                <Align row vert="center">
-                  <Avatar img={img} name={title} />
-                  <Gap />
-                  <Align gapVert="x2s">
-                    <Font
-                      size="lg"
-                      weight="600"
-                      fill="base"
-                    >
-                      {title}
-                    </Font>
-                    {children}
-                  </Align>
+            <Gap>
+              <Align row vert="center">
+                <Avatar img={img} name={title} />
+                <Gap />
+                <Align gapVert="x2s">
+                  <Font
+                    size="lg"
+                    weight="600"
+                    fill="base"
+                  >
+                    {title}
+                  </Font>
+                  {children}
                 </Align>
-              </Gap>
-            </Box>
-          </Fit.TryTagless>
-        )}
-      </Reaction>
-    </Animate>
+              </Align>
+            </Gap>
+          </Box>
+        </Fit.TryTagless>
+      )}
+    </Reaction>
   )
 }
