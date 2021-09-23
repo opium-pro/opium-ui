@@ -37,7 +37,6 @@ export function Form({
   function handleSubmit(e) {
     e.preventDefault()
     onSubmit?.(fields)
-    setChanged(false)
   }
 
   useEffect(() => {
