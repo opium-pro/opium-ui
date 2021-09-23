@@ -22,8 +22,8 @@ export const Notice: FC<NoticeProps> = ({ title, text, type = 'base', onClose, c
   return (
     <Animate.TryTagless
       mounted={show}
-      onMount="backInDown"
-      onUnmount="backOutUp"
+      onMount="slideInDown"
+      onUnmount="slideOutUp"
     >
       <Fit.TryTagless
         cover="screen"
