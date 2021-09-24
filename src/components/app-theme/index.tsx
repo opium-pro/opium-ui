@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactTooltip from 'react-tooltip'
-import { Theme, Align, Fit, Box, Font, Line, Gap } from 'themeor'
+import { Theme, Fit, Box, Font } from 'themeor'
 import themeConfig from '../../theme/config.json'
 import icons from '../../theme/iconList'
 

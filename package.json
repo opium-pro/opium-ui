@@ -1,6 +1,6 @@
 {
   "name": "opium-ui",
-  "version": "0.1.0-alpha1",
+  "version": "0.1.0-alpha2",
   "main": "dist/index.js",
   "dependencies": {
     "react-helmet": "^6.1.0",
