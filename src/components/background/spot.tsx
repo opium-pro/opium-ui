@@ -10,13 +10,13 @@ import random from '../../utils/random'
 const size = 930
 
 const spotList = [spot1path, spot2path]
-const spotListPurple = [purple1path, purple2path, purple3path]
+// const spotListPurple = [purple1path, purple2path, purple3path]
 const stickList = ['left', 'right']
 const shiftList = [-size / 3, -size / 3, -size / 3, -size / 4, -size / 2, -size / 2]
 const opacityList = [0.1, 0.4, 0.3, 0.2]
 
-export function Spot({ reset, altSpotSet }) {
-  const list = altSpotSet ? spotListPurple : spotList;
+export function Spot({ reset }) {
+  const list = spotList
   const img = list[random(0, list.length - 1)]
   let stick
   const shift = shiftList[random(0, shiftList.length - 1)]

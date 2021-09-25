@@ -586,6 +586,11 @@ const icons = {sm:{}, md:{}, lg:{}}
   icons.sm.crop_rotate = Icon__crop_rotate
   icons.lg.crop_rotate = Icon__crop_rotate
 
+  const Icon__cross = (props) => <div {...props} dangerouslySetInnerHTML={{__html: '<?xml version="1.0" encoding="UTF-8"?><svg version="1.1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g fill="none"><path d="M0 0h24v24h-24Z"></path><path stroke="#323232" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 8l8 8"></path><path stroke="#323232" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 8l-8 8"></path></g></svg>'}} />
+  icons.md.cross = Icon__cross
+  icons.sm.cross = Icon__cross
+  icons.lg.cross = Icon__cross
+
   const Icon__delete_button = (props) => <div {...props} dangerouslySetInnerHTML={{__html: '<?xml version="1.0" encoding="UTF-8"?><svg version="1.1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g stroke-width="1.5" fill="none" stroke="#323232"><path d="M5.841 18l-2.306-4 9.27139e-08 1.60585e-07c-.714531-1.2376-.714531-2.7624-1.85428e-07-4l2.307-4 -3.25884e-07 5.64447e-07c.714691-1.23788 2.03562-2.00032 3.465-2h5.386l1.38183e-07-6.55689e-11c1.42974-.000678407 2.75113.761808 3.466 2l2.306 4 -2.91409e-08-5.04736e-08c.714531 1.2376.714531 2.7624 5.82819e-08 4l-2.307 4 1.51038e-07-2.61606e-07c-.714692 1.23788-2.03562 2.00032-3.465 2h-5.386l-3.98739e-08 1.89218e-11c-1.42974.000678453-2.75113-.761808-3.466-2Z"></path><line x1="9.5" x2="14.5" y1="14.5" y2="9.5" stroke-linecap="round" stroke-linejoin="round"></line><line x1="14.5" x2="9.5" y1="14.5" y2="9.5" stroke-linecap="round" stroke-linejoin="round"></line></g><path fill="none" d="M0 0h24v24h-24Z"></path></svg>'}} />
   icons.md.delete_button = Icon__delete_button
   icons.sm.delete_button = Icon__delete_button
@@ -595,11 +600,6 @@ const icons = {sm:{}, md:{}, lg:{}}
   icons.md.delete_disabled = Icon__delete_disabled
   icons.sm.delete_disabled = Icon__delete_disabled
   icons.lg.delete_disabled = Icon__delete_disabled
-
-  const Icon__delete_disabled_2 = (props) => <div {...props} dangerouslySetInnerHTML={{__html: '<?xml version="1.0" encoding="UTF-8"?><svg version="1.1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g fill="none"><path d="M0 0h24v24h-24Z"></path><path stroke="#323232" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 8l8 8"></path><path stroke="#323232" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 8l-8 8"></path></g></svg>'}} />
-  icons.md.delete_disabled_2 = Icon__delete_disabled_2
-  icons.sm.delete_disabled_2 = Icon__delete_disabled_2
-  icons.lg.delete_disabled_2 = Icon__delete_disabled_2
 
   const Icon___delete = (props) => <div {...props} dangerouslySetInnerHTML={{__html: '<?xml version="1.0" encoding="UTF-8"?><svg version="1.1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g fill="none"><path d="M0 0h24v24h-24Z"></path><path stroke="#323232" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6.49 6.538l-3.071 4.3c-.497.695-.497 1.63 0 2.325l3.071 4.3c.375.525.981.837 1.627.837h10.883c1.105 0 2-.895 2-2v-8.6c0-1.105-.895-2-2-2h-10.883c-.646 0-1.252.312-1.627.838Z"></path><path stroke="#323232" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 10l-4 4"></path><path stroke="#323232" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 14l-4-4"></path></g></svg>'}} />
   icons.md._delete = Icon___delete

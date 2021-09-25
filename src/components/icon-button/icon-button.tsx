@@ -2,12 +2,12 @@ import React from 'react'
 import { Align, Fit, Box, Font, Line, Gap, Icon, Reaction } from 'themeor'
 
 type Props = React.AllHTMLAttributes<HTMLElement> & {
-  icon: string,
+  name: string,
   fill?: string,
   [key: string]: any,
 }
 
-export const IconButton = ({ icon, fill, line, ...rest }: Props) => (
+export const IconButton = ({ name, fill, line, ...rest }: Props) => (
   <Reaction track={['hover', 'focus', 'active']}>
     {(rProps, r) => (
       <Fit.TryTagless
@@ -35,7 +35,7 @@ export const IconButton = ({ icon, fill, line, ...rest }: Props) => (
 
           <Fit.TryTagless width="20px" height="20px">
               <Align vert="center" hor="center">
-                <Icon name={icon} fill={fill} forceLine={line} />
+                <Icon name={name} fill={fill} forceLine={line} />
               </Align>
           </Fit.TryTagless>
 

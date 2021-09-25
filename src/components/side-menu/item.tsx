@@ -7,21 +7,24 @@ type Props = React.HTMLAttributes<HTMLElement> & {
   icon?: string,
   active?: boolean,
   prompt?: string,
+  row?: boolean,
 }
 
-export function Item({ label, active, icon, prompt, ...rest }: Props) {
+export function Item({ label, active, icon, prompt, row, ...rest }: Props) {
   return (
     <MakeButton offset="0" radius="none" {...rest}>
       <Fit.TryTagless width="100%">
-        <Gap.TryTagless hor="xs" vert="md">
-          <Align hor="center">
-            <Icon
-              name={icon}
-              fill={active ? "complement" : "base"}
-            />
-          </Align>
+        <Gap.TryTagless hor={row ? "lg" : "sm"} vert="md" right={row && "x2l"}>
+          <Align row={row} vert="center">
 
-            <Gap size="x2s" />
+            <Align hor="center">
+              <Icon
+                name={icon}
+                fill={active ? "complement" : "base"}
+              />
+            </Align>
+
+            <Gap size={row ? "md" : "x2s"} />
             <Font
               align="center"
               size="x2s"
@@ -32,7 +35,7 @@ export function Item({ label, active, icon, prompt, ...rest }: Props) {
             </Font>
 
             {prompt && (<>
-              <Gap size="x2s"/>
+              <Gap size="x2s" />
               <Font
                 align="center"
                 size="x3s"
@@ -43,6 +46,7 @@ export function Item({ label, active, icon, prompt, ...rest }: Props) {
               </Font>
             </>)}
 
+          </Align>
         </Gap.TryTagless>
       </Fit.TryTagless>
     </MakeButton>
