@@ -3,6 +3,8 @@ import React, { useState, Fragment, createContext, useContext } from 'react'
 const ShadowRenderContext = createContext({})
 export const useShadowRender: any = () => useContext(ShadowRenderContext)
 
+let id = 1
+
 
 export function ShadowRenderProvider(props) {
   const [shadows, setShadows] = useState({})
@@ -23,13 +25,14 @@ export function ShadowRenderProvider(props) {
 
   function addShadow(index, value) {
     if (!index) {
-      index = 1
-        ; (function checkId() {
-          if (Object.keys(shadows).includes(index.toString())) {
-            index++
-            checkId()
-          }
-        })()
+      index = id++
+      // index = 1
+      //   ; (function checkId() {
+      //     if (Object.keys(shadows).includes(index.toString())) {
+      //       index++
+      //       checkId()
+      //     }
+      //   })()
     }
     const render = (
       <Fragment key={`shadow-${index}`}>

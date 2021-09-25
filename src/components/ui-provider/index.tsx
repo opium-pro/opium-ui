@@ -19,13 +19,13 @@ export const UIProvider: FC<UIProviderProps> = ({ children, ...rest }) => {
       <PortalsProvider>
         <ShadowRenderProvider>
 
-          <Fit zIndex={0} cover="screen" stick="top-left">
+          <Fit zIndex={0} fixed top="0" left="0">
             <Shadows />
           </Fit>
 
           {children}
 
-          <Fit zIndex={400} cover="screen" stick="top-left">
+          <Fit zIndex={400} fixed top="0" left="0">
             <Portals />
           </Fit>
         </ShadowRenderProvider>

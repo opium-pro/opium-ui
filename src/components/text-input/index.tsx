@@ -3,7 +3,8 @@ import { Gap, Box, Align, Font, Fit, Reaction } from 'themeor'
 import newId from 'themeor/dist/utils/new-id'
 import { withForm } from '../form'
 import { Dropdown } from '../dropdown'
-import { MakeButton } from '../make-button'
+import filter from 'opium-filter'
+
 
 export interface ITextInputProps {
   type?: string
@@ -21,6 +22,7 @@ export interface ITextInputProps {
   disabled?: boolean
   forwardRef?: any
   initialValue?: string
+  autocomplete?: string[] | boolean
 }
 
 
@@ -40,13 +42,14 @@ export const TextInput = withForm(({
   name,
   disabled,
   onBlur,
+  autocomplete = true,
   ...props
 }: ITextInputProps, ref) => {
   const fieldId = id || newId()
   let inputRef
 
   function handleChange(event) {
-    const value = event.target.value
+    const value = typeof event === 'string' ? event : event?.target?.value
     onChange && onChange(value)
   }
 
@@ -67,6 +70,8 @@ export const TextInput = withForm(({
     typeof forwardRef === 'function' && forwardRef(fRef)
     inputRef = fRef
   }
+
+  const defaultAutocomplete = autocomplete === true ? 'on' : 'off'
 
   return (
     <Reaction
@@ -144,6 +149,7 @@ export const TextInput = withForm(({
                             name={name}
                             disabled={disabled}
                             tabIndex={-1}
+                            autoComplete={defaultAutocomplete}
                           />
                         </Fit.TryTagless>
                       ) : (
@@ -155,6 +161,7 @@ export const TextInput = withForm(({
                           name={name}
                           disabled={disabled}
                           tabIndex={-1}
+                          autoComplete={defaultAutocomplete}
                         />
                       )}
                     </Gap.TryTagless>
@@ -186,11 +193,18 @@ export const TextInput = withForm(({
               </Fit.TryTagless>
             )}
 
-            <Dropdown>
-              <Dropdown.Item>asdasdadasdasdasda</Dropdown.Item>
-              <Dropdown.Item>asdasdadasdasdasda</Dropdown.Item>
-              <Dropdown.Item>asdasdadasdasdasda</Dropdown.Item>
-            </Dropdown>
+            {Array.isArray(autocomplete) && r.focus && (
+              <Dropdown>
+                {filter(autocomplete, value).map((option, index) => (
+                  <Dropdown.Item
+                    key={`option-${index}`}
+                    onClick={() => handleChange(option)}
+                  >
+                    {option}
+                  </Dropdown.Item>
+                ))}
+              </Dropdown>
+            )}
 
           </Box>
         </Fit.TryTagless>

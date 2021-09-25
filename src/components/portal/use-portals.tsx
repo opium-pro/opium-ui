@@ -3,6 +3,7 @@ import React, { useState, Fragment, createContext, useContext } from 'react'
 const PortalsContext = createContext({})
 export const usePortals: any = () => useContext(PortalsContext)
 
+let id = 1
 
 export function PortalsProvider(props) {
   const [portals, setPortals] = useState({})
@@ -15,13 +16,7 @@ export function PortalsProvider(props) {
 
   function addPortal(index, value) {
     if (!index) {
-      index = 1
-        ; (function checkId() {
-          if (Object.keys(portals).includes(index.toString())) {
-            index++
-            checkId()
-          }
-        })()
+      index = id++
     }
     const render = (
       <Fragment key={`portal-${index}`}>
