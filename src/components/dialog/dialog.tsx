@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Modal } from '../modal'
 import { Button } from '../button'
 import { Gap } from 'themeor'
@@ -18,7 +18,6 @@ export function Dialog({onOk, onCancel, ...rest}) {
 
   return (
     <Modal
-      {...rest}
       width="500px"
       mounted={mount}
       footer={(<>
@@ -26,6 +25,7 @@ export function Dialog({onOk, onCancel, ...rest}) {
         <Gap />
         <Button stretch label="No" onClick={handleCancel} />
       </>)}
+      {...rest}
     />
   )
 }
