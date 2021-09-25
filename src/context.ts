@@ -1,8 +1,6 @@
-import { createContext, useContext } from "react"
+import { createContext, ReactNode, useContext } from "react"
 
-export const AppContext = createContext({
-  portal: undefined as any[],
-  setPortal: undefined as (portals: any[]) => void,
-})
 
-export const useAppContext = () => useContext(AppContext)
+export const AppContext = createContext({})
+
+export const useAppContext: any = () => useContext(AppContext)

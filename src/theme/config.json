@@ -37,8 +37,8 @@
     },
     "accent": {
       "strong": "#FFDD1F",
-      "strong-up": "#FFDD1F",
-      "strong-down": "#FFDD1F",
+      "strong-up": "#FFEE2F",
+      "strong-down": "#FBD81D",
       "weak": "#FFDD1F",
       "weak-up": "rgba(61, 132, 219, 0.15)"
     },

@@ -35,7 +35,7 @@ export const Button = ({
       <Fit.TryTagless inline height={mini ? "32px" : "48px"} stretch={stretch}>
         <Box.TryTagless
           glow={glow && 'md'}
-          fill={(disabled && "faint-up") || (primary ? ((r.active && 'accent-up') || (r.hoverOrFocus ? "accent-down" : "accent")) : (r.hoverOrFocus && "faint" || light && "none" || "base"))}
+          fill={(disabled && "faint-up") || (primary ? ((r.active && 'accent-down') || (r.hoverOrFocus ? "accent-up" : "accent")) : (r.hoverOrFocus && "faint" || light && "none" || "base"))}
           borderFill={(primary || disabled) ? "none" : "faint-up"}
           strong={primary && !disabled}
           radius="xs"

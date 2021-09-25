@@ -1,20 +1,22 @@
-import React from 'react'
-import { useAppContext } from '../../context'
+import React, { useEffect, useRef } from 'react'
+import { useShadowRender } from '../shadow-render'
 import { Dialog } from './dialog'
 
-let id = 0
 
 export function useDialog() {
-  const { portal, setPortal } = useAppContext()
+  const { bunchRemove, addShadow } = useShadowRender()
+  const indexList: any = useRef([])
+
+  useEffect(() => () => bunchRemove(indexList), [])
 
   return (title, text) => new Promise((res) => {
-    const modal = <Dialog
-      key={`dialog-${id++}`}
+    const render = <Dialog
       title={title}
       text={text}
       onOk={() => res(true)}
       onCancel={() => res(false)}
     />
-    setPortal([...portal, modal])
+    const index = addShadow(null, render)
+    indexList.current.push(index)
   })
 }
