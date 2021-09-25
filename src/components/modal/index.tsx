@@ -57,21 +57,22 @@ export const Modal: FC<ModalProps> = ({
         >
           <Fit.TryTagless>
             <Gap size="16px">
-              <Fit.TryTagless maxHeight="calc(100vh - 32px)" minHeight="100px" minWidth="200px" scroll {...rest}>
+              <Fit.TryTagless maxHeight="calc(100vh - 32px)" minHeight="40px" minWidth="200px" scroll {...rest}>
                 <Box radius="md" fill="base" shadow="lg">
                   <Gap vert="24px" hor="32px">
                     {!!title && (<>
                       <Font weight="700" size="x2l">
                         {title}
                       </Font>
-                      <Gap size="8px" />
                     </>)}
+                    {!!title && !!text && <Gap size="8px" />}
                     {!!text && (<>
                       <Font weight="400" size="md">
                         {text}
                       </Font>
                     </>)}
-                    {!!text && !!children && <Gap size="8px" />}
+
+                    {(!!text || !!title) && !!children && <Gap size="8px" />}
 
                     {children}
                   </Gap>

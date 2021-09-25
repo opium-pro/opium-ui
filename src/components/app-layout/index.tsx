@@ -3,80 +3,68 @@ import { FC } from 'react'
 import { Align, Fit, Gap } from 'themeor'
 import { Background } from '../background'
 import { AppTheme, AppThemeProps } from '../app-theme'
-import { Modal } from '../modal'
-import { Button } from '../button'
+import { AppContext } from '../../context'
 
 type AppLayoutProps = AppThemeProps & {
   sideMenu?: any,
   header?: any,
+  modals?: any,
 }
 
-export const AppLayout: FC<AppLayoutProps> = ({ sideMenu, header, children, ...rest }) => {
+export const AppLayout: FC<AppLayoutProps> = ({
+  sideMenu,
+  header,
+  children,
+  modals,
+  ...rest
+}) => {
+  const [portal, setPortal] = useState([])
 
   return (
-    <AppTheme {...rest}>
-      <Align row vert="stretch">
-        {sideMenu && (
-          <Fit
-            maxHeight="100vh"
-            zIndex={200}
-            scroll
-          >
-            {sideMenu}
-          </Fit>
-        )}
+    <AppContext.Provider value={{portal, setPortal}}>
+      <AppTheme {...rest}>
+        <Fit zIndex={300}>
+          {modals}
+          {portal}
+        </Fit>
 
-        <Align stretch>
-          <Fit height="100vh" zIndex={100} scroll>
+        <Align row vert="stretch">
+          {sideMenu && (
+            <Fit
+              maxHeight="100vh"
+              zIndex={200}
+              scroll
+            >
+              {sideMenu}
+            </Fit>
+          )}
 
-            <Fit.TryTagless minHeight="100vh" FORCE_TAGLESS>
-              <Background>
+          <Align stretch>
+            <Fit height="100vh" zIndex={100} scroll>
 
-
-                {header && (
-                  <Fit.TryTagless style={{
-                    position: 'sticky',
-                    top: '0',
-                    zIndex: 100,
-                  }}>
-                    {header}
-                  </Fit.TryTagless>
-                )}
+              <Fit.TryTagless minHeight="100vh" FORCE_TAGLESS>
+                <Background>
 
 
-                {children}
-              </Background>
-            </Fit.TryTagless>
+                  {header && (
+                    <Fit.TryTagless style={{
+                      position: 'sticky',
+                      top: '0',
+                      zIndex: 100,
+                    }}>
+                      {header}
+                    </Fit.TryTagless>
+                  )}
 
-          </Fit>
+
+                  {children}
+                </Background>
+              </Fit.TryTagless>
+
+            </Fit>
+          </Align>
         </Align>
-      </Align>
-
-      <Fit zIndex={300}>
-        <Modal
-          width="600px"
-          title="Заголовокчек"
-          text="Ты уверен, что хочешь совершить эту херню???"
-          onClose={() => true}
-          footer={(<>
-            <Button glow stretch primary label="asdasds" />
-            <Gap size="8px" />
-            <Button glow stretch label="asdasds" />
-          </>)}
-        >
-          asdasdasds<br />
-          asdasdasds<br />
-          asdasdasds<br />
-          asdasdasds<br />
-          asdaasdasdasdasdasdsdasds<br />
-          asdasdasds<br />
-          asdasdasds<br />
-          asdasasdasdasdasdasdasddasds asdasasdasdasdasdasdasddasds<br />
-          asdasdasds asdasasdasdasdasdasdasddasds<br />
-          asdasdasds<br />
-          asdasdasdasdasdasdadadasdasdasds<br />
-        </Modal>
-      </Fit>
-    </AppTheme>
+      </AppTheme>
+    </AppContext.Provider>
   )
 }
