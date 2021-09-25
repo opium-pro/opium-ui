@@ -11,10 +11,10 @@ type Props = React.HTMLAttributes<HTMLAnchorElement> & {
 
 export const MakeButton = ({
   children,
-  offset="10px",
+  offset = "10px",
   disabled,
-  radius="md",
-  track=["hover", "active"],
+  radius = "md",
+  track = ["hover", "active"],
   fade,
   ...rest
 }: Props) => (
@@ -32,7 +32,8 @@ export const MakeButton = ({
           padding: offset,
         }}
       >
-          {!disabled && <Fit.TryTagless
+        {!disabled && (
+          <Fit.TryTagless
             width={r.hoverOrFocus ? "100%" : (!fade ? "0" : undefined)}
             height={r.hoverOrFocus ? "100%" : (!fade ? "0" : undefined)}
             stick="top-left"
@@ -40,22 +41,23 @@ export const MakeButton = ({
             left={r.hoverOrFocus ? "0" : (!fade ? "50%" : undefined)}
           >
             <Box
-              radius={radius as any}
+              radius={r.hoverOrFocus ? radius as any : 'max'}
               fill={r.active ? "faint" : "--hovereffect"}
               style={{
                 transition: "all 0.2s ease",
                 opacity: fade ? (r.hoverOrFocus ? "1" : "0") : undefined,
               }}
             />
-          </Fit.TryTagless>}
+          </Fit.TryTagless>
+        )}
 
-          <Fit>
-            {typeof children === 'function' ? (
-              children(r)
-            ) : (
-              children
-            )}
-          </Fit>
+        <Fit>
+          {typeof children === 'function' ? (
+            children(r)
+          ) : (
+            children
+          )}
+        </Fit>
       </Fit.TryTagless>
     )}
   </Reaction>

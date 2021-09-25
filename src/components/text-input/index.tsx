@@ -2,6 +2,8 @@ import React from 'react'
 import { Gap, Box, Align, Font, Fit, Reaction } from 'themeor'
 import newId from 'themeor/dist/utils/new-id'
 import { withForm } from '../form'
+import { Dropdown } from '../dropdown'
+import { MakeButton } from '../make-button'
 
 export interface ITextInputProps {
   type?: string
@@ -183,6 +185,12 @@ export const TextInput = withForm(({
                 </Align.TryTagless>
               </Fit.TryTagless>
             )}
+
+            <Dropdown>
+              <Dropdown.Item>asdasdadasdasdasda</Dropdown.Item>
+              <Dropdown.Item>asdasdadasdasdasda</Dropdown.Item>
+              <Dropdown.Item>asdasdadasdasdasda</Dropdown.Item>
+            </Dropdown>
 
           </Box>
         </Fit.TryTagless>
