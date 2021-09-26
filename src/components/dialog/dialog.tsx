@@ -1,19 +1,32 @@
-import React, { useEffect, useState } from 'react'
-import { Modal } from '../modal'
+import React, { FC, useState } from 'react'
+import { Modal, ModalProps } from '../modal'
 import { Button } from '../button'
 import { Gap } from 'themeor'
 
-export function Dialog({onOk, onCancel, ...rest}) {
+export type DialogProps = ModalProps & {
+  onApply?: any
+  applyLabel?: string
+  cancelLabel?: string
+  onCancel?: any
+}
+
+export const Dialog: FC<DialogProps> = ({
+  onApply,
+  applyLabel = 'Yes',
+  cancelLabel = 'No',
+  onCancel,
+  ...rest
+}) => {
   const [mount, setMount] = useState(true)
 
-  function handleOk() {
+  function handleApply() {
     setMount(false)
-    onOk()
+    onApply instanceof Function && onApply()
   }
 
   function handleCancel() {
     setMount(false)
-    onCancel()
+    onCancel instanceof Function && onCancel()
   }
 
   return (
@@ -21,9 +34,9 @@ export function Dialog({onOk, onCancel, ...rest}) {
       width="500px"
       mounted={mount}
       footer={(<>
-        <Button stretch primary label="Yes" onClick={handleOk} />
-        <Gap />
-        <Button stretch label="No" onClick={handleCancel} />
+        {onApply && <Button stretch primary label={applyLabel} onClick={handleApply} />}
+        {onApply && onCancel && <Gap />}
+        {onCancel && <Button stretch label={cancelLabel} onClick={handleCancel} />}
       </>)}
       {...rest}
     />

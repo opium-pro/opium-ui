@@ -9,7 +9,6 @@ export type ModalProps = FitProps & {
   onClose?: () => boolean
   title?: string
   text?: string
-  onCancel?: string
   footer?: any
   mounted?: any
 }

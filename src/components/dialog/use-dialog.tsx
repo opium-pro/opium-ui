@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 import { useShadowRender } from '../shadow-render'
-import { Dialog } from './dialog'
+import { Dialog, DialogProps } from './dialog'
 
 let id = 1
 
@@ -10,14 +10,18 @@ export function useDialog() {
 
   useEffect(() => () => bunchRemove(indexList), [])
 
-  return (title?: string, text?: string) => new Promise((res) => {
+  return ({onApply, onCancel, ...rest}: DialogProps) => new Promise((res) => {
     const render = <Dialog
-      title={title}
-      text={text}
-      onOk={() => res(true)}
-      onCancel={() => res(false)}
+      onApply={() => {
+        onApply instanceof Function && onApply()
+        res(true)
+      }}
+      onCancel={() => {
+        onCancel instanceof Function && onCancel()
+        res(false)
+      }}
+      {...rest}
     />
-
     const index = addShadow(id++, render)
     indexList.current.push(index)
   })
