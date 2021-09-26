@@ -1,5 +1,6 @@
 import React from 'react'
 import { Align, Fit, Box, Font, Line, Gap, Icon, Reaction } from 'themeor'
+import { withDropdown } from '../dropdown'
 
 export type BottonProps = React.AllHTMLAttributes<HTMLElement> & {
   label?: string

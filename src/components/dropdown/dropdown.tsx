@@ -1,36 +1,25 @@
 import React, { FC, useState, useEffect, useRef } from 'react'
-import { Font, Box, Align, Fit, FitProps } from 'themeor'
+import { Font, Box, Align, Fit, FitProps, Animate } from 'themeor'
 import { Portal } from '../portal'
 import { useAppLayout } from '../app-layout'
-import hotkeys from 'hotkeys-js'
 
 
-export interface WrapperProps extends FitProps { }
+export interface DropdownProps extends FitProps { }
 
 
-export const Wrapper: FC<WrapperProps> = ({ children, ...rest }) => {
+export const Dropdown: FC<DropdownProps> = ({ children, forwardRef, ...rest }) => {
   const [sourceNode, setSourceNode]: any = useState()
   const [targetNode, setTargetNode]: any = useState()
-  const [opened, setOpened]: any = useState(true)
   const { contentNode } = useAppLayout()
   const isReady = contentNode && targetNode && sourceNode
 
   function alignNodes() {
     if (!sourceNode || !targetNode) { return }
     const offsets = sourceNode.getBoundingClientRect()
-    targetNode.style.top = offsets.top + 'px'
+    targetNode.style.top = offsets.top + 12 + 'px'
     targetNode.style.left = offsets.left + 'px'
     targetNode.style.width = offsets.width + 'px'
   }
-
-  useEffect(() => {
-    hotkeys('escape', (event) => {
-      event.preventDefault()
-      setOpened(false)
-      alert('adasdasd')
-    })
-    return () => hotkeys.unbind('escape')
-  }, [])
 
   useEffect(() => {
     alignNodes()
@@ -47,29 +36,30 @@ export const Wrapper: FC<WrapperProps> = ({ children, ...rest }) => {
     }
   }, [isReady])
 
+  function handleRef(node) {
+    if (!node) { return }
+    !targetNode && setTargetNode(node)
+      ; (forwardRef as any)?.(node)
+  }
+
   return (
-    <Fit
-      forwardRef={setSourceNode}
-      width="100%"
-      top="calc(100% + 10px)"
-    >
+    <Fit forwardRef={n => n && !sourceNode && setSourceNode(n)}>
       <Portal>
-        <Fit.TryTagless
-          forwardRef={setTargetNode}
-          absolute
-          scroll
-          maxHeight="500px"
-          maxWidth="600px"
-          minWidth="100px"
-          {...rest}
-        >
-          {opened && (
+        <Animate onMount="fadeInUp">
+          <Fit.TryTagless
+            forwardRef={handleRef}
+            absolute
+            scroll
+            maxHeight="500px"
+            maxWidth="600px"
+            minWidth="100px"
+            {...rest}
+          >
             <Box radius="md" shadow="lg" fill="base">
               {children}
             </Box>
-          )}
-
-        </Fit.TryTagless>
+          </Fit.TryTagless>
+        </Animate>
       </Portal>
     </Fit>
   )
