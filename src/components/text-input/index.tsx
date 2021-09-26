@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Gap, Box, Align, Font, Fit, Reaction } from 'themeor'
 import newId from 'themeor/dist/utils/new-id'
 import { withForm } from '../form'
@@ -24,6 +24,7 @@ export interface TextInputProps {
   forwardRef?: any
   initialValue?: string
   autocomplete?: string[] | boolean
+  options?: any[]
 }
 
 
@@ -44,11 +45,14 @@ export const TextInput = withForm(({
   disabled,
   onBlur,
   autocomplete = true,
+  options,
   ...props
 }: TextInputProps, ref) => {
   const fieldId = id || newId()
   let inputRef
   const [showDropdown, setShowDropdown] = useState(false)
+
+  const isSelect = type === 'select'
 
   function handleChange(event) {
     const value = typeof event === 'string' ? event : event?.target?.value
@@ -79,7 +83,7 @@ export const TextInput = withForm(({
   }
 
   const defaultAutocomplete = autocomplete === true ? 'on' : 'off'
-  const setAutocomplete = Array.isArray(autocomplete)
+  const setAutocomplete = !isSelect && Array.isArray(autocomplete)
   const itemsToAutocomplete = setAutocomplete && filter(autocomplete as any, value).filter((option) => value !== option).slice(0, 10)
   const rednerAutocomplete = setAutocomplete && (<>
     {itemsToAutocomplete.map((option, index) => (
@@ -96,12 +100,12 @@ export const TextInput = withForm(({
     <Reaction
       {...props}
       track={!disabled && ['focus', 'hover']}
-      cursor={disabled ? "default" : "text"}
+      cursor={(disabled && 'default') || (isSelect && 'pointer') || 'text'}
       onFocus={!disabled && handleFocus}
       onBlur={!disabled && handleBlur}
     >
       {(rProps: any, r: any) => (<>
-        <MakeDropdown items={rednerAutocomplete}>
+        <MakeDropdown items={isSelect ? options : rednerAutocomplete}>
           <Fit.TryTagless height={height}>
             <Box
               fill={(disabled && "base") || (r.focus && "base") || (r.hover && "faint") || "faint-down"}
@@ -156,7 +160,7 @@ export const TextInput = withForm(({
                         hor="md"
                         forwardRef={handleRef}
                       >
-                        {type === 'textarea' ? (
+                        {(type === 'textarea' && (
                           <Fit.TryTagless
                             cover="parent"
                             width="100%"
@@ -172,7 +176,21 @@ export const TextInput = withForm(({
                               autoComplete={defaultAutocomplete}
                             />
                           </Fit.TryTagless>
-                        ) : (
+                        )) || (isSelect && (
+                          <select
+                            id={fieldId}
+                            className={r.className.cursor}
+                            onChange={handleChange}
+                            value={value}
+                            name={name}
+                            disabled={true}
+                            tabIndex={-1}
+                          >
+                            {React.Children.map(options, ({props}) => (
+                              <option key={props.value} value={props.value} />
+                            ))}
+                          </select>
+                        )) || (
                           <input
                             id={fieldId}
                             type={type}
