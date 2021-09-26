@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { ReactNode, useState } from 'react'
 import { Gap, Box, Align, Font, Fit, Reaction } from 'themeor'
 import newId from 'themeor/dist/utils/new-id'
 import { withForm } from '../form'
