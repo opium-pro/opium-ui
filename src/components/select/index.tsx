@@ -1,8 +1,8 @@
 import React from 'react'
-import { TextInput } from "../text-input"
+import { TextInput, useTextInput } from "../text-input"
 import { Dropdown } from '../dropdown'
-import { Font, Icon, Gap, Effect } from 'themeor'
-import { useDropdownContext } from '../dropdown'
+import { Font, Icon, Gap, Effect, useReaction } from 'themeor'
+import { useDropdown } from '../dropdown'
 
 
 export function Select({ ...rest }) {
@@ -22,7 +22,7 @@ export function Select({ ...rest }) {
 
 
 function SeelctIcon() {
-  const { opened } = useDropdownContext()
+  const { opened } = useDropdown()
   return (
     <Gap right="12px">
       <Effect smooth rotate={opened && '180deg'}>
@@ -40,6 +40,8 @@ function Option({
   hint = undefined,
   children = undefined
 }) {
+  // const { value: currentValue } = useTextInput()
+
   return (
     <Dropdown.Item onClick={onClick}>
       {label}

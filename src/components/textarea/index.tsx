@@ -1,9 +1,9 @@
 import React from 'react'
 import { forwardRef } from 'react'
-import {TextInput, ITextInputProps} from '../text-input'
+import {TextInput, TextInputProps} from '../text-input'
 
 
-export const TextArea = forwardRef(({ ...props }: ITextInputProps, ref) => {
+export const TextArea = forwardRef(({ ...props }: TextInputProps, ref) => {
   return (
     <TextInput
       {...props}
