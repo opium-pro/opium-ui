@@ -17,9 +17,11 @@ export const Wrapper = ({ children }) => {
     error,
     pasteBefore,
     pasteAfter,
+    children: parentChildren,
   } = useTextInput()
-
   const { passProps, focus, hover } = useReaction()
+  const context = useTextInput()
+  const reaction = useReaction()
 
   const setAutocomplete = !isSelect && Array.isArray(autocomplete)
   const itemsToAutocomplete = setAutocomplete && filter(autocomplete as any, value).filter((option) => value !== option).slice(0, 10)
@@ -46,13 +48,23 @@ export const Wrapper = ({ children }) => {
           {...passProps}
         >
           <Align row vert="stretch">
-            {pasteBefore && <Align vert="center">{pasteBefore}</Align>}
+            {pasteBefore && (
+              <Align row vert="center">{pasteBefore}</Align>
+            )}
 
             <Fit stretch>
               {children}
             </Fit>
 
-            {pasteAfter && <Align vert="center">{pasteAfter}</Align>}
+            {pasteAfter && (
+              <Align row vert="center">{pasteAfter}</Align>
+            )}
+
+            {parentChildren && parentChildren instanceof Function ? (
+              parentChildren(context, reaction)
+            ) : (
+              <Align row vert="center">{parentChildren}</Align>
+            )}
           </Align>
         </Box.TryTagless>
       </Fit.TryTagless>

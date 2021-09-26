@@ -24,6 +24,7 @@ export const Button = ({
   stretch,
   glow,
   light,
+  children,
   ...rest
 }: BottonProps) => (
   <Reaction
@@ -40,7 +41,7 @@ export const Button = ({
           strong={primary && !disabled}
           radius="xs"
         >
-          <Align.TryTagless vert="center" hor="center">
+          <Align.TryTagless row vert="center" hor="center">
             <Font.TryTagless
               nowrap
               fill={(disabled && "faint-down") || (critic && "critic") || "base"}
@@ -49,7 +50,17 @@ export const Button = ({
               family="regular"
             >
               <Gap.TryTagless hor="xl">
-                <button disabled={disabled} {...rProps} {...rest} type={type}>{label}</button>
+                <button
+                  disabled={disabled}
+                  {...rProps}
+                  {...rest}
+                  type={type}>
+                    <Align hor="center">
+                      {label}
+                      {hint && <Font lineHeight="xs" size="x2s" fill="faint-down">{hint}</Font>}
+                    </Align>
+                    {children}
+                </button>
               </Gap.TryTagless>
             </Font.TryTagless>
           </Align.TryTagless>

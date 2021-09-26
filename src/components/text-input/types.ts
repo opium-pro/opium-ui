@@ -21,4 +21,5 @@ export interface TextInputProps {
   options?: any[]
   pasteBefore?: ReactNode
   pasteAfter?: ReactNode
+  children?: ReactNode
 }

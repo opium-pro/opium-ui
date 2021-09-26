@@ -17,6 +17,7 @@ export default function ({
   icon,
   counter,
   link,
+  children,
   ...rest
 }: Props) {
   return (
@@ -39,6 +40,7 @@ export default function ({
               {label}
             </Font>
             {!!counter && <Counter attention value={counter} />}
+            {children}
           </Align>
         </Gap.TryTagless>
       </Fit.TryTagless>

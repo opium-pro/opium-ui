@@ -20,6 +20,7 @@ export const TextInput = withForm(({
   onFocus,
   onBlur,
   initialValue,
+  disabled,
   ...props
 }: TextInputProps) => {
   const fieldId = props.id || newId()
@@ -63,15 +64,16 @@ export const TextInput = withForm(({
     inputNode,
     isSelect,
     initialValue,
+    disabled,
   }
 
   return (
     <Reaction
       {...props}
-      track={!props.disabled && ['focus', 'hover']}
-      cursor={(props.disabled && 'default') || (isSelect && 'pointer') || 'text'}
-      onFocus={!props.disabled && handleFocus}
-      onBlur={!props.disabled && handleBlur}
+      track={!disabled && ['focus', 'hover']}
+      cursor={(disabled && 'default') || (isSelect && 'pointer') || 'text'}
+      onFocus={!disabled && handleFocus}
+      onBlur={!disabled && handleBlur}
     >
       <TextInputContext.Provider value={context}>
         <Wrapper>

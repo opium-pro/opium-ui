@@ -10,7 +10,7 @@ type Props = React.HTMLAttributes<HTMLElement> & {
   row?: boolean,
 }
 
-export function Item({ label, active, icon, prompt, row, ...rest }: Props) {
+export function Item({ label, active, icon, prompt, row, children, ...rest }: Props) {
   return (
     <MakeButton offset="0" radius="none" {...rest}>
       <Fit.TryTagless width="100%">
@@ -45,6 +45,8 @@ export function Item({ label, active, icon, prompt, row, ...rest }: Props) {
                 {prompt}
               </Font>
             </>)}
+
+            {children}
 
           </Align>
         </Gap.TryTagless>

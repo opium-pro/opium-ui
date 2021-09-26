@@ -73,6 +73,7 @@
       "md": "10px"
     },
     "shadow": {
+      "x3s": "0px 1px 2px 0px rgba(79, 105, 118, 0.05)",
       "sm": "0px 4px 10px 0px rgba(79, 105, 118, 0.05)",
       "md": "0px 10px 25px 0px rgba(79, 105, 118, 0.03)",
       "lg": "0px 10px 30px 0px rgba(79, 105, 118, 0.1)",

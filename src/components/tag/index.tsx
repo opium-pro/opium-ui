@@ -1,21 +1,34 @@
 import React from 'react'
-import { Align, Fit, Box, Font, Line, Gap, Icon, Reaction } from 'themeor'
+import { Align, FontProps, Box, BoxProps, Font, Gap } from 'themeor'
 
-type Props = React.HTMLAttributes<HTMLElement> & {
+export type TagProps = FontProps & {
   label: string,
-  type: string,
-} | any
+  type?: BoxProps['fill'],
+}
 
-export const Tag = ({ label, type = 'base', size='sm', ...props }: Props) => {
+export const Tag = (
+  { label, type = 'base', ...props }: TagProps
+) => {
   return (
-    <Box.TryTagless strong radius="max" fill={type}>
-      <Gap vert="x2s" hor="md">
-        <Align {...props} row>
-          <Font size={size} weight="600">
+    <Box.TryTagless
+      radius="4px"
+      fill={type}
+      borderFill="faint-down"
+      shadow="x3s"
+    >
+      <Gap.TryTagless vert="3px" hor="6px" bottom="2px">
+        <Align.TryTagless row>
+          <Font
+            fill="faint-down"
+            size="9px"
+            weight="600"
+            uppercase
+            {...props}
+          >
             {label}
           </Font>
-        </Align>
-      </Gap>
+        </Align.TryTagless>
+      </Gap.TryTagless>
     </Box.TryTagless>
   )
 }
