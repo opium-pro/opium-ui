@@ -80,7 +80,7 @@ export const TextInput = withForm(({
 
   const defaultAutocomplete = autocomplete === true ? 'on' : 'off'
   const setAutocomplete = Array.isArray(autocomplete)
-  const itemsToAutocomplete = filter(autocomplete as any, value).filter((option) => value !== option)
+  const itemsToAutocomplete = setAutocomplete && filter(autocomplete as any, value).filter((option) => value !== option).slice(0, 10)
   const rednerAutocomplete = setAutocomplete && (<>
     {itemsToAutocomplete.map((option, index) => (
       <Dropdown.Item

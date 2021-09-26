@@ -45,21 +45,19 @@ export const Dropdown: FC<DropdownProps> = ({ children, forwardRef, ...rest }) =
   return (
     <Fit forwardRef={n => n && !sourceNode && setSourceNode(n)}>
       <Portal>
-        <Animate onMount="fadeInUp">
-          <Fit.TryTagless
-            forwardRef={handleRef}
-            absolute
-            scroll
-            maxHeight="500px"
-            maxWidth="600px"
-            minWidth="100px"
-            {...rest}
-          >
-            <Box radius="md" shadow="lg" fill="base">
-              {children}
-            </Box>
-          </Fit.TryTagless>
-        </Animate>
+        <Fit.TryTagless
+          forwardRef={handleRef}
+          absolute
+          scroll
+          maxHeight="500px"
+          maxWidth="600px"
+          minWidth="100px"
+          {...rest}
+        >
+          <Box radius="md" shadow="lg" fill="base">
+            {children}
+          </Box>
+        </Fit.TryTagless>
       </Portal>
     </Fit>
   )
