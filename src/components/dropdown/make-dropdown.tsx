@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Dropdown } from './dropdown'
 import { Fit } from 'themeor'
 import hotkeys from 'hotkeys-js'
+import { DropdownContext } from './context'
 
 
 export function MakeDropdown({ opened: initialOpened, items, onClick, children, ...rest }: any) {
@@ -41,16 +42,18 @@ export function MakeDropdown({ opened: initialOpened, items, onClick, children, 
   }
 
   return (
-    <Fit>
-      <div onClick={handleClick}>
-        {children}
-      </div>
-      
-      {opened && items && (
-        <Dropdown {...rest} forwardRef={n => n && setDropdownNode(n)}>
-          {items}
-        </Dropdown>
-      )}
-    </Fit>
+    <DropdownContext.Provider value={{ opened, setOpened, dropdownNode }}>
+      <Fit>
+        <div onClick={handleClick}>
+          {children}
+        </div>
+
+        {opened && items && (
+          <Dropdown {...rest} forwardRef={n => n && setDropdownNode(n)}>
+            {items}
+          </Dropdown>
+        )}
+      </Fit>
+    </DropdownContext.Provider>
   )
 }

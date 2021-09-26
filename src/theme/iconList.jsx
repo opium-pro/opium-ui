@@ -201,21 +201,6 @@ const icons = {sm:{}, md:{}, lg:{}}
   icons.sm.arrow_up = Icon__arrow_up
   icons.lg.arrow_up = Icon__arrow_up
 
-  const Icon__arrow = (props) => <div {...props} dangerouslySetInnerHTML={{__html: '<?xml version="1.0" encoding="UTF-8"?><svg version="1.1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g fill="none"><path d="M0 0h24v24h-24Z"></path><path stroke="#323232" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 14l-4-4 -4 4"></path></g></svg>'}} />
-  icons.md.arrow = Icon__arrow
-  icons.sm.arrow = Icon__arrow
-  icons.lg.arrow = Icon__arrow
-
-  const Icon__arrow_2 = (props) => <div {...props} dangerouslySetInnerHTML={{__html: '<?xml version="1.0" encoding="UTF-8"?><svg version="1.1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g fill="none"><path d="M0 0h24v24h-24Z"></path><path stroke="#323232" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 16l4-4 -4-4"></path></g></svg>'}} />
-  icons.md.arrow_2 = Icon__arrow_2
-  icons.sm.arrow_2 = Icon__arrow_2
-  icons.lg.arrow_2 = Icon__arrow_2
-
-  const Icon__arrow_3 = (props) => <div {...props} dangerouslySetInnerHTML={{__html: '<?xml version="1.0" encoding="UTF-8"?><svg version="1.1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g fill="none"><path d="M0 0h24v24h-24Z"></path><path stroke="#323232" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 10l4 4 4-4"></path></g></svg>'}} />
-  icons.md.arrow_3 = Icon__arrow_3
-  icons.sm.arrow_3 = Icon__arrow_3
-  icons.lg.arrow_3 = Icon__arrow_3
-
   const Icon__arrows = (props) => <div {...props} dangerouslySetInnerHTML={{__html: '<?xml version="1.0" encoding="UTF-8"?><svg version="1.1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g fill="none"><path d="M0 0h24v24h-24Z"></path><path stroke="#323232" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8.6 3.4l-3.6 3.6 3.6 3.6"></path><path stroke="#323232" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 7h-14"></path><path stroke="#323232" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15.4 20.6l3.6-3.6 -3.6-3.6"></path><path stroke="#323232" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 17h14"></path></g></svg>'}} />
   icons.md.arrows = Icon__arrows
   icons.sm.arrows = Icon__arrows
@@ -515,6 +500,26 @@ const icons = {sm:{}, md:{}, lg:{}}
   icons.md.checkmark_sqaure_copy = Icon__checkmark_sqaure_copy
   icons.sm.checkmark_sqaure_copy = Icon__checkmark_sqaure_copy
   icons.lg.checkmark_sqaure_copy = Icon__checkmark_sqaure_copy
+
+  const Icon__chevron_down = (props) => <div {...props} dangerouslySetInnerHTML={{__html: '<?xml version="1.0" encoding="UTF-8"?><svg version="1.1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g fill="none"><path d="M0 0h24v24h-24Z"></path><path stroke="#323232" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 10l4 4 4-4"></path></g></svg>'}} />
+  icons.md.chevron_down = Icon__chevron_down
+  icons.sm.chevron_down = Icon__chevron_down
+  icons.lg.chevron_down = Icon__chevron_down
+
+  const Icon__chevron_left = (props) => <div {...props} dangerouslySetInnerHTML={{__html: '<?xml version="1.0" encoding="UTF-8"?><svg version="1.1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g fill="none"><path d="M0 0h24v24h-24Z"></path><path stroke="#323232" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14 8l-4 4 4 4"></path></g></svg>'}} />
+  icons.md.chevron_left = Icon__chevron_left
+  icons.sm.chevron_left = Icon__chevron_left
+  icons.lg.chevron_left = Icon__chevron_left
+
+  const Icon__chevron_right = (props) => <div {...props} dangerouslySetInnerHTML={{__html: '<?xml version="1.0" encoding="UTF-8"?><svg version="1.1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g fill="none"><path d="M0 0h24v24h-24Z"></path><path stroke="#323232" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 16l4-4 -4-4"></path></g></svg>'}} />
+  icons.md.chevron_right = Icon__chevron_right
+  icons.sm.chevron_right = Icon__chevron_right
+  icons.lg.chevron_right = Icon__chevron_right
+
+  const Icon__chevron_up = (props) => <div {...props} dangerouslySetInnerHTML={{__html: '<?xml version="1.0" encoding="UTF-8"?><svg version="1.1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g fill="none"><path d="M0 0h24v24h-24Z"></path><path stroke="#323232" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 14l-4-4 -4 4"></path></g></svg>'}} />
+  icons.md.chevron_up = Icon__chevron_up
+  icons.sm.chevron_up = Icon__chevron_up
+  icons.lg.chevron_up = Icon__chevron_up
 
   const Icon__cip = (props) => <div {...props} dangerouslySetInnerHTML={{__html: '<?xml version="1.0" encoding="UTF-8"?><svg version="1.1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M13.457 9.382l-5.53 5.529 -3.34186e-08 3.34345e-08c-.641263.641568-.641263 1.68143 6.67714e-08 2.323v0l1.95772e-08 1.95679e-08c.641568.641263 1.68143.641263 2.323-3.90699e-08l8.626-8.626 -5.78195e-08 5.78118e-08c1.28296-1.28279 1.2831-3.36273.000308573-4.64569 -.000102812-.000102826-.000205632-.000205645-.000308458-.000308458v0l-2.02859e-08-2.02922e-08c-1.28228-1.28268-3.3616-1.283-4.64428-.000722677 -.000240943.000240868-.000481849.000481774-.000722717.000722717l-8.626 8.627 1.53598e-07-1.53528e-07c-1.92416 1.92329-1.92487 5.04226-.00158448 6.96642 .000527937.000528177.00105599.00105623.00158417.00158417v0l1.45083e-07 1.4509e-07c1.92407 1.92416 5.04367 1.92424 6.96783.00016949 5.65948e-05-5.65921e-05.000113188-.000113185.00016978-.00016978l6.3-6.3" stroke-linecap="round" stroke-width="1.5" stroke="#323232" fill="none" stroke-linejoin="round"></path><path fill="none" d="M0 0h24v24h-24Z"></path></svg>'}} />
   icons.md.cip = Icon__cip
@@ -925,11 +930,6 @@ const icons = {sm:{}, md:{}, lg:{}}
   icons.md.leaflet = Icon__leaflet
   icons.sm.leaflet = Icon__leaflet
   icons.lg.leaflet = Icon__leaflet
-
-  const Icon__left = (props) => <div {...props} dangerouslySetInnerHTML={{__html: '<?xml version="1.0" encoding="UTF-8"?><svg version="1.1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g fill="none"><path d="M0 0h24v24h-24Z"></path><path stroke="#323232" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14 8l-4 4 4 4"></path></g></svg>'}} />
-  icons.md.left = Icon__left
-  icons.sm.left = Icon__left
-  icons.lg.left = Icon__left
 
   const Icon__letter_mail_notification = (props) => <div {...props} dangerouslySetInnerHTML={{__html: '<svg id="Layer_3" data-name="Layer 3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21,11v5a3,3,0,0,1-3,3H6a3,3,0,0,1-3-3V8A3,3,0,0,1,6,5h9" fill="none" stroke="#323232" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/><path d="M20.08151,4a2.08117,2.08117,0,1,0-.00069,4.16233h.00069A2.08117,2.08117,0,1,0,20.0822,4Z" fill="none" stroke="#323232" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/><path d="M17,9.77893l-3.47906,2.7096a2.66655,2.66655,0,0,1-3.33234-.04407L6,9" fill="none" stroke="#323232" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/><rect width="24" height="24" fill="none"/></svg>'}} />
   icons.md.letter_mail_notification = Icon__letter_mail_notification
