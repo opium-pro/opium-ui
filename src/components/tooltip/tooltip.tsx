@@ -36,7 +36,8 @@ export const Tooltip: FC<TooltipProps> = ({
 
   function trackMove(event) {
     if (parentNode?.contains(event.target) || targetNode?.contains(event.target)) {
-      hovered = new Date().getTime()
+      hovered = true
+      setInPlace()
     } else {
       hovered = undefined
     }
@@ -47,6 +48,7 @@ export const Tooltip: FC<TooltipProps> = ({
 
   function trackMouseHold(event) {
     let timeout
+    setInPlace()
     function handleTimeout() {
       clearTimeout(timeout)
       timeout = setTimeout(handleOpen, delay)
@@ -64,8 +66,8 @@ export const Tooltip: FC<TooltipProps> = ({
     window.addEventListener('mousemove', trackMove)
     contentNode?.addEventListener('scroll', setInPlace)
     targetNode.style.display = 'block'
-    setInPlace()
     setTimeout(() => {
+      setInPlace()
       targetNode.style.opacity = '1'
       !opened && setOpened(true)
     }, 100)
