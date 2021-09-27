@@ -7,7 +7,7 @@ export type TagProps = FontProps & {
 }
 
 export const Tag = (
-  { label, type = 'base', ...props }: TagProps
+  { label, type = 'base-down', ...props }: TagProps
 ) => {
   return (
     <Box.TryTagless

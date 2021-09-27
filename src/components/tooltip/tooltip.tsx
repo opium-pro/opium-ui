@@ -177,7 +177,7 @@ export const Tooltip: FC<TooltipProps> = ({
     <Fit forwardRef={setSourceNode}>
       {/* {opened && (
         <Portal> */}
-      <Fit.TryTagless fixed transition="opacity">
+      <Fit.TryTagless fixed transition="opacity" zIndex={400}>
         <Gap
           forwardRef={setTargetNode}
           hidden
