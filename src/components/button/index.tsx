@@ -1,5 +1,6 @@
 import React from 'react'
 import { Align, Fit, Box, Font, Line, Gap, Icon, Reaction } from 'themeor'
+import { withTooltip } from '../tooltip'
 
 export type BottonProps = React.AllHTMLAttributes<HTMLElement> & {
   label?: string
@@ -11,9 +12,10 @@ export type BottonProps = React.AllHTMLAttributes<HTMLElement> & {
   stretch?: boolean
   glow?: boolean
   light?: boolean
+  forwardRef?: any
 }
 
-export const Button = ({
+export const Button = withTooltip(({
   label,
   primary,
   type = "button",
@@ -25,6 +27,7 @@ export const Button = ({
   glow,
   light,
   children,
+  forwardRef,
   ...rest
 }: BottonProps) => (
   <Reaction
@@ -54,12 +57,13 @@ export const Button = ({
                   disabled={disabled}
                   {...rProps}
                   {...rest}
+                  ref={forwardRef}
                   type={type}>
-                    <Align hor="center">
-                      {label}
-                      {hint && <Font lineHeight="xs" size="x2s" fill="faint-down">{hint}</Font>}
-                    </Align>
-                    {children}
+                  <Align hor="center">
+                    {label}
+                    {hint && <Font lineHeight="xs" size="x2s" fill="faint-down">{hint}</Font>}
+                  </Align>
+                  {children}
                 </button>
               </Gap.TryTagless>
             </Font.TryTagless>
@@ -68,4 +72,4 @@ export const Button = ({
       </Fit.TryTagless>
     )}
   </Reaction>
-)
+))

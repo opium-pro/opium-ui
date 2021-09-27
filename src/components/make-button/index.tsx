@@ -1,5 +1,6 @@
 import React from 'react'
 import { Align, Fit, Box, Font, Line, Gap, Icon, Reaction } from 'themeor'
+import { withTooltip } from '../tooltip'
 
 type Props = React.HTMLAttributes<HTMLAnchorElement> & {
   offset?: string,
@@ -7,15 +8,17 @@ type Props = React.HTMLAttributes<HTMLAnchorElement> & {
   radius?: string,
   track?: string | string[],
   fade?: boolean,
+  forwardRef?: any,
 }
 
-export const MakeButton = ({
+export const MakeButton = withTooltip(({
   children,
   offset = "10px",
   disabled,
   radius = "md",
   track = ["hover", "active"],
   fade,
+  forwardRef,
   ...rest
 }: Props) => (
   <Reaction
@@ -31,6 +34,7 @@ export const MakeButton = ({
           margin: `-${offset.split(' ').join(' -')}`,
           padding: offset,
         }}
+        forwardRef={forwardRef}
       >
         {!disabled && (
           <Fit.TryTagless
@@ -61,4 +65,4 @@ export const MakeButton = ({
       </Fit.TryTagless>
     )}
   </Reaction>
-)
+))

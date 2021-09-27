@@ -1,18 +1,21 @@
 import React from 'react'
 import { Align, Fit, Box, Font, Line, Gap, Icon, Reaction } from 'themeor'
 import { MakeButton } from '../make-button'
+import { withTooltip } from '../tooltip'
+
 
 type Props = React.HTMLAttributes<HTMLElement> & {
-  label?: string,
-  icon?: string,
-  active?: boolean,
-  prompt?: string,
-  row?: boolean,
+  label?: string
+  icon?: string
+  active?: boolean
+  prompt?: string
+  row?: boolean
+  forwardRef?: any
 }
 
-export function Item({ label, active, icon, prompt, row, children, ...rest }: Props) {
+export const Item = withTooltip(({ label, forwardRef, active, icon, prompt, row, children, ...rest }: Props) => {
   return (
-    <MakeButton offset="0" radius="none" {...rest}>
+    <MakeButton forwardRef={forwardRef} offset="0" radius="none" {...rest}>
       <Fit.TryTagless width="100%">
         <Gap.TryTagless hor={row ? "lg" : "sm"} vert="md" right={row && "x2l"}>
           <Align row={row} vert="center">
@@ -53,4 +56,4 @@ export function Item({ label, active, icon, prompt, row, children, ...rest }: Pr
       </Fit.TryTagless>
     </MakeButton>
   )
-}
+}, { place: 'right' })

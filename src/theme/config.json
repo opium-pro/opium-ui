@@ -23,7 +23,7 @@
   "fill": {
     "base": {
       "strong": "#242729",
-      "strong-down": "#35393B",
+      "strong-down": "rgba(0, 0, 0, 0.7)",
       "weak-up": "#FCFCFD",
       "weak-down": "rgba(255, 255, 255, 0.5)",
       "weak": "#fff"

@@ -6,7 +6,6 @@
     "hotkeys-js": "^3.8.7",
     "opium-filter": "^1.0.1",
     "react-helmet": "^6.1.0",
-    "react-tooltip": "^4.2.21",
     "themeor": "^1.0.6"
   },
   "devDependencies": {

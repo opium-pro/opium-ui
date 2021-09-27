@@ -21,11 +21,13 @@ export const Hotkey = ({
   const mainKeys = options[0].split('+')
 
   useEffect(() => {
-    hotkeys(trigger, (event) => {
-      event.preventDefault()
-      action instanceof Function && action()
-    })
-    return () => hotkeys.unbind(trigger)
+    if (action instanceof Function) {
+      hotkeys(trigger, (event) => {
+        event.preventDefault()
+        action()
+      })
+      return () => hotkeys.unbind(trigger)
+    }
   })
 
   if (children) {

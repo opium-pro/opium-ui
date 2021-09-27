@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Dropdown } from './dropdown'
 import { Fit } from 'themeor'
-import hotkeys from 'hotkeys-js'
+import { Hotkey } from '../hotkey'
 import { DropdownContext } from './context'
 
 
@@ -21,14 +21,6 @@ export function MakeDropdown({ opened: initialOpened, items, onClick, children, 
 
 
   useEffect(() => {
-    hotkeys('esc', (event) => {
-      setOpened(false)
-    })
-    return () => hotkeys.unbind('esc')
-  }, [])
-
-
-  useEffect(() => {
     if (dropdownNode) {
       window.addEventListener('click', trackOutsideClick)
       return () => window.removeEventListener('click', trackOutsideClick)
@@ -43,17 +35,19 @@ export function MakeDropdown({ opened: initialOpened, items, onClick, children, 
 
   return (
     <DropdownContext.Provider value={{ opened, setOpened, dropdownNode }}>
-      <Fit>
-        <div onClick={handleClick}>
-          {children}
-        </div>
+      <Hotkey trigger="esc" action={() => setOpened(false)}>
+        <Fit>
+          <div onClick={handleClick}>
+            {children}
+          </div>
 
-        {opened && items && (
-          <Dropdown {...rest} forwardRef={n => n && setDropdownNode(n)}>
-            {items}
-          </Dropdown>
-        )}
-      </Fit>
+          {opened && items && (
+            <Dropdown {...rest} forwardRef={n => n && setDropdownNode(n)}>
+              {items}
+            </Dropdown>
+          )}
+        </Fit>
+      </Hotkey>
     </DropdownContext.Provider>
   )
 }

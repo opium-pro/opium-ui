@@ -1,5 +1,6 @@
-import React, { FC } from "react";
-import { Align, Fit, Box, Font, Icon } from "themeor";
+import React, { FC } from "react"
+import { Align, Fit, Box, Font, Icon } from "themeor"
+import { withTooltip } from '../tooltip'
 
 export const SIZE = {
   sm: { circle: "40px", font: "x2s" },
@@ -18,12 +19,14 @@ export interface IAvatarProps {
 
 const fills = ['accent', 'base', 'faint', 'complement', 'critic', 'warning', 'success']
 
-export const Avatar: FC<IAvatarProps> = ({
+export const Avatar: FC<IAvatarProps> = withTooltip(({
   name,
   size = "md",
   img,
   fill,
   icon,
+  forwardRef,
+  ...rest
 }) => {
   const abbr = name?.slice(0, 2)?.toUpperCase()
 
@@ -39,13 +42,19 @@ export const Avatar: FC<IAvatarProps> = ({
           fill={fill || fills[index]}
           strong
           radius="max"
+          {...rest}
+          forwardRef={forwardRef}
         >
           {icon && <Icon name={icon} />}
-          <Font fill="base" weight="600" size={SIZE[size].font as any}>
+          <Font
+            fill="base"
+            weight="600"
+            size={SIZE[size].font as any}
+          >
             {abbr}
           </Font>
         </Box.TryTagless>
       </Align.TryTagless>
     </Fit.TryTagless>
   )
-}
+})

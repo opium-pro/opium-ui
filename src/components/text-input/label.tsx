@@ -1,25 +1,25 @@
 import React from 'react'
-import { Gap, Align, Font, Fit, useReaction, Effect } from 'themeor'
+import { Gap, Align, Font, Fit, useReaction } from 'themeor'
 import { useTextInput } from './context'
 
 
 export const Label = () => {
   const { value, fieldId, label, error } = useTextInput()
-  const { focus } = useReaction()
+  const { focus, cursor } = useReaction()
 
   return (<>
     {/* Label click area */}
-    <Effect.TryTagless smooth>
-      <Fit.TryTagless
-        cover="parent"
-        zIndex={(focus || value) ? undefined : 1}
-      >
-        <label htmlFor={fieldId} />
-      </Fit.TryTagless>
-    </Effect.TryTagless>
+    <Fit.TryTagless
+      cover="parent"
+      cursor={cursor}
+      zIndex={(focus || value) ? undefined : 1}
+    >
+      <label htmlFor={fieldId} />
+    </Fit.TryTagless>
 
     {/* Label */}
     <Fit.TryTagless
+      transition="100ms"
       cover="parent"
       height={(value || focus) ? "30px" : "50px"}
     >
@@ -27,7 +27,6 @@ export const Label = () => {
         <Font.TryTagless
           fill={(error && 'critic') || "faint-down"}
           size={(value || focus) ? "x2s" : "xs"}
-          style={{ transition: "all 0.1s ease" }}
           align="left"
         >
           <Gap.TryTagless hor="md">
