@@ -1,18 +1,16 @@
 import React, { useState, Fragment } from 'react'
 import { PortalsContext } from './use-portals'
 import { Portals } from './portals'
-import { useForceUpdate } from '../../utils'
 
 let id = 1
-export let portals = {}
 
 export function PortalsProvider({ children, ...props }) {
-  // const [portals, setPortals] = useState({})
-  const [updated, update] = useForceUpdate()
+  const [portals, setPortals] = useState({})
 
   function removePortal(index) {
+    const newPortals = {...portals}
     delete portals[index]
-    update()
+    setPortals(newPortals)
   }
 
   function addPortal(index, value) {
@@ -24,14 +22,14 @@ export function PortalsProvider({ children, ...props }) {
         {value}
       </Fragment>
     )
-    portals[index] = render
-    update()
+    const newPortals = {...portals, [index]: render}
+    setPortals(newPortals)
     return index
   }
 
   return (
     <PortalsContext.Provider
-      value={{ portals, addPortal, removePortal, update }}
+      value={{ portals, addPortal, removePortal }}
       {...props}
     >
       {children}

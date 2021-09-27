@@ -22,21 +22,11 @@ export const Tooltip: FC<TooltipProps> = ({
   duration = 150,
   place,
   delayToHide = 200,
-  parentNode: initialParent,
+  parentNode,
 }) => {
   const { contentNode } = useAppLayout()
   const [opened, setOpened]: any = useState()
   const [targetNode, setTargetNode]: any = useState()
-  const [sourceNode, setSourceNode]: any = useState()
-  const [parentNode, setParentNode]: any = useState(initialParent)
-
-  useEffect(() => {
-    if (!initialParent && sourceNode) {
-      setParentNode(sourceNode.parentNode)
-    } else {
-      setParentNode(initialParent)
-    }
-  }, [initialParent, sourceNode])
 
 
   function setInPlace() {
@@ -155,16 +145,11 @@ export const Tooltip: FC<TooltipProps> = ({
     }, delayToHide)
   }
 
-  // Listen to parent hover
-  useEffect(() => {
-    if (!parentNode) { return }
+  function handleSourceRef(node) {
+    if (!node) { return }
+    parentNode = parentNode || node.parentNode
     parentNode.addEventListener('mouseenter', handleOpen)
-  }, [parentNode])
-
-  useEffect(() => {
-    if (!targetNode) { return }
-    targetNode.style.transitionDuration = duration + 'ms'
-  }, [targetNode])
+  }
 
   useEffect(() => () => {
     contentNode?.removeEventListener('scroll', setInPlace)
@@ -174,11 +159,11 @@ export const Tooltip: FC<TooltipProps> = ({
   if (!children) { return null }
 
   return (
-    <Fit forwardRef={setSourceNode}>
+    <Fit forwardRef={handleSourceRef}>
       <Portal>
         <Fit.TryTagless fixed transition="opacity">
           <Gap
-            forwardRef={setTargetNode}
+            forwardRef={n => n && !targetNode && setTargetNode(n)}
             hidden
             opacity="0"
             size="10px"
