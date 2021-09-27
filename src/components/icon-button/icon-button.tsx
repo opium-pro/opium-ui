@@ -1,13 +1,15 @@
 import React from 'react'
 import { Align, Fit, Box, Font, Line, Gap, Icon, Reaction } from 'themeor'
+import { withTooltip } from '../tooltip'
 
 type Props = React.AllHTMLAttributes<HTMLElement> & {
   name: string,
   fill?: string,
   [key: string]: any,
+  forwardRef?: any
 }
 
-export const IconButton = ({ name, fill, line, ...rest }: Props) => (
+export const IconButton = withTooltip(({ forwardRef, name, fill, line, ...rest }: Props) => (
   <Reaction track={['hover', 'focus', 'active']}>
     {(rProps, r) => (
       <Fit.TryTagless
@@ -16,6 +18,7 @@ export const IconButton = ({ name, fill, line, ...rest }: Props) => (
         width="48px"
         height="48px"
         style={{ margin: "-10px" }}
+        ret={forwardRef}
       >
         <Align vert="center" hor="center">
 
@@ -43,4 +46,4 @@ export const IconButton = ({ name, fill, line, ...rest }: Props) => (
       </Fit.TryTagless>
     )}
   </Reaction>
-)
+))
