@@ -159,7 +159,7 @@ export const Tooltip: FC<TooltipProps> = ({
 
   return (
     <Fit forwardRef={handleSourceRef}>
-
+      <Portal>
         <Fit.TryTagless fixed transition="opacity">
           <Gap
             forwardRef={n => n && !targetNode && setTargetNode(n)}
@@ -180,7 +180,7 @@ export const Tooltip: FC<TooltipProps> = ({
 
           </Gap>
         </Fit.TryTagless>
-
+      </Portal>
     </Fit>
   )
 }

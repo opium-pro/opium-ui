@@ -41,7 +41,7 @@ export const Dialog: FC<DialogProps> = ({
             <Hotkey trigger="enter,y" action={handleApply} />
           </Button>
         )}
-        {onApply && onCancel && <Gap />}
+        {onApply && onCancel && <Gap right="md" />}
         {onCancel && (
           <Button stretch label={cancelLabel} onClick={handleCancel}>
             <Gap />

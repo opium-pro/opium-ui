@@ -43,6 +43,7 @@ export const Modal: FC<ModalProps> = ({
   }
 
   return (
+    <Portal>
       <Animate.TryTagless
         onMount="fadeIn"
         onUnmount="fadeOut"
@@ -116,5 +117,6 @@ export const Modal: FC<ModalProps> = ({
           </Animate.TryTagless>
         </Cover>
       </Animate.TryTagless>
+    </Portal>
   )
 }

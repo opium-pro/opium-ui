@@ -47,7 +47,7 @@ export const Dropdown: FC<DropdownProps> = ({ children, forwardRef, ...rest }) =
       <Portal>
         <Fit.TryTagless
           forwardRef={handleRef}
-          absolute
+          fixed
           scroll
           maxHeight="500px"
           maxWidth="600px"
