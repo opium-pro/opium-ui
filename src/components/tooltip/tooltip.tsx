@@ -3,6 +3,7 @@ import { Font, Box, Gap, Fit, Align } from 'themeor'
 import { Portal } from '../portal'
 import { useAppLayout } from '../app-layout'
 import { fitNode } from '../../utils'
+import { Hotkey } from '../hotkey'
 
 
 export interface TooltipProps {
@@ -24,7 +25,7 @@ export const Tooltip: FC<TooltipProps> = ({
   parentNode: initialParent,
 }) => {
   const { contentNode } = useAppLayout()
-  // const [opened, setOpened]: any = useState()
+  const [opened, setOpened]: any = useState()
   const [targetNode, setTargetNode]: any = useState()
   const [sourceNode, setSourceNode]: any = useState()
   const [parentNode, setParentNode]: any = useState(initialParent)
@@ -119,7 +120,7 @@ export const Tooltip: FC<TooltipProps> = ({
 
   function handleOpen(event?: any) {
     if (!targetNode) {
-      // setOpened(true)
+      setOpened(true)
       return
     }
     window.addEventListener('mousemove', trackMove)
@@ -130,7 +131,7 @@ export const Tooltip: FC<TooltipProps> = ({
         setInPlace()
         setTimeout(() => {
           targetNode.style.opacity = '1'
-          // !opened && setOpened(true)
+          !opened && setOpened(true)
         }, 100)
       }
     }, delay)
@@ -147,7 +148,7 @@ export const Tooltip: FC<TooltipProps> = ({
         setTimeout(() => {
           if (!hovered) {
             targetNode.style.display = 'none'
-            // opened && setOpened(false)
+            opened && setOpened(false)
           }
         }, duration)
       }
@@ -176,26 +177,29 @@ export const Tooltip: FC<TooltipProps> = ({
     <Fit forwardRef={setSourceNode}>
       {/* {opened && (
         <Portal> */}
-          <Fit.TryTagless fixed transition="opacity">
-            <Gap
-              forwardRef={setTargetNode}
-              hidden
-              opacity="0"
-              size="10px"
-              onMouseEnter={handleOpen}
-            >
+      <Fit.TryTagless fixed transition="opacity">
+        <Gap
+          forwardRef={setTargetNode}
+          hidden
+          opacity="0"
+          size="10px"
+          onMouseEnter={handleOpen}
+        >
 
-              <Box.TryTagless fill="base-down" strong radius="4px">
-                <Font.TryTagless>
-                  <Gap vert="8px" hor="12px">
-                    {children}
-                  </Gap>
-                </Font.TryTagless>
-              </Box.TryTagless>
+          <Box.TryTagless fill="base-down" strong radius="4px">
+            <Font.TryTagless>
+              <Gap vert="8px" hor="12px">
+                {children}
+                {opened && (
+                  <Hotkey hidden trigger="esc" action={() => handleClose()} />
+                )}
+              </Gap>
+            </Font.TryTagless>
+          </Box.TryTagless>
 
-            </Gap>
-          </Fit.TryTagless>
-        {/* </Portal>
+        </Gap>
+      </Fit.TryTagless>
+      {/* </Portal>
       )} */}
     </Fit>
   )

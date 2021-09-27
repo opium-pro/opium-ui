@@ -32,7 +32,7 @@ export const Item = withTooltip(({
     >
       <Fit.TryTagless width="100%" height="42px">
         <Gap.TryTagless hor="md">
-          <Align row gapHor="xs" vert="center">
+          <Align row vert="center">
             <Font
               nowrap
               align="center"
@@ -43,7 +43,11 @@ export const Item = withTooltip(({
             >
               {label}
             </Font>
-            {!!counter && <Counter attention value={counter} />}
+            {!!counter && (<>
+              <Gap size="xs" />
+              <Counter attention value={counter} />
+            </>)}
+
             {children}
           </Align>
         </Gap.TryTagless>

@@ -2,6 +2,7 @@ import React, { FC, useState } from 'react'
 import { Modal, ModalProps } from '../modal'
 import { Button } from '../button'
 import { Gap } from 'themeor'
+import { Hotkey } from '../hotkey'
 
 export type DialogProps = ModalProps & {
   onApply?: any
@@ -34,9 +35,19 @@ export const Dialog: FC<DialogProps> = ({
       width="500px"
       mounted={mount}
       footer={(<>
-        {onApply && <Button stretch primary label={applyLabel} onClick={handleApply} />}
+        {onApply && (
+          <Button stretch primary label={applyLabel} onClick={handleApply}>
+            <Gap />
+            <Hotkey trigger="enter,y" action={handleApply} />
+          </Button>
+        )}
         {onApply && onCancel && <Gap />}
-        {onCancel && <Button stretch label={cancelLabel} onClick={handleCancel} />}
+        {onCancel && (
+          <Button stretch label={cancelLabel} onClick={handleCancel}>
+            <Gap />
+            <Hotkey trigger="n" action={handleCancel} />
+          </Button>
+        )}
       </>)}
       {...rest}
     />
