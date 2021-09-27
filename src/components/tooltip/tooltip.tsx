@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useRef, useState } from 'react'
 import { Font, Box, Gap, Fit, Align } from 'themeor'
-import { Portal } from '../portal'
+import { Portal, usePortals } from '../portal'
 import { useAppLayout } from '../app-layout'
 import { fitNode } from '../../utils'
 import { Hotkey } from '../hotkey'
@@ -175,32 +175,28 @@ export const Tooltip: FC<TooltipProps> = ({
 
   return (
     <Fit forwardRef={setSourceNode}>
-      {/* {opened && (
-        <Portal> */}
-      <Fit.TryTagless fixed transition="opacity" zIndex={400}>
-        <Gap
-          forwardRef={setTargetNode}
-          hidden
-          opacity="0"
-          size="10px"
-          onMouseEnter={handleOpen}
-        >
+      <Portal>
+        <Fit.TryTagless fixed transition="opacity">
+          <Gap
+            forwardRef={setTargetNode}
+            hidden
+            opacity="0"
+            size="10px"
+            onMouseEnter={handleOpen}
+          >
 
-          <Box.TryTagless fill="base-down" strong radius="4px">
-            <Font.TryTagless>
-              <Gap vert="8px" hor="12px">
-                {children}
-                {opened && (
-                  <Hotkey hidden trigger="esc" action={() => handleClose()} />
-                )}
-              </Gap>
-            </Font.TryTagless>
-          </Box.TryTagless>
+            <Box.TryTagless fill="base-down" strong radius="4px">
+              <Font.TryTagless>
+                <Gap vert="8px" hor="12px">
+                  {children}
+                  {opened && <Hotkey hidden trigger="esc" action={() => handleClose()} />}
+                </Gap>
+              </Font.TryTagless>
+            </Box.TryTagless>
 
-        </Gap>
-      </Fit.TryTagless>
-      {/* </Portal>
-      )} */}
+          </Gap>
+        </Fit.TryTagless>
+      </Portal>
     </Fit>
   )
 }

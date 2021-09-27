@@ -2,7 +2,7 @@ import React from 'react'
 import { FC } from 'react'
 import { Fit } from 'themeor'
 import { AppTheme, AppThemeProps } from '../app-theme'
-import { Portals, PortalsProvider } from '../portal'
+import { PortalsProvider } from '../portal'
 import { Shadows, ShadowRenderProvider } from '../shadow-render'
 
 
@@ -24,10 +24,6 @@ export const UIProvider: FC<UIProviderProps> = ({ children, ...rest }) => {
           </Fit>
 
           {children}
-
-          <Fit zIndex={400} fixed top="0" left="0">
-            <Portals />
-          </Fit>
         </ShadowRenderProvider>
       </PortalsProvider>
     </AppTheme>

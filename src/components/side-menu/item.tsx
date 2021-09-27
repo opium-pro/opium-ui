@@ -31,7 +31,9 @@ export const Item = withTooltip(({ label, forwardRef, active, icon, prompt, row,
             <Font
               align="center"
               size="x2s"
+              transition
               noselect
+              weight={active ? '600' : '500'}
               fill={active ? "complement" : "base"}
             >
               {label}
