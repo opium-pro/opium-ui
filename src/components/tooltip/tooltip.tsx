@@ -18,7 +18,7 @@ export interface TooltipProps {
 export const Tooltip: FC<TooltipProps> = ({
   children,
   placeOrder = ['top', 'bottom', 'left', 'right'],
-  delay = 0,
+  delay = 1500,
   duration = 150,
   place,
   delayToHide = 200,
