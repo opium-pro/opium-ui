@@ -18,7 +18,7 @@ export interface TooltipProps {
 export const Tooltip: FC<TooltipProps> = ({
   children,
   placeOrder = ['top', 'bottom', 'left', 'right'],
-  delay = 1500,
+  delay = 0,
   duration = 150,
   place,
   delayToHide = 200,
@@ -27,7 +27,6 @@ export const Tooltip: FC<TooltipProps> = ({
   const { contentNode } = useAppLayout()
   const [opened, setOpened]: any = useState()
   const [targetNode, setTargetNode]: any = useState()
-
 
   function setInPlace() {
     const fits = fitNode(targetNode, parentNode)
@@ -147,7 +146,7 @@ export const Tooltip: FC<TooltipProps> = ({
 
   function handleSourceRef(node) {
     if (!node) { return }
-    parentNode = parentNode || node.parentNode
+    parentNode = parentNode || node.previousElementSibling
     parentNode.addEventListener('mouseenter', handleOpen)
   }
 
@@ -160,7 +159,7 @@ export const Tooltip: FC<TooltipProps> = ({
 
   return (
     <Fit forwardRef={handleSourceRef}>
-      <Portal>
+
         <Fit.TryTagless fixed transition="opacity">
           <Gap
             forwardRef={n => n && !targetNode && setTargetNode(n)}
@@ -181,7 +180,7 @@ export const Tooltip: FC<TooltipProps> = ({
 
           </Gap>
         </Fit.TryTagless>
-      </Portal>
+
     </Fit>
   )
 }

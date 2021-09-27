@@ -1,17 +1,13 @@
 import React, { useEffect, useRef } from 'react'
-import { useShadowRender } from '../shadow-render'
+import { usePortals } from '../portal'
 import { Dialog, DialogProps } from './dialog'
 
-let id = 1
 
 export function useDialog() {
-  const { bunchRemove, addShadow } = useShadowRender()
-  const indexList: any = useRef([])
-
-  useEffect(() => () => bunchRemove(indexList), [])
+  const { addPortal } = usePortals()
 
   return ({onApply, onCancel, ...rest}: DialogProps) => new Promise((res) => {
-    const render = <Dialog
+    addPortal(<Dialog
       onApply={() => {
         onApply instanceof Function && onApply()
         res(true)
@@ -21,8 +17,6 @@ export function useDialog() {
         res(false)
       }}
       {...rest}
-    />
-    const index = addShadow(id++, render)
-    indexList.current.push(index)
+    />)
   })
 }

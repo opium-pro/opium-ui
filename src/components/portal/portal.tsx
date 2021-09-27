@@ -9,19 +9,11 @@ export interface PortalProps {
 
 export const Portal: FC<PortalProps> = ({ children, index: initialIndex }) => {
   const { addPortal, removePortal } = usePortals()
-  const [index, setIndex] = useState(initialIndex)
 
   // Render
   useEffect(() => {
-    const newIndex = addPortal(index, children)
-    if (newIndex !== index) {
-      setIndex(newIndex)
-    }
-  }, [children])
-
-  // Unmount
-  useEffect(() => () => {
-    removePortal(index)
+    const index = addPortal(children)
+    return () => removePortal(index)
   }, [])
 
   return null

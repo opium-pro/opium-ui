@@ -9,14 +9,12 @@ export function PortalsProvider({ children, ...props }) {
 
   function removePortal(index) {
     const newPortals = {...portals}
-    delete portals[index]
+    delete newPortals[index]
     setPortals(newPortals)
   }
 
-  function addPortal(index, value) {
-    if (!index) {
-      index = id++
-    }
+  function addPortal(value) {
+    const index = id++
     const render = (
       <Fragment key={`portal-${index}`}>
         {value}
