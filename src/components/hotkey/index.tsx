@@ -1,10 +1,10 @@
 import React, { useEffect, Fragment } from 'react'
 import hotkeys from 'hotkeys-js'
-import { Align, Font, Gap } from 'themeor'
+import { Align, AlignProps, Font, Gap } from 'themeor'
 import { Tag } from '../tag'
 
 
-export interface HotkeyProps {
+export type HotkeyProps = AlignProps & {
   trigger?: string
   action?: () => void
   children?: any

@@ -2,6 +2,7 @@ import React from 'react'
 import { Align, Fit, Box, Font, Line, Gap, Icon, Reaction } from 'themeor'
 import { MakeButton } from '../make-button'
 import { Counter } from '../counter'
+import { withTooltip } from '../tooltip'
 
 export type Props = React.HTMLAttributes<HTMLElement> & {
   label?: string,
@@ -9,21 +10,24 @@ export type Props = React.HTMLAttributes<HTMLElement> & {
   counter?: number,
   active?: boolean,
   link?: string,
+  forwardRef?: any
 }
 
-export default function ({
+export const Item = withTooltip(({
   label,
   active,
   icon,
   counter,
   link,
   children,
+  forwardRef,
   ...rest
-}: Props) {
+}: Props) => {
   return (
     <MakeButton
       offset="0"
       disabled={active}
+      forwardRef={forwardRef}
       {...rest}
     >
       <Fit.TryTagless width="100%" height="42px">
@@ -46,4 +50,4 @@ export default function ({
       </Fit.TryTagless>
     </MakeButton>
   )
-}
+})

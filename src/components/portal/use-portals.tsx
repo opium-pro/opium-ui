@@ -24,6 +24,7 @@ export function PortalsProvider(props) {
       </Fragment>
     )
     const newPortals = { ...portals, [index]: render }
+    
     setPortals(newPortals)
     return index
   }

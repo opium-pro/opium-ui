@@ -2,11 +2,14 @@ import React, { FC, useEffect, useRef, useState } from 'react'
 import { Font, Box, Gap, Fit, Align } from 'themeor'
 import { Portal } from '../portal'
 import { useAppLayout } from '../app-layout'
+import { fitNode } from '../../utils'
 
 
 export interface TooltipProps {
   parentNode?: any
   delay?: number
+  duration?: number
+  delayToHide?: number
   placeOrder?: Array<'top' | 'right' | 'bottom' | 'left'>
   place?: 'top' | 'top-right' | 'top-left' | 'right' | 'right-top' | 'right-bottom' | 'bottom' | 'bottom-right' | 'bottom-left' | 'left' | 'left-top' | 'left-bottom'
 }
@@ -14,17 +17,17 @@ export interface TooltipProps {
 export const Tooltip: FC<TooltipProps> = ({
   children,
   placeOrder = ['top', 'bottom', 'left', 'right'],
-  delay = 1000,
+  delay = 0,
+  duration = 150,
   place,
+  delayToHide = 200,
   parentNode: initialParent,
 }) => {
   const { contentNode } = useAppLayout()
+  const [opened, setOpened]: any = useState()
   const [targetNode, setTargetNode]: any = useState()
   const [sourceNode, setSourceNode]: any = useState()
   const [parentNode, setParentNode]: any = useState(initialParent)
-  const [opened, setOpened]: any = useState(false)
-
-  const isReady = parentNode && targetNode && sourceNode
 
   useEffect(() => {
     if (!initialParent && sourceNode) {
@@ -35,37 +38,25 @@ export const Tooltip: FC<TooltipProps> = ({
   }, [initialParent, sourceNode])
 
 
-  function getPlace(parentRect, targetRect) {
-    const freeSpace = {
-      top: parentRect.top,
-      left: parentRect.left,
-      right: window.innerWidth - parentRect.left - parentRect.width,
-      bottom: window.innerHeight - parentRect.top - parentRect.height,
+  function setInPlace() {
+    const fits = fitNode(targetNode, parentNode)
+    if (!fits) {
+      return
     }
-    const canPlace = {
-      top: freeSpace.top > targetRect.height,
-      left: freeSpace.left > targetRect.width,
-      right: freeSpace.right > targetRect.width,
-      bottom: freeSpace.bottom > targetRect.height,
-    }
+    const [canPlace, freeSpace, targetRect, parentRect]: any = fits
+    let finalPlace: any = placeOrder[0]
 
-    if (place) { return [place, freeSpace] }
-
-    for (const newPlace of placeOrder) {
-      if (canPlace[newPlace.split('-')[0]]) {
-        return [newPlace, freeSpace]
+    if (place) {
+      finalPlace = place
+    } else {
+      for (const newPlace of placeOrder) {
+        if (canPlace[newPlace.split('-')[0]]) {
+          finalPlace = newPlace
+          break
+        }
       }
     }
 
-    return [placeOrder[0], freeSpace]
-  }
-
-
-  function setPlace() {
-    if (!targetNode || !parentNode) { return }
-    const parentRect = parentNode?.getBoundingClientRect()
-    const targetRect = targetNode?.getBoundingClientRect()
-    const [finalPlace, freeSpace]: any = getPlace(parentRect, targetRect)
     const firstPlace = finalPlace?.split('-')[0]
     let secondPlace = finalPlace?.split('-')[1]
 
@@ -112,66 +103,93 @@ export const Tooltip: FC<TooltipProps> = ({
     }
   }
 
-  if (isReady) {
-    setPlace()
-  }
+  let hovered
 
-  function handleClose() {
-    setOpened(false)
-  }
-
-  function handleOpen(newDelay = delay) {
-    setTimeout(() => setOpened(true), newDelay)
-  }
-
-  useEffect(() => {
-    if (opened) {
-      contentNode?.addEventListener('scroll', handleClose)
+  function trackMove(event) {
+    setInPlace()
+    if (parentNode?.contains(event.target) || targetNode?.contains(event.target)) {
+      hovered = true
     } else {
-      contentNode?.removeEventListener('scroll', handleClose)
+      hovered = false
     }
-  }, [opened])
+    if (!hovered) {
+      handleClose()
+    }
+  }
 
+  function handleOpen(event?: any) {
+    if (!targetNode) { return }
+    window.addEventListener('mousemove', trackMove)
+    contentNode?.addEventListener('scroll', setInPlace)
+    setTimeout(() => {
+      if (hovered) {
+        targetNode.style.display = 'block'
+        setInPlace()
+        setTimeout(() => {
+          targetNode.style.opacity = '1'
+        }, 100)
+      }
+    }, delay)
+  }
+
+  function handleClose(event?: any) {
+    if (!targetNode) { return }
+    hovered = false
+    window.removeEventListener('mousemove', trackMove)
+    contentNode?.removeEventListener('scroll', setInPlace)
+    setTimeout(() => {
+      if (!hovered) {
+        targetNode.style.opacity = '0'
+        setTimeout(() => {
+          if (!hovered) {
+            targetNode.style.display = 'none'
+          }
+        }, duration)
+      }
+    }, delayToHide)
+  }
 
   useEffect(() => {
-    if (parentNode) {
-      parentNode.addEventListener('mouseenter', handleOpen)
-      parentNode.addEventListener('mouseleave', handleClose)
-    }
+    if (!parentNode) { return }
+    parentNode.addEventListener('mouseenter', handleOpen)
   }, [parentNode])
 
+  useEffect(() => {
+    if (!targetNode) { return }
+    handleClose()
+    targetNode.style.transitionDuration = duration + 'ms'
+  }, [targetNode])
+
+  useEffect(() => () => {
+    contentNode?.removeEventListener('scroll', setInPlace)
+    parentNode?.removeEventListener('mouseenter', handleOpen)
+  }, [])
+
+
+  if (!children) { return null }
 
   return (
     <Fit forwardRef={setSourceNode}>
       <Portal>
-        <Fit
-          cover="screen"
-          left="0"
-          top="0"
-          pointerEvents="none"
-          opacity={opened ? '1' : '0'}
-          transition
-        >
-          {opened && (
-            <Fit.TryTagless
-              onMouseEnter={() => handleOpen(0)}
-              onMouseLeave={handleClose}
-              inline
-              absolute
-              pointerEvents="all"
-            >
-              <Gap forwardRef={setTargetNode} size="10px">
-                <Box.TryTagless fill="base-down" strong radius="4px">
-                  <Font.TryTagless>
-                    <Gap vert="8px" hor="12px">
-                      {children}
-                    </Gap>
-                  </Font.TryTagless>
-                </Box.TryTagless>
-              </Gap>
-            </Fit.TryTagless>
-          )}
-        </Fit>
+        <Fit.TryTagless fixed transition="opacity">
+          <Gap
+            forwardRef={setTargetNode}
+            hidden
+            opacity="0"
+            size="10px"
+            onMouseEnter={handleOpen}
+          >
+
+            <Box.TryTagless fill="base-down" strong radius="4px">
+              <Font.TryTagless>
+                <Gap vert="8px" hor="12px">
+                  {children}
+                </Gap>
+              </Font.TryTagless>
+            </Box.TryTagless>
+
+          </Gap>
+        </Fit.TryTagless>
       </Portal>
     </Fit>
   )

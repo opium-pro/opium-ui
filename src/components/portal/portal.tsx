@@ -8,7 +8,7 @@ export interface PortalProps {
 
 
 export const Portal: FC<PortalProps> = ({ children, index: initialIndex }) => {
-  const { addPortal, removePortal } = usePortals()
+  const { addPortal, removePortal, portals } = usePortals()
   const [index, setIndex] = useState(initialIndex)
 
   // Render

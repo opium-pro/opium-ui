@@ -1,5 +1,5 @@
 import Wrapper from './wrapper'
-import Item from './item'
+import {Item} from './item'
 
 type PageMenuType = typeof Wrapper & {
   Item?: typeof Item
