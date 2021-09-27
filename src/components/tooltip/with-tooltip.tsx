@@ -24,7 +24,8 @@ export function withTooltip(Component, props?: TooltipProps) {
           place={tooltipPlace}
           parentNode={parentNode}
           {...props}
-        >{tooltip}</Tooltip>
+        >{tooltip}
+        </Tooltip>
       )}
     </>)
   }

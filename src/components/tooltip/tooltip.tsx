@@ -2,7 +2,7 @@ import React, { FC, useEffect, useRef, useState } from 'react'
 import { Font, Box, Gap, Fit, Align } from 'themeor'
 import { Portal, usePortals } from '../portal'
 import { useAppLayout } from '../app-layout'
-import { fitNode } from '../../utils'
+import { placeNode } from '../../utils'
 import { Hotkey } from '../hotkey'
 
 
@@ -18,10 +18,10 @@ export interface TooltipProps {
 export const Tooltip: FC<TooltipProps> = ({
   children,
   placeOrder = ['top', 'bottom', 'left', 'right'],
-  delay = 1500,
+  delay = 800,
   duration = 150,
   place,
-  delayToHide = 200,
+  delayToHide = 150,
   parentNode,
 }) => {
   const { contentNode } = useAppLayout()
@@ -29,101 +29,46 @@ export const Tooltip: FC<TooltipProps> = ({
   const [targetNode, setTargetNode]: any = useState()
 
   function setInPlace() {
-    const fits = fitNode(targetNode, parentNode)
-    if (!fits) {
-      return
-    }
-    const [canPlace, freeSpace, targetRect, parentRect]: any = fits
-    let finalPlace: any = placeOrder[0]
-
-    if (place) {
-      finalPlace = place
-    } else {
-      for (const newPlace of placeOrder) {
-        if (canPlace[newPlace.split('-')[0]]) {
-          finalPlace = newPlace
-          break
-        }
-      }
-    }
-
-    const firstPlace = finalPlace?.split('-')[0]
-    let secondPlace = finalPlace?.split('-')[1]
-
-    const topValue = {
-      top: freeSpace.top - targetRect.height,
-      left: freeSpace.top,
-      right: freeSpace.top,
-      bottom: parentRect.top + parentRect.height,
-    }
-    const leftValue = {
-      top: freeSpace.left,
-      left: freeSpace.left - targetRect.width,
-      right: parentRect.left + parentRect.width,
-      bottom: freeSpace.left,
-    }
-    if (['top', 'bottom'].includes(firstPlace)) {
-      targetNode.style.top = topValue[firstPlace] + 'px'
-    }
-    if (['left', 'right'].includes(firstPlace)) {
-      targetNode.style.left = leftValue[firstPlace] + 'px'
-    }
-
-    if (!secondPlace) {
-      ['top', 'bottom'].includes(firstPlace) && (secondPlace = 'horCenter');
-      ['right', 'left'].includes(firstPlace) && (secondPlace = 'vertCenter');
-    }
-
-    const topSecondValue = {
-      top: freeSpace.top,
-      vertCenter: parentRect.top + (parentRect.height / 2) - (targetRect.height / 2),
-      bottom: parentRect.top + parentRect.height - targetRect.height,
-    }
-    const leftSecondValue = {
-      left: freeSpace.left,
-      horCenter: parentRect.left + (parentRect.width / 2) - (targetRect.width / 2),
-      right: freeSpace.left + parentRect.width - targetRect.width,
-    }
-
-    if (['top', 'bottom', 'vertCenter'].includes(secondPlace)) {
-      targetNode.style.top = topSecondValue[secondPlace] + 'px'
-    }
-    if (['right', 'left', 'horCenter'].includes(secondPlace)) {
-      targetNode.style.left = leftSecondValue[secondPlace] + 'px'
-    }
+    placeNode(targetNode, parentNode, place, placeOrder)
   }
 
   let hovered
 
   function trackMove(event) {
-    setInPlace()
     if (parentNode?.contains(event.target) || targetNode?.contains(event.target)) {
-      hovered = true
+      hovered = new Date().getTime()
     } else {
-      hovered = false
+      hovered = undefined
     }
     if (!hovered) {
       handleClose()
     }
   }
 
-  function handleOpen(event?: any) {
-    if (!targetNode) {
-      setOpened(true)
-      return
+  function trackMouseHold(event) {
+    let timeout
+    function handleTimeout() {
+      clearTimeout(timeout)
+      timeout = setTimeout(handleOpen, delay)
     }
+    parentNode.addEventListener('mousemove', handleTimeout)
+    parentNode.addEventListener('mouseleave', () => {
+      clearTimeout(timeout)
+      parentNode.removeEventListener('mousemove', handleTimeout)
+    })
+  }
+
+
+  function handleOpen(event?: any) {
+    if (!targetNode) { return }
     window.addEventListener('mousemove', trackMove)
     contentNode?.addEventListener('scroll', setInPlace)
+    targetNode.style.display = 'block'
+    setInPlace()
     setTimeout(() => {
-      if (hovered) {
-        targetNode.style.display = 'block'
-        setInPlace()
-        setTimeout(() => {
-          targetNode.style.opacity = '1'
-          !opened && setOpened(true)
-        }, 100)
-      }
-    }, delay)
+      targetNode.style.opacity = '1'
+      !opened && setOpened(true)
+    }, 100)
   }
 
   function handleClose(event?: any) {
@@ -131,6 +76,7 @@ export const Tooltip: FC<TooltipProps> = ({
     hovered = false
     window.removeEventListener('mousemove', trackMove)
     contentNode?.removeEventListener('scroll', setInPlace)
+    parentNode?.removeEventListener('mouseenter', trackMouseHold)
     setTimeout(() => {
       if (!hovered) {
         targetNode.style.opacity = '0'
@@ -147,12 +93,12 @@ export const Tooltip: FC<TooltipProps> = ({
   function handleSourceRef(node) {
     if (!node) { return }
     parentNode = parentNode || node.previousElementSibling
-    parentNode.addEventListener('mouseenter', handleOpen)
+    parentNode.addEventListener('mouseenter', trackMouseHold)
   }
 
   useEffect(() => () => {
     contentNode?.removeEventListener('scroll', setInPlace)
-    parentNode?.removeEventListener('mouseenter', handleOpen)
+    parentNode?.removeEventListener('mouseenter', trackMouseHold)
   }, [])
 
   if (!children) { return null }
@@ -164,6 +110,7 @@ export const Tooltip: FC<TooltipProps> = ({
           <Gap
             forwardRef={n => n && !targetNode && setTargetNode(n)}
             hidden
+            transition={`opacity ${duration}ms`}
             opacity="0"
             size="10px"
             onMouseEnter={handleOpen}
