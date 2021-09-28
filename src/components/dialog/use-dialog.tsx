@@ -1,13 +1,14 @@
-import React, { useEffect, useRef } from 'react'
+import React from 'react'
 import { usePortals } from '../portal'
 import { Dialog, DialogProps } from './dialog'
 
 
 export function useDialog() {
-  const { addPortal } = usePortals()
+  const { openPortal } = usePortals()
 
   return ({onApply, onCancel, ...rest}: DialogProps) => new Promise((res) => {
-    addPortal(<Dialog
+    openPortal(<Dialog
+      inPortal={false}
       onApply={() => {
         onApply instanceof Function && onApply()
         res(true)
