@@ -11,11 +11,10 @@ type Props = Omit<React.HTMLAttributes<HTMLElement>, 'onChange'> & {
   value?: boolean | string,
   initialValue?: string,
   radio?: boolean,
-  displayValue?: any,
   onChange?: (value: boolean | string) => void,
 }
 
-export const Checkbox = withForm(({ name, value, radio, initialValue, checked, indeterminate, label, onChange, displayValue, ...props }: Props) => {
+export const Checkbox = withForm(({ name, value, radio, initialValue, checked, indeterminate, label, onChange, ...props }: Props) => {
   if (checked === undefined && name !== undefined) {
     if (radio) {
       checked = (initialValue === value)

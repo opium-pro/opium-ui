@@ -11,16 +11,16 @@ export function Option({
   label = undefined,
   hint = undefined,
   children = undefined,
-  displayValue: oneDisplayValue = oneValue,
+  displayValue: oneDisplayValue = undefined,
 }) {
-  const { value, onChange, displayValue } = useTextInput()
-  const { multi } = useSelect()
+  const { value, onChange } = useTextInput()
+  const { multi, displayValue, setDisplayValue } = useSelect()
   const { setOpened } = useDropdown()
 
   function handleClick(event) {
     if (multi) {
       let newValue: any = new Set(Array.isArray(value) ? value : [value])
-      const newDisplayValue = new Set(Array.isArray(displayValue) ? displayValue : [displayValue])
+      let newDisplayValue: any = new Set(Array.isArray(displayValue) ? displayValue : [displayValue])
       if (newValue.has(oneValue)) {
         newValue.delete(oneValue)
         newDisplayValue.delete(oneDisplayValue)
@@ -29,13 +29,17 @@ export function Option({
         newDisplayValue.add(oneDisplayValue)
       }
       newValue = Array.from(newValue)
-      onChange?.(newValue, Array.from(newDisplayValue) || newValue)
+      newDisplayValue = Array.from(newDisplayValue)
+      setDisplayValue(newDisplayValue)
+      onChange?.(newValue)
     } else {
       setOpened(false)
       if (oneValue === value) {
         onChange?.()
+        setDisplayValue()
       } else {
-        onChange?.(oneValue, oneDisplayValue)
+        onChange?.(oneValue)
+        setDisplayValue(oneValue)
       }
     }
     onClick?.(event)

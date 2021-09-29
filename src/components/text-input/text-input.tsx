@@ -24,7 +24,6 @@ export const TextInput = withForm(({
   pasteRight,
   pasteLeft,
   hint,
-  displayValue,
   onDisplayValue,
   ...props
 }: TextInputProps) => {
@@ -33,9 +32,14 @@ export const TextInput = withForm(({
 
   const isSelect = type === 'select'
 
-  function handleChange(event, newDisplayValue) {
-    let value = event?.target?.value || event
-    onChange?.(value, newDisplayValue)
+  function handleChange(event) {
+    let value
+    if (isSelect || typeof value === 'string') {
+      value = event
+    } else {
+      value = event?.target?.value
+    }
+    onChange?.(value)
   }
 
   function handleFocus(event) {
@@ -73,7 +77,6 @@ export const TextInput = withForm(({
     pasteRight,
     pasteLeft,
     hint,
-    displayValue,
     onDisplayValue,
   }
 

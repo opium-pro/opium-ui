@@ -5,9 +5,9 @@ import {hasValue} from './utils'
 
 
 export const Label = () => {
-  const { value, fieldId, label, error, displayValue } = useTextInput()
+  const { value, fieldId, label, error } = useTextInput()
   const { focus, cursor } = useReaction()
-  const uptop = !!hasValue(value) || !!hasValue(displayValue) || !!focus
+  const uptop = !!hasValue(value) || !!focus
 
   return (<>
     {/* Label click area */}

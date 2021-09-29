@@ -1,4 +1,4 @@
-import React, {FC} from 'react'
+import React, { FC, useState } from 'react'
 import { TextInput, TextInputProps } from "../text-input"
 import { Icon, Gap, Effect } from 'themeor'
 import { useDropdown } from '../dropdown'
@@ -17,18 +17,23 @@ export const Select: FC<SelectProps> = ({
   onDisplayValue,
   ...rest
 }) => {
+  const [displayValue, setDisplayValue]: any = useState()
+
   function handleDisplayValue(value) {
-    if (Array.isArray(value)) {
-      return value.join(', ')
+    if (typeof onDisplayValue === 'function') {
+      return onDisplayValue(displayValue)
+    }
+    if (Array.isArray(displayValue)) {
+      return displayValue.join(', ')
     }
     return value
   }
 
   return (
-    <SelectContext.Provider value={{ multi }}>
+    <SelectContext.Provider value={{ multi, setDisplayValue, displayValue }}>
       <TextInput
         {...rest}
-        onDisplayValue={onDisplayValue || handleDisplayValue}
+        onDisplayValue={handleDisplayValue}
         pasteRight={<SelectIcon />}
         options={children}
         type="select"

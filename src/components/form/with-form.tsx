@@ -5,7 +5,6 @@ import { getDeepFieldByPath } from '../../utils'
 export type WithFormProps = {
   value?: any
   onDisplayValue?: any
-  displayValue?: any
   name?: string
   match?: any
   error?: any
@@ -20,7 +19,6 @@ export type WithFormProps = {
 export const withForm = (Component: any) => ({
   onChange = a => a,
   value,
-  displayValue: initialDisplayValue,
   name,
   match,
   error,
@@ -34,7 +32,6 @@ export const withForm = (Component: any) => ({
 }: any) => {
   const [changed, setChanged]: any = useState(false)
   const [hasError, setError]: any = useState(error)
-  const [displayValue, setDisplayValue]: any = useState(initialDisplayValue)
   const {
     setField,
     changed: formChanged,
@@ -77,15 +74,12 @@ export const withForm = (Component: any) => ({
     }
   }
 
-  function handleChange(value, newDisplayValue) {
+  function handleChange(value) {
     !formChanged && setFormChanged?.(true)
     hasError && setError(false)
     !changed && setChanged(true)
     const result = onChange(value)
     let newValue = result !== undefined ? result : value
-    if (newDisplayValue) {
-      setDisplayValue(newDisplayValue)
-    }
     setField?.(name, newValue)
   }
 
@@ -98,7 +92,6 @@ export const withForm = (Component: any) => ({
       {...rest}
       label={label}
       value={fieldValue}
-      displayValue={displayValue}
       initialValue={value}
       name={name}
       onChange={!disabled && handleChange}

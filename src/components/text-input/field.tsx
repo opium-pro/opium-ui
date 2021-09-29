@@ -13,7 +13,6 @@ export const Field = () => {
     options,
     name,
     autocomplete,
-    displayValue,
     onDisplayValue,
   } = useTextInput()
 
@@ -22,7 +21,7 @@ export const Field = () => {
   const reaction = useReaction()
   const fields: any = {}
 
-  const isDisplayValue = (type === 'select') || (!reaction.focus && (displayValue || onDisplayValue))
+  const isDisplayValue = (type === 'select') || (!reaction.focus)
 
   fields.input = (
     <input
@@ -79,7 +78,7 @@ export const Field = () => {
     </StyleWrapper>
     {isDisplayValue && (
       <StyleWrapper>
-        {typeof onDisplayValue === 'function' ? onDisplayValue(displayValue) : displayValue}
+        {typeof onDisplayValue === 'function' ? onDisplayValue?.(value) : value}
       </StyleWrapper>
     )}
   </>)
