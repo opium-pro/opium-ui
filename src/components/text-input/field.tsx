@@ -21,6 +21,8 @@ export const Field = () => {
   const reaction = useReaction()
   const fields: any = {}
 
+  const isDisplayValue = (type === 'select') || (!reaction.focus && displayValue)
+
   fields.input = (
     <input
       id={fieldId}
@@ -71,10 +73,10 @@ export const Field = () => {
   )
 
   return (<>
-    <StyleWrapper>
+    <StyleWrapper opacity={!isDisplayValue ? '1' : '0'}>
       {fields[type] || fields.input}
     </StyleWrapper>
-    {!reaction.focus && displayValue && (
+    {isDisplayValue && (
       <StyleWrapper>
         {displayValue}
       </StyleWrapper>
@@ -83,18 +85,15 @@ export const Field = () => {
 }
 
 
-function StyleWrapper({ children }) {
+function StyleWrapper({ children, ...rest }) {
   const {
     disabled,
     valueFont,
     handleRef,
-    displayValue,
   } = useTextInput()
 
-  const reaction = useReaction()
-
   return (
-    <Fit.TryTagless stick="top-left" top="25px">
+    <Fit.TryTagless stick="top-left" top="25px" {...rest}>
       <Box.TryTagless>
         <Align.TryTagless vert="center">
           <Font.TryTagless
@@ -109,7 +108,6 @@ function StyleWrapper({ children }) {
             <Gap.TryTagless
               hor="md"
               forwardRef={handleRef}
-              opacity={(reaction.focus || !displayValue) ? '1' : '0'}
             >
               {children}
             </Gap.TryTagless>

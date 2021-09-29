@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useForm } from './context'
 import { getDeepFieldByPath } from '../../utils'
 
-export type WithFormType = {
+export type WithFormProps = {
   value?: any
   displayValue?: any
   name?: string
@@ -33,7 +33,7 @@ export const withForm = (Component: any) => ({
 }: any) => {
   const [changed, setChanged]: any = useState(false)
   const [hasError, setError]: any = useState(error)
-  const [display, setDisplay]: any = useState(displayValue)
+  const [display, setDisplayValue]: any = useState(displayValue)
   const {
     setField,
     changed: formChanged,
@@ -81,9 +81,9 @@ export const withForm = (Component: any) => ({
     hasError && setError(false)
     !changed && setChanged(true)
     const result = onChange(value)
-    let newValue = typeof result === 'string' ? result : value
+    let newValue = result !== undefined ? result : value
     if (typeof displayValue === 'function') {
-      setDisplay(displayValue(newValue))
+      setDisplayValue(displayValue(newValue))
     }
     setField?.(name, newValue)
   }

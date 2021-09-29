@@ -33,8 +33,8 @@ export const TextInput = withForm(({
   const isSelect = type === 'select'
 
   function handleChange(event) {
-    const value = typeof event === 'string' ? event : event?.target?.value
-    onChange && onChange(value)
+    let value = event?.target?.value || event
+    onChange?.(value)
   }
 
   function handleFocus(event) {

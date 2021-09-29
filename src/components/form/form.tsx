@@ -18,12 +18,20 @@ export function Form({
   onChange,
   getContext,
   initialValues: defaultInitialValues = {},
+  disabled: initialDisabled,
   ...rest
 }: Props) {
   const [fields, setFields] = useState(defaultInitialValues)
+  const [disabled, setDisabled] = useState(initialDisabled)
   const [initialValues, setInitialValues] = useState(defaultInitialValues)
   const [changed, setChanged] = useState(false)
   const [hasError, setError] = useState(false)
+
+  useEffect(() => {
+    if (initialDisabled !== disabled) {
+      setDisabled(initialDisabled)
+    }
+  }, [initialDisabled])
 
   function reset() {
     setFields(initialValues)

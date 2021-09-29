@@ -1,12 +1,13 @@
 import React from 'react'
 import { Gap, Align, Font, Fit, useReaction } from 'themeor'
 import { useTextInput } from './context'
+import {hasValue} from './utils'
 
 
 export const Label = () => {
   const { value, fieldId, label, error, displayValue } = useTextInput()
   const { focus, cursor } = useReaction()
-  const uptop = value || displayValue || focus
+  const uptop = !!hasValue(value) || !!hasValue(displayValue) || !!focus
 
   return (<>
     {/* Label click area */}

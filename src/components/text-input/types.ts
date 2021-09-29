@@ -1,6 +1,7 @@
 import { ReactNode } from 'react'
+import { WithFormProps } from '../form'
 
-export interface TextInputProps {
+export type TextInputProps = WithFormProps & {
   type?: string
   height?: string
   valueFont?: any
