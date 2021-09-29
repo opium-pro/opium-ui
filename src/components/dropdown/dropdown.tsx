@@ -1,7 +1,8 @@
-import React, { FC, useState, useEffect, useRef } from 'react'
-import { Font, Box, Align, Fit, FitProps, Animate } from 'themeor'
+import React, { FC, useState, useEffect } from 'react'
+import { Box, Fit, FitProps, Gap } from 'themeor'
 import { Portal } from '../portal'
 import { useAppLayout } from '../app-layout'
+import { placeNode } from '../../utils'
 
 
 export interface DropdownProps extends FitProps { }
@@ -10,15 +11,12 @@ export interface DropdownProps extends FitProps { }
 export const Dropdown: FC<DropdownProps> = ({ children, forwardRef, ...rest }) => {
   const [sourceNode, setSourceNode]: any = useState()
   const [targetNode, setTargetNode]: any = useState()
+  const [isReady, setIsReady]: any = useState()
   const { contentNode } = useAppLayout()
-  const isReady = contentNode && targetNode && sourceNode
 
   function alignNodes() {
     if (!sourceNode || !targetNode) { return }
-    const offsets = sourceNode.getBoundingClientRect()
-    targetNode.style.top = offsets.top + 12 + 'px'
-    targetNode.style.left = offsets.left + 'px'
-    targetNode.style.width = offsets.width + 'px'
+    placeNode(targetNode, sourceNode)
   }
 
   useEffect(() => {
@@ -42,22 +40,32 @@ export const Dropdown: FC<DropdownProps> = ({ children, forwardRef, ...rest }) =
       ; (forwardRef as any)?.(node)
   }
 
+  useEffect(() => {
+    alignNodes()
+    if (contentNode && targetNode && sourceNode) {
+      setIsReady(true)
+    }
+  })
+
   return (
-    <Fit forwardRef={n => n && !sourceNode && setSourceNode(n)}>
+    <Fit forwardRef={setSourceNode}>
       <Portal>
-        <Fit.TryTagless
+        <Gap
+          vert="10px"
           forwardRef={handleRef}
-          fixed
-          scroll
-          maxHeight="500px"
-          maxWidth="600px"
-          minWidth="100px"
           {...rest}
         >
-          <Box radius="md" shadow="lg" fill="base">
-            {children}
-          </Box>
-        </Fit.TryTagless>
+          <Fit.TryTagless
+            scroll
+            maxHeight="500px"
+            maxWidth="600px"
+            minWidth="100px"
+          >
+            <Box radius="md" shadow="lg" fill="base">
+              {children}
+            </Box>
+          </Fit.TryTagless>
+        </Gap>
       </Portal>
     </Fit>
   )

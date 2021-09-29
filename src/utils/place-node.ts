@@ -1,13 +1,21 @@
 import { fitNode } from './fit-node'
 
 
-export function placeNode(targetNode, parentNode, place, placeOrder) {
+export function placeNode(
+  targetNode,
+  parentNode,
+  place = 'bottom-left',
+  placeOrder = ['bottom', 'top', 'right', 'left']
+) {
+  if (!targetNode || !parentNode) { return }
+
   const fits = fitNode(targetNode, parentNode)
   if (!fits) {
     return
   }
+  
   const [canPlace, freeSpace, targetRect, parentRect]: any = fits
-  let finalPlace: any = placeOrder[0]
+  let finalPlace
 
   if (place) {
     finalPlace = place
@@ -18,6 +26,18 @@ export function placeNode(targetNode, parentNode, place, placeOrder) {
         break
       }
     }
+  }
+
+  if (!finalPlace) {
+    let maxFreeSpace = 0
+    let placeWIthMoreSpace = placeOrder[0]
+    for (const key in freeSpace) {
+      if (freeSpace[key] > maxFreeSpace) {
+        maxFreeSpace = freeSpace[key]
+        placeWIthMoreSpace = key
+      }
+    }
+    finalPlace = placeWIthMoreSpace
   }
 
   const firstPlace = finalPlace?.split('-')[0]
@@ -35,6 +55,9 @@ export function placeNode(targetNode, parentNode, place, placeOrder) {
     right: parentRect.left + parentRect.width,
     bottom: freeSpace.left,
   }
+
+  targetNode.style.position = 'fixed'
+
   if (['top', 'bottom'].includes(firstPlace)) {
     targetNode.style.top = topValue[firstPlace] + 'px'
   }

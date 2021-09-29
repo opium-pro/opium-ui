@@ -12,14 +12,13 @@ export function PortalsProvider({ children }) {
   function closePortal(index) {
     portals.delete(index)
     update()
-    return null
   }
 
   function openPortal(value) {
     const index = id++
     portals.set(index, value)
     update()
-    return null
+    return index
   }
 
   return (
@@ -28,10 +27,11 @@ export function PortalsProvider({ children }) {
         portals,
         openPortal,
         closePortal,
+        update,
       }}
-    >
-      {children}
+    > 
       <Portals />
+      {children}
     </PortalsContext.Provider>
   )
 }

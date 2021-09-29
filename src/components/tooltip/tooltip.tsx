@@ -69,6 +69,16 @@ export const Tooltip: FC<TooltipProps> = ({
     timeout.current = setTimeout(startToOpen, delay)
   }
 
+  function startWaiting() {
+    parentNode?.addEventListener('mousemove', trackMouseHold)
+    parentNode.addEventListener('click', trackMouseHold)
+  }
+
+  function stopWaiting() {
+    parentNode?.removeEventListener('mousemove', trackMouseHold)
+    parentNode.removeEventListener('click', trackMouseHold)
+  }
+
 
   function handleOpen(event?: any) {
     if (!targetNode.current) { return }
@@ -94,13 +104,18 @@ export const Tooltip: FC<TooltipProps> = ({
         setTimeout(() => {
           if (!hovered.current) {
             targetNode.current.style.display = 'none'
-            removeMovementTrack()
+            removeTrackers()
             hotkeys.deleteScope('tooltips')
             opened.current = false
           }
         }, duration)
       }
     }, delayToHide)
+  }
+
+  function removeTrackers() {
+    removeMovementTrack()
+    stopWaiting()
   }
 
   function clearMouseHold() {
@@ -110,14 +125,14 @@ export const Tooltip: FC<TooltipProps> = ({
   function handleSourceRef(node) {
     if (!node) { return }
     parentNode = parentNode || node.previousElementSibling
-    parentNode?.addEventListener('mousemove', trackMouseHold)
+    parentNode?.addEventListener('mouseenter', startWaiting)
     parentNode?.addEventListener('mouseleave', clearMouseHold)
   }
 
   useEffect(() => () => {
-    parentNode?.removeEventListener('mousemove', trackMouseHold)
-    parentNode?.addEventListener('mouseleave', clearMouseHold)
-    removeMovementTrack()
+    parentNode?.removeEventListener('mouseenter', startWaiting)
+    parentNode?.removeEventListener('mouseleave', clearMouseHold)
+    removeTrackers()
   }, [])
 
   function handleTargetRef(node) {
@@ -131,7 +146,7 @@ export const Tooltip: FC<TooltipProps> = ({
   return (
     <Fit forwardRef={handleSourceRef}>
       <Portal>
-        <Fit.TryTagless fixed transition="opacity">
+        <Fit.TryTagless transition="opacity">
           <Gap
             forwardRef={handleTargetRef}
             hidden
