@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Tooltip, TooltipProps } from './tooltip'
 
 export type WithTooltipProps = {
@@ -9,20 +9,13 @@ export type WithTooltipProps = {
 
 export function withTooltip(Component, props?: TooltipProps) {
   return ({ tooltip, tooltipDelay, forwardRef, tooltipPlace, ...rest }: any) => {
-    const [parentNode, setParentNode] = useState()
-
-    function handlreRef(node) {
-      forwardRef instanceof Function && forwardRef(node)
-      setParentNode(node)
-    }
 
     return (<>
-      <Component {...rest} forwardRef={handlreRef} />
+      <Component {...rest} />
       {tooltip && (
         <Tooltip
           delay={tooltipDelay}
           place={tooltipPlace}
-          parentNode={parentNode}
           {...props}
         >{tooltip}
         </Tooltip>

@@ -19,48 +19,52 @@ export const AppLayout: FC<AppLayoutProps> = ({
   ...rest
 }) => {
   const [contentNode, setContentNode] = useState()
+  const [sideMenuNode, setSideMenuNode] = useState()
 
-  // function contentRef(node) {
-  //   node && setContentNode(node)
-  // }
+  const context = { contentNode, sideMenuNode }
 
   return (
-    <AppLayoutContext.Provider value={{ contentNode }}>
+    <AppLayoutContext.Provider value={context}>
       <Align row vert="stretch" {...rest}>
         {sideMenu && (
-          <Fit
-            maxHeight="100vh"
-            zIndex={200}
-            scroll
-          >
-            {sideMenu}
-          </Fit>
+          <AppLayoutContext.Provider value={{ ...context, scrollNode: sideMenuNode }}>
+            <Fit
+              maxHeight="100vh"
+              zIndex={200}
+              forwardRef={setSideMenuNode}
+              scroll
+            >
+              {sideMenu}
+            </Fit>
+          </AppLayoutContext.Provider>
         )}
 
-        <Align stretch>
-          <Fit height="100vh" zIndex={100} scroll forwardRef={setContentNode}>
+        <AppLayoutContext.Provider value={{ ...context, scrollNode: contentNode }}>
+          <Align stretch>
+            <Fit height="100vh" zIndex={100} scroll forwardRef={setContentNode}>
 
-            <Fit.TryTagless minHeight="100vh" FORCE_TAGLESS>
-              <Background>
-
-
-                {header && (
-                  <Fit.TryTagless style={{
-                    position: 'sticky',
-                    top: '0',
-                    zIndex: 100,
-                  }}>
-                    {header}
-                  </Fit.TryTagless>
-                )}
+              <Fit.TryTagless minHeight="100vh" FORCE_TAGLESS>
+                <Background>
 
 
-                {children}
-              </Background>
-            </Fit.TryTagless>
+                  {header && (
+                    <Fit.TryTagless style={{
+                      position: 'sticky',
+                      top: '0',
+                      zIndex: 100,
+                    }}>
+                      {header}
+                    </Fit.TryTagless>
+                  )}
 
-          </Fit>
-        </Align>
+
+                  {children}
+                </Background>
+              </Fit.TryTagless>
+
+            </Fit>
+          </Align>
+        </AppLayoutContext.Provider>
 
         <Fit zIndex={300} cover="screen" stick="top-left">
           {modals}
