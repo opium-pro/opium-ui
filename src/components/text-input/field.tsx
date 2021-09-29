@@ -1,13 +1,11 @@
 import React from 'react'
-import { Gap, Box, Align, Font, Fit, useReaction, Effect } from 'themeor'
+import { Gap, Box, Align, Font, Fit, useReaction } from 'themeor'
 import { useTextInput } from './context'
 
 
 export const Field = () => {
   const {
     disabled,
-    valueFont,
-    handleRef,
     type,
     fieldId,
     onChange,
@@ -73,10 +71,30 @@ export const Field = () => {
   )
 
   return (<>
-    <Fit.TryTagless
-      stick="top-left"
-      top="25px"
-    >
+    <StyleWrapper>
+      {fields[type] || fields.input}
+    </StyleWrapper>
+    {!reaction.focus && displayValue && (
+      <StyleWrapper>
+        {displayValue}
+      </StyleWrapper>
+    )}
+  </>)
+}
+
+
+function StyleWrapper({ children }) {
+  const {
+    disabled,
+    valueFont,
+    handleRef,
+    displayValue,
+  } = useTextInput()
+
+  const reaction = useReaction()
+
+  return (
+    <Fit.TryTagless stick="top-left" top="25px">
       <Box.TryTagless>
         <Align.TryTagless vert="center">
           <Font.TryTagless
@@ -93,16 +111,11 @@ export const Field = () => {
               forwardRef={handleRef}
               opacity={(reaction.focus || !displayValue) ? '1' : '0'}
             >
-              {fields[type] || fields.input}
+              {children}
             </Gap.TryTagless>
           </Font.TryTagless>
         </Align.TryTagless>
       </Box.TryTagless>
     </Fit.TryTagless>
-    {!reaction.focus && displayValue && (
-      <Fit absolute stick="top-left" top="25px">
-        {displayValue}
-      </Fit>
-    )}
-  </>)
+  )
 }

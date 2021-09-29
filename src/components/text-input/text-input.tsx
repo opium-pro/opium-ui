@@ -84,12 +84,14 @@ export const TextInput = withForm(({
       onBlur={!disabled && handleBlur}
     >
       <TextInputContext.Provider value={context}>
-        <Wrapper>
-          <Label />
-          <Field />
-          <Placeholder />
-        </Wrapper>
-        <Caption />
+        <div>
+          <Wrapper>
+            <Label />
+            <Field />
+            <Placeholder />
+          </Wrapper>
+          <Caption />
+        </div>
       </TextInputContext.Provider>
     </Reaction>
   )

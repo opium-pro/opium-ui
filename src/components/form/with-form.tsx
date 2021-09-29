@@ -2,6 +2,19 @@ import React, { useEffect, useState } from 'react'
 import { useForm } from './context'
 import { getDeepFieldByPath } from '../../utils'
 
+export type WithFormType = {
+  value?: any
+  displayValue?: any
+  name?: string
+  match?: any
+  error?: any
+  onBlur?: any
+  mask?: any
+  disabled?: boolean
+  required?: boolean
+  radio?: boolean
+}
+
 export const withForm = (Component: any) => ({
   onChange = a => a,
   value,
@@ -12,6 +25,7 @@ export const withForm = (Component: any) => ({
   onBlur,
   mask,
   disabled,
+  required,
   radio,
   ...rest
 }: any) => {
@@ -53,6 +67,10 @@ export const withForm = (Component: any) => ({
         }
       }
       setError(errorText || false)
+    }
+
+    if (changed && required && !fieldValue) {
+      setError('This field is required')
     }
   }
 
