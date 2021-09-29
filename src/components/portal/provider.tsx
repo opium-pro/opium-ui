@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { PortalsContext } from './use-portals'
 import { Portals } from './portals'
+import { Fit } from 'themeor'
 import { useForceUpdate } from '../../utils'
 
 export const portals = new Map()
@@ -8,6 +9,7 @@ let id = 0
 
 export function PortalsProvider({ children }) {
   const [update] = useForceUpdate()
+  const [portalsNode, setPortalsNode] = useState()
 
   function closePortal(index) {
     portals.delete(index)
@@ -28,10 +30,14 @@ export function PortalsProvider({ children }) {
         openPortal,
         closePortal,
         update,
+        portalsNode,
       }}
     > 
-      <Portals />
       {children}
+      <Fit zIndex={400} fixed left="0" top="0" forwardRef={setPortalsNode} />
+
+      {/* Это нужно, чтобы вызывать порталы через функцию, без прямого рендера */}
+      <Portals />
     </PortalsContext.Provider>
   )
 }

@@ -5,7 +5,7 @@ import { portals } from './provider'
 
 export const Portals = () => {
   return (
-    <Fit zIndex={400} fixed left="0" top="0">
+    <Fit zIndex={500} fixed left="0" top="0">
       {Array.from(portals).map(([index, value]) => (
         <Fragment key={`portal-${index}`}>{value}</Fragment>
       ))}

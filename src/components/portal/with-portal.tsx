@@ -1,5 +1,5 @@
 import React from 'react'
-import { usePortals } from './use-portals'
+import { Portal } from './portal'
 
 export type WithPortalProps = {
   inPortal?: boolean
@@ -7,7 +7,6 @@ export type WithPortalProps = {
 
 export function withPortal(Compoenen) {
   return function ({ inPortal = true, ...rest }) {
-    const { openPortal } = usePortals()
-    return inPortal ? openPortal(<Compoenen {...rest} />) : <Compoenen {...rest} />
+    return inPortal ? <Portal><Compoenen {...rest} /></Portal> : <Compoenen {...rest} />
   }
 }

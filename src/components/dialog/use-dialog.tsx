@@ -8,7 +8,6 @@ export function useDialog() {
 
   return ({onApply, onCancel, ...rest}: DialogProps) => new Promise((res) => {
     openPortal(<Dialog
-      inPortal={false}
       onApply={() => {
         onApply instanceof Function && onApply()
         res(true)

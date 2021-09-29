@@ -1,15 +1,17 @@
 import React, { FC, useEffect } from 'react'
 import { usePortals } from './use-portals'
+import { createPortal } from 'react-dom'
 
-export interface PortalProps {}
+export interface PortalProps { }
 
 export const Portal: FC<PortalProps> = ({ children }) => {
-  const { openPortal, closePortal } = usePortals()
+  const { portalsNode } = usePortals()
 
-  useEffect(() => {
-    const index = openPortal(children)
-    return () => closePortal(index)
-  }, [])
+  // useEffect(() => {
+  //   const index = openPortal(children)
+  //   return () => closePortal(index)
+  // }, [])
 
-  return null
+  if (!portalsNode) { return null }
+  return createPortal(children, portalsNode)
 }
