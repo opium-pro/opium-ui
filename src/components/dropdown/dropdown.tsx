@@ -5,10 +5,12 @@ import { useAppLayout } from '../app-layout'
 import { placeNode } from '../../utils'
 
 
-export interface DropdownProps extends FitProps { }
+export interface DropdownProps extends FitProps {
+  place?: string
+}
 
 
-export const Dropdown: FC<DropdownProps> = ({ children, forwardRef, ...rest }) => {
+export const Dropdown: FC<DropdownProps> = ({ children, place, forwardRef, ...rest }) => {
   const [sourceNode, setSourceNode]: any = useState()
   const [targetNode, setTargetNode]: any = useState()
   const [isReady, setIsReady]: any = useState()
@@ -16,7 +18,7 @@ export const Dropdown: FC<DropdownProps> = ({ children, forwardRef, ...rest }) =
 
   function alignNodes() {
     if (!sourceNode || !targetNode) { return }
-    placeNode(targetNode, sourceNode)
+    placeNode(targetNode, sourceNode, place)
   }
 
   useEffect(() => {
@@ -50,22 +52,24 @@ export const Dropdown: FC<DropdownProps> = ({ children, forwardRef, ...rest }) =
   return (
     <Fit forwardRef={setSourceNode}>
       <Portal>
-        <Gap
-          vert="10px"
-          forwardRef={handleRef}
-          {...rest}
-        >
-          <Fit.TryTagless
-            scroll
-            maxHeight="500px"
-            maxWidth="600px"
-            minWidth="100px"
+        <Fit absolute left="0" top="0">
+          <Gap
+            vert="10px"
+            forwardRef={handleRef}
+            {...rest}
           >
-            <Box radius="md" shadow="lg" fill="base">
-              {children}
-            </Box>
-          </Fit.TryTagless>
-        </Gap>
+            <Fit.TryTagless
+              scroll
+              maxHeight="500px"
+              maxWidth="600px"
+              minWidth="100px"
+            >
+              <Box radius="md" shadow="lg" fill="base">
+                {children}
+              </Box>
+            </Fit.TryTagless>
+          </Gap>
+        </Fit>
       </Portal>
     </Fit>
   )

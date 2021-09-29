@@ -60,10 +60,19 @@ export function placeNode(
 
   if (['top', 'bottom'].includes(firstPlace)) {
     targetNode.style.top = topValue[firstPlace] + 'px'
+    // if (targetNode.offsetHeight > freeSpace[firstPlace]) {
+    //   targetNode.style.height = freeSpace[firstPlace] + 'px'
+    // }
   }
   if (['left', 'right'].includes(firstPlace)) {
     targetNode.style.left = leftValue[firstPlace] + 'px'
+    // if (targetNode.offsetWidth > freeSpace[firstPlace]) {
+    //   targetNode.style.width = freeSpace[firstPlace] + 'px'
+    // }
   }
+
+
+  // Handling second walue in position
 
   if (!secondPlace) {
     ['top', 'bottom'].includes(firstPlace) && (secondPlace = 'horCenter');
@@ -86,5 +95,15 @@ export function placeNode(
   }
   if (['right', 'left', 'horCenter'].includes(secondPlace)) {
     targetNode.style.left = leftSecondValue[secondPlace] + 'px'
+  }
+
+  if (['top', 'bottom'].includes(firstPlace) && (secondPlace === 'stretch')) {
+    targetNode.style.left = freeSpace.left + 'px'
+    targetNode.style.right = freeSpace.right + 'px'
+  }
+
+  if (['right', 'left'].includes(firstPlace) && (secondPlace === 'stretch')) {
+    targetNode.style.top = freeSpace.top + 'px'
+    targetNode.style.bottom = freeSpace.bottom + 'px'
   }
 }

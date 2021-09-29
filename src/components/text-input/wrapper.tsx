@@ -37,7 +37,10 @@ export const Wrapper = ({ children }) => {
   </>)
 
   return (
-    <MakeDropdown items={isSelect ? options : rednerAutocomplete}>
+    <MakeDropdown
+      place="bottom-stretch"
+      items={isSelect ? options : rednerAutocomplete}
+    >
       <Fit.TryTagless height={height}>
         <Box.TryTagless
           fill={(disabled && "base") || (focus && "base") || (hover && "faint") || "faint-down"}
