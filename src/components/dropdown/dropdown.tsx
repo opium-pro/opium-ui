@@ -7,10 +7,11 @@ import { placeNode } from '../../utils'
 
 export interface DropdownProps extends FitProps {
   place?: string
+  placeOrder?: string[]
 }
 
 
-export const Dropdown: FC<DropdownProps> = ({ children, place, forwardRef, ...rest }) => {
+export const Dropdown: FC<DropdownProps> = ({ children, place, placeOrder, forwardRef, ...rest }) => {
   const [sourceNode, setSourceNode]: any = useState()
   const [targetNode, setTargetNode]: any = useState()
   const [isReady, setIsReady]: any = useState()
@@ -18,7 +19,7 @@ export const Dropdown: FC<DropdownProps> = ({ children, place, forwardRef, ...re
 
   function alignNodes() {
     if (!sourceNode || !targetNode) { return }
-    placeNode(targetNode, sourceNode, place)
+    placeNode(targetNode, sourceNode, placeOrder, place)
   }
 
   useEffect(() => {

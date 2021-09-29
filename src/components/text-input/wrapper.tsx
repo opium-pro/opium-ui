@@ -1,8 +1,9 @@
 import React, { ReactNode, useState } from 'react'
-import { Gap, Box, Align, Font, Fit, useReaction, Effect } from 'themeor'
+import { Gap, Box, Align, Font, Fit, useReaction, Icon } from 'themeor'
 import { MakeDropdown, Dropdown } from '../dropdown'
 import filter from 'opium-filter'
 import { useTextInput } from './context'
+import { Tooltip } from '../tooltip'
 
 
 export const Wrapper = ({ children }) => {
@@ -15,8 +16,9 @@ export const Wrapper = ({ children }) => {
     isSelect,
     height,
     error,
-    pasteBefore,
-    pasteAfter,
+    pasteLeft,
+    pasteRight,
+    hint,
     children: parentChildren,
   } = useTextInput()
   const { passProps, focus, hover } = useReaction()
@@ -38,7 +40,8 @@ export const Wrapper = ({ children }) => {
 
   return (
     <MakeDropdown
-      place="bottom-stretch"
+      placeOrder={["bottom-stretch", "top-stretch"]}
+      placeOredr
       items={isSelect ? options : rednerAutocomplete}
     >
       <Fit.TryTagless height={height}>
@@ -51,16 +54,25 @@ export const Wrapper = ({ children }) => {
           {...passProps}
         >
           <Align row vert="stretch">
-            {pasteBefore && (
-              <Align row vert="center">{pasteBefore}</Align>
+            {pasteLeft && (
+              <Align row vert="center">{pasteLeft}</Align>
             )}
 
             <Fit stretch>
               {children}
             </Fit>
 
-            {pasteAfter && (
-              <Align row vert="center">{pasteAfter}</Align>
+            {hint && (<>
+              <Align.TryTagless row vert="center">
+                <Gap cursor="help">
+                  <Icon fill="faint" name="question_circle" />
+                </Gap>
+              </Align.TryTagless>
+              <Tooltip delay={0}>{hint}</Tooltip>
+            </>)}
+
+            {pasteRight && (
+              <Align row vert="center">{pasteRight}</Align>
             )}
 
             {parentChildren && parentChildren instanceof Function ? (

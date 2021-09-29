@@ -14,13 +14,17 @@ import { TextInputContext } from './context'
 export const TextInput = withForm(({
   type = "text",
   height = "50px",
-  autocomplete = true,
+  autocomplete = type === 'email',
   forwardRef,
   onChange,
   onFocus,
   onBlur,
   initialValue,
   disabled,
+  pasteRight,
+  pasteLeft,
+  hint,
+  displayValue,
   ...props
 }: TextInputProps) => {
   const fieldId = props.id || newId()
@@ -65,6 +69,10 @@ export const TextInput = withForm(({
     isSelect,
     initialValue,
     disabled,
+    pasteRight,
+    pasteLeft,
+    hint,
+    displayValue,
   }
 
   return (

@@ -15,6 +15,7 @@ export const Field = () => {
     options,
     name,
     autocomplete,
+    displayValue,
   } = useTextInput()
 
   const defaultAutocomplete = autocomplete === true ? 'on' : 'off'
@@ -54,7 +55,7 @@ export const Field = () => {
   )
 
   fields.select = (
-    <Effect.TryTagless transparency="max">
+    <Fit opacity="0">
       <select
         id={fieldId}
         className={reaction.className.cursor}
@@ -68,10 +69,10 @@ export const Field = () => {
           <option key={props.value} value={props.value} />
         ))}
       </select>
-    </Effect.TryTagless>
+    </Fit>
   )
 
-  return (
+  return (<>
     <Fit.TryTagless
       stick="top-left"
       top="25px"
@@ -90,6 +91,7 @@ export const Field = () => {
             <Gap.TryTagless
               hor="md"
               forwardRef={handleRef}
+              opacity={(reaction.focus || !displayValue) ? '1' : '0'}
             >
               {fields[type] || fields.input}
             </Gap.TryTagless>
@@ -97,5 +99,10 @@ export const Field = () => {
         </Align.TryTagless>
       </Box.TryTagless>
     </Fit.TryTagless>
-  )
+    {!reaction.focus && displayValue && (
+      <Fit absolute stick="top-left" top="25px">
+        {displayValue}
+      </Fit>
+    )}
+  </>)
 }

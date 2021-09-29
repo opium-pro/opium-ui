@@ -4,8 +4,8 @@ import { fitNode } from './fit-node'
 export function placeNode(
   targetNode,
   parentNode,
-  place = 'bottom-left',
-  placeOrder = ['bottom', 'top', 'right', 'left']
+  placeOrder = ['bottom', 'top', 'right', 'left'],
+  place = undefined
 ) {
   if (!targetNode || !parentNode) { return }
 

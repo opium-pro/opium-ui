@@ -8,18 +8,19 @@ type Props = Omit<React.HTMLAttributes<HTMLElement>, 'onChange'> & {
   indeterminate?: boolean,
   label?: string,
   name?: string,
-  value?: string,
+  value?: boolean | string,
   initialValue?: string,
   radio?: boolean,
+  displayValue?: any,
   onChange?: (value: boolean | string) => void,
 }
 
-export const Checkbox = withForm(({ name, value, radio, initialValue, checked, indeterminate, label, onChange, ...props }: Props) => {
+export const Checkbox = withForm(({ name, value, radio, initialValue, checked, indeterminate, label, onChange, displayValue, ...props }: Props) => {
   if (checked === undefined && name !== undefined) {
     if (radio) {
       checked = (initialValue === value)
     } else {
-      checked = value === 'on'
+      checked = value === true
     }
   }
 
@@ -27,9 +28,9 @@ export const Checkbox = withForm(({ name, value, radio, initialValue, checked, i
     let value = event.target.value
 
     if (!radio && value === 'off') {
-      value = 'on'
+      value = true
     } else if (!radio && value === 'on') {
-      value = 'off'
+      value = false
     }
 
     onChange?.(value)
@@ -38,53 +39,55 @@ export const Checkbox = withForm(({ name, value, radio, initialValue, checked, i
   return (
     <Reaction cursor="pointer" {...props}>
       {(rProps, r) => (
-        <Fit {...rProps}>
-          <Align.TryTagless row vert="center">
-            <label>
-              <MakeButton radius="max" offset="14px" track={["hover", "active"]}>
-                <Fit.TryTagless maxWidth="0" maxHeight="0" clip>
-                  <Effect transparency="max">
-                    <input
-                      value={radio ? initialValue : value}
-                      type="checkbox"
-                      onChange={handleChange}
-                    />
-                  </Effect>
-                </Fit.TryTagless>
+        <div>
+          <Fit inline {...rProps}>
+            <Align.TryTagless row vert="center">
+              <label>
+                <MakeButton radius="max" offset="14px" track={["hover", "active"]}>
+                  <Fit.TryTagless maxWidth="0" maxHeight="0" clip>
+                    <Effect transparency="max">
+                      <input
+                        value={radio ? initialValue : value ? 'on' : 'off'}
+                        type="checkbox"
+                        onChange={handleChange}
+                      />
+                    </Effect>
+                  </Fit.TryTagless>
 
-                <Fit.TryTagless width="20px" height="20px">
-                  <Box.TryTagless
-                    radius="max"
-                    borderFill={checked ? "complement" : "faint-up"}
-                    fill="none"
-                  // strong={!!checked}
-                  >
-                    <Align
-                      vert="center"
-                      hor="center"
-                      style={{ transition: "all 0.2s ease" }}
+                  <Fit.TryTagless width="20px" height="20px">
+                    <Box.TryTagless
+                      radius="max"
+                      borderFill={checked ? "complement" : "faint-up"}
+                      fill="none"
+                    // strong={!!checked}
                     >
-                      {!!checked && (
-                        <Fit.TryTagless width="8px" height="8px">
-                          <Box
-                            radius="max"
-                            fill="complement"
-                            strong
-                          />
-                        </Fit.TryTagless>
-                      )}
-                    </Align>
-                  </Box.TryTagless>
-                </Fit.TryTagless>
-              </MakeButton>
+                      <Align
+                        vert="center"
+                        hor="center"
+                        style={{ transition: "all 0.2s ease" }}
+                      >
+                        {!!checked && (
+                          <Fit.TryTagless width="8px" height="8px">
+                            <Box
+                              radius="max"
+                              fill="complement"
+                              strong
+                            />
+                          </Fit.TryTagless>
+                        )}
+                      </Align>
+                    </Box.TryTagless>
+                  </Fit.TryTagless>
+                </MakeButton>
 
-              {label && (<>
-                <Gap size="sm" />
-                <Font size="sm" fill="base" weight="400">{label}</Font>
-              </>)}
-            </label>
-          </Align.TryTagless>
-        </Fit>
+                {label && (<>
+                  <Gap size="sm" />
+                  <Font size="sm" fill="base" weight="400">{label}</Font>
+                </>)}
+              </label>
+            </Align.TryTagless>
+          </Fit>
+        </div>
       )}
     </Reaction>
   )

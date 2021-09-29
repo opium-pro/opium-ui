@@ -21,7 +21,7 @@ export const Tooltip: FC<TooltipProps> = ({
   placeOrder = ['top', 'bottom', 'right', 'left'],
   delay = 800,
   duration = 150,
-  place = 'top',
+  place,
   delayToHide = 100,
   parentNode,
   windowNode,
@@ -37,7 +37,7 @@ export const Tooltip: FC<TooltipProps> = ({
   }
 
   function setInPlace() {
-    placeNode(targetNode.current, parentNode, place, placeOrder)
+    placeNode(targetNode.current, parentNode, placeOrder, place)
   }
 
   function handleScroll() {

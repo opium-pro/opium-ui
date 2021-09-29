@@ -19,7 +19,9 @@ export interface TextInputProps {
   initialValue?: string
   autocomplete?: string[] | boolean
   options?: any[]
-  pasteBefore?: ReactNode
-  pasteAfter?: ReactNode
+  pasteLeft?: ReactNode
+  pasteRight?: ReactNode
   children?: ReactNode
+  hint?: any
+  displayValue?: any
 }

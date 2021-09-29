@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useForm } from './context'
+import { getDeepFieldByPath } from '../../utils'
 
 export const withForm = (Component: any) => ({
-  onChange,
+  onChange = a => a,
   value,
+  displayValue,
   name,
   match,
   error,
@@ -15,6 +17,7 @@ export const withForm = (Component: any) => ({
 }: any) => {
   const [changed, setChanged]: any = useState(false)
   const [hasError, setError]: any = useState(error)
+  const [display, setDisplay]: any = useState(displayValue)
   const {
     setField,
     changed: formChanged,
@@ -23,7 +26,7 @@ export const withForm = (Component: any) => ({
     setInitialValue,
   } = useForm()
 
-  const fieldValue = (changed && formChanged) ? fields?.[name] : (value || '')
+  const fieldValue = (changed && formChanged) ? getDeepFieldByPath(name, fields) : (value || '')
 
   useEffect(() => {
     setInitialValue?.(name, value)
@@ -57,8 +60,11 @@ export const withForm = (Component: any) => ({
     !formChanged && setFormChanged?.(true)
     hasError && setError(false)
     !changed && setChanged(true)
-    const result = onChange?.(value)
+    const result = onChange(value)
     let newValue = typeof result === 'string' ? result : value
+    if (typeof displayValue === 'function') {
+      setDisplay(displayValue(newValue))
+    }
     setField?.(name, newValue)
   }
 
@@ -66,6 +72,7 @@ export const withForm = (Component: any) => ({
     <Component
       {...rest}
       value={fieldValue}
+      displayValue={display}
       initialValue={value}
       name={name}
       onChange={!disabled && handleChange}
