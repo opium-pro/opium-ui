@@ -25,6 +25,7 @@ export const TextInput = withForm(({
   pasteLeft,
   hint,
   displayValue,
+  onDisplayValue,
   ...props
 }: TextInputProps) => {
   const fieldId = props.id || newId()
@@ -32,9 +33,9 @@ export const TextInput = withForm(({
 
   const isSelect = type === 'select'
 
-  function handleChange(event) {
+  function handleChange(event, newDisplayValue) {
     let value = event?.target?.value || event
-    onChange?.(value)
+    onChange?.(value, newDisplayValue)
   }
 
   function handleFocus(event) {
@@ -73,6 +74,7 @@ export const TextInput = withForm(({
     pasteLeft,
     hint,
     displayValue,
+    onDisplayValue,
   }
 
   return (

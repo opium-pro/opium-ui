@@ -14,22 +14,21 @@ export const Select: FC<SelectProps> = ({
   children,
   onChange,
   multi = false,
-  displayValue,
+  onDisplayValue,
   ...rest
 }) => {
   function handleDisplayValue(value) {
-    if (multi) {
-      return value?.length ? value?.join?.(', ') : 'Выбери опцию, еба'
-    } else {
-      return value
+    if (Array.isArray(value)) {
+      return value.join(', ')
     }
+    return value
   }
 
   return (
     <SelectContext.Provider value={{ multi }}>
       <TextInput
         {...rest}
-        displayValue={displayValue || handleDisplayValue}
+        onDisplayValue={onDisplayValue || handleDisplayValue}
         pasteRight={<SelectIcon />}
         options={children}
         type="select"

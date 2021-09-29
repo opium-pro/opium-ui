@@ -4,6 +4,7 @@ import { getDeepFieldByPath } from '../../utils'
 
 export type WithFormProps = {
   value?: any
+  onDisplayValue?: any
   displayValue?: any
   name?: string
   match?: any
@@ -19,7 +20,8 @@ export type WithFormProps = {
 export const withForm = (Component: any) => ({
   onChange = a => a,
   value,
-  displayValue,
+  displayValue: initialDisplayValue,
+  onDisplayValue,
   name,
   match,
   error,
@@ -33,7 +35,7 @@ export const withForm = (Component: any) => ({
 }: any) => {
   const [changed, setChanged]: any = useState(false)
   const [hasError, setError]: any = useState(error)
-  const [display, setDisplayValue]: any = useState(displayValue)
+  const [displayValue, setDisplayValue]: any = useState(initialDisplayValue)
   const {
     setField,
     changed: formChanged,
@@ -76,14 +78,17 @@ export const withForm = (Component: any) => ({
     }
   }
 
-  function handleChange(value) {
+  function handleChange(value, newDisplayValue) {
     !formChanged && setFormChanged?.(true)
     hasError && setError(false)
     !changed && setChanged(true)
     const result = onChange(value)
     let newValue = result !== undefined ? result : value
-    if (typeof displayValue === 'function') {
-      setDisplayValue(displayValue(newValue))
+    if (newDisplayValue) {
+      setDisplayValue(newDisplayValue)
+    }
+    if (typeof onDisplayValue === 'function') {
+      setDisplayValue(onDisplayValue(newDisplayValue || newValue))
     }
     setField?.(name, newValue)
   }
@@ -97,7 +102,7 @@ export const withForm = (Component: any) => ({
       {...rest}
       label={label}
       value={fieldValue}
-      displayValue={display}
+      displayValue={displayValue}
       initialValue={value}
       name={name}
       onChange={!disabled && handleChange}

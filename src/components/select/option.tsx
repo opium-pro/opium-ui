@@ -6,29 +6,39 @@ import { useSelect } from './context'
 
 
 export function Option({
-  value,
+  value: oneValue,
   onClick = undefined,
   label = undefined,
   hint = undefined,
-  children = undefined
+  children = undefined,
+  displayValue: initialDisplayValue = undefined,
 }) {
-  const { value: currentValue, onChange } = useTextInput()
+  const { value, onChange, displayValue } = useTextInput()
   const { multi } = useSelect()
   const { setOpened } = useDropdown()
 
-  function handleClick() {
+  function handleClick(event) {
     if (multi) {
-      const newValue = new Set(currentValue)
-      if (newValue.has(value)) {
-        newValue.delete(value)
+      let newValue: any = new Set(Array.isArray(value) ? value : [value])
+      const newDisplayValue = new Set(Array.isArray(displayValue) ? displayValue : [displayValue])
+      if (newValue.has(oneValue)) {
+        newValue.delete(oneValue)
+        newDisplayValue.delete(initialDisplayValue || oneValue)
       } else {
-        newValue.add(value)
+        newValue.add(oneValue)
+        newDisplayValue.add(initialDisplayValue || oneValue)
       }
-      onChange?.(Array.from(newValue))
+      newValue = Array.from(newValue)
+      onChange?.(newValue, Array.from(newDisplayValue) || newValue)
     } else {
       setOpened(false)
-      value === currentValue ? onChange?.() : onChange?.(value)
+      if (oneValue === value) {
+        onChange?.()
+      } else {
+        onChange?.(oneValue, initialDisplayValue || oneValue)
+      }
     }
+    onClick?.(event)
   }
 
   return (
