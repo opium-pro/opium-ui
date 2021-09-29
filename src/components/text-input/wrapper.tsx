@@ -41,7 +41,6 @@ export const Wrapper = ({ children }) => {
   return (
     <MakeDropdown
       placeOrder={["bottom-stretch", "top-stretch"]}
-      placeOredr
       items={isSelect ? options : rednerAutocomplete}
     >
       <Fit.TryTagless height={height}>

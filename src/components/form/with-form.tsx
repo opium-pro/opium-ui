@@ -13,6 +13,7 @@ export type WithFormType = {
   disabled?: boolean
   required?: boolean
   radio?: boolean
+  label?: string
 }
 
 export const withForm = (Component: any) => ({
@@ -27,6 +28,7 @@ export const withForm = (Component: any) => ({
   disabled,
   required,
   radio,
+  label,
   ...rest
 }: any) => {
   const [changed, setChanged]: any = useState(false)
@@ -40,7 +42,7 @@ export const withForm = (Component: any) => ({
     setInitialValue,
   } = useForm()
 
-  const fieldValue = (changed && formChanged) ? getDeepFieldByPath(name, fields) : (value || '')
+  const fieldValue = (changed && formChanged && name) ? getDeepFieldByPath(name, fields) : (value || '')
 
   useEffect(() => {
     setInitialValue?.(name, value)
@@ -86,9 +88,14 @@ export const withForm = (Component: any) => ({
     setField?.(name, newValue)
   }
 
+  if (required && label) {
+    label += ' *'
+  }
+
   return (
     <Component
       {...rest}
+      label={label}
       value={fieldValue}
       displayValue={display}
       initialValue={value}

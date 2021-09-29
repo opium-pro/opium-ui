@@ -23,6 +23,7 @@ export function Form({
   const [fields, setFields] = useState(defaultInitialValues)
   const [initialValues, setInitialValues] = useState(defaultInitialValues)
   const [changed, setChanged] = useState(false)
+  const [hasError, setError] = useState(false)
 
   function reset() {
     setFields(initialValues)
@@ -32,7 +33,7 @@ export function Form({
   function setField(name, value) {
     let newContext = { ...fields }
 
-    if (name.includes('.') || name.includes('[')) {
+    if (name?.includes?.('.') || name?.includes?.('[')) {
       // Парсим имя, если это не просто одно поле, а вложенные объекты
       mutateObjectForFields(newContext, parseFieldName(name), value)
     } else {
@@ -60,11 +61,15 @@ export function Form({
   const context = {
     fields,
     setField,
+    setFields,
     initialValues,
     setInitialValue,
+    setInitialValues,
     changed,
     setChanged,
     reset,
+    hasError,
+    setError,
   }
 
   getContext?.(context)
