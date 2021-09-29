@@ -21,7 +21,6 @@ export const withForm = (Component: any) => ({
   onChange = a => a,
   value,
   displayValue: initialDisplayValue,
-  onDisplayValue,
   name,
   match,
   error,
@@ -86,9 +85,6 @@ export const withForm = (Component: any) => ({
     let newValue = result !== undefined ? result : value
     if (newDisplayValue) {
       setDisplayValue(newDisplayValue)
-    }
-    if (typeof onDisplayValue === 'function') {
-      setDisplayValue(onDisplayValue(newDisplayValue || newValue))
     }
     setField?.(name, newValue)
   }

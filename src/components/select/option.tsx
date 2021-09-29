@@ -11,7 +11,7 @@ export function Option({
   label = undefined,
   hint = undefined,
   children = undefined,
-  displayValue: initialDisplayValue = undefined,
+  displayValue: oneDisplayValue = oneValue,
 }) {
   const { value, onChange, displayValue } = useTextInput()
   const { multi } = useSelect()
@@ -23,10 +23,10 @@ export function Option({
       const newDisplayValue = new Set(Array.isArray(displayValue) ? displayValue : [displayValue])
       if (newValue.has(oneValue)) {
         newValue.delete(oneValue)
-        newDisplayValue.delete(initialDisplayValue || oneValue)
+        newDisplayValue.delete(oneDisplayValue)
       } else {
         newValue.add(oneValue)
-        newDisplayValue.add(initialDisplayValue || oneValue)
+        newDisplayValue.add(oneDisplayValue)
       }
       newValue = Array.from(newValue)
       onChange?.(newValue, Array.from(newDisplayValue) || newValue)
@@ -35,7 +35,7 @@ export function Option({
       if (oneValue === value) {
         onChange?.()
       } else {
-        onChange?.(oneValue, initialDisplayValue || oneValue)
+        onChange?.(oneValue, oneDisplayValue)
       }
     }
     onClick?.(event)
