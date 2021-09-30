@@ -7,13 +7,13 @@ export const Value = () => {
   const {
     disabled,
     type,
-    fieldId,
     onChange,
     value,
     options,
     name,
     autocomplete,
     onDisplayValue,
+    handleRef,
   } = useTextInput()
 
   const defaultAutocomplete = autocomplete === true ? 'on' : 'off'
@@ -23,17 +23,19 @@ export const Value = () => {
 
   const isDisplayValue = (type !== 'password') && ((type === 'select') || (!reaction.focus))
 
+  const fieldProps = {
+    ref: handleRef,
+    type,
+    onChange,
+    value,
+    name,
+    disabled,
+    tabIndex: -1,
+    autoComplete: defaultAutocomplete,
+  }
+
   fields.input = (
-    <input
-      id={fieldId}
-      type={type}
-      onChange={onChange}
-      value={value}
-      name={name}
-      disabled={disabled}
-      tabIndex={-1}
-      autoComplete={defaultAutocomplete}
-    />
+    <input {...fieldProps} />
   )
 
   fields.textarea = (
@@ -42,29 +44,13 @@ export const Value = () => {
       width="100%"
       bottom="0"
     >
-      <textarea
-        id={fieldId}
-        onChange={onChange}
-        value={value}
-        name={name}
-        disabled={disabled}
-        tabIndex={-1}
-        autoComplete={defaultAutocomplete}
-      />
+      <textarea {...fieldProps} />
     </Fit.TryTagless>
   )
 
   fields.select = (
-    <Fit.TryTagless opacity="0">
-      <select
-        id={fieldId}
-        className={reaction.className.cursor}
-        onChange={onChange}
-        value={value}
-        name={name}
-        disabled={true}
-        tabIndex={-1}
-      >
+    <Fit.TryTagless opacity="0" cursor={reaction.cursor}>
+      <select {...fieldProps}>
         {React.Children.map(options, ({ props }) => (
           <option key={props.value} value={props.value} />
         ))}
@@ -89,7 +75,6 @@ function StyleWrapper({ children, ...rest }) {
   const {
     disabled,
     valueFont,
-    handleRef,
   } = useTextInput()
   const { focus } = useReaction()
 
@@ -106,10 +91,7 @@ function StyleWrapper({ children, ...rest }) {
             lineHeight="md"
             {...valueFont}
           >
-            <Gap.TryTagless
-              hor="md"
-              forwardRef={handleRef}
-            >
+            <Gap.TryTagless hor="md">
               {children}
             </Gap.TryTagless>
           </Font.TryTagless>

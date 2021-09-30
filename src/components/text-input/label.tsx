@@ -5,12 +5,11 @@ import { isDefined } from '../../utils'
 
 
 export const Label = () => {
-  const { value, fieldId, label, error } = useTextInput()
-  const { focus, cursor } = useReaction()
+  const { value, label, error } = useTextInput()
+  const { focus } = useReaction()
   const uptop = isDefined(value) || focus
 
-  return (<>
-    {/* Label */}
+  return (
     <Fit.TryTagless
       transition="100ms"
       cover="parent"
@@ -28,14 +27,5 @@ export const Label = () => {
         </Font.TryTagless>
       </Align.TryTagless>
     </Fit.TryTagless>
-
-    {/* Label click area */}
-    <Fit.TryTagless
-      cover="parent"
-      cursor={cursor}
-      zIndex={1}
-    >
-      <label htmlFor={fieldId} />
-    </Fit.TryTagless>
-  </>)
+  )
 }

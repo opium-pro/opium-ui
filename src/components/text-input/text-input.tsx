@@ -27,7 +27,6 @@ export const TextInput = withForm(({
   onDisplayValue,
   ...props
 }: TextInputProps) => {
-  const [fieldId] = useState(props.id || newId())
   let inputNode
 
   const isSelect = type === 'select'
@@ -43,17 +42,14 @@ export const TextInput = withForm(({
   }
 
   function handleFocus(event) {
-    event.stopPropagation()
-    event.preventDefault()
-    onFocus && onFocus(event)
-    if (!inputNode) { return }
-    inputNode.focus()
+    onFocus?.(event)
+    inputNode?.focus?.()
   }
 
   function handleBlur() {
     onBlur?.(props.value)
     if (!inputNode) { return }
-    inputNode.blur()
+    inputNode?.blur?.()
   }
 
   function handleRef(fRef) {
@@ -71,7 +67,6 @@ export const TextInput = withForm(({
     handleRef,
     onFocus: handleFocus,
     onBlur: handleBlur,
-    fieldId,
     inputNode,
     isSelect,
     initialValue,
