@@ -21,7 +21,7 @@ export const Value = () => {
   const reaction = useReaction()
   const fields: any = {}
 
-  const isDisplayValue = (type === 'select') || (!reaction.focus)
+  const isDisplayValue = (type !== 'password') && ((type === 'select') || (!reaction.focus))
 
   fields.input = (
     <input
@@ -76,7 +76,7 @@ export const Value = () => {
     <StyleWrapper opacity={!isDisplayValue ? '1' : '0'}>
       {fields[type] || fields.input}
     </StyleWrapper>
-    {isDisplayValue && type !== 'password' && (
+    {isDisplayValue && (
       <StyleWrapper>
         {typeof onDisplayValue === 'function' ? onDisplayValue?.(value) : value}
       </StyleWrapper>
