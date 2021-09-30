@@ -1,7 +1,7 @@
 import React from 'react'
 import { Gap, Align, Font, Fit, useReaction } from 'themeor'
 import { useTextInput } from './context'
-import {isDefined} from './utils'
+import { isDefined } from '../../utils'
 
 
 export const Label = () => {
@@ -33,7 +33,7 @@ export const Label = () => {
     <Fit.TryTagless
       cover="parent"
       cursor={cursor}
-      zIndex={uptop ? undefined : 1}
+      zIndex={1}
     >
       <label htmlFor={fieldId} />
     </Fit.TryTagless>

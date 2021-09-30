@@ -3,7 +3,7 @@ import { Gap, Box, Align, Font, Fit, useReaction } from 'themeor'
 import { useTextInput } from './context'
 
 
-export const Field = () => {
+export const Value = () => {
   const {
     disabled,
     type,
@@ -76,7 +76,7 @@ export const Field = () => {
     <StyleWrapper opacity={!isDisplayValue ? '1' : '0'}>
       {fields[type] || fields.input}
     </StyleWrapper>
-    {isDisplayValue && (
+    {isDisplayValue && type !== 'password' && (
       <StyleWrapper>
         {typeof onDisplayValue === 'function' ? onDisplayValue?.(value) : value}
       </StyleWrapper>
@@ -91,9 +91,10 @@ function StyleWrapper({ children, ...rest }) {
     valueFont,
     handleRef,
   } = useTextInput()
+  const { focus } = useReaction()
 
   return (
-    <Fit.TryTagless stick="top-left" top="25px" {...rest}>
+    <Fit.TryTagless stick="top-left" top="25px" {...rest} zIndex={focus && 2}>
       <Box.TryTagless>
         <Align.TryTagless vert="center">
           <Font.TryTagless

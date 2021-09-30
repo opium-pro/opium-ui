@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Reaction } from 'themeor'
 import newId from 'themeor/dist/utils/new-id'
 import { withForm } from '../form'
 import { Label } from './label'
 import { Placeholder } from './placeholder'
-import { Field } from './field'
+import { Value } from './value'
 import { Caption } from './caption'
 import { Wrapper } from './wrapper'
 import { TextInputProps } from './types'
@@ -27,7 +27,7 @@ export const TextInput = withForm(({
   onDisplayValue,
   ...props
 }: TextInputProps) => {
-  const fieldId = props.id || newId()
+  const [fieldId] = useState(props.id || newId())
   let inputNode
 
   const isSelect = type === 'select'
@@ -43,6 +43,8 @@ export const TextInput = withForm(({
   }
 
   function handleFocus(event) {
+    event.stopPropagation()
+    event.preventDefault()
     onFocus && onFocus(event)
     if (!inputNode) { return }
     inputNode.focus()
@@ -92,8 +94,8 @@ export const TextInput = withForm(({
         <div>
           <Wrapper>
             <Placeholder />
+            <Value />
             <Label />
-            <Field />
           </Wrapper>
           <Caption />
         </div>
