@@ -14,26 +14,23 @@ export const Select: FC<SelectProps> = ({
   children,
   onChange,
   multi = false,
-  onDisplayValue,
+  // onDisplayValue,
   ...rest
 }) => {
   const [displayValue, setDisplayValue]: any = useState()
 
-  function handleDisplayValue(value) {
-    if (typeof onDisplayValue === 'function') {
-      return onDisplayValue(displayValue)
-    }
-    if (Array.isArray(displayValue)) {
-      return displayValue.join(', ')
-    }
-    return value
-  }
+  // function handleDisplayValue(value) {
+  //   if (Array.isArray(displayValue)) {
+  //     return displayValue.join(', ')
+  //   }
+  //   return value
+  // }
 
   return (
     <SelectContext.Provider value={{ multi, setDisplayValue, displayValue }}>
       <TextInput
         {...rest}
-        onDisplayValue={handleDisplayValue}
+        // onDisplayValue={handleDisplayValue || onDisplayValue}
         pasteRight={<SelectIcon />}
         options={children}
         type="select"

@@ -4,7 +4,6 @@ import { getDeepFieldByPath } from '../../utils'
 
 export type WithFormProps = {
   value?: any
-  onDisplayValue?: any
   name?: string
   match?: any
   error?: any

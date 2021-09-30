@@ -24,4 +24,5 @@ export type TextInputProps = WithFormProps & {
   pasteRight?: ReactNode
   children?: ReactNode
   hint?: any
+  onDisplayValue?: any
 }

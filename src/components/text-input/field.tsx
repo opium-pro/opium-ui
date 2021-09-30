@@ -55,7 +55,7 @@ export const Field = () => {
   )
 
   fields.select = (
-    <Fit opacity="0">
+    <Fit.TryTagless opacity="0">
       <select
         id={fieldId}
         className={reaction.className.cursor}
@@ -69,7 +69,7 @@ export const Field = () => {
           <option key={props.value} value={props.value} />
         ))}
       </select>
-    </Fit>
+    </Fit.TryTagless>
   )
 
   return (<>

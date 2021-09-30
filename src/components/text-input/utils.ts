@@ -1,3 +1,3 @@
-export function hasValue(value) {
+export function isDefined(value) {
   return !!value && value != [] && value != {}
 }

@@ -34,10 +34,7 @@ export function Option({
       onChange?.(newValue)
     } else {
       setOpened(false)
-      if (oneValue === value) {
-        onChange?.()
-        setDisplayValue()
-      } else {
+      if (oneValue !== value) {
         onChange?.(oneValue)
         setDisplayValue(oneValue)
       }

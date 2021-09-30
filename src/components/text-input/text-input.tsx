@@ -91,9 +91,9 @@ export const TextInput = withForm(({
       <TextInputContext.Provider value={context}>
         <div>
           <Wrapper>
+            <Placeholder />
             <Label />
             <Field />
-            <Placeholder />
           </Wrapper>
           <Caption />
         </div>

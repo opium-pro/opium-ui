@@ -36,17 +36,23 @@ export const Tooltip: FC<TooltipProps> = ({
     windowNode = scrollNode || window
   }
 
+  useEffect(() => {
+    if (!parentNode) {
+      handleClose()
+    }
+  })
+
   function setInPlace() {
     placeNode(targetNode.current, parentNode, placeOrder, place)
   }
 
   function handleScroll() {
     handleClose()
-    setInPlace()
   }
 
   function startToOpen() {
     handleOpen()
+    setInPlace()
     windowNode?.addEventListener('scroll', handleScroll)
     window.addEventListener('mousemove', trackMove)
   }
@@ -70,6 +76,7 @@ export const Tooltip: FC<TooltipProps> = ({
   }
 
   function startWaiting() {
+    setInPlace()
     parentNode?.addEventListener('mousemove', trackMouseHold)
     parentNode.addEventListener('click', trackMouseHold)
   }
@@ -87,8 +94,12 @@ export const Tooltip: FC<TooltipProps> = ({
     hotkeys.setScope('tooltips')
     if (opened.current) { return }
     targetNode.current.style.display = 'block'
+    setInPlace()
     setTimeout(() => {
-      setInPlace()
+      if (!document.contains(parentNode)) {
+        handleClose()
+        return
+      }
       targetNode.current.style.opacity = '1'
       opened.current = true
     }, 100)
@@ -138,7 +149,6 @@ export const Tooltip: FC<TooltipProps> = ({
   function handleTargetRef(node) {
     if (!node) { return }
     targetNode.current = node
-    setInPlace()
   }
 
   if (!children) { return null }
