@@ -79,7 +79,7 @@ export const withForm = (Component: any) => ({
     !changed && setChanged(true)
     const result = onChange(value)
     let newValue = result !== undefined ? result : value
-    setField?.(name, newValue)
+    name && setField?.(name, newValue)
   }
 
   if (required && label) {

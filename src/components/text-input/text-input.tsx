@@ -33,7 +33,7 @@ export const TextInput = withForm(({
 
   function handleChange(event) {
     let value
-    if (isSelect || typeof value === 'string') {
+    if (isSelect || typeof event === 'string') {
       value = event
     } else {
       value = event?.target?.value
@@ -89,8 +89,8 @@ export const TextInput = withForm(({
         <div>
           <Wrapper>
             <Placeholder />
-            <Value />
             <Label />
+            <Value />
           </Wrapper>
           <Caption />
         </div>

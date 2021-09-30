@@ -12,7 +12,9 @@ export const Label = () => {
   return (
     <Fit.TryTagless
       transition="100ms"
-      cover="parent"
+      absolute
+      top="0"
+      left="0"
       height={uptop ? "30px" : "50px"}
     >
       <Align.TryTagless vert="center">

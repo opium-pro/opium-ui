@@ -1,6 +1,6 @@
-import React, { FC, useEffect, useRef, useState } from 'react'
-import { Font, Box, Gap, Fit, Align } from 'themeor'
-import { Portal, usePortals } from '../portal'
+import React, { FC, useEffect, useRef } from 'react'
+import { Font, Box, Gap, Fit } from 'themeor'
+import { Portal } from '../portal'
 import { useAppLayout } from '../app-layout'
 import { placeNode } from '../../utils'
 import hotkeys from 'hotkeys-js'
@@ -19,7 +19,7 @@ export interface TooltipProps {
 export const Tooltip: FC<TooltipProps> = ({
   children,
   placeOrder = ['top', 'bottom', 'right', 'left'],
-  delay = 800,
+  delay = 1000,
   duration = 150,
   place,
   delayToHide = 100,
@@ -27,10 +27,10 @@ export const Tooltip: FC<TooltipProps> = ({
   windowNode,
 }) => {
   let { scrollNode } = useAppLayout()
-  const targetNode: any = useRef()
-  const hovered: any = useRef()
-  const timeout: any = useRef()
-  const opened: any = useRef()
+  let targetNode
+  let hovered
+  let timeout
+  let opened
 
   if (!windowNode) {
     windowNode = scrollNode || window
@@ -43,11 +43,12 @@ export const Tooltip: FC<TooltipProps> = ({
   })
 
   function setInPlace() {
-    placeNode(targetNode.current, parentNode, placeOrder, place)
+    placeNode(targetNode, parentNode, placeOrder, place)
   }
 
   function handleScroll() {
     handleClose()
+    setInPlace()
   }
 
   function startToOpen() {
@@ -63,16 +64,16 @@ export const Tooltip: FC<TooltipProps> = ({
   }
 
   function trackMove(event) {
-    if (parentNode?.contains(event.target) || targetNode.current?.contains(event.target)) {
-      !opened.current && handleOpen()
+    if (parentNode?.contains(event.target) || targetNode?.contains(event.target)) {
+      !opened && handleOpen()
     } else {
-      opened.current && handleClose()
+      opened && handleClose()
     }
   }
 
   function trackMouseHold() {
-    clearTimeout(timeout.current)
-    timeout.current = setTimeout(startToOpen, delay)
+    clearTimeout(timeout)
+    timeout = setTimeout(startToOpen, delay)
   }
 
   function startWaiting() {
@@ -88,36 +89,36 @@ export const Tooltip: FC<TooltipProps> = ({
 
 
   function handleOpen(event?: any) {
-    if (!targetNode.current) { return }
-    hovered.current = true
+    if (!targetNode) { return }
+    hovered = true
     hotkeys('esc', 'tooltips', handleClose)
     hotkeys.setScope('tooltips')
-    if (opened.current) { return }
-    targetNode.current.style.display = 'block'
+    if (opened) { return }
+    targetNode.style.display = 'block'
     setInPlace()
     setTimeout(() => {
       if (!document.contains(parentNode)) {
         handleClose()
         return
       }
-      targetNode.current.style.opacity = '1'
-      opened.current = true
+      targetNode.style.opacity = '1'
+      opened = true
     }, 100)
   }
 
   function handleClose(event?: any) {
-    if (!targetNode.current) { return }
-    hovered.current = false
-    if (!opened.current) { return }
+    if (!targetNode) { return }
+    hovered = false
+    if (!opened) { return }
     setTimeout(() => {
-      if (!hovered.current) {
-        targetNode.current.style.opacity = '0'
+      if (!hovered) {
+        targetNode.style.opacity = '0'
         setTimeout(() => {
-          if (!hovered.current) {
-            targetNode.current.style.display = 'none'
+          if (!hovered) {
+            targetNode.style.display = 'none'
             removeTrackers()
             hotkeys.deleteScope('tooltips')
-            opened.current = false
+            opened = false
           }
         }, duration)
       }
@@ -130,7 +131,7 @@ export const Tooltip: FC<TooltipProps> = ({
   }
 
   function clearMouseHold() {
-    clearTimeout(timeout.current)
+    clearTimeout(timeout)
   }
 
   function handleSourceRef(node) {
@@ -148,7 +149,7 @@ export const Tooltip: FC<TooltipProps> = ({
 
   function handleTargetRef(node) {
     if (!node) { return }
-    targetNode.current = node
+    targetNode = node
   }
 
   if (!children) { return null }

@@ -1,52 +1,71 @@
 import React from 'react'
-import { useTextInput } from "../text-input"
-import { Dropdown, useDropdown } from '../dropdown'
-import { Font } from 'themeor'
+import { Dropdown } from '../dropdown'
+import { Font, Align, Gap, Fit } from 'themeor'
 import { useSelect } from './context'
+import { useTextInput } from "../text-input"
+import { useDropdown } from '../dropdown'
+import { Checkbox } from '../checkbox'
 
 
-export function Option({
+export const Option = ({
   value: oneValue,
-  onClick = undefined,
   label = undefined,
   hint = undefined,
   children = undefined,
-  displayValue: oneDisplayValue = undefined,
-}) {
+  displayValue = undefined,
+  onClick = undefined,
+  onCheckboxClick = undefined,
+  active = false,
+  ...rest
+}) => {
   const { value, onChange } = useTextInput()
-  const { multi, displayValue, setDisplayValue } = useSelect()
+  const { multi } = useSelect()
   const { setOpened } = useDropdown()
+  let checkboxRef
+
+  const checked = multi && (active || value.includes(oneValue))
 
   function handleClick(event) {
     if (multi) {
       let newValue: any = new Set(Array.isArray(value) ? value : [value])
-      let newDisplayValue: any = new Set(Array.isArray(displayValue) ? displayValue : [displayValue])
       if (newValue.has(oneValue)) {
         newValue.delete(oneValue)
-        newDisplayValue.delete(oneDisplayValue)
       } else {
         newValue.add(oneValue)
-        newDisplayValue.add(oneDisplayValue)
       }
       newValue = Array.from(newValue)
-      newDisplayValue = Array.from(newDisplayValue)
-      setDisplayValue(newDisplayValue)
       onChange?.(newValue)
     } else {
       setOpened(false)
       if (oneValue !== value) {
         onChange?.(oneValue)
-        setDisplayValue(oneValue)
       }
     }
-    onClick?.(event)
+
+    if (checkboxRef && checkboxRef.contains(event.tagget)) {
+      onCheckboxClick ? onCheckboxClick(event) : (onClick && onClick(event))
+      return
+    }
+
+    onClick && onClick(event)
   }
 
   return (
-    <Dropdown.Item onClick={handleClick}>
-      {label}
-      {!!hint && (<Font size="sm" fill="faint-down">{hint}</Font>)}
-      {children}
+    <Dropdown.Item {...rest} onClick={handleClick}>
+      <Align row vert="center">
+        {multi && (<>
+          <Checkbox
+            checked={checked}
+            forwardRef={n => checkboxRef = n}
+          />
+          <Gap />
+        </>)}
+        <Fit stretch>
+          {label}
+          {!!hint && (<Font size="sm" fill="faint-down">{hint}</Font>)}
+          {children}
+        </Fit>
+      </Align>
     </Dropdown.Item>
   )
 }

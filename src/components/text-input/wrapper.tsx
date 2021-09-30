@@ -4,13 +4,11 @@ import { MakeDropdown, Dropdown } from '../dropdown'
 import filter from 'opium-filter'
 import { useTextInput } from './context'
 import { Tooltip } from '../tooltip'
+import { Autocomplete } from './autocomplete'
 
 
 export const Wrapper = ({ children }) => {
   const {
-    autocomplete,
-    onChange,
-    value,
     disabled,
     options,
     isSelect,
@@ -25,23 +23,10 @@ export const Wrapper = ({ children }) => {
   const context = useTextInput()
   const reaction = useReaction()
 
-  const setAutocomplete = !isSelect && Array.isArray(autocomplete)
-  const itemsToAutocomplete = setAutocomplete && filter(autocomplete as any, value).filter((option) => value !== option).slice(0, 10)
-  const rednerAutocomplete = setAutocomplete && (<>
-    {itemsToAutocomplete.map((option, index) => (
-      <Dropdown.Item
-        key={`option-${index}`}
-        onClick={() => onChange(option)}
-      >
-        {option}
-      </Dropdown.Item>
-    ))}
-  </>)
-
   return (
     <MakeDropdown
       placeOrder={["bottom-stretch", "top-stretch"]}
-      items={isSelect ? options : rednerAutocomplete}
+      items={isSelect ? options : <Autocomplete />}
     >
       <Fit.TryTagless height={height}>
         <Box.TryTagless

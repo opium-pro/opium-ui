@@ -13,7 +13,8 @@ export const Placeholder = () => {
 
   return (
     <Fit.TryTagless
-      stick="top-left"
+      absolute
+      left="0"
       top="50%"
     >
       <Align.TryTagless vert="center">

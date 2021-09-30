@@ -1,5 +1,6 @@
-import {createContext, useContext} from 'react'
+import { createContext, useContext } from 'react'
+import { SelectContextType } from './types'
 
-export const SelectContext: any = createContext({})
+export const SelectContext: SelectContextType = createContext({})
 
-export const useSelect: any = () => useContext(SelectContext)
+export const useSelect = () => useContext(SelectContext)

@@ -49,7 +49,7 @@ export const Value = () => {
   )
 
   fields.select = (
-    <Fit.TryTagless opacity="0" cursor={reaction.cursor}>
+    <Fit.TryTagless opacity="0" hidden cursor={reaction.cursor}>
       <select {...fieldProps}>
         {React.Children.map(options, ({ props }) => (
           <option key={props.value} value={props.value} />
@@ -76,10 +76,15 @@ function StyleWrapper({ children, ...rest }) {
     disabled,
     valueFont,
   } = useTextInput()
-  const { focus } = useReaction()
 
   return (
-    <Fit.TryTagless stick="top-left" top="25px" {...rest} zIndex={focus && 2}>
+    <Fit.TryTagless
+      absolute
+      left="0"
+      top="25px"
+      {...rest}
+      static
+    >
       <Box.TryTagless>
         <Align.TryTagless vert="center">
           <Font.TryTagless

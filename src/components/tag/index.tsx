@@ -2,7 +2,7 @@ import React from 'react'
 import { Align, FontProps, Box, BoxProps, Font, Gap } from 'themeor'
 
 export type TagProps = FontProps & {
-  label: string,
+  label?: string,
   type?: BoxProps['fill'],
 }
 
