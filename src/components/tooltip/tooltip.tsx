@@ -76,15 +76,23 @@ export const Tooltip: FC<TooltipProps> = ({
     timeout = setTimeout(startToOpen, delay)
   }
 
+  function handleParentClick() {
+    trackMouseHold()
+    if (opened) {
+      handleClose()
+      removeTrackers()
+    }
+  }
+
   function startWaiting() {
     setInPlace()
     parentNode?.addEventListener('mousemove', trackMouseHold)
-    parentNode.addEventListener('click', trackMouseHold)
+    parentNode.addEventListener('click', handleParentClick)
   }
 
   function stopWaiting() {
     parentNode?.removeEventListener('mousemove', trackMouseHold)
-    parentNode.removeEventListener('click', trackMouseHold)
+    parentNode.removeEventListener('click', handleParentClick)
   }
 
 
@@ -128,6 +136,7 @@ export const Tooltip: FC<TooltipProps> = ({
   function removeTrackers() {
     removeMovementTrack()
     stopWaiting()
+    clearMouseHold()
   }
 
   function clearMouseHold() {

@@ -14,7 +14,12 @@ export const MarkMatch: FC<MarkMatchProps> = ({
   target,
   Wrapper,
 }) => {
-  if (!children || !target) { return children as any }
+  if (typeof children !== 'string') { return children as any }
+  if (!children && !target) { return children as any }
+
+  if (!target) { 
+    target = ''
+  }
 
   if (!Wrapper) {
     Wrapper = ({ children }) => (
