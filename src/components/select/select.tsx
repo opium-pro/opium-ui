@@ -5,7 +5,6 @@ import { useDropdown } from '../dropdown'
 import { SelectContext } from './context'
 import { SelectType } from './types'
 import { Tag } from '../tag'
-import { Portal } from '../portal'
 
 
 export const Select: SelectType = ({
@@ -16,12 +15,13 @@ export const Select: SelectType = ({
   ...rest
 }) => {
   const [displayValues, setDisplayValues] = useState(new Map())
+  const [newChildren, setNewChildren]: any = useState(new Map(children))
   // const [tagsNode, setTagsNode]: any = useState()
   // const [notFitNode, setNotFitNode]: any = useState()
 
   const handleDisplayValue = (value) => {
     if (Array.isArray(value)) {
-      const newValue = []
+      let newValue = []
       for (const val of value) {
         displayValues.has(val) && newValue.push(displayValues.get(val))
       }
@@ -34,10 +34,12 @@ export const Select: SelectType = ({
           cover="parent"
           maxWidth="100%"
           clip
-          // forwardRef={setTagsNode}
+        // forwardRef={setTagsNode}
         >
           <Align row stretch gapHor="4px">
-            {value?.map?.((val, i) => val && <Tag key={i} label={val} fill="base" />)}
+            {newValue?.map?.((val, i) => val &&
+              <Tag nowrap key={i} label={val} fill="base" weight="600" />
+            )}
           </Align>
         </Fit.TryTagless>
       )
@@ -49,11 +51,16 @@ export const Select: SelectType = ({
 
   useEffect(() => {
     const newValues = new Map()
-    React.Children.map(children, ({ props }) => {
-      const { value, children, displayValue } = props
-      newValues.set(value, displayValue || children)
+    const newChildren = new Map()
+    React.Children.map(children, (child) => {
+      const { value, children, displayValue, label } = child.props
+      newValues.set(value, displayValue || label || children)
+      newChildren.set(child, displayValue || label || value)
     })
-    setDisplayValues(newValues)
+    if (!displayValues.size) {
+      setDisplayValues(newValues)
+    }
+    setNewChildren(newChildren)
   }, [children])
 
   // Вставляем счетчик, если что-то не поместилось
@@ -78,7 +85,7 @@ export const Select: SelectType = ({
   //   if (notFit) {
   //     tagsNode.innerHtml = ''
   //     console.log(fit.length);
-      
+
   //     for (let i; i < fit.length; i++) {
   //       tagsNode.appendChild(fit[i])
   //     }
@@ -98,11 +105,11 @@ export const Select: SelectType = ({
           {...rest}
           onDisplayValue={handleDisplayValue}
           pasteRight={<SelectIcon />}
-          options={children}
+          options={newChildren}
           type="select"
         />
       </Fit>
-      {/* {multi && <Portal>
+      {/* {multi &&
         <Fit hidden>
           <Tag
             forwardRef={setNotFitNode}
@@ -110,7 +117,7 @@ export const Select: SelectType = ({
             weight="600"
           />
         </Fit>
-      </Portal>} */}
+      } */}
     </SelectContext.Provider>
   )
 }

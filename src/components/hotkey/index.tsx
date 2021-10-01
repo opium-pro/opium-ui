@@ -8,10 +8,12 @@ export type HotkeyProps = AlignProps & {
   trigger?: string
   action?: () => void
   children?: any
+  scope?: string
 }
 
 
 export const Hotkey = ({
+  scope,
   trigger,
   action,
   children,
@@ -22,11 +24,11 @@ export const Hotkey = ({
 
   useEffect(() => {
     if (action instanceof Function) {
-      hotkeys(trigger, (event) => {
+      hotkeys(trigger, scope, (event) => {
         event.preventDefault()
         action()
       })
-      return () => hotkeys.unbind(trigger)
+      return () => hotkeys.unbind(trigger, scope)
     }
   })
 

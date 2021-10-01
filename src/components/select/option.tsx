@@ -5,6 +5,7 @@ import { useSelect } from './context'
 import { useTextInput } from "../text-input"
 import { useDropdown } from '../dropdown'
 import { Checkbox } from '../checkbox'
+import { MarkMatch } from '../mark-match'
 
 
 export const Option = ({
@@ -21,6 +22,7 @@ export const Option = ({
   const { value, onChange } = useTextInput()
   const { multi } = useSelect()
   const { setOpened } = useDropdown()
+  const { search } = useDropdown()
   let checkboxRef
 
   const checked = multi && (active || value.includes(oneValue))
@@ -61,8 +63,10 @@ export const Option = ({
           <Gap />
         </>)}
         <Fit stretch>
-          {label}
-          {!!hint && (<Font size="sm" fill="faint-down">{hint}</Font>)}
+          <MarkMatch target={search}>{label}</MarkMatch>
+          {!!hint && (<Font size="sm" fill="faint-down">
+            <MarkMatch target={search}>{hint}</MarkMatch>
+          </Font>)}
           {children}
         </Fit>
       </Align>

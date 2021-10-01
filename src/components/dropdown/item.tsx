@@ -16,7 +16,7 @@ export const Item: FC<ItemProps> = ({
       radius="none"
       {...rest as any}
     >
-      <Gap.TryTagless vert="4px" hor="16px" minHeight="58px">
+      <Gap.TryTagless vert="4px" hor="16px" minHeight="54px">
         <Align vert="center">
           {children}
         </Align>

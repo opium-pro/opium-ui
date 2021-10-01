@@ -12,7 +12,7 @@ export function Autocomplete() {
     isSelect,
   } = useTextInput()
 
-  if (isSelect || !Array.isArray(autocomplete)) { return null }
+  if (!autocomplete || isSelect || !Array.isArray(autocomplete)) { return null }
 
   const itemsToAutocomplete = filter(autocomplete as any, value)
     .filter((option) => value !== option)

@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { Reaction } from 'themeor'
-import newId from 'themeor/dist/utils/new-id'
 import { withForm } from '../form'
 import { Label } from './label'
 import { Placeholder } from './placeholder'
@@ -12,9 +11,10 @@ import { TextInputContext } from './context'
 
 
 export const TextInput = withForm(({
+  label,
   type = "text",
-  height = "50px",
-  autocomplete = type === 'email',
+  height = label ? '50px' : '40px',
+  autocomplete = ['email'].includes(type),
   forwardRef,
   onChange,
   onFocus,
@@ -60,6 +60,7 @@ export const TextInput = withForm(({
 
   const context = {
     ...props,
+    label,
     type,
     height,
     autocomplete,

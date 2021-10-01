@@ -5,17 +5,16 @@ import { useTextInput } from './context'
 
 export const Placeholder = () => {
   const { focus } = useReaction()
-  const { placeholder, value } = useTextInput()
+  const { placeholder, value, label } = useTextInput()
+  const show = placeholder && !value && (!label || focus)
 
-  if (!placeholder || value || !focus) {
-    return null
-  }
+  if (!show) { return null }
 
   return (
     <Fit.TryTagless
       absolute
       left="0"
-      top="50%"
+      top={label ? '50%' : '11px'}
     >
       <Align.TryTagless vert="center">
         <Font.TryTagless

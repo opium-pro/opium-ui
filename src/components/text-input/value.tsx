@@ -51,8 +51,8 @@ export const Value = () => {
   fields.select = (
     <Fit.TryTagless opacity="0" hidden cursor={reaction.cursor}>
       <select {...fieldProps}>
-        {React.Children.map(options, ({ props }) => (
-          <option key={props.value} value={props.value} />
+        {React.Children.map(options, (child) => child && (
+          <option key={child.props?.value} value={child.props?.value} />
         ))}
       </select>
     </Fit.TryTagless>
@@ -75,13 +75,14 @@ function StyleWrapper({ children, ...rest }) {
   const {
     disabled,
     valueFont,
+    label,
   } = useTextInput()
 
   return (
     <Fit.TryTagless
       absolute
       left="0"
-      top="25px"
+      top={label ? '25px' : '10px'}
       {...rest}
       static
     >

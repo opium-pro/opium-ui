@@ -31,7 +31,7 @@ export const Wrapper = ({ children }) => {
       <Fit.TryTagless height={height}>
         <Box.TryTagless
           fill={(disabled && "base") || (focus && "base") || (hover && "faint") || "faint-down"}
-          radius="md"
+          radius={context.label ? 'md' : 'max'}
           borderFill={(disabled && "faint") || (focus && "base") || (error && 'critic') || "none"}
           style={{ transition: "all 0.25s ease" }}
           tabIndex={disabled ? -1 : 0}
