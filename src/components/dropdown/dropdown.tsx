@@ -79,7 +79,7 @@ export const Dropdown: FC<DropdownProps> = ({ children, place, placeOrder, forwa
       newChildren = newChildren.map(i => i.component)
     }
   }
-  const showSearch = isMapped && React.Children.count(children) > 3
+  const showSearch = isMapped && children.size > 10
 
   return (
     <DropdownContext.Provider value={{...context, search}}>

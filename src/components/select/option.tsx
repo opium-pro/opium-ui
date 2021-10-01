@@ -25,7 +25,7 @@ export const Option = ({
   const { search } = useDropdown()
   let checkboxRef
 
-  const checked = multi && (active || value.includes(oneValue))
+  const selected = active || (multi ? value?.includes(oneValue) : (value === oneValue))
 
   function handleClick(event) {
     if (multi) {
@@ -57,13 +57,15 @@ export const Option = ({
       <Align row vert="center">
         {multi && (<>
           <Checkbox
-            checked={checked}
+            checked={selected}
             forwardRef={n => checkboxRef = n}
           />
           <Gap />
         </>)}
         <Fit stretch>
-          <MarkMatch target={search}>{label}</MarkMatch>
+          <Font fill={selected ? "complement" : "base"} weight={selected ? '600' : '500'}>
+            <MarkMatch target={search}>{label}</MarkMatch>
+          </Font>
           {!!hint && (<Font size="sm" fill="faint-down">
             <MarkMatch target={search}>{hint}</MarkMatch>
           </Font>)}
