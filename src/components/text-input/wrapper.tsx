@@ -1,10 +1,11 @@
-import React, { ReactNode, useState } from 'react'
-import { Gap, Box, Align, Font, Fit, useReaction, Icon } from 'themeor'
-import { MakeDropdown, Dropdown } from '../dropdown'
-import filter from 'opium-filter'
+import React from 'react'
+import { Gap, Box, Align, Fit, useReaction, Icon } from 'themeor'
+import { MakeDropdown } from '../dropdown'
 import { useTextInput } from './context'
 import { Tooltip } from '../tooltip'
 import { Autocomplete } from './autocomplete'
+import { isDefined } from '../../utils'
+import { IconButton } from '../icon-button'
 
 
 export const Wrapper = ({ children }) => {
@@ -14,12 +15,14 @@ export const Wrapper = ({ children }) => {
     isSelect,
     height,
     error,
-    pasteLeft,
-    pasteRight,
+    insertLeft,
+    insertRight,
     hint,
+    value,
+    onChange,
     children: parentChildren,
   } = useTextInput()
-  const { passProps, focus, hover } = useReaction()
+  const { passProps, focus, hover, hoverOrFocus } = useReaction()
   const context = useTextInput()
   const reaction = useReaction()
 
@@ -38,25 +41,31 @@ export const Wrapper = ({ children }) => {
           {...passProps}
         >
           <Align row vert="stretch">
-            {pasteLeft && (
-              <Align row vert="center">{pasteLeft}</Align>
+            {insertLeft && (
+              <Align row vert="center">{insertLeft}</Align>
             )}
 
             <Fit stretch>
               {children}
             </Fit>
 
+            {isDefined(value) && hoverOrFocus && (
+              <Align.TryTagless row vert="center" onClick={() => onChange('')}>
+                <IconButton name="cross" fill="faint-down" />
+                <Gap size="5px" />
+              </Align.TryTagless>
+            )}
+
             {hint && (<>
-              <Align.TryTagless row vert="center">
-                <Gap cursor="help">
-                  <Icon fill="faint" name="question_circle" />
-                </Gap>
+              <Align.TryTagless row vert="center" cursor="help">
+                <Icon fill="faint" name="question_circle" />
+                <Gap />
               </Align.TryTagless>
               <Tooltip delay={0}>{hint}</Tooltip>
             </>)}
 
-            {pasteRight && (
-              <Align row vert="center">{pasteRight}</Align>
+            {insertRight && (
+              <Align row vert="center">{insertRight}</Align>
             )}
 
             {parentChildren && parentChildren instanceof Function ? (

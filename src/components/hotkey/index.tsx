@@ -36,18 +36,7 @@ export const Hotkey = ({
     return children
   }
 
-  return (
-    <Align row vert="center" {...props}>
-      {mainKeys.map((label, index) => (
-        <Fragment key={`hotkey-${trigger}-${label}`}>
-          <Tag label={label} />
-          {index + 1 < mainKeys.length && (
-            <Gap hor="x3s">
-              <Font fill="faint-down" weight="600">+</Font>
-            </Gap>
-          )}
-        </Fragment>
-      ))}
-    </Align>
-  )
+  const value = mainKeys.join(' + ')
+
+  return <Tag label={value} {...props} />
 }

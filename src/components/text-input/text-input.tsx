@@ -21,8 +21,8 @@ export const TextInput = withForm(({
   onBlur,
   initialValue,
   disabled,
-  pasteRight,
-  pasteLeft,
+  insertRight,
+  insertLeft,
   hint,
   onDisplayValue,
   ...props
@@ -72,8 +72,8 @@ export const TextInput = withForm(({
     isSelect,
     initialValue,
     disabled,
-    pasteRight,
-    pasteLeft,
+    insertRight,
+    insertLeft,
     hint,
     onDisplayValue,
   }

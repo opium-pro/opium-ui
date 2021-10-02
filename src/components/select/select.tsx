@@ -104,7 +104,7 @@ export const Select: SelectType = ({
         <TextInput
           {...rest}
           onDisplayValue={handleDisplayValue}
-          pasteRight={<SelectIcon />}
+          insertRight={<SelectIcon />}
           options={newChildren}
           type="select"
         />

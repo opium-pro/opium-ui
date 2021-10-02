@@ -14,9 +14,10 @@ export const Item: FC<ItemProps> = ({
     <MakeButton
       offset="0"
       radius="none"
+      tabIndex={0}
       {...rest as any}
     >
-      <Gap.TryTagless vert="4px" hor="16px" minHeight="54px">
+      <Gap.TryTagless vert="4px" hor="16px" minHeight="40px">
         <Align vert="center">
           {children}
         </Align>

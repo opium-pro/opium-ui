@@ -20,8 +20,8 @@ export type TextInputProps = WithFormProps & {
   initialValue?: string
   autocomplete?: string[] | boolean
   options?: any[]
-  pasteLeft?: any
-  pasteRight?: any
+  insertLeft?: any
+  insertRight?: any
   children?: any
   hint?: any
   onDisplayValue?: any

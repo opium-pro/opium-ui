@@ -65,11 +65,11 @@ export const AppLayout: FC<AppLayoutProps> = ({
             </Fit>
           </Align>
         </AppLayoutContext.Provider>
-
-        <Fit zIndex={300} cover="screen" stick="top-left">
-          {modals}
-        </Fit>
       </Align>
+
+      <Fit zIndex={300} cover="screen" stick="top-left">
+        {modals}
+      </Fit>
     </AppLayoutContext.Provider>
   )
 }
