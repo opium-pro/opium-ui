@@ -24,7 +24,7 @@ export const AppLayout: FC<AppLayoutProps> = ({
   const [sideMenuNode, setSideMenuNode] = useState()
 
   function contentNodeRef(node) {
-    getContentNode(node)
+    getContentNode && getContentNode(node)
     setContentNode(node)
   }
 
