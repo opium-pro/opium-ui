@@ -10,6 +10,7 @@ export type StatusProps = FontProps & {
 export const Status: FC<StatusProps> = (
   { label, type = 'base', ...props }: StatusProps
 ) => {
+  if (!label) { return null }
   return (
     <Box.TryTagless strong radius="max" fill={type}>
       <Gap.TryTagless vert="x2s" hor="md">

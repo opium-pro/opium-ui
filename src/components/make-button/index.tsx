@@ -23,8 +23,8 @@ export const MakeButton = withTooltip(({
 }: Props) => (
   <Reaction
     {...rest}
-    track={disabled ? undefined : track as any}
-    cursor={disabled ? "default" : "pointer"}
+    disabled={disabled}
+    track={track as any}
     tabIndex={0}
   >
     {(rProps, r) => (

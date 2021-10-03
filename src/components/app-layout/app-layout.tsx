@@ -6,9 +6,10 @@ import { AppLayoutContext } from './context'
 
 
 type AppLayoutProps = {
-  sideMenu?: any,
-  header?: any,
-  modals?: any,
+  sideMenu?: any
+  header?: any
+  modals?: any
+  getContentNode?: any
 }
 
 export const AppLayout: FC<AppLayoutProps> = ({
@@ -16,10 +17,16 @@ export const AppLayout: FC<AppLayoutProps> = ({
   header,
   children,
   modals,
+  getContentNode,
   ...rest
 }) => {
   const [contentNode, setContentNode] = useState()
   const [sideMenuNode, setSideMenuNode] = useState()
+
+  function contentNodeRef(node) {
+    getContentNode(node)
+    setContentNode(node)
+  }
 
   const context = { contentNode, sideMenuNode }
 
@@ -41,7 +48,7 @@ export const AppLayout: FC<AppLayoutProps> = ({
 
         <AppLayoutContext.Provider value={{ ...context, scrollNode: contentNode }}>
           <Align stretch>
-            <Fit height="100vh" zIndex={100} scroll forwardRef={setContentNode}>
+            <Fit height="100vh" zIndex={100} scroll forwardRef={contentNodeRef}>
 
               <Fit.TryTagless minHeight="100vh" FORCE_TAGLESS>
                 <Background>

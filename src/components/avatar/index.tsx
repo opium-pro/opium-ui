@@ -3,11 +3,12 @@ import { Align, Fit, Box, Font, Icon } from "themeor"
 import { withTooltip } from '../tooltip'
 
 export const SIZE = {
+  xs: { circle: "30px", font: "x3s" },
   sm: { circle: "40px", font: "x2s" },
   md: { circle: "80px", font: "lg" },
   lg: { circle: "120px", font: "x2l" },
   xl: { circle: "160px", font: "x3l" },
-};
+}
 
 export interface IAvatarProps {
   name?: string;

@@ -145,7 +145,7 @@ export const Tooltip: FC<TooltipProps> = ({
 
   function handleSourceRef(node) {
     if (!node) { return }
-    parentNode = parentNode || node.previousElementSibling
+    parentNode = parentNode || node.previousElementSibling || node.parentNode
     parentNode?.addEventListener('mouseenter', startWaiting)
     parentNode?.addEventListener('mouseleave', clearMouseHold)
   }
@@ -164,7 +164,7 @@ export const Tooltip: FC<TooltipProps> = ({
   if (!children) { return null }
 
   return (
-    <Fit forwardRef={handleSourceRef}>
+    <Fit forwardRef={handleSourceRef} hidden>
       <Portal>
         <Fit.TryTagless transition="opacity">
           <Gap
