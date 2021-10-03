@@ -37,11 +37,9 @@ export const Hotkey = ({
       if (active) {
         hotkeys.setScope(scope)
         bind()
-        console.log(hotkeys.getScope());
       } else {
         hotkeys.deleteScope(scope)
         unbind()
-        console.log(hotkeys.getScope());
       }
     }
   }, [active, scope])
@@ -49,8 +47,6 @@ export const Hotkey = ({
   function bind() {
     if (action instanceof Function) {
       hotkeys(trigger, scope, (event) => {
-        console.log('>>>>>>>');
-
         preventDefault && event.preventDefault()
         action()
       })
