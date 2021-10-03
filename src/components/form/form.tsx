@@ -61,9 +61,7 @@ export function Form({
   }
 
   useEffect(() => {
-    if (changed) {
-      onChange?.(fields)
-    }
+    onChange?.(fields)
   }, [fields])
 
   const context = {
