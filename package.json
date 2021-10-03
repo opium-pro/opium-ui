@@ -13,6 +13,7 @@
     "@types/react": "^17.0.13",
     "@types/react-dom": "^17.0.8",
     "@types/react-helmet": "^6.1.1",
+    "copyfiles": "^2.4.1",
     "nodemon": "^2.0.12",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -26,7 +27,7 @@
     "unlink": "npm unlink react",
     "build:docs": "react-scripts build",
     "clear": "rm -fr ./dist && mkdir dist",
-    "parse:icons": "node ./scripts/parse-icons && rsync -a --include '*/' --include '*.svg' --exclude '*' src/* dist",
+    "parse:icons": "node ./scripts/parse-icons && copyfiles -V -u 1 src/**/*.svg dist",
     "build": "tsc -p tsconfig.dist.json",
     "publish": "npm run clear && npm run parse:icons && npm run build && npm publish"
   },
