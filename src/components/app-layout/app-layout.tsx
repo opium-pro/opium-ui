@@ -32,7 +32,7 @@ export const AppLayout: FC<AppLayoutProps> = ({
 
   return (
     <AppLayoutContext.Provider value={context}>
-      <Align row vert="stretch" {...rest}>
+      <Align pattern="auto 1fr" vert="stretch" {...rest}>
         {sideMenu && (
           <AppLayoutContext.Provider value={{ ...context, scrollNode: sideMenuNode }}>
             <Fit
