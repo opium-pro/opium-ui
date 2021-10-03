@@ -4,6 +4,7 @@ import { TextInputProps } from "../text-input"
 export type SelectProps = TextInputProps & {
   multi?: boolean
   onDisplayValue?: any
+  value?: any
 }
 
 export type SelectType = FC<SelectProps>

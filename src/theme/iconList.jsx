@@ -221,11 +221,6 @@ const icons = {sm:{}, md:{}, lg:{}}
   icons.sm.back_refresh_reload_loading_checkmark = Icon__back_refresh_reload_loading_checkmark
   icons.lg.back_refresh_reload_loading_checkmark = Icon__back_refresh_reload_loading_checkmark
 
-  const Icon__backward_rearward_back_remove = (props) => <div {...props} dangerouslySetInnerHTML={{__html: '<?xml version="1.0" encoding="UTF-8"?><svg version="1.1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g fill="none"><path d="M0 0h24v24h-24Z"></path><path stroke="#323232" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 13c0 3.866 3.134 7 7 7 3.866 0 7-3.134 7-7 0-3.866-3.134-7-7-7h-7"></path><path stroke="#323232" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 3l-3 3 3 3"></path><path stroke="#323232" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13.77 11.23l-3.54 3.54"></path><path stroke="#323232" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13.77 14.77l-3.54-3.54"></path></g></svg>'}} />
-  icons.md.backward_rearward_back_remove = Icon__backward_rearward_back_remove
-  icons.sm.backward_rearward_back_remove = Icon__backward_rearward_back_remove
-  icons.lg.backward_rearward_back_remove = Icon__backward_rearward_back_remove
-
   const Icon__backward_rearward_back = (props) => <div {...props} dangerouslySetInnerHTML={{__html: '<?xml version="1.0" encoding="UTF-8"?><svg version="1.1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g fill="none"><path d="M0 0h24v24h-24Z"></path><path stroke="#323232" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 7.5l3-3"></path><path stroke="#323232" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 7.5l3 3"></path><path stroke="#323232" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 7.5h6c3.314 0 6 2.686 6 6 0 3.314-2.686 6-6 6 -3.314 0-6-2.686-6-6"></path></g></svg>'}} />
   icons.md.backward_rearward_back = Icon__backward_rearward_back
   icons.sm.backward_rearward_back = Icon__backward_rearward_back
@@ -1120,6 +1115,11 @@ const icons = {sm:{}, md:{}, lg:{}}
   icons.md.refresh_rotate = Icon__refresh_rotate
   icons.sm.refresh_rotate = Icon__refresh_rotate
   icons.lg.refresh_rotate = Icon__refresh_rotate
+
+  const Icon__reset = (props) => <div {...props} dangerouslySetInnerHTML={{__html: '<?xml version="1.0" encoding="UTF-8"?><svg version="1.1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g fill="none"><path d="M0 0h24v24h-24Z"></path><path stroke="#323232" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 13c0 3.866 3.134 7 7 7 3.866 0 7-3.134 7-7 0-3.866-3.134-7-7-7h-7"></path><path stroke="#323232" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 3l-3 3 3 3"></path><path stroke="#323232" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13.77 11.23l-3.54 3.54"></path><path stroke="#323232" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13.77 14.77l-3.54-3.54"></path></g></svg>'}} />
+  icons.md.reset = Icon__reset
+  icons.sm.reset = Icon__reset
+  icons.lg.reset = Icon__reset
 
   const Icon__rotate_refresh_loading = (props) => <div {...props} dangerouslySetInnerHTML={{__html: '<?xml version="1.0" encoding="UTF-8"?><svg version="1.1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g stroke-linecap="round" stroke-width="1.5" stroke="#323232" fill="none" stroke-linejoin="round"><path d="M12 4l-1.91291e-07 2.92397e-11c-4.41828.000675422-7.99945 3.58294-7.99878 8.00122 .000675422 4.41828 3.58294 7.99945 8.00122 7.99878 4.41828-.000675422 7.99945-3.58294 7.99878-8.00122 -.000447908-2.92999-1.60259-5.62532-4.17622-7.02578"></path><polyline points="15.825,8.048 15.825,4.512 19.361,4.512"></polyline></g><path fill="none" d="M0 24v-24h24v24Z"></path></svg>'}} />
   icons.md.rotate_refresh_loading = Icon__rotate_refresh_loading

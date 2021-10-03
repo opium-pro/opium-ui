@@ -45,7 +45,7 @@ export const Notice: FC<NoticeProps> = ({ title, text, type = 'base', onClose, c
                 <Fit stick="top-right">
                   <MakeButton onClick={handleClose}>
                     <Gap>
-                      <Icon name="delete_disabled" />
+                      <Icon name="cross_circled" />
                     </Gap>
                   </MakeButton>
                 </Fit>
