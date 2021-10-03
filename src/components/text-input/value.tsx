@@ -87,7 +87,7 @@ function StyleWrapper({ children, ...rest }) {
       static
     >
       <Box.TryTagless>
-        <Align.TryTagless vert="center">
+        <Align.TryTagless vert="center" row>
           <Font.TryTagless
             size="sm"
             fill={(disabled && "faint") || "base"}

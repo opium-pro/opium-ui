@@ -24,6 +24,7 @@ export const TextInput = withForm(({
   insertRight,
   insertLeft,
   hint,
+  error,
   onDisplayValue,
   ...props
 }: TextInputProps) => {
@@ -76,6 +77,7 @@ export const TextInput = withForm(({
     insertLeft,
     hint,
     onDisplayValue,
+    error,
   }
 
   return (

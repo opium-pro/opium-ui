@@ -1,6 +1,7 @@
 import React from 'react'
 import { Gap, Font } from 'themeor'
 import { useTextInput } from './context'
+import { Tooltip } from '../tooltip'
 
 
 export const Caption = () => {
@@ -9,6 +10,8 @@ export const Caption = () => {
   if (typeof error !== 'string') {
     return null
   }
+
+  return <Tooltip delay={0}>{error}</Tooltip>
 
   return (<>
     <Gap size="xs" />

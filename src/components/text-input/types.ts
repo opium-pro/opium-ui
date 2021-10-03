@@ -25,4 +25,5 @@ export type TextInputProps = WithFormProps & {
   children?: any
   hint?: any
   onDisplayValue?: any
+  mask?: any
 }

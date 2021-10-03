@@ -18,8 +18,8 @@ export interface DropdownProps extends FitProps {
 
 export const Dropdown: FC<DropdownProps> = ({
   children,
-  place,
-  placeOrder,
+  place = 'bottom-stretch',
+  placeOrder = ['bottom', 'top'],
   forwardRef,
   parentNode,
   ...rest

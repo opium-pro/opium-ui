@@ -27,16 +27,19 @@ export function Form({
   const [changed, setChanged] = useState(false)
   const [hasError, setError] = useState(false)
 
+
   useEffect(() => {
     if (initialDisabled !== disabled) {
       setDisabled(initialDisabled)
     }
   }, [initialDisabled])
 
+
   function reset() {
     setFields(initialValues)
     setChanged(false)
   }
+
 
   function setField(name, value) {
     let newContext = { ...fields }
@@ -50,19 +53,23 @@ export function Form({
     setFields(newContext)
   }
 
+
   function setInitialValue(name, value) {
     const newContext = { ...initialValues, [name]: value }
     setInitialValues(newContext)
   }
+
 
   function handleSubmit(e) {
     e.preventDefault()
     onSubmit?.(fields)
   }
 
+
   useEffect(() => {
     onChange?.(fields)
   }, [fields])
+
 
   const context = {
     fields,
@@ -77,6 +84,7 @@ export function Form({
     hasError,
     setError,
   }
+
 
   getContext?.(context)
 

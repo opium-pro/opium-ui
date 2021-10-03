@@ -92,7 +92,7 @@ export const Tooltip: FC<TooltipProps> = ({
 
   function stopWaiting() {
     parentNode?.removeEventListener('mousemove', trackMouseHold)
-    parentNode.removeEventListener('click', handleParentClick)
+    parentNode?.removeEventListener('click', handleParentClick)
   }
 
 
