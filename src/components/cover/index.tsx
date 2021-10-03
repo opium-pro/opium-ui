@@ -7,7 +7,7 @@ export interface CoverProps {}
 
 export const Cover: FC<CoverProps & AlignProps> = ({ children, ...rest }) => {
   return (
-    <Fit.TryTagless cover="screen" scroll>
+    <Fit.TryTagless fixed left="0" top="0" width="100vw" height="100vh" scroll>
       <Box.TryTagless fill="base-down" blur="md">
         <Align vert="center" hor="center" {...rest}>
           {children}

@@ -1,6 +1,6 @@
 import React, { FC, useState, Fragment, useEffect } from 'react'
-import { Fit, Box, Align, Gap } from 'themeor'
-import { AppLayoutContext, useAppLayout } from '../app-layout'
+import { Align } from 'themeor'
+import { useAppLayout } from '../app-layout'
 
 
 export interface LazyScrollerProps {
