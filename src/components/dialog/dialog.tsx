@@ -38,14 +38,14 @@ export const Dialog: FC<DialogProps> = ({
         {onApply && (
           <Button stretch primary label={applyLabel} onClick={handleApply}>
             <Gap />
-            <Hotkey trigger="enter,y" action={handleApply} />
+            {/* <Hotkey trigger="enter,y" action={handleApply} /> */}
           </Button>
         )}
         {onApply && onCancel && <Gap right="md" />}
         {onCancel && (
           <Button stretch label={cancelLabel} onClick={handleCancel}>
             <Gap />
-            <Hotkey trigger="n" action={handleCancel} />
+            {/* <Hotkey trigger="n" action={handleCancel} /> */}
           </Button>
         )}
       </>)}

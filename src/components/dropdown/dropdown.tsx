@@ -113,15 +113,17 @@ export const Dropdown: FC<DropdownProps> = ({
               >
                 <Box radius="md" shadow="lg" fill="base">
                   {showSearch && (
-                    <Gap size="md" bottom="sm">
-                      <TextInput
-                        forwardRef={n => searchNode = n}
-                        type="search"
-                        placeholder="Search"
-                        value={search}
-                        onChange={setSearch}
-                      />
-                    </Gap>
+                    <Fit sticky top="0" zIndex={1}>
+                      <Gap size="md" bottom="sm">
+                        <TextInput
+                          forwardRef={n => searchNode = n}
+                          type="search"
+                          placeholder="Search"
+                          value={search}
+                          onChange={setSearch}
+                        />
+                      </Gap>
+                    </Fit>
                   )}
                   {isMapped ? newChildren : children}
                 </Box>
