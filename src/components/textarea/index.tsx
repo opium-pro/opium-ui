@@ -1,15 +1,13 @@
 import React from 'react'
-import { forwardRef } from 'react'
 import {TextInput, TextInputProps} from '../text-input'
 
 
-export const TextArea = forwardRef(({ ...props }: TextInputProps, ref) => {
+export const TextArea = ({ ...props }: TextInputProps) => {
   return (
     <TextInput
       {...props}
       type="textarea"
       height="114px"
-      forwardRef={ref}
     />
   )
-})
+}

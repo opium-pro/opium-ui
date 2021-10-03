@@ -5,28 +5,34 @@ import { useAppLayout } from '../app-layout'
 import { placeNode } from '../../utils'
 import { TextInput } from "../text-input"
 import filter from 'opium-filter'
-import { useDropdown, DropdownContext } from './context'
+import { useDropdown } from './context'
+import { Hotkey } from '../hotkey'
 
 
 export interface DropdownProps extends FitProps {
   place?: string
   placeOrder?: string[]
+  parentNode?: any
 }
 
 
-export const Dropdown: FC<DropdownProps> = ({ children, place, placeOrder, forwardRef, ...rest }) => {
-  const [sourceNode, setSourceNode]: any = useState()
+export const Dropdown: FC<DropdownProps> = ({
+  children,
+  place,
+  placeOrder,
+  forwardRef,
+  parentNode,
+  ...rest
+}) => {
   const [targetNode, setTargetNode]: any = useState()
   const [isReady, setIsReady]: any = useState()
   const { contentNode } = useAppLayout()
-  const [search, setSearch] = useState()
-  const context = useDropdown()
-  const { opened } = context
+  const { opened, search, setSearch, setOpened } = useDropdown()
   let searchNode
 
   function alignNodes() {
-    if (!sourceNode || !targetNode) { return }
-    placeNode(targetNode, sourceNode, placeOrder, place)
+    if (!parentNode || !targetNode) { return }
+    placeNode(targetNode, parentNode, placeOrder, place)
   }
 
   useEffect(() => {
@@ -45,17 +51,21 @@ export const Dropdown: FC<DropdownProps> = ({ children, place, placeOrder, forwa
   }, [isReady])
 
   function handleRef(node) {
-    if (!node) { return }
-    !targetNode && setTargetNode(node)
+    setTargetNode(node)
       ; (forwardRef as any)?.(node)
   }
 
   useEffect(() => {
     alignNodes()
-    if (contentNode && targetNode && sourceNode) {
+    if (contentNode && targetNode && parentNode) {
       setIsReady(true)
     }
   })
+
+  function handleSourceRef(node) {
+    if (!node) { return }
+    parentNode = parentNode || node.previousElementSibling || node.parentNode
+  }
 
   useEffect(() => {
     if (opened && searchNode) {
@@ -82,10 +92,14 @@ export const Dropdown: FC<DropdownProps> = ({ children, place, placeOrder, forwa
   const showSearch = isMapped && (children as any).size > 10
 
   return (
-    <DropdownContext.Provider value={{...context, search}}>
-      <Fit forwardRef={setSourceNode}>
-        <Portal>
-          <Fit absolute left="0" top="0">
+    <Fit forwardRef={handleSourceRef} hidden>
+      <Portal>
+        <Hotkey
+          scope="dropdown"
+          trigger="esc"
+          action={() => setOpened(false)}
+        >
+          <Fit.TryTagless absolute>
             <Gap
               vert="10px"
               forwardRef={handleRef}
@@ -113,9 +127,9 @@ export const Dropdown: FC<DropdownProps> = ({ children, place, placeOrder, forwa
                 </Box>
               </Fit.TryTagless>
             </Gap>
-          </Fit>
-        </Portal>
-      </Fit>
-    </DropdownContext.Provider>
+          </Fit.TryTagless>
+        </Hotkey>
+      </Portal>
+    </Fit>
   )
 }

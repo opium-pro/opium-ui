@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { Dropdown } from './dropdown'
-import { Hotkey } from '../hotkey'
 import { DropdownContext } from './context'
 
 
 export function MakeDropdown({ opened: initialOpened, items, onClick, children, ...rest }: any) {
   const [dropdownNode, setDropdownNode]: any = useState()
   const [opened, setOpened] = useState(initialOpened)
+  const [search, setSearch] = useState()
 
   function trackOutsideClick(event) {
     if (!dropdownNode?.contains(event.target)) {
@@ -41,21 +41,20 @@ export function MakeDropdown({ opened: initialOpened, items, onClick, children, 
   const props = children.props
 
   return (
-    <DropdownContext.Provider value={{ opened, setOpened, dropdownNode }}>
-      <Hotkey
-        active={opened}
-        scope="dropdown"
-        trigger="esc"
-        action={() => setOpened(false)}
-      >
-        <Child {...props} onClick={handleClick} />
+    <DropdownContext.Provider value={{
+      opened,
+      setOpened,
+      dropdownNode,
+      search,
+      setSearch,
+    }}>
+      <Child {...props} onClick={handleClick} />
 
-        {opened && items && (
-          <Dropdown {...rest} forwardRef={n => n && setDropdownNode(n)}>
-            {items}
-          </Dropdown>
-        )}
-      </Hotkey>
+      {items && opened && (
+        <Dropdown {...rest} forwardRef={n => n && setDropdownNode(n)}>
+          {items}
+        </Dropdown>
+      )}
     </DropdownContext.Provider>
   )
 }

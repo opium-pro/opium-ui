@@ -100,15 +100,13 @@ export const Select: SelectType = ({
     <SelectContext.Provider value={{
       multi,
     }}>
-      <Fit>
-        <TextInput
-          {...rest}
-          onDisplayValue={handleDisplayValue}
-          insertRight={<SelectIcon />}
-          options={newChildren}
-          type="select"
-        />
-      </Fit>
+      <TextInput
+        {...rest}
+        onDisplayValue={handleDisplayValue}
+        insertRight={<SelectIcon />}
+        options={newChildren}
+        type="select"
+      />
       {/* {multi &&
         <Fit hidden>
           <Tag

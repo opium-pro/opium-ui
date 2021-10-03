@@ -18,7 +18,7 @@ export const Hotkey = ({
   scope,
   trigger,
   action,
-  active,
+  active = true,
   children,
   preventDefault = false,
   ...props

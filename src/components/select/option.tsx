@@ -9,9 +9,9 @@ import { MarkMatch } from '../mark-match'
 
 
 export const Option = ({
-  value: oneValue,
-  label = undefined,
-  hint = undefined,
+  value: oneValue  = undefined as any,
+  label = undefined as string,
+  hint = undefined as string,
   children = undefined,
   displayValue = undefined,
   onClick = undefined,

@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import { BoxProps } from 'themeor'
 import { WithFormProps } from '../form'
 
 export type TextInputProps = WithFormProps & {

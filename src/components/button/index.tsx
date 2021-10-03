@@ -43,6 +43,7 @@ export const Button = withTooltip(({
           borderFill={(primary || disabled) ? "none" : "faint-up"}
           strong={primary && !disabled}
           radius="xs"
+          {...rest}
         >
           <Align.TryTagless row vert="center" hor="center">
             <Font.TryTagless
@@ -56,7 +57,6 @@ export const Button = withTooltip(({
                 <button
                   disabled={disabled}
                   {...rProps}
-                  {...rest}
                   ref={forwardRef}
                   type={type}>
                   <Align hor="center">
