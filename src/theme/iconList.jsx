@@ -601,15 +601,15 @@ const icons = {sm:{}, md:{}, lg:{}}
   icons.sm.cross = Icon__cross
   icons.lg.cross = Icon__cross
 
+  const Icon__cross_circled = (props) => <div {...props} dangerouslySetInnerHTML={{__html: '<?xml version="1.0" encoding="UTF-8"?><svg version="1.1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g fill="none"><path d="M0 0h24v24h-24Z"></path><path stroke="#323232" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.83 9.17l-5.66 5.66"></path><path stroke="#323232" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.83 14.83l-5.66-5.66"></path><path stroke="#323232" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 21v0c-4.971 0-9-4.029-9-9v0c0-4.971 4.029-9 9-9v0c4.971 0 9 4.029 9 9v0c0 4.971-4.029 9-9 9Z"></path></g></svg>'}} />
+  icons.md.cross_circled = Icon__cross_circled
+  icons.sm.cross_circled = Icon__cross_circled
+  icons.lg.cross_circled = Icon__cross_circled
+
   const Icon__delete_button = (props) => <div {...props} dangerouslySetInnerHTML={{__html: '<?xml version="1.0" encoding="UTF-8"?><svg version="1.1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g stroke-width="1.5" fill="none" stroke="#323232"><path d="M5.841 18l-2.306-4 9.27139e-08 1.60585e-07c-.714531-1.2376-.714531-2.7624-1.85428e-07-4l2.307-4 -3.25884e-07 5.64447e-07c.714691-1.23788 2.03562-2.00032 3.465-2h5.386l1.38183e-07-6.55689e-11c1.42974-.000678407 2.75113.761808 3.466 2l2.306 4 -2.91409e-08-5.04736e-08c.714531 1.2376.714531 2.7624 5.82819e-08 4l-2.307 4 1.51038e-07-2.61606e-07c-.714692 1.23788-2.03562 2.00032-3.465 2h-5.386l-3.98739e-08 1.89218e-11c-1.42974.000678453-2.75113-.761808-3.466-2Z"></path><line x1="9.5" x2="14.5" y1="14.5" y2="9.5" stroke-linecap="round" stroke-linejoin="round"></line><line x1="14.5" x2="9.5" y1="14.5" y2="9.5" stroke-linecap="round" stroke-linejoin="round"></line></g><path fill="none" d="M0 0h24v24h-24Z"></path></svg>'}} />
   icons.md.delete_button = Icon__delete_button
   icons.sm.delete_button = Icon__delete_button
   icons.lg.delete_button = Icon__delete_button
-
-  const Icon__delete_disabled = (props) => <div {...props} dangerouslySetInnerHTML={{__html: '<?xml version="1.0" encoding="UTF-8"?><svg version="1.1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g fill="none"><path d="M0 0h24v24h-24Z"></path><path stroke="#323232" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.83 9.17l-5.66 5.66"></path><path stroke="#323232" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.83 14.83l-5.66-5.66"></path><path stroke="#323232" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 21v0c-4.971 0-9-4.029-9-9v0c0-4.971 4.029-9 9-9v0c4.971 0 9 4.029 9 9v0c0 4.971-4.029 9-9 9Z"></path></g></svg>'}} />
-  icons.md.delete_disabled = Icon__delete_disabled
-  icons.sm.delete_disabled = Icon__delete_disabled
-  icons.lg.delete_disabled = Icon__delete_disabled
 
   const Icon___delete = (props) => <div {...props} dangerouslySetInnerHTML={{__html: '<?xml version="1.0" encoding="UTF-8"?><svg version="1.1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g fill="none"><path d="M0 0h24v24h-24Z"></path><path stroke="#323232" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6.49 6.538l-3.071 4.3c-.497.695-.497 1.63 0 2.325l3.071 4.3c.375.525.981.837 1.627.837h10.883c1.105 0 2-.895 2-2v-8.6c0-1.105-.895-2-2-2h-10.883c-.646 0-1.252.312-1.627.838Z"></path><path stroke="#323232" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 10l-4 4"></path><path stroke="#323232" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 14l-4-4"></path></g></svg>'}} />
   icons.md._delete = Icon___delete
@@ -711,10 +711,10 @@ const icons = {sm:{}, md:{}, lg:{}}
   icons.sm.filter_sort_a_z = Icon__filter_sort_a_z
   icons.lg.filter_sort_a_z = Icon__filter_sort_a_z
 
-  const Icon__filter_sort = (props) => <div {...props} dangerouslySetInnerHTML={{__html: '<?xml version="1.0" encoding="UTF-8"?><svg version="1.1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g stroke-linecap="round" stroke-width="1.5" stroke="#323232" fill="none" stroke-linejoin="round"><path d="M14.5 13.5l5.207-5.207c.188-.188.293-.442.293-.707v-2.586c0-.552-.448-1-1-1h-14c-.552 0-1 .448-1 1v2.586c0 .265.105.52.293.707l5.207 5.207"></path><path d="M9.5 13.5v6.249c0 .813.764 1.41 1.553 1.213l2.5-.625c.556-.139.947-.639.947-1.213v-5.624"></path></g><rect width="24" height="24" fill="none"></rect></svg>'}} />
-  icons.md.filter_sort = Icon__filter_sort
-  icons.sm.filter_sort = Icon__filter_sort
-  icons.lg.filter_sort = Icon__filter_sort
+  const Icon__filter = (props) => <div {...props} dangerouslySetInnerHTML={{__html: '<?xml version="1.0" encoding="UTF-8"?><svg version="1.1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g stroke-linecap="round" stroke-width="1.5" stroke="#323232" fill="none" stroke-linejoin="round"><path d="M14.5 13.5l5.207-5.207c.188-.188.293-.442.293-.707v-2.586c0-.552-.448-1-1-1h-14c-.552 0-1 .448-1 1v2.586c0 .265.105.52.293.707l5.207 5.207"></path><path d="M9.5 13.5v6.249c0 .813.764 1.41 1.553 1.213l2.5-.625c.556-.139.947-.639.947-1.213v-5.624"></path></g><rect width="24" height="24" fill="none"></rect></svg>'}} />
+  icons.md.filter = Icon__filter
+  icons.sm.filter = Icon__filter
+  icons.lg.filter = Icon__filter
 
   const Icon__finder_mac_icon = (props) => <div {...props} dangerouslySetInnerHTML={{__html: '<svg id="Layer_3" data-name="Layer 3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><line x1="16.25" y1="8.625" x2="16.25" y2="9.375" fill="none" stroke="#323232" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/><line x1="7.75" y1="8.625" x2="7.75" y2="9.375" fill="none" stroke="#323232" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/><path d="M17.12,15.26884C15.072,18,8.928,18,6.88,15.26884" fill="none" stroke="#323232" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/><path d="M16,21H8a5,5,0,0,1-5-5V8A5,5,0,0,1,8,3h8a5,5,0,0,1,5,5v8A5,5,0,0,1,16,21Z" fill="none" stroke="#323232" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/><path d="M12.94574,3A20.63,20.63,0,0,0,10.75,12.25c0,.422.03827.83423.06311,1.25h2.48737c-.01612.33362-.05048.66241-.05048,1A20.44186,20.44186,0,0,0,14.31946,21" fill="none" stroke="#323232" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/><rect width="24" height="24" fill="none"/></svg>'}} />
   icons.md.finder_mac_icon = Icon__finder_mac_icon

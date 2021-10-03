@@ -42,7 +42,12 @@ export function MakeDropdown({ opened: initialOpened, items, onClick, children, 
 
   return (
     <DropdownContext.Provider value={{ opened, setOpened, dropdownNode }}>
-      <Hotkey scope="dropdown" trigger="esc" action={() => setOpened(false)}>
+      <Hotkey
+        active={opened}
+        scope="dropdown"
+        trigger="esc"
+        action={() => setOpened(false)}
+      >
         <Child {...props} onClick={handleClick} />
 
         {opened && items && (
