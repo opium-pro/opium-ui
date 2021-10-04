@@ -49,30 +49,26 @@ export const Wrapper = ({ children }) => {
               {children}
             </Fit>
 
-            {isDefined(value) && hoverOrFocus && (
-              <Align.TryTagless row vert="center" onClick={() => onChange('')}>
-                <IconButton name="cross" fill="faint-down" />
-                <Gap size="5px" />
-              </Align.TryTagless>
-            )}
+            <Align row vert="center">
+              {isDefined(value) && hoverOrFocus && (<>
+                <IconButton size="xs" name="cross" fill="faint-down" onClick={() => onChange('')} />
+                {!(hint || insertRight || parentChildren)
+                  && <Gap size="8px" />
+                }
+              </>)}
 
-            {hint && (<>
-              <Align.TryTagless row vert="center" cursor="help">
-                <Icon fill="faint" name="question_circle" />
+              {hint && (<>
+                <IconButton size="xs" cursor="help" fill="faint" name="question_circle" />
                 <Gap />
-              </Align.TryTagless>
-              <Tooltip delay={0}>{hint}</Tooltip>
-            </>)}
+                <Tooltip delay={0}>{hint}</Tooltip>
+              </>)}
 
-            {insertRight && (
-              <Align row vert="center">{insertRight}</Align>
-            )}
+              {insertRight}
 
-            {parentChildren && parentChildren instanceof Function ? (
-              parentChildren(context, reaction)
-            ) : (
-              <Align row vert="center">{parentChildren}</Align>
-            )}
+              {parentChildren && parentChildren instanceof Function ? (
+                parentChildren(context, reaction)
+              ) : parentChildren}
+            </Align>
           </Align>
         </Box.TryTagless>
       </Fit.TryTagless>

@@ -123,7 +123,7 @@ export const Select: SelectType = ({
 function SelectIcon() {
   const { opened } = useDropdown()
   return (
-    <Gap right="12px">
+    <Gap size="12px">
       <Effect smooth rotate={opened && '180deg'}>
         <Icon name="chevron_down" />
       </Effect>
