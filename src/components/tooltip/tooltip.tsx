@@ -99,8 +99,6 @@ export const Tooltip: FC<TooltipProps> = ({
   function handleOpen(event?: any) {
     if (!targetNode) { return }
     hovered = true
-    hotkeys('esc', 'tooltips', handleClose)
-    hotkeys.setScope('tooltips')
     if (opened) { return }
     targetNode.style.display = 'block'
     setInPlace()
@@ -109,6 +107,8 @@ export const Tooltip: FC<TooltipProps> = ({
         handleClose()
         return
       }
+      hotkeys('esc', 'tooltips', handleClose)
+      hotkeys.setScope('tooltips')
       targetNode.style.opacity = '1'
       opened = true
     }, 100)

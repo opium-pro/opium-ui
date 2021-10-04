@@ -6,7 +6,7 @@ import { Tag } from '../tag'
 
 export type HotkeyProps = AlignProps & {
   trigger?: string
-  action?: () => void
+  action?: (event?: any) => void
   children?: any
   scope?: string
   active?: boolean
@@ -33,28 +33,29 @@ export const Hotkey = ({
   }, [])
 
   useEffect(() => {
-    if (scope) {
-      if (active) {
-        hotkeys.setScope(scope)
-        bind()
-      } else {
-        hotkeys.deleteScope(scope)
-        unbind()
-      }
-    }
+    bind()
   }, [active, scope])
 
   function bind() {
     if (action instanceof Function) {
-      hotkeys(trigger, scope, (event) => {
-        preventDefault && event.preventDefault()
-        action()
-      })
+      if (scope) {
+        hotkeys.setScope(scope)
+        hotkeys(trigger, scope, finalAction)
+      } else {
+        hotkeys.setScope('all')
+        hotkeys(trigger, finalAction)
+      }
     }
+  }
+
+  function finalAction(event) {
+    preventDefault && event.preventDefault()
+    action(event)
   }
 
   function unbind() {
     hotkeys.unbind(trigger, scope)
+    hotkeys.setScope('all')
   }
 
   useEffect(() => () => unbind(), [])
