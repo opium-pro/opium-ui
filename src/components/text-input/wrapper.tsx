@@ -52,9 +52,9 @@ export const Wrapper = ({ children }) => {
             <Align row vert="center">
               {isDefined(value) && hoverOrFocus && (<>
                 <IconButton size="xs" name="cross" fill="faint-down" onClick={() => onChange('')} />
-                {!(hint || insertRight || parentChildren)
-                  && <Gap size="8px" />
-                }
+                {/* {!(hint || insertRight || parentChildren) */}
+                  <Gap size="8px" />
+                {/* } */}
               </>)}
 
               {hint && (<>

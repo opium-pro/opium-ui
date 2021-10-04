@@ -15,6 +15,7 @@ export const ActionButton = ({
   icon,
   disabled,
   critic,
+  children,
   type = critic ? 'critic' : 'base',
   ...rest
 }: Props) => (
@@ -22,7 +23,8 @@ export const ActionButton = ({
     <Gap.TryTagless left="x2s" right="md">
       <Align row gapHor="sm" vert="center">
         {icon && <Icon fill={type} name={icon} />}
-        <Font fill={type}>{label}</Font>
+        {label && <Font fill={type}>{label}</Font>}
+        {children && <Font.TryTagless fill={type}>{children}</Font.TryTagless>}
       </Align>
     </Gap.TryTagless>
   </MakeButton>

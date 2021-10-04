@@ -114,7 +114,7 @@ export const Dropdown: FC<DropdownProps> = ({
                 <Box radius="md" shadow="lg" fill="base">
                   {showSearch && (
                     <Fit sticky top="0" zIndex={1}>
-                      <Gap size="md" bottom="sm">
+                      <Gap hor="md" vert="sm">
                         <TextInput
                           forwardRef={n => searchNode = n}
                           type="search"
