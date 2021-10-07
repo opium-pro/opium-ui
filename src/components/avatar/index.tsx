@@ -29,11 +29,22 @@ export const Avatar: FC<IAvatarProps> = withTooltip(({
   forwardRef,
   ...rest
 }) => {
-  const abbr = name?.slice(0, 2)?.toUpperCase()
+  let abbr = name?.slice(0, 2)?.toUpperCase()
 
   let index = 0
   for (const char of name || '') { index += char.charCodeAt(0) }
   index = index % fills.length || 0
+
+  if (img && !img.includes('://')) {
+    img = 'https://' + img
+  }
+
+  if (img || icon) {
+    abbr = undefined
+  }
+
+  console.log(img);
+  
 
   return (
     <Fit.TryTagless width={SIZE[size].circle} height={SIZE[size].circle}>
@@ -47,13 +58,13 @@ export const Avatar: FC<IAvatarProps> = withTooltip(({
           forwardRef={forwardRef}
         >
           {icon && <Icon name={icon} />}
-          <Font
+          {abbr && <Font
             fill="base"
             weight="600"
             size={SIZE[size].font as any}
           >
             {abbr}
-          </Font>
+          </Font>}
         </Box.TryTagless>
       </Align.TryTagless>
     </Fit.TryTagless>
