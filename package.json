@@ -1,12 +1,12 @@
 {
   "name": "opium-ui",
-  "version": "0.1.0-alpha4",
+  "version": "0.1.0-alpha5",
   "main": "dist/index.js",
   "dependencies": {
     "hotkeys-js": "^3.8.7",
     "opium-filter": "^1.0.1",
     "react-helmet": "^6.1.0",
-    "themeor": "^1.0.6"
+    "themeor": "^2.0.0"
   },
   "devDependencies": {
     "@types/node": "^16.0.0",
