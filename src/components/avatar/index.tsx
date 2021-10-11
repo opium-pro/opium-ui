@@ -43,9 +43,6 @@ export const Avatar: FC<IAvatarProps> = withTooltip(({
     abbr = undefined
   }
 
-  console.log(img);
-  
-
   return (
     <Fit.TryTagless width={SIZE[size].circle} height={SIZE[size].circle}>
       <Align.TryTagless vert="center" hor="center">
