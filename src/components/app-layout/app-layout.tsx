@@ -52,8 +52,6 @@ export const AppLayout: FC<AppLayoutProps> = ({
 
               <Fit.TryTagless minHeight="100vh" FORCE_TAGLESS>
                 <Background>
-
-
                   {header && (
                     <Fit.TryTagless style={{
                       position: 'sticky',
@@ -63,7 +61,6 @@ export const AppLayout: FC<AppLayoutProps> = ({
                       {header}
                     </Fit.TryTagless>
                   )}
-
 
                   {children}
                 </Background>
