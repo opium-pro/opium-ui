@@ -15,8 +15,8 @@ export const Item: FC<IItemProps> = ({
 }) => {
   return (
     <Align row {...rest}>
-      <Font fill="faint">{name}</Font>
-      :<Gap size="xs" />
+      {name && <><Font fill="faint">{name}</Font>
+      :<Gap size="xs" /></>}
       <Font fill="faint">{value}</Font>
     </Align>
   )
