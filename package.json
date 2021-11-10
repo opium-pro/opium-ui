@@ -1,6 +1,6 @@
 {
   "name": "opium-ui",
-  "version": "0.1.0-alpha5",
+  "version": "0.1.0-alpha6",
   "main": "dist/index.js",
   "dependencies": {
     "hotkeys-js": "^3.8.7",
@@ -27,10 +27,11 @@
     "unlink": "npm unlink react",
     "build:docs": "react-scripts build",
     "clear": "rm -fr ./dist && mkdir dist",
-    "parse:icons": "node ./scripts/parse-icons",
+    "icons:parse": "node ./scripts/parse-icons",
     "icons:copy": "copyfiles -V -u 1 src/**/*.svg dist",
+    "icons:build": "npm run icons:parse && npm run icons:copy",
     "build": "tsc -p tsconfig.dist.json",
-    "publish": "npm run clear && npm run parse:icons && npm run build && npm publish"
+    "publish": "npm run clear && npm run icons:build && npm run build && npm publish"
   },
   "eslintConfig": {
     "extends": [
