@@ -83,7 +83,9 @@ function StyleWrapper({ children, ...rest }) {
       absolute
       left="0"
       top={label ? '25px' : '10px'}
+      bottom="0"
       {...rest}
+      clip
       static
     >
       <Box.TryTagless>
