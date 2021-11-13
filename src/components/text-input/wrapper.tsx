@@ -19,15 +19,18 @@ export const Wrapper = ({ children }) => {
     insertRight,
     hint,
     value,
+    type,
     onChange,
     children: parentChildren,
   } = useTextInput()
   const { passProps, focus, hover, hoverOrFocus } = useReaction()
   const context = useTextInput()
   const reaction = useReaction()
+  const textarea = type === 'textarea'
 
   return (
     <MakeDropdown
+      disabled={disabled}
       // placeOrder={["bottom-stretch", "top-stretch"]}
       items={isSelect ? options : <Autocomplete />}
     >
@@ -50,7 +53,7 @@ export const Wrapper = ({ children }) => {
             </Fit>
 
             <Align row vert="center">
-              {isDefined(value) && hoverOrFocus && (<>
+              {!textarea && !disabled && isDefined(value) && hoverOrFocus && (<>
                 <IconButton size="xs" name="cross" fill="faint-down" onClick={() => onChange('')} />
                 {/* {!(hint || insertRight || parentChildren) */}
                   <Gap size="8px" />

@@ -3,7 +3,7 @@ import { Dropdown } from './dropdown'
 import { DropdownContext } from './context'
 
 
-export function MakeDropdown({ opened: initialOpened, items, onClick, children, ...rest }: any) {
+export function MakeDropdown({ opened: initialOpened, items, onClick, children, disabled, ...rest }: any) {
   const [dropdownNode, setDropdownNode]: any = useState()
   const [opened, setOpened] = useState(initialOpened)
   const [search, setSearch] = useState()
@@ -50,7 +50,7 @@ export function MakeDropdown({ opened: initialOpened, items, onClick, children, 
     }}>
       <Child {...props} onClick={handleClick} />
 
-      {items && opened && (
+      {!disabled && items && opened && (
         <Dropdown {...rest} forwardRef={n => n && setDropdownNode(n)}>
           {items}
         </Dropdown>

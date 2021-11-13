@@ -11,8 +11,10 @@ import { isDefined } from '../../utils'
 export const Select: SelectType = ({
   children,
   onChange,
+  disabled,
   multi = false,
   onDisplayValue,
+  onCompare,
   ...rest
 }) => {
   const [displayValues, setDisplayValues] = useState(new Map())
@@ -99,12 +101,14 @@ export const Select: SelectType = ({
 
   return (
     <SelectContext.Provider value={{
+      onCompare,
       multi,
     }}>
       <TextInput
         {...rest}
+        disabled={disabled}
         onDisplayValue={handleDisplayValue}
-        insertRight={<SelectIcon />}
+        insertRight={!disabled && <SelectIcon />}
         options={newChildren}
         type="select"
       />

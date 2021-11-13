@@ -20,12 +20,14 @@ export const Option = ({
   ...rest
 }) => {
   const { value, onChange } = useTextInput()
-  const { multi } = useSelect()
+  const { multi, onCompare } = useSelect()
   const { setOpened } = useDropdown()
   const { search } = useDropdown()
   let checkboxRef
 
-  const selected = active || (multi ? value?.includes(oneValue) : (value === oneValue))
+  const selected = active
+    || (typeof onCompare === 'function' && onCompare(value, oneValue, multi))
+    || (multi ? value?.includes(oneValue) : (value === oneValue))
 
   function handleClick(event) {
     if (multi) {

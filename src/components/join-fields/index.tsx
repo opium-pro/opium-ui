@@ -3,10 +3,12 @@ import { Line, Align } from 'themeor'
 import { isDefined } from '../../utils'
 
 
-export interface JoinFieldsProps { }
+export interface JoinFieldsProps {
+  separator?: boolean
+}
 
 
-export const JoinFields: FC<JoinFieldsProps> = ({ children }) => {
+export const JoinFields: FC<JoinFieldsProps> = ({ children, separator = false }) => {
   const newChildren = []
   const validChildren = []
 
@@ -30,16 +32,20 @@ export const JoinFields: FC<JoinFieldsProps> = ({ children }) => {
       newProps.radiusLeft = 'none'
     }
     newChildren.push(<Component key={index} {...newProps} />)
-    if (!isLast) {
+    if (!isLast && separator) {
       newChildren.push(<Line key={`separator-${index}`} vert fill="faint" />)
     }
   })
 
   const pattern = newChildren.map((val, index) => {
-    if (index % 2 === 0) {
+    if (separator) {
+      if (index % 2 === 0) {
+        return '1fr'
+      }
+      return '1px'
+    } else {
       return '1fr'
     }
-    return '1px'
   })
 
   return (

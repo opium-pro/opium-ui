@@ -76,7 +76,10 @@ function StyleWrapper({ children, ...rest }) {
     disabled,
     valueFont,
     label,
+    type,
   } = useTextInput()
+
+  const isTextarea = type === 'textarea'
 
   return (
     <Fit.TryTagless
@@ -84,12 +87,13 @@ function StyleWrapper({ children, ...rest }) {
       left="0"
       top={label ? '25px' : '10px'}
       bottom="0"
+      right="0"
       {...rest}
       clip
       static
     >
       <Box.TryTagless>
-        <Align.TryTagless vert="center" row>
+        <Align.TryTagless vert={isTextarea ? "top" : "center"} row>
           <Font.TryTagless
             size="sm"
             fill={(disabled && "faint") || "base"}
@@ -97,6 +101,7 @@ function StyleWrapper({ children, ...rest }) {
             align="left"
             family="regular"
             lineHeight="md"
+            nowrap
             {...valueFont}
           >
             <Gap.TryTagless hor="md">

@@ -5,6 +5,7 @@ export type SelectProps = TextInputProps & {
   multi?: boolean
   onDisplayValue?: any
   value?: any
+  onCompare?: (...a: any) => boolean
 }
 
 export type SelectType = FC<SelectProps>

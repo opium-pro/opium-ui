@@ -3,8 +3,8 @@ import { Font, Align, Gap } from 'themeor'
 
 
 export interface IItemProps {
-  name?: string
-  value?: string
+  name?: any
+  value?: any
 }
 
 

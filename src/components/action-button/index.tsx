@@ -21,7 +21,7 @@ export const ActionButton = ({
 }: Props) => (
   <MakeButton inline {...rest}>
     <Gap.TryTagless left="x2s" right="md">
-      <Align row gapHor="sm" vert="center">
+      <Align row gapHor="xs" vert="center">
         {icon && <Icon fill={type} name={icon} />}
         {label && <Font fill={type}>{label}</Font>}
         {children && <Font.TryTagless fill={type}>{children}</Font.TryTagless>}
