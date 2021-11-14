@@ -36,18 +36,24 @@ export const withForm = (Component: any) => ({
     changed: formChanged,
     setChanged: setFormChanged,
     fields,
-    setInitialValue,
+    // setInitialValue,
   } = useForm()
 
   const fieldValue = (changed && formChanged && name) ? getDeepFieldByPath(name, fields) : (value || '')
 
   useEffect(() => {
-    name && setInitialValue?.(name, value)
-  }, [])
+    if (formChanged === false) {
+      setChanged(formChanged)
+    }
+  }, [formChanged])
 
-  useEffect(() => {
-    name && setField?.(name, value)
-  }, [value])
+  // useEffect(() => {
+  //   name && setInitialValue?.(name, value)
+  // }, [])
+
+  // useEffect(() => {
+  //   name && setField?.(name, value)
+  // }, [value])
 
   // useEffect(() => {
   //   if (!fieldValue && value && !radio) {

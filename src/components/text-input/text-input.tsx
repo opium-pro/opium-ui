@@ -39,6 +39,10 @@ export const TextInput = withForm(({
     } else {
       value = event?.target?.value
     }
+
+    if (type === 'number') {
+      value = Number(value)
+    }
     onChange?.(value)
   }
 
