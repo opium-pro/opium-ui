@@ -27,13 +27,17 @@ export function Form({
   const [changed, setChanged] = useState(false)
   const [hasError, setError] = useState(false)
 
+  useEffect(() => {
+    if (changed === false) {
+      setFields(defaultInitialValues)
+    }
+  }, [changed])
 
   useEffect(() => {
     if (initialDisabled !== disabled) {
       setDisabled(initialDisabled)
     }
   }, [initialDisabled])
-
 
   function reset() {
     setFields(initialValues)
@@ -42,15 +46,15 @@ export function Form({
 
 
   function setField(name, value) {
-    let newContext = { ...fields }
+    let newContext = {}
 
     if (name?.includes?.('.') || name?.includes?.('[')) {
       // Парсим имя, если это не просто одно поле, а вложенные объекты
-      mutateObjectForFields(newContext, parseFieldName(name), value)
+      mutateObjectForFields(fields, parseFieldName(name), value)
     } else {
-      newContext = { ...fields, [name]: value }
+      newContext[name] = value;
     }
-    setFields(newContext)
+    setFields((prevFields) => ({...prevFields, ...newContext}))
   }
 
 
