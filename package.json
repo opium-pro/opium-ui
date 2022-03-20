@@ -22,9 +22,9 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "watch": "npm run clear && npm run icons:copy && nodemon -e ts,tsx,json,svg,png -w ./src -x npm run build",
+    "watch": "npm run icons:build && nodemon -e ts,tsx,json,svg,png -w ./src -x npm run build",
     "link": "npm link react",
-    "unlink": "npm unlink react",
+    "unlink": "npm unlink react themeor",
     "build:docs": "react-scripts build",
     "clear": "rm -fr ./dist && mkdir dist",
     "icons:parse": "node ./scripts/parse-icons",

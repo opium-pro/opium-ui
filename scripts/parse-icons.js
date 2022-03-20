@@ -68,7 +68,7 @@ const icons = {sm:{}, md:{}, lg:{}}
 
 for (const file of fileList) {
   text += `
-  const Icon__${file.name} = (props) => <div {...props} dangerouslySetInnerHTML={{__html: '${file.data}'}} />
+  const Icon__${file.name} = (props) => <div {...props} dangerouslySetInnerHTML={{__html: \`${file.data}\`}} />
   icons.md.${file.name} = Icon__${file.name}
   icons.sm.${file.name} = Icon__${file.name}
   icons.lg.${file.name} = Icon__${file.name}
