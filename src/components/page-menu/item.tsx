@@ -25,32 +25,29 @@ export const Item = withTooltip(({
 }: Props) => {
   return (
     <MakeButton
-      offset="0"
       disabled={active}
       forwardRef={forwardRef}
       {...rest}
     >
       <Fit.TryTagless width="100%" height="42px">
-        <Gap.TryTagless hor="md">
-          <Align row vert="center">
-            <Font
-              nowrap
-              align="center"
-              size="xs"
-              noselect
-              fill={active ? "base" : "faint-down"}
-              weight={active ? "600" : "500"}
-            >
-              {label}
-            </Font>
-            {!!counter && (<>
-              <Gap size="xs" />
-              <Counter attention value={counter} />
-            </>)}
+        <Align row vert="center">
+          <Font
+            nowrap
+            align="center"
+            size="xs"
+            noselect
+            fill={active ? "base" : "faint-down"}
+            weight={active ? "600" : "500"}
+          >
+            {label}
+          </Font>
+          {!!counter && (<>
+            <Gap size="xs" />
+            <Counter attention value={counter} />
+          </>)}
 
-            {children}
-          </Align>
-        </Gap.TryTagless>
+          {children}
+        </Align>
       </Fit.TryTagless>
     </MakeButton>
   )

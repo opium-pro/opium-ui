@@ -1,22 +1,27 @@
 import React from 'react'
-import { Fit, Gap } from 'themeor'
+import { Fit, Gap, GapProps } from 'themeor'
+import { useScreenFit } from '../screen-fit'
 
-type Props = React.HTMLAttributes<HTMLElement> & {
+type Props = GapProps & {
   gutter?: any,
 }
 
-export function LimitWidth ({ children, gutter = 'x3l', ...rest }: Props) {
+export function LimitWidth ({ children, gutter, ...rest }: Props) {
+  const screen = useScreenFit()
+
+  if (!gutter) {
+    gutter = screen?.gutter
+  }
+
   return (
-    <Gap style={{
-      padding: '0 60px',
-    }} {...rest}>
+    <Gap.TryTagless hor={gutter} {...rest}>
       <Fit
-        minWidth="860px"
-        maxWidth="1200px"
+        minWidth={screen.limit + 'px'}
+        maxWidth={screen.limit + 'px'}
         style={{ margin: "0 auto" }}
       >
         {children}
       </Fit>
-    </Gap>
+    </Gap.TryTagless>
   )
 }

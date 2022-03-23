@@ -1,16 +1,21 @@
 import React from 'react'
-import { Align, Fit, Box } from 'themeor'
+import { Align, Fit, Gap } from 'themeor'
+
+
+import { LimitWidth } from '../limit-width'
 
 export type Props = React.HTMLAttributes<HTMLElement> & {}
 
 export default function ({ children, ...rest }: Props) {
   return (
-    <Fit.TryTagless left="-16px" {...rest}>
-      <Box radius="md">
-        <Align row vert="center">
+    <Fit scroll {...rest}>
+      <Gap />
+      <LimitWidth>
+        <Align row vert="center" gapHor="xl">
           {children}
         </Align>
-      </Box>
-    </Fit.TryTagless>
+      </LimitWidth>
+      <Gap />
+    </Fit>
   )
 }

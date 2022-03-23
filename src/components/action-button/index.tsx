@@ -1,5 +1,5 @@
 import React from 'react'
-import { Align, Font, Icon, Gap } from 'themeor'
+import { Align, Font, Icon } from 'themeor'
 import { MakeButton } from '../make-button'
 
 type Props = React.AllHTMLAttributes<HTMLElement> & {
@@ -20,12 +20,10 @@ export const ActionButton = ({
   ...rest
 }: Props) => (
   <MakeButton inline {...rest}>
-    <Gap.TryTagless left="x2s" right="md">
-      <Align row gapHor="xs" vert="center">
-        {icon && <Icon fill={fill} name={icon} />}
-        {label && <Font nowrap fill={fill}>{label}</Font>}
-        {children && <Font.TryTagless fill={fill}>{children}</Font.TryTagless>}
-      </Align>
-    </Gap.TryTagless>
+    <Align row gapHor="xs" vert="center">
+      {icon && <Icon fill={fill} name={icon} />}
+      {label && <Font nowrap fill={fill}>{label}</Font>}
+      {children && <Font.TryTagless fill={fill}>{children}</Font.TryTagless>}
+    </Align>
   </MakeButton>
 )

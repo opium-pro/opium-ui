@@ -26,13 +26,13 @@ export const Item = withTooltip(({ label, fontSize = 'x2s', activeFill = 'comple
             <Align hor="center">
               {icon && <Icon
                 name={icon}
-                fill={active ? activeFill : "base"}
+                fill={active ? activeFill : "base-down"}
               />}
               {img && <>
                 <Box
-                width="64px"
-                height="64px"
-                img={img}
+                  width="64px"
+                  height="64px"
+                  img={img}
                 />
                 <Gap size="xs" />
               </>}
@@ -45,7 +45,7 @@ export const Item = withTooltip(({ label, fontSize = 'x2s', activeFill = 'comple
               transition
               noselect
               weight={active ? '600' : '500'}
-              fill={active ? activeFill : "base"}
+              fill={active ? activeFill : "base-down"}
             >
               {label}
             </Font>
@@ -56,7 +56,7 @@ export const Item = withTooltip(({ label, fontSize = 'x2s', activeFill = 'comple
                 align="center"
                 size="x3s"
                 noselect
-                fill="faint"
+                fill="faint-down"
               >
                 {prompt}
               </Font>
