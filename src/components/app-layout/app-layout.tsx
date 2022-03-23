@@ -1,23 +1,25 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { FC } from 'react'
-import { Align, Fit } from 'themeor'
+import { Align, Fit, Box } from 'themeor'
 import { Background } from '../background'
 import { AppLayoutContext } from './context'
 
 
 type AppLayoutProps = {
-  sideMenu?: any
+  menu?: any
   header?: any
+  footer?: any
   modals?: any
   getContentNode?: any
 }
 
 export const AppLayout: FC<AppLayoutProps> = ({
-  sideMenu,
+  menu,
   header,
   children,
   modals,
   getContentNode,
+  footer,
   ...rest
 }) => {
   const [contentNode, setContentNode] = useState()
@@ -33,7 +35,7 @@ export const AppLayout: FC<AppLayoutProps> = ({
   return (
     <AppLayoutContext.Provider value={context}>
       <Align pattern="auto 1fr" vert="stretch" {...rest}>
-        {sideMenu && (
+        {menu && (
           <AppLayoutContext.Provider value={{ ...context, scrollNode: sideMenuNode }}>
             <Fit
               maxHeight="100vh"
@@ -41,7 +43,7 @@ export const AppLayout: FC<AppLayoutProps> = ({
               forwardRef={setSideMenuNode}
               scroll
             >
-              {sideMenu}
+              {menu}
             </Fit>
           </AppLayoutContext.Provider>
         )}
@@ -50,8 +52,8 @@ export const AppLayout: FC<AppLayoutProps> = ({
           <Align stretch>
             <Fit height="100vh" zIndex={100} scroll forwardRef={contentNodeRef}>
 
-              <Fit.TryTagless minHeight="100vh" FORCE_TAGLESS>
-                <Background>
+              <Box fill="base-up">
+                <Align minHeight="100vh">
                   {header && (
                     <Fit.TryTagless style={{
                       position: 'sticky',
@@ -61,10 +63,12 @@ export const AppLayout: FC<AppLayoutProps> = ({
                       {header}
                     </Fit.TryTagless>
                   )}
-
-                  {children}
-                </Background>
-              </Fit.TryTagless>
+                  <Fit stretch>
+                    {children}
+                  </Fit>
+                  {footer}
+                </Align>
+              </Box>
 
             </Fit>
           </Align>

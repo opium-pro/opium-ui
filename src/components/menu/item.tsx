@@ -1,5 +1,5 @@
 import React from 'react'
-import { Align, Fit, Box, Font, Line, Gap, Icon, Reaction } from 'themeor'
+import { Align, Fit, Box, Font, Line, Gap, Icon, FontProps } from 'themeor'
 import { MakeButton } from '../make-button'
 import { withTooltip } from '../tooltip'
 
@@ -11,9 +11,12 @@ type Props = React.HTMLAttributes<HTMLElement> & {
   prompt?: string
   row?: boolean
   forwardRef?: any
+  img?: string
+  activeFill?: string
+  fontSize?: string
 }
 
-export const Item = withTooltip(({ label, forwardRef, active, icon, prompt, row, children, ...rest }: Props) => {
+export const Item = withTooltip(({ label, fontSize = 'x2s', activeFill = 'complement', forwardRef, img, active, icon, prompt, row, children, ...rest }: Props) => {
   return (
     <MakeButton forwardRef={forwardRef} offset="0" radius="none" {...rest}>
       <Fit.TryTagless width="100%">
@@ -21,20 +24,28 @@ export const Item = withTooltip(({ label, forwardRef, active, icon, prompt, row,
           <Align row={row} vert="center">
 
             <Align hor="center">
-              <Icon
+              {icon && <Icon
                 name={icon}
-                fill={active ? "complement" : "base"}
-              />
+                fill={active ? activeFill : "base"}
+              />}
+              {img && <>
+                <Box
+                width="64px"
+                height="64px"
+                img={img}
+                />
+                <Gap size="xs" />
+              </>}
             </Align>
 
             <Gap size={row ? "md" : "x2s"} />
             <Font
               align="center"
-              size="x2s"
+              size={fontSize}
               transition
               noselect
               weight={active ? '600' : '500'}
-              fill={active ? "complement" : "base"}
+              fill={active ? activeFill : "base"}
             >
               {label}
             </Font>
