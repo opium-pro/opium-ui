@@ -3,7 +3,7 @@ import { ScreenFitContext } from './context'
 import { SCREEN_FIT, Screen } from './constants'
 
 
-export function ScreenFit({ children }) {
+export function ScreenFit({ children, ...rest }) {
   const [currentScreen, setCurrentScreen]: [Screen, any] = useState()
   const node: any = useRef()
 
@@ -16,8 +16,7 @@ export function ScreenFit({ children }) {
   function resize() {
     let result: Screen
     const width = node?.current?.offsetWidth
-    for (let value of Object.keys(SCREEN_FIT)) {
-      const screen: Screen = SCREEN_FIT[value]
+    for (const screen of SCREEN_FIT) {
       if (width >= screen.start) {
         result = screen
       }
@@ -32,7 +31,7 @@ export function ScreenFit({ children }) {
 
   return (
     <ScreenFitContext.Provider value={{ ...currentScreen }}>
-      <div ref={n => node.current = n} style={{maxWidth: '100%'}}>
+      <div ref={n => node.current = n} style={{ maxWidth: '100%' }} {...rest}>
         {children}
       </div>
     </ScreenFitContext.Provider>

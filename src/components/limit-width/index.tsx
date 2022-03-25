@@ -1,13 +1,14 @@
 import React from 'react'
-import { Fit, Gap, GapProps } from 'themeor'
+import { Fit, Gap, GapProps, Align, AlignProps } from 'themeor'
 import { useScreenFit } from '../screen-fit'
 
-type Props = GapProps & {
+type Props = AlignProps & {
   gutter?: any
   scroll?: boolean
+  align?: AlignProps['hor']
 }
 
-export function LimitWidth({ children, gutter, scroll, ...rest }: Props) {
+export function LimitWidth({ children, gutter, align = "center", scroll, ...rest }: Props) {
   const screen = useScreenFit()
 
   if (!gutter) {
@@ -15,15 +16,18 @@ export function LimitWidth({ children, gutter, scroll, ...rest }: Props) {
   }
 
   return (
-    <Fit
+    <Align.TryTagless
+      hor={align}
       minWidth={screen.limit + 'px'}
       maxWidth={scroll ? '100%' : screen.limit + 'px'}
-      style={{ margin: "0 auto" }}
-      scroll={scroll}
+      style={align === 'center' && { margin: "0 auto" }}
+      {...rest}
     >
-      <Gap hor={gutter} {...rest}>
-        {children}
-      </Gap>
-    </Fit>
+      <Fit scroll={scroll}>
+        <Gap width="100%" hor={gutter}>
+          {children}
+        </Gap>
+      </Fit>
+    </Align.TryTagless>
   )
 }

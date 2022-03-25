@@ -72,31 +72,28 @@ export const AppLayout: FC<AppLayoutProps> = ({
             )}
 
             <AppLayoutContext.Provider value={{ ...context, scrollNode: contentNode }}>
-              <Fit.TryTagless zIndex={100}>
-                <ScreenFit>
-                  <Fit stretch height="100vh" scroll forwardRef={contentNodeRef}>
-                    <Box fill="base-up">
-                      <Align minHeight="100vh">
-                        {header && (
-                          <Fit.TryTagless style={{
-                            position: 'sticky',
-                            top: '0',
-                            zIndex: 100,
-                          }}>
-                            {header}
-                          </Fit.TryTagless>
-                        )}
-                        <Fit stretch>
-                          {children}
-                        </Fit>
-                        {footer}
-                      </Align>
-                    </Box>
+              <Fit.TryTagless stretch zIndex={100} height="100vh" scroll forwardRef={contentNodeRef}>
+                <Box.TryTagless fill="base-up" FORCE_TAGLESS>
+                  <ScreenFit>
+                    <Align minHeight="100vh">
+                      {header && (
+                        <Fit.TryTagless style={{
+                          position: 'sticky',
+                          top: '0',
+                          zIndex: 100,
+                        }}>
+                          {header}
+                        </Fit.TryTagless>
+                      )}
+                      <Fit stretch>
+                        {children}
+                      </Fit>
+                      {footer}
+                    </Align>
+                  </ScreenFit>
+                </Box.TryTagless>
 
-                  </Fit>
-
-                  {isSmall && <Cover />}
-                </ScreenFit>
+                {isSmall && <Cover />}
               </Fit.TryTagless>
             </AppLayoutContext.Provider>
           </Align>

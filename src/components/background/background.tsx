@@ -1,34 +1,38 @@
-import React, { FC } from 'react'
+import React, { FC, useMemo } from 'react'
 import { Fit, Box } from 'themeor'
 import { Spot } from './spot'
 
-export interface IBackground {
+export interface BackgroundProps {
   fill?: string
 }
 
-export const Background: FC<IBackground> = ({
+export const Background: FC<BackgroundProps> = ({
   children,
   fill = 'faint-down',
   ...rest
 }) => {
+  const spots = useMemo(() => (
+    <Fit clip cover="parent">
+      <Spot reset />
+      <Spot reset={false} />
+      <Spot reset={false} />
+      <Spot reset={false} />
+      <Spot reset={false} />
+      <Spot reset={false} />
+      <Spot reset={false} />
+      <Spot reset={false} />
+      <Spot reset={false} />
+      <Spot reset={false} />
+      <Spot reset={false} />
+      <Spot reset={false} />
+      <Spot reset={false} />
+    </Fit>
+  ), [])
+
   return (
     <Fit.TryTagless {...rest}>
       <Box fill={fill}>
-        <Fit clip cover="parent">
-          <Spot reset />
-          <Spot reset={false} />
-          <Spot reset={false} />
-          <Spot reset={false} />
-          <Spot reset={false} />
-          <Spot reset={false} />
-          <Spot reset={false} />
-          <Spot reset={false} />
-          <Spot reset={false} />
-          <Spot reset={false} />
-          <Spot reset={false} />
-          <Spot reset={false} />
-          <Spot reset={false} />
-        </Fit>
+        {spots}
 
         <Fit>
           {children}
