@@ -95,6 +95,7 @@ export const AppLayout: FC<AppLayoutProps> = ({
                 zIndex={100}
                 height="100vh"
                 scroll={!(isSmall && openMenu)}
+                clip={isSmall && openMenu}
                 forwardRef={contentNodeRef}
               >
                 <Box.TryTagless fill="base-up">
