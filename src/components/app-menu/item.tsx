@@ -17,7 +17,19 @@ type Props = WithTooltipProps<React.HTMLAttributes<HTMLElement> & {
   disabled?: boolean
 }>
 
-export const Item: FC<Props> = withTooltip(({ label, disabled, fontSize = 'x2s', activeFill = 'accent', forwardRef, img, active, icon, hint, row, children, ...rest }) => {
+export const Item: FC<Props> = withTooltip(({
+  label,
+  disabled,
+  fontSize = 'x2s',
+  activeFill = 'accent',
+  forwardRef,
+  img,
+  active,
+  icon,
+  hint,
+  row,
+  children,
+  ...rest}) => {
   return (
     <MakeButton
       forwardRef={forwardRef}

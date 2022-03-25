@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { Align, Fit, Box, Line, BoxProps, Gap, Animate } from 'themeor'
 import { useScreenFit } from '../screen-fit'
 
@@ -7,7 +7,7 @@ type Props = BoxProps & {
   size?: number
 }
 
-export function Wrapper({ size, children, ...rest }: Props) {
+export const Wrapper: FC<Props> = ({ size, children, ...rest }) => {
   const { isSmall } = useScreenFit()
 
   return (<>
