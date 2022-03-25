@@ -1,5 +1,5 @@
 import React from 'react'
-import { Align, Fit, Box, Line, BoxProps } from 'themeor'
+import { Align, Fit, Box, Line, BoxProps, Gap, Animate } from 'themeor'
 import { useScreenFit } from '../screen-fit'
 
 
@@ -10,15 +10,34 @@ type Props = BoxProps & {
 export function Wrapper({ size, children, ...rest }: Props) {
   const { isSmall } = useScreenFit()
 
-  return (
-    <Fit.TryTagless minHeight="100%" width={size} minWidth={isSmall ? '200px' : '100px'} scroll maxWidth="100%">
-      <Line.TryTagless right={isSmall && "md"} left={isSmall && "md"} fill="faint-down">
-        <Box.TryTagless fill="base" shadow="md" {...rest}>
-          <Align hor="stretch">
-            {children}
-          </Align>
-        </Box.TryTagless>
-      </Line.TryTagless>
-    </Fit.TryTagless>
-  )
+  return (<>
+    {isSmall && <Gap size="20px" />}
+    <Animate.TryTagless onMount={isSmall && "fadeInUp" as any}>
+      <Fit.TryTagless
+        minHeight={!isSmall && "100%"}
+        width={size}
+        minWidth={isSmall ? '200px' : '100px'}
+        scroll={!isSmall}
+        maxWidth="100%"
+      >
+        <Line.TryTagless
+          weight={isSmall && "md"}
+          left={isSmall && "md"}
+          fill="faint-down"
+        >
+          <Box.TryTagless
+            fill="base"
+            radius={isSmall && "md"}
+            shadow="lg"
+            {...rest}
+          >
+            <Align hor="stretch">
+              {children}
+            </Align>
+          </Box.TryTagless>
+        </Line.TryTagless>
+      </Fit.TryTagless>
+    </Animate.TryTagless>
+    {isSmall && <Gap size="20px" />}
+  </>)
 }

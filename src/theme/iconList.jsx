@@ -1038,7 +1038,12 @@ const icons = {sm:{}, md:{}, lg:{}}
   icons.sm.media_library_folder = Icon__media_library_folder
   icons.lg.media_library_folder = Icon__media_library_folder
 
-  const Icon__menu_burger = (props) => <div {...props} dangerouslySetInnerHTML={{__html: `<?xml version="1.0" encoding="UTF-8"?><svg version="1.1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g stroke-linecap="round" stroke-width="1.5" stroke="#323232" fill="none" stroke-linejoin="round"><path d="M12 21v0c-4.971 0-9-4.029-9-9v0c0-4.971 4.029-9 9-9v0c4.971 0 9 4.029 9 9v0c0 4.971-4.029 9-9 9Z"></path><path d="M11.999 11.625c-.207 0-.375.168-.373.375 0 .207.168.375.375.375 .207 0 .375-.168.375-.375 -.001-.207-.169-.375-.377-.375"></path><path d="M15.999 11.625c-.207 0-.375.168-.373.375 0 .207.168.375.375.375 .207 0 .375-.168.375-.375 -.001-.207-.169-.375-.377-.375"></path><path d="M7.999 11.625c-.207 0-.375.168-.373.375 0 .207.168.375.375.375 .207 0 .375-.168.375-.375 -.001-.207-.169-.375-.377-.375"></path></g><path fill="none" d="M0 0h24v24h-24Z"></path></svg>`}} />
+  const Icon__menu_burger = (props) => <div {...props} dangerouslySetInnerHTML={{__html: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M2.99625 5.99777H21.0037" stroke="#323232" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M17.0021 12.0002H2.99625" stroke="#323232" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M2.99625 18.0026H13.0004" stroke="#323232" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+`}} />
   icons.md.menu_burger = Icon__menu_burger
   icons.sm.menu_burger = Icon__menu_burger
   icons.lg.menu_burger = Icon__menu_burger
@@ -1062,6 +1067,11 @@ const icons = {sm:{}, md:{}, lg:{}}
   icons.md.moon = Icon__moon
   icons.sm.moon = Icon__moon
   icons.lg.moon = Icon__moon
+
+  const Icon__more_circled = (props) => <div {...props} dangerouslySetInnerHTML={{__html: `<?xml version="1.0" encoding="UTF-8"?><svg version="1.1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g stroke-linecap="round" stroke-width="1.5" stroke="#323232" fill="none" stroke-linejoin="round"><path d="M12 21v0c-4.971 0-9-4.029-9-9v0c0-4.971 4.029-9 9-9v0c4.971 0 9 4.029 9 9v0c0 4.971-4.029 9-9 9Z"></path><path d="M11.999 11.625c-.207 0-.375.168-.373.375 0 .207.168.375.375.375 .207 0 .375-.168.375-.375 -.001-.207-.169-.375-.377-.375"></path><path d="M15.999 11.625c-.207 0-.375.168-.373.375 0 .207.168.375.375.375 .207 0 .375-.168.375-.375 -.001-.207-.169-.375-.377-.375"></path><path d="M7.999 11.625c-.207 0-.375.168-.373.375 0 .207.168.375.375.375 .207 0 .375-.168.375-.375 -.001-.207-.169-.375-.377-.375"></path></g><path fill="none" d="M0 0h24v24h-24Z"></path></svg>`}} />
+  icons.md.more_circled = Icon__more_circled
+  icons.sm.more_circled = Icon__more_circled
+  icons.lg.more_circled = Icon__more_circled
 
   const Icon__mouse_scroll_down = (props) => <div {...props} dangerouslySetInnerHTML={{__html: `<?xml version="1.0" encoding="UTF-8"?><svg version="1.1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g fill="none"><path d="M0 0h24v24h-24v-24Z"></path><path stroke="#323232" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 17v0c-2.946 0-5.357-2.411-5.357-5.357v-4.286c-8.88178e-16-2.946 2.411-5.357 5.357-5.357v0c2.946 0 5.357 2.411 5.357 5.357v4.286c3.55271e-15 2.946-2.411 5.357-5.357 5.357Z"></path><polyline stroke="#323232" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" points="9,20 12,22 15,20"></polyline><path stroke="#323232" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.286v2.143"></path></g></svg>`}} />
   icons.md.mouse_scroll_down = Icon__mouse_scroll_down

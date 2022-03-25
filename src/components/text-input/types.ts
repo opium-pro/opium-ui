@@ -1,7 +1,7 @@
-import { BoxProps } from 'themeor'
+import { ReactionProps } from 'themeor'
 import { WithFormProps } from '../form'
 
-export type TextInputProps = WithFormProps & {
+export type TextInputProps = WithFormProps<ReactionProps & {
   type?: string
   height?: string
   valueFont?: any
@@ -26,4 +26,4 @@ export type TextInputProps = WithFormProps & {
   hint?: any
   onDisplayValue?: any
   mask?: any
-}
+}>

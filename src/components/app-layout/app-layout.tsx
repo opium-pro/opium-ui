@@ -1,6 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { FC } from 'react'
-import { Align, Fit, Box, Gap, Icon } from 'themeor'
+import { Align, Fit, Box, Animate, Icon } from 'themeor'
 import { MakeButton } from '../make-button'
 import { AppLayoutContext } from './context'
 import { useScreenFit, ScreenFit } from '../screen-fit'
@@ -28,6 +28,7 @@ export const AppLayout: FC<AppLayoutProps> = ({
 }) => {
   const [contentNode, setContentNode] = useState()
   const [sideMenuNode, setSideMenuNode] = useState()
+  const [openMenu, setOpenMenu] = useState(false)
   const { isSmall } = useScreenFit()
 
   function contentNodeRef(node) {
@@ -37,26 +38,34 @@ export const AppLayout: FC<AppLayoutProps> = ({
 
   const context = { contentNode, sideMenuNode }
 
-  const renderMobileButton = (
-    <Fit fixed top="12px" right="12px" zIndex={1000}>
-      <MakeButton radius="max" offset="0">
-        <Box.TryTagless shadow="lg" radius="max" width="60px" height="60px">
-          <Align vert="center" hor="center">
-            <Icon size="xl" name="cross" />
-          </Align>
-        </Box.TryTagless>
-      </MakeButton>
-    </Fit>
-  )
+  const renderMobileButton = useMemo(() => (
+    <Animate onMount="bounceInDown">
+      <Fit fixed top="12px" right="12px" zIndex={1000}>
+        <MakeButton radius="max" offset="0" onClick={() => setOpenMenu(value => !value)}>
+          <Box.TryTagless
+            shadow="lg"
+            radius="max"
+            width="60px"
+            height="60px"
+            fill="base"
+          >
+            <Align vert="center" hor="center">
+              <Icon size="xl" name={openMenu ? "cross" : "menu_burger"} />
+            </Align>
+          </Box.TryTagless>
+        </MakeButton>
+      </Fit>
+    </Animate>
+  ), [openMenu])
 
   return (
     <AppTheme>
       <PortalsProvider>
         <AppLayoutContext.Provider value={context}>
           <Align pattern={(menu && !isSmall) ? "auto 1fr" : "1fr"} maxHeight="100vh" vert="stretch" {...rest}>
-            {menu && (
+            {menu && (!isSmall || openMenu) && (
               <AppLayoutContext.Provider value={{ ...context, scrollNode: sideMenuNode }}>
-                <Fit
+                <Fit.TryTagless
                   maxHeight="100vh"
                   zIndex={200}
                   forwardRef={setSideMenuNode}
@@ -65,9 +74,12 @@ export const AppLayout: FC<AppLayoutProps> = ({
                   top={isSmall && '0'}
                   right={isSmall && '0'}
                   bottom={isSmall && '0'}
+                  left={isSmall && '0'}
                 >
-                  {menu}
-                </Fit>
+                  <Align hor={isSmall && "center" as any} vert={isSmall && "center" as any}>
+                    {menu}
+                  </Align>
+                </Fit.TryTagless>
               </AppLayoutContext.Provider>
             )}
 
@@ -93,16 +105,24 @@ export const AppLayout: FC<AppLayoutProps> = ({
                   </ScreenFit>
                 </Box.TryTagless>
 
-                {isSmall && <Cover />}
+                {isSmall && openMenu && (
+                  <Animate onMount="fadeIn">
+                    <Cover />
+                  </Animate>
+                )}
               </Fit.TryTagless>
             </AppLayoutContext.Provider>
           </Align>
 
-          <Fit zIndex={300} cover="screen" stick="top-left">
+          <Fit
+            zIndex={300}
+            cover="screen"
+            stick="top-left"
+          >
             {modals}
           </Fit>
 
-          {renderMobileButton}
+          {isSmall && renderMobileButton}
         </AppLayoutContext.Provider>
       </PortalsProvider>
     </AppTheme>
