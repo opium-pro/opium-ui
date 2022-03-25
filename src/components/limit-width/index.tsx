@@ -3,10 +3,11 @@ import { Fit, Gap, GapProps } from 'themeor'
 import { useScreenFit } from '../screen-fit'
 
 type Props = GapProps & {
-  gutter?: any,
+  gutter?: any
+  scroll?: boolean
 }
 
-export function LimitWidth ({ children, gutter, ...rest }: Props) {
+export function LimitWidth({ children, gutter, scroll, ...rest }: Props) {
   const screen = useScreenFit()
 
   if (!gutter) {
@@ -14,14 +15,15 @@ export function LimitWidth ({ children, gutter, ...rest }: Props) {
   }
 
   return (
-    <Gap.TryTagless hor={gutter} {...rest}>
-      <Fit
-        minWidth={screen.limit + 'px'}
-        maxWidth={screen.limit + 'px'}
-        style={{ margin: "0 auto" }}
-      >
+    <Fit
+      minWidth={screen.limit + 'px'}
+      maxWidth={scroll ? '100%' : screen.limit + 'px'}
+      style={{ margin: "0 auto" }}
+      scroll={scroll}
+    >
+      <Gap hor={gutter} {...rest}>
         {children}
-      </Fit>
-    </Gap.TryTagless>
+      </Gap>
+    </Fit>
   )
 }

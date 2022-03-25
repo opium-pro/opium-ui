@@ -1,19 +1,34 @@
 import React from 'react'
-import {FC} from 'react'
-import { Align, Fit, Box, Font, Line, Gap, Icon, Reaction } from 'themeor'
-import {withForm} from '../form'
+import { FC } from 'react'
+import { Align, Fit, Box, Font, Gap, Icon, Reaction } from 'themeor'
+import { withForm } from '../form'
+import { withTooltip, WithTooltipProps } from '../tooltip'
+import { WithFormProps } from '../form'
 
-type Props = {
+type Props = WithFormProps<WithTooltipProps<{
   checked?: boolean,
-  label?: string,
+  label?: any,
+  hint?: any,
   name?: string,
   value?: string,
   initialValue?: string,
   radio?: boolean,
+  disabled?: boolean,
   onChange?: (value: boolean) => void,
-}
+}>>
 
-export const Toggle: FC<Props> = withForm(({ name, value, initialValue, radio, checked, label, onChange, ...props }: any) => {
+export const Toggle: FC<Props> = withForm(withTooltip(({
+  name,
+  value,
+  initialValue,
+  radio,
+  checked,
+  label,
+  onChange,
+  hint,
+  disabled,
+  ...props
+}: any) => {
   if (checked === undefined && name !== undefined) {
     if (radio) {
       checked = (initialValue === value)
@@ -33,11 +48,13 @@ export const Toggle: FC<Props> = withForm(({ name, value, initialValue, radio, c
       value = initialValue
     }
 
-    onChange?.(value)
+    if (typeof onChange === 'function') {
+      onChange?.(value)
+    }
   }
 
   return (
-    <Reaction track="hover" {...props}>
+    <Reaction track="hover" disabled={disabled} {...props}>
       {(rProps, r) => (
         <Align hor="left">
           <Align row vert="center" {...rProps} onClick={handleChange}>
@@ -45,7 +62,7 @@ export const Toggle: FC<Props> = withForm(({ name, value, initialValue, radio, c
             <Fit.TryTagless height="20px" width="36px">
               <Box.TryTagless
                 strong={checked}
-                fill={(checked && "success") || (r.hoverOrFocus ? "faint-up" : "faint")}
+                fill={(disabled && "faint") || (checked && "base") || (r.hoverOrFocus ? "faint-up" : "faint")}
                 radius="max"
               >
                 <Gap size="x3s">
@@ -56,7 +73,7 @@ export const Toggle: FC<Props> = withForm(({ name, value, initialValue, radio, c
                     left={checked && '16px'}
                   >
                     <Box fill="base" radius="max" shadow="sm">
-                      {checked && <Icon name="Check" size="sm" fill="success" />}
+                      {checked && <Icon name="Check" size="sm" fill={disabled ? "base" : "success"} />}
                     </Box>
                   </Fit.TryTagless>
 
@@ -65,12 +82,28 @@ export const Toggle: FC<Props> = withForm(({ name, value, initialValue, radio, c
             </Fit.TryTagless>
 
 
-            {label && <Gap size="xs" />}
-
-            {label}
+            {label && (<>
+              <Gap size="sm" />
+              <Font
+                size="sm"
+                fill={disabled ? "faint-down" : "base"}
+                weight="400"
+                cursor="default"
+              >
+                {label}
+                {hint && (<>
+                  <Font
+                    size="x2s"
+                    fill="faint-down"
+                  >
+                    {hint}
+                  </Font>
+                </>)}
+              </Font>
+            </>)}
           </Align>
         </Align>
       )}
     </Reaction>
   )
-})
+}))

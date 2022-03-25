@@ -7,8 +7,9 @@ import { call } from '../../utils'
 type CheckboxProps = Omit<React.HTMLAttributes<HTMLElement>, 'onChange'> & {
   checked?: boolean,
   indeterminate?: boolean,
-  label?: string,
+  label?: any,
   name?: string,
+  hint?: any,
   value?: boolean | string,
   initialValue?: string,
   radio?: boolean,
@@ -17,6 +18,7 @@ type CheckboxProps = Omit<React.HTMLAttributes<HTMLElement>, 'onChange'> & {
   onClick?: any
   onFocus?: any
   onBlur?: any
+  disabled?: boolean
 }
 
 export const Checkbox = withForm(({
@@ -32,6 +34,8 @@ export const Checkbox = withForm(({
   onClick,
   onFocus,
   onBlur,
+  hint,
+  disabled,
   ...props
 }: CheckboxProps) => {
   let fieldRef
@@ -81,7 +85,7 @@ export const Checkbox = withForm(({
       onFocus={handleFocus}
     >
       <Align row vert="center">
-        <MakeButton radius="max" offset="14px" track={["hover", "active"]} {...props}>
+        <MakeButton disabled={disabled} radius="max" offset="14px" track={["hover", "active"]} {...props}>
           <Fit.TryTagless hidden>
             <input
               ref={n => fieldRef = n}
@@ -89,13 +93,14 @@ export const Checkbox = withForm(({
               type="checkbox"
               onChange={handleChange}
               tabIndex={0}
+              disabled={disabled}
             />
           </Fit.TryTagless>
 
           <Fit.TryTagless width="20px" height="20px">
             <Box.TryTagless
               radius="max"
-              borderFill={checked ? "complement" : "faint-up"}
+              borderFill={disabled ? "faint" : checked ? "base" : "faint-up"}
               fill="none"
               strong={checked}
             >
@@ -108,7 +113,7 @@ export const Checkbox = withForm(({
                   <Fit.TryTagless width="8px" height="8px">
                     <Box
                       radius="max"
-                      fill="complement"
+                      fill={disabled ? "faint-down" : "base"}
                       strong
                     />
                   </Fit.TryTagless>
@@ -122,11 +127,19 @@ export const Checkbox = withForm(({
           <Gap size="sm" />
           <Font
             size="sm"
-            fill="base"
+            fill={disabled ? "faint-down" : "base"}
             weight="400"
             cursor="default"
           >
             {label}
+            {hint && (<>
+              <Font
+                size="x2s"
+                fill="faint-down"
+              >
+                {hint}
+              </Font>
+            </>)}
           </Font>
         </>)}
       </Align>

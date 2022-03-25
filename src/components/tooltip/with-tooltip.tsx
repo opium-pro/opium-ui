@@ -1,7 +1,7 @@
 import React from 'react'
 import { Tooltip, TooltipProps } from './tooltip'
 
-export type WithTooltipProps = {
+export type WithTooltipProps<ComponentProps> = ComponentProps & {
   tooltip?: any
   tooltipPlace?: string
   tooltipDelay?: number

@@ -27,9 +27,10 @@ export const Item = withTooltip(({
     <MakeButton
       disabled={active}
       forwardRef={forwardRef}
+      offset="16px 24px"
       {...rest}
     >
-      <Fit.TryTagless width="100%" height="42px">
+      <Fit.TryTagless width="100%">
         <Align row vert="center">
           <Font
             nowrap

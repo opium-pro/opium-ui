@@ -1,9 +1,10 @@
-import React, { FC, useEffect, useRef } from 'react'
+import React, { FC, useEffect } from 'react'
 import { Font, Box, Gap, Fit } from 'themeor'
 import { Portal } from '../portal'
 import { useAppLayout } from '../app-layout'
 import { placeNode } from '../../utils'
 import hotkeys from 'hotkeys-js'
+import {tooltipConfig} from './config'
 
 
 export interface TooltipProps {
@@ -19,10 +20,10 @@ export interface TooltipProps {
 export const Tooltip: FC<TooltipProps> = ({
   children,
   placeOrder = ['top', 'bottom', 'right', 'left'],
-  delay = 1000,
-  duration = 150,
+  delay = tooltipConfig.delay,
+  duration = tooltipConfig.duration,
   place,
-  delayToHide = 100,
+  delayToHide = tooltipConfig.delayToHide,
   parentNode,
   windowNode,
 }) => {

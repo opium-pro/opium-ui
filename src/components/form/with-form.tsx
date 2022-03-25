@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useForm } from './context'
 import { getDeepFieldByPath } from '../../utils'
 
-export type WithFormProps = {
+export type WithFormProps<ComponentProps> = ComponentProps & {
   value?: any
   name?: string
   match?: any

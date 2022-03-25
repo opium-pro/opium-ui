@@ -1,6 +1,6 @@
 import React from 'react'
 import { Theme, Fit, Box, Font } from 'themeor'
-import themeConfig from '../../theme/config.json'
+import themeConfig from '../../theme/config'
 import themeIcons from '../../theme/iconList'
 import { ScreenFit } from '../screen-fit'
 

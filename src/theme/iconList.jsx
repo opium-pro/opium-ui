@@ -616,6 +616,17 @@ const icons = {sm:{}, md:{}, lg:{}}
   icons.sm.document_select = Icon__document_select
   icons.lg.document_select = Icon__document_select
 
+  const Icon__dollar_coin = (props) => <div {...props} dangerouslySetInnerHTML={{__html: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 8V9" stroke="#323232" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M12 16V15" stroke="#323232" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M10.266 14.289C10.524 14.712 10.966 15.003 11.499 15.003H12.595C13.37 15.003 13.999 14.375 13.999 13.599C13.999 12.955 13.561 12.393 12.937 12.237L11.063 11.767C10.438 11.61 10 11.048 10 10.404C10 9.629 10.628 9 11.404 9H12.5C13.033 9 13.475 9.292 13.733 9.714" stroke="#323232" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M20.863 10.437C21.726 15.332 18.457 20 13.563 20.863C8.66799 21.726 3.99999 18.458 3.13699 13.563C2.27399 8.668 5.54199 4 10.437 3.137C15.332 2.274 20 5.542 20.863 10.437" stroke="#323232" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+`}} />
+  icons.md.dollar_coin = Icon__dollar_coin
+  icons.sm.dollar_coin = Icon__dollar_coin
+  icons.lg.dollar_coin = Icon__dollar_coin
+
   const Icon__done_check = (props) => <div {...props} dangerouslySetInnerHTML={{__html: `<?xml version="1.0" encoding="UTF-8"?><svg version="1.1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g fill="none"><path d="M0 0h24v24h-24Z"></path><path stroke="#323232" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 21v0c-4.971 0-9-4.029-9-9v0c0-4.971 4.029-9 9-9v0c4.971 0 9 4.029 9 9v0c0 4.971-4.029 9-9 9Z"></path><path stroke="#323232" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 10l-5 5 -3-3"></path></g></svg>`}} />
   icons.md.done_check = Icon__done_check
   icons.sm.done_check = Icon__done_check

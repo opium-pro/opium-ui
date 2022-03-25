@@ -5,6 +5,8 @@ import { MakeButton } from '../make-button'
 import { AppLayoutContext } from './context'
 import { useScreenFit, ScreenFit } from '../screen-fit'
 import { Cover } from '../cover'
+import { PortalsProvider } from '../portal'
+import { AppTheme } from '../app-theme'
 
 
 type AppLayoutProps = {
@@ -48,60 +50,64 @@ export const AppLayout: FC<AppLayoutProps> = ({
   )
 
   return (
-    <AppLayoutContext.Provider value={context}>
-      <Align pattern={(menu && !isSmall) ? "auto 1fr" : "1fr"} maxHeight="100vh" vert="stretch" {...rest}>
-        {menu && (
-          <AppLayoutContext.Provider value={{ ...context, scrollNode: sideMenuNode }}>
-            <Fit
-              maxHeight="100vh"
-              zIndex={200}
-              forwardRef={setSideMenuNode}
-              scroll
-              absolute={isSmall}
-              top={isSmall && '0'}
-              right={isSmall && '0'}
-              bottom={isSmall && '0'}
-            >
-              {menu}
-            </Fit>
-          </AppLayoutContext.Provider>
-        )}
+    <AppTheme>
+      <PortalsProvider>
+        <AppLayoutContext.Provider value={context}>
+          <Align pattern={(menu && !isSmall) ? "auto 1fr" : "1fr"} maxHeight="100vh" vert="stretch" {...rest}>
+            {menu && (
+              <AppLayoutContext.Provider value={{ ...context, scrollNode: sideMenuNode }}>
+                <Fit
+                  maxHeight="100vh"
+                  zIndex={200}
+                  forwardRef={setSideMenuNode}
+                  scroll
+                  absolute={isSmall}
+                  top={isSmall && '0'}
+                  right={isSmall && '0'}
+                  bottom={isSmall && '0'}
+                >
+                  {menu}
+                </Fit>
+              </AppLayoutContext.Provider>
+            )}
 
-        <AppLayoutContext.Provider value={{ ...context, scrollNode: contentNode }}>
-          <Fit.TryTagless zIndex={100}>
-            <ScreenFit>
-              <Fit stretch height="100vh" scroll forwardRef={contentNodeRef}>
-                <Box fill="base-up">
-                  <Align minHeight="100vh">
-                    {header && (
-                      <Fit.TryTagless style={{
-                        position: 'sticky',
-                        top: '0',
-                        zIndex: 100,
-                      }}>
-                        {header}
-                      </Fit.TryTagless>
-                    )}
-                    <Fit stretch>
-                      {children}
-                    </Fit>
-                    {footer}
-                  </Align>
-                </Box>
+            <AppLayoutContext.Provider value={{ ...context, scrollNode: contentNode }}>
+              <Fit.TryTagless zIndex={100}>
+                <ScreenFit>
+                  <Fit stretch height="100vh" scroll forwardRef={contentNodeRef}>
+                    <Box fill="base-up">
+                      <Align minHeight="100vh">
+                        {header && (
+                          <Fit.TryTagless style={{
+                            position: 'sticky',
+                            top: '0',
+                            zIndex: 100,
+                          }}>
+                            {header}
+                          </Fit.TryTagless>
+                        )}
+                        <Fit stretch>
+                          {children}
+                        </Fit>
+                        {footer}
+                      </Align>
+                    </Box>
 
-              </Fit>
+                  </Fit>
 
-              {isSmall && <Cover />}
-            </ScreenFit>
-          </Fit.TryTagless>
+                  {isSmall && <Cover />}
+                </ScreenFit>
+              </Fit.TryTagless>
+            </AppLayoutContext.Provider>
+          </Align>
+
+          <Fit zIndex={300} cover="screen" stick="top-left">
+            {modals}
+          </Fit>
+
+          {renderMobileButton}
         </AppLayoutContext.Provider>
-      </Align>
-
-      <Fit zIndex={300} cover="screen" stick="top-left">
-        {modals}
-      </Fit>
-
-      {renderMobileButton}
-    </AppLayoutContext.Provider>
+      </PortalsProvider>
+    </AppTheme>
   )
 }

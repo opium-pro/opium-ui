@@ -1,4 +1,4 @@
-{
+export default {
   "meta": {
     "name": "light",
     "version": "1.0",
@@ -7,7 +7,7 @@
   },
 
   "themeContext": {
-    "shallInverseOn": ["base", "faint", "complement", "critic", "success", "--darkblur", "--notification", "--error"]
+    "shallInverseOn": ["base", "faint", "accent", "complement", "critic", "success", "--darkblur", "--notification", "--error"]
   },
 
   "customVariables": {
@@ -36,10 +36,10 @@
       "weak-down": "#F6F7F9"
     },
     "accent": {
-      "strong": "#FFDD1F",
-      "strong-up": "#FFEE2F",
-      "strong-down": "#FBD81D",
-      "weak": "#FFDD1F",
+      "strong": "#0072f5",
+      "strong-up": "#0080ff",
+      "strong-down": "#0062d1",
+      "weak": "#b5daff",
       "weak-up": "rgba(61, 132, 219, 0.15)"
     },
     "complement": {
