@@ -1,8 +1,8 @@
 import React from 'react'
-import { Align, Box } from 'themeor'
+import { Align, Box, BoxProps } from 'themeor'
 import { LimitWidth } from '../limit-width'
 
-type Props = React.HTMLAttributes<HTMLElement> & {}
+type Props = BoxProps & {}
 
 export function Wrapper({ children, ...rest }: Props) {
   return (

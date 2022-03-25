@@ -38,31 +38,18 @@ export const AppLayout: FC<AppLayoutProps> = ({
 
   const context = { contentNode, sideMenuNode }
 
-  const renderMobileButton = useMemo(() => (
-    <Animate onMount="bounceInDown">
-      <Fit fixed top="12px" right="12px" zIndex={1000}>
-        <MakeButton radius="max" offset="0" onClick={() => setOpenMenu(value => !value)}>
-          <Box.TryTagless
-            shadow="lg"
-            radius="max"
-            width="60px"
-            height="60px"
-            fill="base"
-          >
-            <Align vert="center" hor="center">
-              <Icon size="xl" name={openMenu ? "cross" : "menu_burger"} />
-            </Align>
-          </Box.TryTagless>
-        </MakeButton>
-      </Fit>
-    </Animate>
-  ), [openMenu])
-
   return (
     <AppTheme>
       <PortalsProvider>
         <AppLayoutContext.Provider value={context}>
           <Align pattern={(menu && !isSmall) ? "auto 1fr" : "1fr"} maxHeight="100vh" vert="stretch" {...rest}>
+            {isSmall && openMenu && (
+              <Fit zIndex={190}>
+                <Animate onMount="fadeIn">
+                  <Cover />
+                </Animate>
+              </Fit>
+            )}
             {menu && (!isSmall || openMenu) && (
               <AppLayoutContext.Provider value={{ ...context, scrollNode: sideMenuNode }}>
                 <Fit.TryTagless
@@ -81,6 +68,25 @@ export const AppLayout: FC<AppLayoutProps> = ({
                   </Align>
                 </Fit.TryTagless>
               </AppLayoutContext.Provider>
+            )}
+            {isSmall && (
+              <Animate onMount="bounceInDown">
+                <Fit fixed top="12px" right="12px" zIndex={300}>
+                  <MakeButton radius="max" offset="0" onClick={() => setOpenMenu(value => !value)}>
+                    <Box.TryTagless
+                      shadow="lg"
+                      radius="max"
+                      width="60px"
+                      height="60px"
+                      fill="base"
+                    >
+                      <Align vert="center" hor="center">
+                        <Icon size="xl" name={openMenu ? "cross" : "menu_burger"} />
+                      </Align>
+                    </Box.TryTagless>
+                  </MakeButton>
+                </Fit>
+              </Animate>
             )}
 
             <AppLayoutContext.Provider value={{ ...context, scrollNode: contentNode }}>
@@ -104,12 +110,6 @@ export const AppLayout: FC<AppLayoutProps> = ({
                     </Align>
                   </ScreenFit>
                 </Box.TryTagless>
-
-                {isSmall && openMenu && (
-                  <Animate onMount="fadeIn">
-                    <Cover />
-                  </Animate>
-                )}
               </Fit.TryTagless>
             </AppLayoutContext.Provider>
           </Align>
@@ -121,8 +121,6 @@ export const AppLayout: FC<AppLayoutProps> = ({
           >
             {modals}
           </Fit>
-
-          {isSmall && renderMobileButton}
         </AppLayoutContext.Provider>
       </PortalsProvider>
     </AppTheme>
