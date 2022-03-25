@@ -90,7 +90,13 @@ export const AppLayout: FC<AppLayoutProps> = ({
             )}
 
             <AppLayoutContext.Provider value={{ ...context, scrollNode: contentNode }}>
-              <Fit.TryTagless stretch zIndex={100} height="100vh" scroll forwardRef={contentNodeRef}>
+              <Fit.TryTagless
+                stretch
+                zIndex={100}
+                height="100vh"
+                scroll={!(isSmall && openMenu)}
+                forwardRef={contentNodeRef}
+              >
                 <Box.TryTagless fill="base-up">
                   <ScreenFit>
                     <Align minHeight="100vh">

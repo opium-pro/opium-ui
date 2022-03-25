@@ -10,6 +10,7 @@ type Props = AlignProps & {
 
 export function LimitWidth({ children, gutter, align = "center", scroll, ...rest }: Props) {
   const screen = useScreenFit()
+  const limit = typeof screen?.limit === 'number' ? screen?.limit + 'px' : screen?.limit
 
   if (!gutter) {
     gutter = screen?.gutter
@@ -18,8 +19,8 @@ export function LimitWidth({ children, gutter, align = "center", scroll, ...rest
   return (
     <Align.TryTagless
       hor={align}
-      minWidth={screen.limit + 'px'}
-      maxWidth={scroll ? '100%' : screen.limit + 'px'}
+      minWidth={limit}
+      maxWidth={scroll ? '100%' : limit}
       style={align === 'center' && { margin: "0 auto" }}
       {...rest}
     >
