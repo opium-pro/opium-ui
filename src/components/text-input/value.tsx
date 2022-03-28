@@ -85,7 +85,7 @@ function StyleWrapper({ children, ...rest }) {
     <Fit.TryTagless
       absolute
       left="0"
-      top={label ? '25px' : '10px'}
+      top={label ? '20px' : '10px'}
       bottom="0"
       right="0"
       {...rest}

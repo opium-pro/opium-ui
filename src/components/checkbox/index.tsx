@@ -1,32 +1,23 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { Align, Fit, Box, Font, Gap, Effect } from 'themeor'
 import { MakeButton } from '../make-button'
-import { withForm } from '../form'
+import { withForm, WithFormProps } from '../form'
 import { call } from '../../utils'
 
-type CheckboxProps = Omit<React.HTMLAttributes<HTMLElement>, 'onChange'> & {
-  checked?: boolean,
+type CheckboxProps = WithFormProps<Omit<React.HTMLAttributes<HTMLElement>, 'onChange'> & {
   indeterminate?: boolean,
-  label?: any,
-  name?: string,
   hint?: any,
-  value?: boolean | string,
-  initialValue?: string,
   radio?: boolean,
   forwardRef?: any
-  onChange?: (value: boolean | string) => void,
-  onClick?: any
-  onFocus?: any
-  onBlur?: any
-  disabled?: boolean
-}
+  valueOn?: any,
+  valueOff?: any,
+}>
 
-export const Checkbox = withForm(({
+export const Checkbox: FC<CheckboxProps> = withForm(({
   name,
   value,
   radio,
   initialValue,
-  checked,
   indeterminate,
   label,
   onChange,
@@ -36,27 +27,19 @@ export const Checkbox = withForm(({
   onBlur,
   hint,
   disabled,
+  valueOn = initialValue || true,
+  valueOff = undefined,
   ...props
 }: CheckboxProps) => {
+  const checked = value === valueOn
   let fieldRef
-
-  if (checked === undefined && name !== undefined) {
-    if (radio) {
-      checked = (initialValue === value)
-    } else {
-      checked = value === true
-    }
-  }
 
   function handleChange(event) {
     let value = event.target.value
-
-    if (!radio && value === 'off') {
-      value = true
-    } else if (!radio && value === 'on') {
-      value = false
+    value = value === 'on' ? valueOn : valueOff
+    if (!radio)  {
+      value = value === valueOn ? valueOff : valueOn
     }
-
     call(onChange)(value)
   }
 
@@ -133,6 +116,7 @@ export const Checkbox = withForm(({
           >
             {label}
             {hint && (<>
+              <Gap size="4px" />
               <Font
                 size="x2s"
                 fill="faint-down"

@@ -59,7 +59,7 @@ export const Option = ({
       <Align row vert="center">
         {multi && (<>
           <Checkbox
-            checked={selected}
+            value={selected}
             forwardRef={n => checkboxRef = n}
           />
           <Gap />

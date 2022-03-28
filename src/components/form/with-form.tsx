@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, FC, useMemo } from 'react'
 import { useForm } from './context'
 import { getDeepFieldByPath } from '../../utils'
 
 export type WithFormProps<ComponentProps> = ComponentProps & {
   value?: any
+  initialValue?: any
   name?: string
   match?: any
   error?: any
@@ -11,13 +12,16 @@ export type WithFormProps<ComponentProps> = ComponentProps & {
   mask?: any
   disabled?: boolean
   required?: boolean
-  radio?: boolean
   label?: string
+  onChange?: (newValue: any) => void,
 }
+
+export type WithForm<ComponentProps> = FC<WithFormProps<ComponentProps>>
 
 export const withForm = (Component: any) => ({
   onChange = a => a,
   value,
+  initialValue,
   name,
   match,
   error,
@@ -25,7 +29,6 @@ export const withForm = (Component: any) => ({
   mask,
   disabled,
   required,
-  radio,
   label,
   ...rest
 }: any) => {
@@ -48,12 +51,6 @@ export const withForm = (Component: any) => ({
   useEffect(() => {
     name && setField?.(name, value)
   }, [value])
-
-  // useEffect(() => {
-  //   if (!fieldValue && value && !radio) {
-  //     setField?.(name, value)
-  //   }
-  // })
 
   function handleBlur(value) {
     if (disabled) { return }
@@ -86,7 +83,7 @@ export const withForm = (Component: any) => ({
     label += ' *'
   }
 
-  return (
+  return useMemo(() => (
     <Component
       {...rest}
       label={label}
@@ -97,7 +94,6 @@ export const withForm = (Component: any) => ({
       onBlur={!disabled && handleBlur}
       error={hasError}
       disabled={disabled}
-      radio={radio}
     />
-  )
+  ), [fieldValue, hasError])
 }

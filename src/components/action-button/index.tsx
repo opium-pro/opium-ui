@@ -1,8 +1,11 @@
 import React from 'react'
 import { Align, Font, Icon } from 'themeor'
-import { MakeButton } from '../make-button'
+import { MakeButton, MakeButtonProps } from '../make-button'
+import { OpiumComponent } from '../../types'
 
-type Props = React.AllHTMLAttributes<HTMLElement> & {
+
+
+export type ActionButtonProps = MakeButtonProps & {
   label?: string
   icon?: string
   fill?: string
@@ -10,7 +13,7 @@ type Props = React.AllHTMLAttributes<HTMLElement> & {
 }
 
 
-export const ActionButton = ({
+export const ActionButton: OpiumComponent<ActionButtonProps> = ({
   label,
   icon,
   disabled,
@@ -18,7 +21,7 @@ export const ActionButton = ({
   children,
   fill = critic ? 'critic' : 'base-down',
   ...rest
-}: Props) => (
+}) => (
   <MakeButton inline {...rest}>
     <Align row gapHor="xs" vert="center">
       {icon && <Icon fill={fill} name={icon} />}
@@ -27,3 +30,13 @@ export const ActionButton = ({
     </Align>
   </MakeButton>
 )
+
+
+ActionButton.type = 'component'
+ActionButton.description = 'Кнопка для совершения действия'
+ActionButton.demoProps = {
+  label: ['string', 'Click me'],
+  icon: ['string', 'cross'],
+  fill: ['string', undefined],
+  critic: ['boolean', false],
+}

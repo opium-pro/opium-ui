@@ -1,5 +1,14 @@
-import { useContext, createContext } from "react"
+import { useContext, createContext, Dispatch } from 'react'
 
-export const AppLayoutContext: any = createContext({})
 
-export const useAppLayout: any = () => useContext(AppLayoutContext)
+export type AppLayoutContext = {
+  contentNode?: HTMLElement
+  setContentNode?: Dispatch<() => any>
+  menuNode?: HTMLElement
+  setMenuNode?: Dispatch<() => any>
+  scrollNode?: HTMLElement
+}
+
+
+export const AppLayoutContext = createContext({} as AppLayoutContext)
+export const useAppLayout = () => useContext(AppLayoutContext)

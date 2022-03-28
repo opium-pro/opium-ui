@@ -28,7 +28,6 @@ export const Wrapper: FC<Props> = ({ size, children, ...rest }) => {
           <Box.TryTagless
             fill="base"
             radius={isSmall && "md"}
-            shadow="lg"
             {...rest}
           >
             <Align hor="stretch">

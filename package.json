@@ -1,7 +1,7 @@
 {
   "name": "opium-ui",
-  "version": "1.1.0",
-  "main": "dist/index.js",
+  "version": "1.2.0",
+  "main": "dist/export.js",
   "dependencies": {
     "hotkeys-js": "^3.8.7",
     "opium-filter": "^1.0.1",
@@ -15,6 +15,7 @@
     "@types/react-helmet": "^6.1.1",
     "copyfiles": "^2.4.1",
     "nodemon": "^2.0.12",
+    "opium-nav": "^1.1.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
@@ -23,8 +24,8 @@
   "scripts": {
     "start": "react-scripts start",
     "watch": "npm run icons:build && nodemon -e ts,tsx,json,svg,png -w ./src -x npm run build",
-    "link": "npm link react",
-    "unlink": "npm unlink react themeor",
+    "link": "npm link react ../themeor ../opium-nav",
+    "unlink": "npm unlink react themeor opium-nav",
     "build:docs": "react-scripts build",
     "clear": "rm -fr ./dist && mkdir dist",
     "icons:parse": "node ./scripts/parse-icons",

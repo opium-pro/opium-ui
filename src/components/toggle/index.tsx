@@ -1,20 +1,17 @@
-import React from 'react'
+import React, { ReactNode, useEffect } from 'react'
 import { FC } from 'react'
-import { Align, Fit, Box, Font, Gap, Icon, Reaction } from 'themeor'
+import { Align, Fit, Box, Font, Gap, Reaction } from 'themeor'
 import { withForm } from '../form'
 import { withTooltip, WithTooltipProps } from '../tooltip'
 import { WithFormProps } from '../form'
+import { call } from '../../utils'
+
 
 type Props = WithFormProps<WithTooltipProps<{
-  checked?: boolean,
-  label?: any,
-  hint?: any,
-  name?: string,
-  value?: string,
-  initialValue?: string,
+  hint?: string | ReactNode,
   radio?: boolean,
-  disabled?: boolean,
-  onChange?: (value: boolean) => void,
+  valueOn?: any,
+  valueOff?: any,
 }>>
 
 export const Toggle: FC<Props> = withForm(withTooltip(({
@@ -22,35 +19,21 @@ export const Toggle: FC<Props> = withForm(withTooltip(({
   value,
   initialValue,
   radio,
-  checked,
   label,
   onChange,
   hint,
   disabled,
+  valueOn = initialValue || true,
+  valueOff = undefined,
   ...props
-}: any) => {
-  if (checked === undefined && name !== undefined) {
-    if (radio) {
-      checked = (initialValue === value)
-    } else {
-      checked = value === 'on'
-    }
-  }
+}: Props) => {
+  const checked = value === valueOn
 
   function handleChange() {
-    if (!radio && value === 'off') {
-      value = 'on'
-    } else if (!radio && value === 'on') {
-      value = 'off'
-    } else if (value === initialValue) {
-      value = undefined
-    } else {
-      value = initialValue
+    if (!radio)  {
+      value = value === valueOn ? valueOff : valueOn
     }
-
-    if (typeof onChange === 'function') {
-      onChange?.(value)
-    }
+    call(onChange)(value)
   }
 
   return (
@@ -59,22 +42,20 @@ export const Toggle: FC<Props> = withForm(withTooltip(({
         <Align hor="left">
           <Align row vert="center" {...rProps} onClick={handleChange}>
 
-            <Fit.TryTagless height="20px" width="36px">
+            <Fit.TryTagless height="20px" width="34px">
               <Box.TryTagless
                 strong={checked}
                 fill={(disabled && "faint") || (checked && "base") || (r.hoverOrFocus ? "faint-up" : "faint")}
                 radius="max"
               >
-                <Gap size="x3s">
+                <Gap size="2px">
 
                   <Fit.TryTagless
                     width="16px"
                     height="16px"
-                    left={checked && '16px'}
+                    left={checked && '14px'}
                   >
-                    <Box fill="base" radius="max" shadow="sm">
-                      {checked && <Icon name="Check" size="sm" fill={disabled ? "base" : "success"} />}
-                    </Box>
+                    <Box fill="base" radius="max" shadow="sm" />
                   </Fit.TryTagless>
 
                 </Gap>
@@ -92,6 +73,7 @@ export const Toggle: FC<Props> = withForm(withTooltip(({
               >
                 {label}
                 {hint && (<>
+                  <Gap size="4px" />
                   <Font
                     size="x2s"
                     fill="faint-down"

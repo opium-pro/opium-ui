@@ -1,8 +1,8 @@
-import React from 'react'
-import { Align, Fit, Box, Font, Line, Gap, Icon, Reaction } from 'themeor'
+import React, {FC} from 'react'
+import { FitProps, Fit, Box, Reaction } from 'themeor'
 import { withTooltip } from '../tooltip'
 
-type Props = React.HTMLAttributes<HTMLAnchorElement> & {
+export type MakeButtonProps = FitProps & {
   offset?: string,
   disabled?: boolean,
   radius?: string,
@@ -11,7 +11,7 @@ type Props = React.HTMLAttributes<HTMLAnchorElement> & {
   forwardRef?: any,
 }
 
-export const MakeButton = withTooltip(({
+export const MakeButton: FC<MakeButtonProps> = withTooltip(({
   children,
   offset = "10px",
   disabled,
@@ -20,7 +20,7 @@ export const MakeButton = withTooltip(({
   fade,
   forwardRef,
   ...rest
-}: Props) => (
+}) => (
   <Reaction
     {...rest}
     disabled={disabled}

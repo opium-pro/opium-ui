@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, FC } from 'react'
 import { Reaction } from 'themeor'
-import { withForm } from '../form'
+import { withForm, WithForm } from '../form'
 import { Label } from './label'
 import { Placeholder } from './placeholder'
 import { Value } from './value'
@@ -10,7 +10,7 @@ import { TextInputProps } from './types'
 import { TextInputContext } from './context'
 
 
-export const TextInput = withForm(({
+export const TextInput: WithForm<TextInputProps> = withForm(({
   label,
   type = "text",
   height = label ? '50px' : '40px',
@@ -27,7 +27,7 @@ export const TextInput = withForm(({
   error,
   onDisplayValue,
   ...props
-}: TextInputProps) => {
+}) => {
   let inputNode
 
   const isSelect = type === 'select'
