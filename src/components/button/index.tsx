@@ -87,7 +87,7 @@ export const Button = withTooltip(({
                             inverse={disabled ? false : inverse}
                             fill={disabled ? "faintDown" : "base"}
                           />
-                          <Gap size="8px" />
+                          {label && <Gap size="8px" />}
                         </>)}
                         <Align>
                           {label}

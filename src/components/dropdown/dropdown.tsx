@@ -27,7 +27,7 @@ export const Dropdown: FC<DropdownProps> = ({
   const [targetNode, setTargetNode]: any = useState()
   const [isReady, setIsReady]: any = useState()
   const { contentNode } = useAppLayout()
-  const { opened, search, setSearch, setOpened } = useDropdown()
+  const { opened, search, setSearch, setOpened, withSearch } = useDropdown()
   let searchNode
 
   function alignNodes() {
@@ -89,7 +89,11 @@ export const Dropdown: FC<DropdownProps> = ({
       newChildren = newChildren.map(i => i.component)
     }
   }
-  const showSearch = isMapped && (children as any).size > 10
+
+  const showSearch = withSearch &&
+    isMapped && (children as any).size > 10
+    || React.Children.count(children) > 10
+    || (children as any).length > 10
 
   return (
     <Fit forwardRef={handleSourceRef} hidden>

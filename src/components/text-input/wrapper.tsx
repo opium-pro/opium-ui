@@ -33,6 +33,7 @@ export const Wrapper = ({ children }) => {
       disabled={disabled}
       // placeOrder={["bottom-stretch", "top-stretch"]}
       items={isSelect ? options : <AutoComplete />}
+      withSearch={isSelect}
     >
       <Fit.TryTagless height={height}>
         <Box.TryTagless

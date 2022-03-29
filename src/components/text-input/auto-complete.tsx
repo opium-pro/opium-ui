@@ -16,7 +16,7 @@ export function AutoComplete() {
 
   const itemsToAutocomplete = filter(autoComplete as any, value)
     .filter((option) => value !== option)
-    .slice(0, 10)
+    .slice(0, 100)
 
   return (<>
     {itemsToAutocomplete.map((option, index) => (
