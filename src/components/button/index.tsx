@@ -48,16 +48,16 @@ export const Button = withTooltip(({
         <Fit.TryTagless inline height={mini ? "32px" : "48px"} stretch={stretch}>
           <Box.TryTagless
             glow={glow && 'md'}
-            fill={(disabled && "faint-up") || fill && (r.hoverOrFocus ? (fillHover || fill) : fill) || (primary ? ((r.active && 'accent-down') || (r.hoverOrFocus ? "accent-up" : "accent")) : (r.hoverOrFocus && "faint" || light && "none" || "base"))}
-            borderFill={(primary || disabled) ? "none" : "faint-up"}
-            strong={primary && !disabled}
+            fill={(disabled && "faintUp") || fill && (r.hoverOrFocus ? (fillHover || fill) : fill) || (primary ? ((r.active && 'accentDown') || (r.hoverOrFocus ? "accentUp" : "accent")) : (r.hoverOrFocus && "faint" || light && "none" || "base"))}
+            borderFill={(primary || disabled) ? "none" : "faintUp"}
+            inverse={primary && !disabled}
             radius="xs"
             {...rest}
           >
             <Align.TryTagless row vert="center" hor="center">
               <Font.TryTagless
                 nowrap
-                fill={(disabled && "faint-down") || (critic && "critic") || "base"}
+                fill={(disabled && "faintDown") || (critic && "critic") || "base"}
                 weight={primary ? "600" : "500"}
                 size="sm"
                 family="regular"
@@ -76,7 +76,7 @@ export const Button = withTooltip(({
                           <Icon
                             name={icon}
                             inverse={disabled ? false : inverse}
-                            fill={disabled ? "faint-down" : "base"}
+                            fill={disabled ? "faintDown" : "base"}
                           />
                           <Gap size="8px" />
                         </>)}
@@ -88,7 +88,7 @@ export const Button = withTooltip(({
                               inverse={disabled ? false : inverse}
                               lineHeight="xs"
                               size="x2s"
-                              fill="faint-down"
+                              fill="faintDown"
                               align={icon ? "left" : "center"}
                               weight="400"
                             >

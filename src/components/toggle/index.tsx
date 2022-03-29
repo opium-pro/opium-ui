@@ -44,8 +44,8 @@ export const Toggle: FC<Props> = withForm(withTooltip(({
 
             <Fit.TryTagless height="20px" width="34px">
               <Box.TryTagless
-                strong={checked}
-                fill={(disabled && "faint") || (checked && "base") || (r.hoverOrFocus ? "faint-up" : "faint")}
+                inverse={checked}
+                fill={(disabled && "faint") || (checked && "base") || (r.hoverOrFocus ? "faintUp" : "faint")}
                 radius="max"
               >
                 <Gap size="2px">
@@ -67,7 +67,7 @@ export const Toggle: FC<Props> = withForm(withTooltip(({
               <Gap size="sm" />
               <Font
                 size="sm"
-                fill={disabled ? "faint-down" : "base"}
+                fill={disabled ? "faintDown" : "base"}
                 weight="400"
                 cursor="default"
               >
@@ -76,7 +76,7 @@ export const Toggle: FC<Props> = withForm(withTooltip(({
                   <Gap size="4px" />
                   <Font
                     size="x2s"
-                    fill="faint-down"
+                    fill="faintDown"
                   >
                     {hint}
                   </Font>

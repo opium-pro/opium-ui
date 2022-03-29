@@ -37,7 +37,7 @@ export const Notice: FC<NoticeProps> = ({ title, text, type = 'base', onClose, c
           zIndex={1000}
         >
           <Align.TryTagless hor="center">
-            <Box.TryTagless strong fill={type}>
+            <Box.TryTagless inverse fill={type}>
               <Gap>
                 {title && <Font weight="700">{title}</Font>}
                 {text && <Font>{text}</Font>}

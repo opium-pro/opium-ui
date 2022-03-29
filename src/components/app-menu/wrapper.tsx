@@ -23,7 +23,7 @@ export const Wrapper: FC<Props> = ({ size, children, ...rest }) => {
         <Line.TryTagless
           weight={isSmall && "md"}
           left={isSmall && "md"}
-          fill="faint-down"
+          fill="faintDown"
         >
           <Box.TryTagless
             fill="base"

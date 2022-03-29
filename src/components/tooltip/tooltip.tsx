@@ -176,7 +176,7 @@ export const Tooltip: FC<TooltipProps> = ({
             size="10px"
           >
 
-            <Box.TryTagless blur="md" fill="base-down" strong radius="4px">
+            <Box.TryTagless blur="md" fill="baseDown" inverse radius="4px">
               <Font.TryTagless>
                 <Gap vert="8px" hor="12px">
                   {children}

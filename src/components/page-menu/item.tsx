@@ -37,7 +37,7 @@ export const Item = withTooltip(({
             align="center"
             size="xs"
             noselect
-            fill={active ? "base" : "faint-down"}
+            fill={active ? "base" : "faintDown"}
             weight={active ? "600" : "500"}
           >
             {label}

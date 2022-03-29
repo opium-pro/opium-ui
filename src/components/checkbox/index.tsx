@@ -83,9 +83,9 @@ export const Checkbox: FC<CheckboxProps> = withForm(({
           <Fit.TryTagless width="20px" height="20px">
             <Box.TryTagless
               radius="max"
-              borderFill={disabled ? "faint" : checked ? "base" : "faint-up"}
+              borderFill={disabled ? "faint" : checked ? "base" : "faintUp"}
               fill="none"
-              strong={checked}
+              inverse={checked}
             >
               <Align
                 vert="center"
@@ -96,8 +96,8 @@ export const Checkbox: FC<CheckboxProps> = withForm(({
                   <Fit.TryTagless width="8px" height="8px">
                     <Box
                       radius="max"
-                      fill={disabled ? "faint-down" : "base"}
-                      strong
+                      fill={disabled ? "faintDown" : "base"}
+                      inverse
                     />
                   </Fit.TryTagless>
                 )}
@@ -110,7 +110,7 @@ export const Checkbox: FC<CheckboxProps> = withForm(({
           <Gap size="sm" />
           <Font
             size="sm"
-            fill={disabled ? "faint-down" : "base"}
+            fill={disabled ? "faintDown" : "base"}
             weight="400"
             cursor="default"
           >
@@ -119,7 +119,7 @@ export const Checkbox: FC<CheckboxProps> = withForm(({
               <Gap size="4px" />
               <Font
                 size="x2s"
-                fill="faint-down"
+                fill="faintDown"
               >
                 {hint}
               </Font>

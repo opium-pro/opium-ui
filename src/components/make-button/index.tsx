@@ -1,5 +1,5 @@
 import React, {FC} from 'react'
-import { FitProps, Fit, Box, Reaction } from 'themeor'
+import { FitProps, Fit, Box, Reaction, ReactionProps } from 'themeor'
 import { withTooltip } from '../tooltip'
 
 export type MakeButtonProps = FitProps & {
@@ -46,7 +46,7 @@ export const MakeButton: FC<MakeButtonProps> = withTooltip(({
           >
             <Box
               radius={r.hoverOrFocus ? radius as any : 'max'}
-              fill={r.active ? "faint" : "--hovereffect"}
+              fill={r.active ? "faint" : "hovereffect"}
               style={{
                 transition: "all 0.2s ease",
                 opacity: fade ? (r.hoverOrFocus ? "1" : "0") : undefined,

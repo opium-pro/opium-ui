@@ -34,6 +34,7 @@ export const withForm = (Component: any) => ({
 }: any) => {
   const [changed, setChanged]: any = useState(false)
   const [hasError, setError]: any = useState(error)
+
   const {
     setField,
     changed: formChanged,
@@ -83,7 +84,7 @@ export const withForm = (Component: any) => ({
     label += ' *'
   }
 
-  return useMemo(() => (
+  return (
     <Component
       {...rest}
       label={label}
@@ -95,5 +96,5 @@ export const withForm = (Component: any) => ({
       error={hasError}
       disabled={disabled}
     />
-  ), [fieldValue, hasError])
+  )
 }

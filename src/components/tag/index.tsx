@@ -13,13 +13,13 @@ export const Tag = (
     <Box.TryTagless
       radius="4px"
       fill={type}
-      borderFill="faint-down"
+      borderFill="faintDown"
       shadow="x3s"
     >
       <Gap.TryTagless vert="3px" hor="6px" bottom="2px">
         <Align.TryTagless row>
           <Font
-            fill="faint-down"
+            fill="faintDown"
             size="9px"
             weight="600"
             uppercase

@@ -12,7 +12,7 @@ export const Status: FC<StatusProps> = (
 ) => {
   if (!label) { return null }
   return (
-    <Box.TryTagless strong radius="max" fill={type}>
+    <Box.TryTagless inverse radius="max" fill={type}>
       <Gap.TryTagless vert="x2s" hor="md">
         <Align.TryTagless row>
           <Font size="sm" weight="600" {...props}>

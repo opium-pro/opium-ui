@@ -68,7 +68,7 @@ export const Option = ({
           <Font fill={selected ? "complement" : "base"} weight={selected ? '600' : '500'}>
             <MarkMatch target={search}>{label}</MarkMatch>
           </Font>
-          {!!hint && (<Font size="sm" fill="faint-down">
+          {!!hint && (<Font size="sm" fill="faintDown">
             <MarkMatch target={search}>{hint}</MarkMatch>
           </Font>)}
           {children}

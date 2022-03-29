@@ -26,7 +26,7 @@ export const Counter = ({ value, attention, base, size = 'default', ...rest }: P
         <Box.TryTagless
           radius="max"
           fill={(base && 'base') || (attention ? "base" : "faint")}
-          strong={attention}
+          inverse={attention}
           shadow={!!base ? 'sm' : 'none'}
           {...rest}
         >

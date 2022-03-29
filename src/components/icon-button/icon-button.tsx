@@ -44,7 +44,7 @@ export const IconButton = withTooltip(({
               <Box
                 style={{ transition: "all, 0.2s ease" }}
                 radius="max"
-                fill={r.active ? "faint" : "--hovereffect"}
+                fill={r.active ? "faint" : "hovereffect"}
               />
             </Fit.TryTagless>
 

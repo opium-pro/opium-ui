@@ -19,7 +19,7 @@ export const ActionButton: OpiumComponent<ActionButtonProps> = ({
   disabled,
   critic,
   children,
-  fill = critic ? 'critic' : 'base-down',
+  fill = critic ? 'critic' : 'baseDown',
   ...rest
 }) => (
   <MakeButton inline {...rest}>

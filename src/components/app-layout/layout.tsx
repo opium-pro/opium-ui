@@ -85,7 +85,7 @@ export const Layout: FC<AppLayoutProps> = ({
           clip={isSmall && openMenu}
           forwardRef={contentNodeRef}
         >
-          <Box.TryTagless fill="faint-down">
+          <Box.TryTagless fill="faintDown">
             <ScreenFit>
               <Align minHeight="100vh">
                 {header && (

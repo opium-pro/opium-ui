@@ -8,7 +8,7 @@ export interface BackgroundProps {
 
 export const Background: FC<BackgroundProps> = ({
   children,
-  fill = 'faint-down',
+  fill = 'faintDown',
   ...rest
 }) => {
   const spots = useMemo(() => (

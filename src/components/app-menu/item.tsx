@@ -46,7 +46,7 @@ export const Item: FC<Props> = withTooltip(({
               {icon &&
                 <Icon
                   name={icon}
-                  fill={active ? activeFill : disabled ? "faint-down" : "base-down"}
+                  fill={active ? activeFill : disabled ? "faintDown" : "baseDown"}
                 />
               }
               {img && <>
@@ -66,7 +66,7 @@ export const Item: FC<Props> = withTooltip(({
               transition
               noselect
               weight={active ? '600' : '500'}
-              fill={active ? activeFill : disabled ? "faint-down" : "base-down"}
+              fill={active ? activeFill : disabled ? "faintDown" : "baseDown"}
             >
               {label}
             </Font>
@@ -77,7 +77,7 @@ export const Item: FC<Props> = withTooltip(({
                 align="center"
                 size="x3s"
                 noselect
-                fill="faint-down"
+                fill="faintDown"
               >
                 {hint}
               </Font>

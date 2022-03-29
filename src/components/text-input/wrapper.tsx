@@ -36,7 +36,7 @@ export const Wrapper = ({ children }) => {
     >
       <Fit.TryTagless height={height}>
         <Box.TryTagless
-          fill={(disabled && "base") || (focus && "base") || (hover && "faint") || "faint-down"}
+          fill={(disabled && "base") || (focus && "base") || (hover && "faint") || "faintDown"}
           radius={context.label ? 'md' : 'max'}
           borderFill={(disabled && "faint") || (focus && "base") || (error && 'critic') || "none"}
           style={{ transition: "all 0.25s ease" }}
@@ -54,7 +54,7 @@ export const Wrapper = ({ children }) => {
 
             <Align row vert="center">
               {!textarea && !disabled && isDefined(value) && hoverOrFocus && (<>
-                <IconButton size="xs" name="cross" fill="faint-down" onClick={() => onChange('')} />
+                <IconButton size="xs" name="cross" fill="faintDown" onClick={() => onChange('')} />
                 {/* {!(hint || insertRight || parentChildren) */}
                   <Gap size="8px" />
                 {/* } */}

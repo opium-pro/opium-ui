@@ -19,7 +19,7 @@ export const Placeholder = () => {
       <Align.TryTagless vert="center">
         <Font.TryTagless
           size="sm"
-          fill="faint-down"
+          fill="faintDown"
           weight="400"
           family="regular"
           align="left"

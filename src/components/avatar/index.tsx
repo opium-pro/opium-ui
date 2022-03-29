@@ -49,7 +49,7 @@ export const Avatar: FC<IAvatarProps> = withTooltip(({
         <Box.TryTagless
           img={img}
           fill={fill || fills[index]}
-          strong
+          inverse
           radius="max"
           {...rest}
           forwardRef={forwardRef}

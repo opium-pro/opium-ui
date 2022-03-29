@@ -22,7 +22,7 @@ export function Item ({ label, icon, active, ...rest }: Props) {
               align="center"
               size="x2s"
               noselect
-              fill={active ? "base" : "faint-down"}
+              fill={active ? "base" : "faintDown"}
             >
               {label}
             </Font>

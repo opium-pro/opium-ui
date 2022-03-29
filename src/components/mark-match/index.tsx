@@ -23,7 +23,7 @@ export const MarkMatch: FC<MarkMatchProps> = ({
 
   if (!Wrapper) {
     Wrapper = ({ children }) => (
-      <Box.TryTagless strong fill="faint">
+      <Box.TryTagless inverse fill="faint">
         <Font inline>
           {children}
         </Font>

@@ -19,7 +19,7 @@ export const ActionPanel = ({ children, status, comission, sum }: Props) => {
           zIndex: 100,
           margin: '0 -10px',
         }}>
-        <Box radius="md" fill="--notification" blur="md" strong>
+        <Box radius="md" fill="notification" blur="md" inverse>
 
       {(status || sum || comission) && (
 

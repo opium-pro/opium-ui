@@ -48,7 +48,7 @@ export const Item = withTooltip(({ label, nowrap, onClick, value, forwardRef, hi
             <Font
               size="x3s"
               noselect
-              fill="faint-down"
+              fill="faintDown"
             >
               {hint}
             </Font>

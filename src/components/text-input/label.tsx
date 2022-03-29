@@ -19,7 +19,7 @@ export const Label = () => {
     >
       <Align.TryTagless vert="center">
         <Font.TryTagless
-          fill={(error && 'critic') || "faint-down"}
+          fill={(error && 'critic') || "faintDown"}
           size={uptop ? "x2s" : "xs"}
           align="left"
         >
