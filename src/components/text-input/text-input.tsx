@@ -90,9 +90,9 @@ export const TextInput: WithForm<TextInputProps> = withForm(({
     >
       <TextInputContext.Provider value={context}>
         <Wrapper>
-          <Placeholder />
           <Label />
           <Value />
+          <Placeholder />
         </Wrapper>
         <Caption />
       </TextInputContext.Provider>

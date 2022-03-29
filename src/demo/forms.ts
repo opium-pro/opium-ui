@@ -1,4 +1,4 @@
-export const icon = "asdasd"
+export const icon = "input-text"
 
 export const menu = [
   require('../components/checkbox'),

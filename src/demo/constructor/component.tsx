@@ -1,15 +1,12 @@
 import { FC, useState } from 'react'
 import { Font, Align, Gap, Box, Line } from 'themeor'
-import { nav } from 'opium-nav'
-import { nameToUrl } from './utils'
-import { LimitWidth, TextInput, Toggle, Select, Checkbox, Button, Form, ScreenFit, useForm } from '../../components'
+import { usePath } from 'opium-nav'
+import { LimitWidth, TextInput, Toggle, Select, Checkbox, Button, useScreenFit, Form, ScreenFit, useForm } from '../../components'
 import { TypeFields } from '../../types'
+import * as mainMenu from '../index'
 
 
-export type ComponentProps = {
-  Component?: any,
-  name?: string,
-}
+export type ComponentProps = {}
 
 
 export const values: { [type in TypeFields]: any } = {
@@ -19,10 +16,12 @@ export const values: { [type in TypeFields]: any } = {
 }
 
 
-export const Component: FC<ComponentProps> = ({
-  Component,
-  name,
-}) => {
+export const Component: FC<ComponentProps> = () => {
+  const { nameParams = {} } = usePath()
+  const { group, component } = nameParams
+  const { isSmall } = useScreenFit()
+  const Component = mainMenu[group]?.menu.filter(item => !!item[component])?.[0]?.[component]
+
   const props = Object.keys(Component?.demoProps || {}).map((propName) => {
     if (!propName) { return null }
     const [type, initialValue, options] = Component.demoProps[propName]
@@ -43,9 +42,9 @@ export const Component: FC<ComponentProps> = ({
     <ScreenFit>
       <LimitWidth>
         <Gap size="40px" />
-        <Font size="x3l" weight="900">{name}</Font>
+        <Font size="x3l" weight="900">{component}</Font>
 
-        {Component.description && (<>
+        {Component?.description && (<>
           <Gap />
           <Font>{Component.description}</Font>
         </>)}
@@ -58,7 +57,7 @@ export const Component: FC<ComponentProps> = ({
             <Font size="xl" weight="700">Props</Font>
             <Gap size="40px" />
 
-            <Align gapVert="20px" pattern="1fr 1fr" gapHor="40px" vert="center">
+            <Align gapVert="20px" pattern={isSmall ? "1fr" : "1fr 1fr"} gapHor="40px" vert="center">
               {props}
             </Align>
 

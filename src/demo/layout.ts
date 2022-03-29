@@ -1,4 +1,4 @@
-export const icon = "asdasd"
+export const icon = "windows"
 
 export const menu = [
   require('../components/app-layout'),

@@ -39,21 +39,25 @@ export const Layout: FC<AppLayoutProps> = ({
       )}
       {menu && (!isSmall || openMenu) && (
         <AppLayoutContext.Provider value={{ ...context, scrollNode: menuNode }}>
-          <Fit.TryTagless
-            maxHeight="100vh"
-            zIndex={200}
-            forwardRef={setMenuNode}
-            scroll
-            absolute={isSmall}
-            top={isSmall && '0'}
-            right={isSmall && '0'}
-            bottom={isSmall && '0'}
-            left={isSmall && '0'}
-          >
-            <Align hor={isSmall && "center" as any} vert={isSmall && "center" as any}>
-              {menu}
-            </Align>
-          </Fit.TryTagless>
+          <Animate.TryTagless onMount={isSmall && "fadeInLeft" as any}>
+            <Box.TryTagless shadow="sm" fill="base">
+              <Fit.TryTagless
+                zIndex={200}
+                forwardRef={setMenuNode}
+                absolute={isSmall}
+                top="0"
+                bottom="0"
+                left="0"
+              >
+                <Align
+                  hor="stretch"
+                  vert="stretch"
+                >
+                  {menu}
+                </Align>
+              </Fit.TryTagless>
+            </Box.TryTagless>
+          </Animate.TryTagless>
         </AppLayoutContext.Provider>
       )}
       {isSmall && (

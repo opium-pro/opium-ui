@@ -90,10 +90,11 @@ export const Dropdown: FC<DropdownProps> = ({
     }
   }
 
-  const showSearch = withSearch &&
+  const showSearch = withSearch && (
     isMapped && (children as any).size > 10
     || React.Children.count(children) > 10
     || (children as any).length > 10
+  )
 
   return (
     <Fit forwardRef={handleSourceRef} hidden>

@@ -1,4 +1,4 @@
-export const icon = "asdasd"
+export const icon = "box"
 
 export const menu = [
   require('../components/avatar'),

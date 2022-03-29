@@ -21,7 +21,7 @@ export const Value = () => {
   const reaction = useReaction()
   const fields: any = {}
 
-  const isDisplayValue = (type !== 'password') && ((type === 'select') || (!reaction.focus))
+  const isDisplayValue = (type !== 'password') && (type === 'select' || !reaction.focus)
 
   const fieldProps = {
     ref: handleRef,
@@ -35,15 +35,13 @@ export const Value = () => {
   }
 
   fields.input = (
+    <Font.TryTagless>
     <input {...fieldProps} />
+    </Font.TryTagless>
   )
 
   fields.textarea = (
-    <Fit.TryTagless
-      cover="parent"
-      width="100%"
-      bottom="0"
-    >
+    <Fit.TryTagless cover="parent" style={{resize: 'none'}}>
       <textarea {...fieldProps} />
     </Fit.TryTagless>
   )
@@ -62,6 +60,7 @@ export const Value = () => {
     <StyleWrapper opacity={!isDisplayValue ? '1' : '0'}>
       {fields[type] || fields.input}
     </StyleWrapper>
+
     {isDisplayValue && (
       <StyleWrapper>
         {typeof onDisplayValue === 'function' ? onDisplayValue?.(value) : value}
@@ -85,12 +84,13 @@ function StyleWrapper({ children, ...rest }) {
     <Fit.TryTagless
       absolute
       left="0"
-      top={label ? '20px' : '10px'}
-      bottom="0"
       right="0"
-      {...rest}
+      top={label ? '28px' : '13px'}
+      offset="0"
+      height={type !== "textarea" && "16px"}
+      maxWidth="100%"
       clip
-      static
+      {...rest}
     >
       <Box.TryTagless>
         <Align.TryTagless vert={isTextarea ? "top" : "center"} row>
@@ -104,7 +104,7 @@ function StyleWrapper({ children, ...rest }) {
             nowrap
             {...valueFont}
           >
-            <Gap.TryTagless hor="md">
+            <Gap.TryTagless hor="md" FORCE_TAGLESS>
               {children}
             </Gap.TryTagless>
           </Font.TryTagless>

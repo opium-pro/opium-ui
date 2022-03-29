@@ -1,6 +1,6 @@
 import { MenuType } from './constructor/types'
 
-export const icon = "asdasd"
+export const icon = "enter-button"
 
 export const menu: MenuType = [
   require('../components/action-button'),

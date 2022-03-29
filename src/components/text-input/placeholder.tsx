@@ -14,7 +14,8 @@ export const Placeholder = () => {
     <Fit.TryTagless
       absolute
       left="0"
-      top={label ? '50%' : '11px'}
+      right="0"
+      top={label ? '28px' : '13px'}
     >
       <Align.TryTagless vert="center">
         <Font.TryTagless
@@ -22,7 +23,9 @@ export const Placeholder = () => {
           fill="faintDown"
           weight="400"
           family="regular"
+          lineHeight="md"
           align="left"
+          nowrap
         >
           <Gap.TryTagless
             hor="md"
