@@ -1,6 +1,9 @@
 import React from 'react'
 import { Align, Fit, Box, Font, Gap, Icon, BoxProps, Reaction } from 'themeor'
 import { withTooltip, WithTooltipProps } from '../tooltip'
+import { OpiumComponent, Icons } from '../../types'
+import { icons } from '../../theme/iconList'
+
 
 export type BottonProps = WithTooltipProps<BoxProps & {
   label?: string
@@ -48,9 +51,15 @@ export const Button = withTooltip(({
         <Fit.TryTagless inline height={mini ? "32px" : "48px"} stretch={stretch}>
           <Box.TryTagless
             glow={glow && 'md'}
-            fill={(disabled && "faintUp") || fill && (r.hoverOrFocus ? (fillHover || fill) : fill) || (primary ? ((r.active && 'accentDown') || (r.hoverOrFocus ? "accentUp" : "accent")) : (r.hoverOrFocus && "faint" || light && "none" || "base"))}
-            borderFill={(primary || disabled) ? "none" : "faintUp"}
-            inverse={primary && !disabled}
+            fill={(disabled && "faintUp")
+              || fill && (r.hoverOrFocus ? (fillHover || fill) : fill)
+              || (primary && (
+                critic && ((r.active && 'criticDown') || (r.hoverOrFocus ? "criticUp" : "critic"))
+                || ((r.active && 'accentDown') || (r.hoverOrFocus ? "accentUp" : "accent"))
+                || (r.hoverOrFocus && "faint" || light && "none" || "base"))
+              )
+            }
+            borderFill={(primary || disabled || light) ? "none" : "faintUp"}
             radius="xs"
             {...rest}
           >
@@ -108,4 +117,19 @@ export const Button = withTooltip(({
       )}
     </Reaction>
   </div>
-))
+)) as OpiumComponent<BottonProps>
+
+
+Button.type = 'component'
+Button.description = 'Основная кнопка'
+Button.demoProps = {
+  label: ['string', `Ooooh, click me, I' a button`],
+  icon: ['string', 'battery-charge4' as Icons, icons],
+  hint: ['string', ''],
+  fillHover: ['string', ''],
+  primary: ['boolean', true],
+  mini: ['boolean', false],
+  critic: ['boolean', false],
+  light: ['boolean', false],
+  disabled: ['boolean', false],
+}

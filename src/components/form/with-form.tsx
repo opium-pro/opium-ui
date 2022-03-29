@@ -46,7 +46,7 @@ export const withForm = (Component: any) => ({
   const fieldValue = (changed && formChanged && name) ? getDeepFieldByPath(name, fields) : (value || '')
 
   useEffect(() => {
-    name && setInitialValue?.(name, value)
+    name && setInitialValue?.(name, initialValue || value)
   }, [])
 
   useEffect(() => {

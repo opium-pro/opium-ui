@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 import * as mainMenu from '../index'
 import { AppLayout, AppMenu, ActionButton } from '../../components'
-import { nav, Path, usePath } from 'opium-nav'
+import { nav, Path, usePath, config } from 'opium-nav'
 import { Group } from './group'
 import { nameToUrl } from './utils'
 
@@ -28,7 +28,7 @@ export function App() {
 function MenuItem({ name }) {
   const { path } = usePath()
   const activePath = `/${nameToUrl(name)}`
-  const isActive = path === `/${nameToUrl(name)}`
+  const isActive = path === activePath || path.indexOf(activePath + config.stackSeparator) === 0
 
   return useMemo(() => (
     <AppMenu.Item

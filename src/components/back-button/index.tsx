@@ -1,15 +1,21 @@
 import React from 'react'
 import { Align, Fit, Box, Font, Line, Gap, Icon, Reaction } from 'themeor'
-import {MakeButton} from '../make-button'
+import { MakeButton, MakeButtonProps } from '../make-button'
+import { OpiumComponent } from '../../types'
 
-type Props = React.HTMLAttributes<HTMLElement> & {}
 
-export function BackButton ({onClick}: Props) {
+export type BackButtonProps = MakeButtonProps & {}
+
+export const BackButton: OpiumComponent<BackButtonProps> = (props: BackButtonProps) => {
   return (
-    <MakeButton onClick={onClick} radius="max">
+    <MakeButton radius="max" {...props}>
       <Align row vert="center" gapHor="md">
         <Icon name="Placeholder" />
       </Align>
     </MakeButton>
   )
 }
+
+BackButton.type = 'component'
+BackButton.description = 'Кнопка назад'
+BackButton.demoProps = {}

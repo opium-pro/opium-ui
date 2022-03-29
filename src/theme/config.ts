@@ -1,5 +1,13 @@
 export default {
-  shallInverseOn: ['base', 'faint', 'accent', 'complement', 'critic', 'success', 'darkblur', 'notification', 'error'],
+  shallInverseOn: [
+    'accent', 'accentUp', 'accentDown',
+    'complement', 'complementUp', 'complementDown',
+    'critic', 'criticUp', 'criticDown',
+    'success', 'successUp', 'successDown',
+    'darkblur',
+    'notification',
+    'error'
+  ],
 
   fill: {
     backblur: 'rgba(228, 232, 237, 0.5)',
@@ -18,6 +26,8 @@ export default {
     accentDown: '#0062d1',
     complement: '#5B24B3',
     critic: '#F2430C',
+    criticUp: '#F2430C',
+    criticDown: '#F2430C',
     warning: '#FFB72D',
     success: '#56C839',
   },
@@ -26,6 +36,12 @@ export default {
     base: '#fff',
     baseUp: '#fff',
     baseDown: '#fff',
+    faint: '#EDEFF3',
+    faintUp: '#E4E8ED',
+    faintDown: '#F6F7F9',
+    critic: '#fff',
+    criticUp: '#fff',
+    criticDown: '#fff',
   },
 
   box: {

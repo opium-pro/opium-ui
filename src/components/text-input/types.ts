@@ -18,7 +18,7 @@ export type TextInputProps = WithFormProps<ReactionProps & {
   disabled?: boolean
   forwardRef?: any
   initialValue?: string
-  autocomplete?: string[] | boolean
+  autoComplete?: string[] | boolean
   options?: any[]
   insertLeft?: any
   insertRight?: any

@@ -4,17 +4,17 @@ import { useTextInput } from './context'
 import filter from 'opium-filter'
 
 
-export function Autocomplete() {
+export function AutoComplete() {
   const {
-    autocomplete,
+    autoComplete,
     onChange,
     value,
     isSelect,
   } = useTextInput()
 
-  if (!autocomplete || isSelect || !Array.isArray(autocomplete)) { return null }
+  if (!autoComplete || isSelect || !Array.isArray(autoComplete)) { return null }
 
-  const itemsToAutocomplete = filter(autocomplete as any, value)
+  const itemsToAutocomplete = filter(autoComplete as any, value)
     .filter((option) => value !== option)
     .slice(0, 10)
 

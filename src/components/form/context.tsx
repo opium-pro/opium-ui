@@ -6,7 +6,6 @@ export const FormContext = createContext({} as {
   setFields?: (...args: any) => any
   initialValues?: {[key: string]: any}
   setInitialValue?: (...args: any) => any
-  setInitialValues?: (...args: any) => any
   changed?: boolean
   setChanged?: (...args: any) => any
   reset?: (...args: any) => any

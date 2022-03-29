@@ -11,12 +11,12 @@ export const Value = () => {
     value,
     options,
     name,
-    autocomplete,
+    autoComplete,
     onDisplayValue,
     handleRef,
   } = useTextInput()
 
-  const defaultAutocomplete = autocomplete === true ? 'on' : 'off'
+  const defaultAutocomplete = autoComplete === true ? 'on' : 'off'
 
   const reaction = useReaction()
   const fields: any = {}

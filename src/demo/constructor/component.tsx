@@ -2,7 +2,7 @@ import { FC, useState } from 'react'
 import { Font, Align, Gap, Box, Line } from 'themeor'
 import { nav } from 'opium-nav'
 import { nameToUrl } from './utils'
-import { LimitWidth, TextInput, Toggle, Select, Checkbox, Form, ScreenFit, useForm } from '../../components'
+import { LimitWidth, TextInput, Toggle, Select, Checkbox, Button, Form, ScreenFit, useForm } from '../../components'
 import { TypeFields } from '../../types'
 
 
@@ -34,6 +34,7 @@ export const Component: FC<ComponentProps> = ({
         name={propName}
         label={propName}
         value={initialValue}
+        autoComplete={options}
       />
     )
   })
@@ -64,8 +65,14 @@ export const Component: FC<ComponentProps> = ({
             <Gap size="80px" />
 
             <Font size="xl" weight="700">Result</Font>
-            <Gap size="40px" />
-            <DemoComponent Component={Component} />
+            <Gap size="30px" />
+            <Box radius="md" borderFill="base">
+              <Align hor="center" vert="center" minHeight="300px">
+                <Gap size="40px">
+                  <DemoComponent Component={Component} />
+                </Gap>
+              </Align>
+            </Box>
           </LimitWidth>
           <Gap size="40px" />
         </Box>

@@ -20,8 +20,8 @@ function readFiles(dir, level) {
     } else {
       const splitName = name.split('.')
       const ext = splitName.pop()
-      let onlyName = correctName(splitName.join(''))
-      onlyName = offerName(onlyName)
+      const onlyName = splitName.join('')
+      // onlyName = offerName(onlyName)
       // const newPath = `${level ? level + '/' : ''}${onlyName}.${ext}`
       const newPath = `${level ? level + '/' : ''}${name}`
 
@@ -36,45 +36,49 @@ function readFiles(dir, level) {
   }
 }
 
-function correctName(name) {
-  return name.replace(/[^a-zA-Z]/g, "_").replace(/__/g, "_").replace(/__/g, "_").replace(/^_/, "").replace(/_$/, "")
-}
+// function correctName(name) {
+//   return name.replace(/[^a-zA-Z]/g, "_").replace(/__/g, "_").replace(/__/g, "_").replace(/^_/, "").replace(/_$/, "")
+// }
 
-function offerName(name) {
-  if (['delete', 'function'].includes(name)) {
-    name = '_' + name
-  }
+// function offerName(name) {
+//   if (['delete', 'function'].includes(name)) {
+//     name = '_' + name
+//   }
 
-  for (const file of fileList) {
-    if (file.name === name) {
-      const splitName = name.split('_')
-      const counter = parseInt(splitName[splitName.length - 1])
+//   for (const file of fileList) {
+//     if (file.name === name) {
+//       const splitName = name.split('_')
+//       const counter = parseInt(splitName[splitName.length - 1])
 
-      if (counter > 1) {
-        splitName.pop()
-        return offerName(`${splitName.join('_')}_${counter + 1}`)
-      }
-      return offerName(`${name}_2`)
-    }
-  }
-  return name
-}
+//       if (counter > 1) {
+//         splitName.pop()
+//         return offerName(`${splitName.join('_')}_${counter + 1}`)
+//       }
+//       return offerName(`${name}_2`)
+//     }
+//   }
+//   return name
+// }
 
 readFiles(rootDir)
 
 let text = `import React from 'react'
-const icons = {sm:{}, md:{}, lg:{}}
+export default {default:{
 `
 
 for (const file of fileList) {
   text += `
-  const Icon__${file.name} = (props) => <div {...props} dangerouslySetInnerHTML={{__html: \`${file.data}\`}} />
-  icons.md.${file.name} = Icon__${file.name}
-  icons.sm.${file.name} = Icon__${file.name}
-  icons.lg.${file.name} = Icon__${file.name}
+  '${file.name}': (props) => <div {...props} dangerouslySetInnerHTML={{__html: \`${file.data}\`}} />,
 `
 }
 
-text += `export default icons`
+text += `}}
+`
+
+text += `export const icons = [`
+for (const file of fileList) {
+  text += `'${file.name}',`
+}
+text += `]`
 
 fs.writeFile('./src/theme/iconList.jsx', text, () => { })

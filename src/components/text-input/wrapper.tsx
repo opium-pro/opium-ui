@@ -3,7 +3,7 @@ import { Gap, Box, Align, Fit, useReaction, Icon } from 'themeor'
 import { MakeDropdown } from '../dropdown'
 import { useTextInput } from './context'
 import { Tooltip } from '../tooltip'
-import { Autocomplete } from './autocomplete'
+import { AutoComplete } from './auto-complete'
 import { isDefined } from '../../utils'
 import { IconButton } from '../icon-button'
 
@@ -32,7 +32,7 @@ export const Wrapper = ({ children }) => {
     <MakeDropdown
       disabled={disabled}
       // placeOrder={["bottom-stretch", "top-stretch"]}
-      items={isSelect ? options : <Autocomplete />}
+      items={isSelect ? options : <AutoComplete />}
     >
       <Fit.TryTagless height={height}>
         <Box.TryTagless
