@@ -1,7 +1,8 @@
 import { FC, useState } from 'react'
 import { Font, Align, Gap, Box, Line } from 'themeor'
 import { usePath } from 'opium-nav'
-import { LimitWidth, TextInput, Toggle, Select, Checkbox, Button, useScreenFit, Form, ScreenFit, useForm } from '../../components'
+import { LimitWidth, TextInput, Toggle, Select, Tag, useScreenFit, Form, ScreenFit, useForm } from '../../components'
+import * as components from '../../components'
 import { TypeFields } from '../../types'
 import * as mainMenu from '../index'
 
@@ -12,7 +13,8 @@ export type ComponentProps = {}
 export const values: { [type in TypeFields]: any } = {
   boolean: Toggle,
   string: TextInput,
-  number: TextInput,
+  number: (props) => <TextInput type="number" {...props} />,
+  select: Select,
 }
 
 
@@ -20,7 +22,8 @@ export const Component: FC<ComponentProps> = () => {
   const { nameParams = {} } = usePath()
   const { group, component } = nameParams
   const { isSmall } = useScreenFit()
-  const Component = mainMenu[group]?.menu.filter(item => !!item[component])?.[0]?.[component]
+  const Component = mainMenu[group][component]
+  const isHook = Component.type === 'hook'
 
   const props = Object.keys(Component?.demoProps || {}).map((propName) => {
     if (!propName) { return null }
@@ -34,7 +37,11 @@ export const Component: FC<ComponentProps> = () => {
         label={propName}
         value={initialValue}
         autoComplete={options}
-      />
+      >
+        {type === 'select' && options.map((option) => (
+          <Select.Option key={option} value={option} />
+        ))}
+      </Field>
     )
   })
 
@@ -42,7 +49,13 @@ export const Component: FC<ComponentProps> = () => {
     <ScreenFit>
       <LimitWidth>
         <Gap size="40px" />
-        <Font size="x3l" weight="800">{component}</Font>
+        <Font size="x3l" weight="800">
+          {component}
+        </Font>
+        {isHook && (<>
+          <Gap size="4px" />
+          <Tag label="Hook" />
+        </>)}
 
         {Component?.description && (<>
           <Gap />
@@ -80,10 +93,17 @@ export const Component: FC<ComponentProps> = () => {
   )
 }
 
+
 function DemoComponent({ Component, ...props }) {
   const { fields } = useForm()
+  let initialProps = {}
+
+  if (Component.demoComponent) {
+    initialProps = Component.demoComponent[1]
+    Component = components[Component.demoComponent[0]]
+  }
 
   return (
-    <Component {...fields} />
+    <Component {...initialProps} {...fields} />
   )
 }

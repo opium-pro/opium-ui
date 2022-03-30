@@ -1,7 +1,7 @@
 import { FC } from 'react'
 
 
-export type TypeFields = 'boolean' | 'string' | 'number'
+export type TypeFields = 'boolean' | 'string' | 'number' | 'select'
 
 
 export type OpiumComponent<Props> = FC<Props> & {

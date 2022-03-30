@@ -57,7 +57,7 @@ export const Select: SelectType = ({
     const newChildren = new Map()
     React.Children.map(children, (child) => {
       const { value, children, displayValue, label } = child.props
-      newValues.set(value, displayValue || label || children)
+      newValues.set(value, displayValue || label || children || value)
       newChildren.set(child, displayValue || label || value)
     })
     if (!displayValues.size) {

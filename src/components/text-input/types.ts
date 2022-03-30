@@ -1,7 +1,7 @@
 import { ReactionProps, BoxProps } from 'themeor'
 import { WithFormProps } from '../form'
 
-export type TextInputTypes = 'text' | 'search' | 'textarea' | 'phone' | 'email'
+export type TextInputTypes = 'text' | 'search' | 'textarea' | 'phone' | 'email' | 'number'
 
 export type TextInputProps = WithFormProps & ReactionProps & BoxProps & {
   type?: TextInputTypes | string
@@ -27,4 +27,5 @@ export type TextInputProps = WithFormProps & ReactionProps & BoxProps & {
   hint?: any
   onDisplayValue?: any
   mask?: any
+  tooltip?: any
 }

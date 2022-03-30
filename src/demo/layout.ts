@@ -1,10 +1,8 @@
-export const icon = "windows"
+export const _icon = "windows"
 
-export const menu = [
-  require('../components/app-layout'),
-  require('../components/app-theme'),
-  require('../components/limit-width'),
-  require('../components/page'),
-  require('../components/portal'),
-  require('../components/screen-fit'),
-]
+export * from '../components/app-layout'
+export * from '../components/app-theme'
+export * from '../components/limit-width'
+export * from '../components/page'
+export * from '../components/portal'
+export * from '../components/screen-fit'

@@ -1,15 +1,11 @@
-import { MenuType } from './constructor/types'
+export const _icon = "enter-button"
 
-export const icon = "enter-button"
-
-export const menu: MenuType = [
-  require('../components/action-button'),
-  require('../components/back-button'),
-  require('../components/button'),
-  require('../components/dropdown'),
-  require('../components/icon-button'),
-  require('../components/make-button'),
-  require('../components/app-menu'),
-  require('../components/page-menu'),
-  require('../components/top-menu'),
-]
+export * from '../components/action-button'
+export * from '../components/back-button'
+export * from '../components/button'
+export * from '../components/dropdown'
+export * from '../components/icon-button'
+export * from '../components/make-button'
+export * from '../components/app-menu'
+export * from '../components/page-menu'
+export * from '../components/top-menu'

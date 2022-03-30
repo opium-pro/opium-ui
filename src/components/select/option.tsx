@@ -9,8 +9,8 @@ import { MarkMatch } from '../mark-match'
 
 
 export const Option = ({
-  value: oneValue  = undefined as any,
-  label = undefined as string,
+  value: oneValue = undefined as any,
+  label = oneValue || undefined as string,
   hint = undefined as string,
   children = undefined,
   displayValue = undefined,
@@ -65,7 +65,7 @@ export const Option = ({
           <Gap />
         </>)}
         <Fit stretch>
-          <Font fill={selected ? "complement" : "base"} weight={selected ? '600' : '500'}>
+          <Font fill={selected ? "accent" : "base"} weight={selected ? '600' : '500'}>
             <MarkMatch target={search}>{label}</MarkMatch>
           </Font>
           {!!hint && (<Font size="sm" fill="faintDown">

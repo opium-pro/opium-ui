@@ -17,7 +17,7 @@ export const Wrapper = ({ children }) => {
     error,
     insertLeft,
     insertRight,
-    hint,
+    tooltip,
     value,
     type,
     onChange,
@@ -61,10 +61,10 @@ export const Wrapper = ({ children }) => {
                 {/* } */}
               </>)}
 
-              {hint && (<>
-                <IconButton size="xs" cursor="help" fill="faint" icon="question_circle" />
+              {tooltip && (<>
+                <IconButton size="xs" cursor="help" fill="faintDown" icon="question-circle" />
+                <Tooltip delay={0}>{tooltip}</Tooltip>
                 <Gap />
-                <Tooltip delay={0}>{hint}</Tooltip>
               </>)}
 
               {insertRight}

@@ -14,23 +14,18 @@ export function App() {
   const [search, setSearch] = useState()
   const { path } = usePath()
   const group = path.split('/')[1]
-  const submenu = {}
-  for (const item of mainMenu[group]?.menu || []) {
-    Object.assign(submenu, item)
-  }
+  const { _icon, ...submenu } = mainMenu[group] || {}
 
   const allItems = []
   for (const group in mainMenu) {
-    for (const item of mainMenu[group]?.menu || []) {
-      for (const name in item) {
-        allItems.push({ label: name, path: `/${group}/${name}`, hint: item[name].description })
-      }
+    for (const name in mainMenu[group]) {
+      allItems.push({ label: name, path: `/${group}/${name}`, hint: mainMenu[group][name].description })
     }
   }
 
   const filteredItems = filter(allItems, search, { deep: true })
 
-  hotkeys('/', (e) => {
+  hotkeys('ctrl + /, command + /', (e) => {
     e.preventDefault()
     document.getElementById('search').querySelector('input').focus()
   })
@@ -67,9 +62,14 @@ export function App() {
               <Search
                 id="search"
                 name="search"
-                label={(<Align gapHor="4px" vert="center" row>Search<Hotkey trigger="/" /></Align>) as any}
+                label="Search"
                 value={search}
                 onChange={(val) => setSearch(val)}
+                tooltip={(<>
+                  Поиск по компонентам
+                  <Gap size="8px" />
+                  <Hotkey trigger="ctrl + /" />
+                </>)}
               />
             </Gap>
             <Line fill="faintDown" />
@@ -100,7 +100,7 @@ export function App() {
                         key={name}
                         label={name}
                         path={`/${name}`}
-                        icon={mainMenu[name].icon}
+                        icon={mainMenu[name]._icon}
                       />
                     ))}
 
@@ -117,7 +117,7 @@ export function App() {
                         key={name}
                         label={name}
                         path={`/${name}`}
-                        icon={mainMenu[name].icon}
+                        icon={mainMenu[name]._icon}
                       />
                     ))}
 

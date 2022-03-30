@@ -1,19 +1,17 @@
-export const icon = "paint-roller"
+export const _icon = "paint-roller"
 
-export const menu = [
-  require('../components/avatar'),
-  require('../components/counter'),
-  require('../components/cover'),
-  require('../components/dialog'),
-  require('../components/hotkey'),
-  require('../components/line-cut'),
-  require('../components/mark-match'),
-  require('../components/modal'),
-  require('../components/notice'),
-  require('../components/stats'),
-  require('../components/status'),
-  require('../components/tag'),
-  require('../components/tooltip'),
-  require('../components/with-mouse-hold'),
-  require('../components/with-outside-click'),
-]
+export * from '../components/avatar'
+export * from '../components/counter'
+export * from '../components/cover'
+export * from '../components/dialog'
+export * from '../components/hotkey'
+export * from '../components/line-cut'
+export * from '../components/mark-match'
+export * from '../components/modal'
+export * from '../components/notice'
+export * from '../components/stats'
+export * from '../components/status'
+export * from '../components/tag'
+export * from '../components/tooltip'
+export * from '../components/with-mouse-hold'
+export * from '../components/with-outside-click'

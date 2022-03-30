@@ -1,7 +1,5 @@
-export const icon = "map"
+export const _icon = "map"
 
-export const menu = [
-  require('../components/app-menu'),
-  require('../components/page-menu'),
-  require('../components/top-menu'),
-]
+export * from '../components/app-menu'
+export * from '../components/page-menu'
+export * from '../components/top-menu'

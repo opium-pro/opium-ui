@@ -123,6 +123,7 @@ export const Dropdown: FC<DropdownProps> = ({
                         <TextInput
                           forwardRef={n => searchNode = n}
                           type="search"
+                          radius="max"
                           placeholder="Search"
                           value={search}
                           onChange={setSearch}

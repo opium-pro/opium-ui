@@ -26,6 +26,7 @@ export const TextInput: WithForm<TextInputProps> = withForm(({
   hint,
   error,
   onDisplayValue,
+  tooltip,
   ...props
 }) => {
   let inputNode
@@ -39,6 +40,8 @@ export const TextInput: WithForm<TextInputProps> = withForm(({
     } else {
       value = event?.target?.value
     }
+    (type === 'number') && value && (value = parseInt(value))
+
     onChange?.(value)
   }
 
@@ -78,6 +81,7 @@ export const TextInput: WithForm<TextInputProps> = withForm(({
     hint,
     onDisplayValue,
     error,
+    tooltip,
   }
 
   return (

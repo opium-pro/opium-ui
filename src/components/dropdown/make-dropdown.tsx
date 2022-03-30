@@ -1,9 +1,19 @@
-import React, { useState, useEffect } from 'react'
-import { Dropdown } from './dropdown'
+import React, { useState, useEffect, FC } from 'react'
+import { Dropdown, DropdownProps } from './dropdown'
 import { DropdownContext } from './context'
 
 
-export function MakeDropdown({ opened: initialOpened, items, withSearch, onClick, children, disabled, ...rest }: any) {
+export type MakeDropdownProps = DropdownProps & {
+  opened?: boolean
+  items?: any
+  withSearch?: boolean
+  children?: any
+  disabled?: boolean
+  onClick?: any
+}
+
+
+export const MakeDropdown: FC<MakeDropdownProps> = ({ opened: initialOpened, items, withSearch, onClick, children, disabled, ...rest }) => {
   const [dropdownNode, setDropdownNode]: any = useState()
   const [opened, setOpened] = useState(initialOpened)
   const [search, setSearch] = useState()

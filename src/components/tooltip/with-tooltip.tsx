@@ -30,5 +30,9 @@ export const withTooltip: OpiumCHook<WithTooltip> = (Component, props?: TooltipP
 }
 
 withTooltip.type = 'hook'
-withTooltip.demoComponent = ['Button', { label: 'Label', primary: true }]
-withTooltip.demoProps = { tooltip: ['string', `I'm a tooltip`] }
+withTooltip.demoComponent = ['Button', { label: 'Hey, hover me!', primary: true, height: "150px", minWidth: "200px" }]
+withTooltip.demoProps = {
+  tooltip: ['string', `I'm a tooltip`],
+  tooltipDelay: ['number', 200],
+  tooltipPlace: ['select', undefined, ['top', 'top-left', 'top-right', 'bottom', 'bottom-left', 'bottom-right', 'right', 'right-top', 'right-bottom', 'left', 'left-top', 'left-bottom']],
+}

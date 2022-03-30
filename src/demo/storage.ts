@@ -1,3 +1,1 @@
-export const icon = "box"
-
-export const menu = []
+export const _icon = "box"

@@ -4,7 +4,7 @@ import { Portal } from '../portal'
 import { useAppLayout } from '../app-layout'
 import { placeNode } from '../../utils'
 import hotkeys from 'hotkeys-js'
-import {tooltipConfig} from './config'
+import { tooltipConfig } from './config'
 
 
 export interface TooltipProps {
@@ -177,7 +177,7 @@ export const Tooltip: FC<TooltipProps> = ({
           >
 
             <Box.TryTagless blur="md" fill="baseDown" inverse radius="4px">
-              <Font.TryTagless>
+              <Font.TryTagless fill="base">
                 <Gap vert="8px" hor="12px">
                   {children}
                 </Gap>
