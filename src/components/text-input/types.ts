@@ -1,8 +1,10 @@
-import { ReactionProps } from 'themeor'
+import { ReactionProps, BoxProps } from 'themeor'
 import { WithFormProps } from '../form'
 
-export type TextInputProps = WithFormProps<ReactionProps & {
-  type?: string
+export type TextInputTypes = 'text' | 'search' | 'textarea' | 'phone' | 'email'
+
+export type TextInputProps = WithFormProps<ReactionProps & BoxProps & {
+  type?: TextInputTypes | string
   height?: string
   valueFont?: any
   label?: string

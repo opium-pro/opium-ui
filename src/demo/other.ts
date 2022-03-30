@@ -1,4 +1,4 @@
-export const icon = "box"
+export const icon = "paint-roller"
 
 export const menu = [
   require('../components/avatar'),

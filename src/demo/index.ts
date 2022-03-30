@@ -1,6 +1,2 @@
-export * as Buttons from './buttons'
-export * as Forms from './forms'
-export * as Navigation from './navigation'
-export * as Themeor from './themeor'
-export * as Layout from './layout'
-export * as Other from './other'
+export * from './design'
+export * from './logic'

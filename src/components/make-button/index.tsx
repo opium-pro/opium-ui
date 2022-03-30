@@ -1,8 +1,8 @@
-import React, {FC} from 'react'
-import { FitProps, Fit, Box, Reaction, ReactionProps } from 'themeor'
+import React, { FC } from 'react'
+import { FitProps, Fit, Box, Reaction, Align, AlignProps } from 'themeor'
 import { withTooltip } from '../tooltip'
 
-export type MakeButtonProps = FitProps & {
+export type MakeButtonProps = AlignProps & FitProps & {
   offset?: string,
   disabled?: boolean,
   radius?: string,
@@ -19,6 +19,10 @@ export const MakeButton: FC<MakeButtonProps> = withTooltip(({
   track = ["hover", "active"],
   fade,
   forwardRef,
+  vert, hor,
+  gapVert, gapHor,
+  row,
+  pattern,
   ...rest
 }) => (
   <Reaction
@@ -55,13 +59,15 @@ export const MakeButton: FC<MakeButtonProps> = withTooltip(({
           </Fit.TryTagless>
         )}
 
-        <Fit>
-          {typeof children === 'function' ? (
-            children(r)
-          ) : (
-            children
-          )}
-        </Fit>
+        <Align.TryTagless vert={vert} hor={hor} gapVert={gapVert} gapHor={gapHor} row={row} pattern={pattern}>
+          <Fit>
+            {typeof children === 'function' ? (
+              children(r)
+            ) : (
+              children
+            )}
+          </Fit>
+        </Align.TryTagless>
       </Fit.TryTagless>
     )}
   </Reaction>

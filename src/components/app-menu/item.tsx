@@ -29,7 +29,7 @@ export const Item: FC<Props> = withTooltip(({
   hint,
   row,
   children,
-  ...rest}) => {
+  ...rest }) => {
   return (
     <MakeButton
       forwardRef={forwardRef}
@@ -61,7 +61,7 @@ export const Item: FC<Props> = withTooltip(({
 
             <Gap size={row ? "md" : "x2s"} />
             <Font
-              align="center"
+              align={row ? "left" : "center"}
               size={fontSize}
               transition
               noselect
@@ -69,19 +69,19 @@ export const Item: FC<Props> = withTooltip(({
               fill={active ? activeFill : disabled ? "faintDown" : "baseDown"}
             >
               {label}
+              {hint && (<>
+                <Gap size="x2s" />
+                <Font
+                  align={row ? "left" : "center"}
+                  size="x3s"
+                  noselect
+                  weight="400"
+                  fill="faintDown"
+                >
+                  {hint}
+                </Font>
+              </>)}
             </Font>
-
-            {hint && (<>
-              <Gap size="x2s" />
-              <Font
-                align="center"
-                size="x3s"
-                noselect
-                fill="faintDown"
-              >
-                {hint}
-              </Font>
-            </>)}
 
             {children}
 

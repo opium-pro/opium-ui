@@ -9,4 +9,7 @@ export const menu: MenuType = [
   require('../components/dropdown'),
   require('../components/icon-button'),
   require('../components/make-button'),
+  require('../components/app-menu'),
+  require('../components/page-menu'),
+  require('../components/top-menu'),
 ]

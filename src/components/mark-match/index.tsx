@@ -14,8 +14,8 @@ export const MarkMatch: FC<MarkMatchProps> = ({
   target,
   Wrapper,
 }) => {
-  if (typeof children !== 'string') { return children as any }
-  if (!children && !target) { return children as any }
+  if (typeof children !== 'string') { return null as any }
+  if (!children && !target) { return null as any }
 
   if (!target) { 
     target = ''
@@ -23,8 +23,8 @@ export const MarkMatch: FC<MarkMatchProps> = ({
 
   if (!Wrapper) {
     Wrapper = ({ children }) => (
-      <Box.TryTagless inverse fill="faint">
-        <Font inline>
+      <Box.TryTagless fill="warning">
+        <Font inline fill="base">
           {children}
         </Font>
       </Box.TryTagless>

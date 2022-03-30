@@ -3,11 +3,12 @@ import { Align, Fit, Box, Font, IconProps, Gap, Icon, Reaction } from 'themeor'
 import { withTooltip } from '../tooltip'
 
 type Props = Omit<IconProps, 'size'> & {
-  name: string
+  icon: string
   fill?: string
   forwardRef?: any
   size?: string
   label?: string
+  critic?: boolean
 }
 
 export const SIZES = {
@@ -18,13 +19,17 @@ export const SIZES = {
 
 export const IconButton = withTooltip(({
   forwardRef,
-  name,
-  fill,
+  icon,
   size = 'md',
   label,
+  critic,
+  fill,
   ...rest
-}: Props) => (
-  <Reaction track={['hover', 'focus', 'active']}>
+}: Props) => {
+  critic && (fill = 'critic')
+
+  return (
+    <Reaction track={['hover', 'focus', 'active']}>
     {(rProps, r) => (
       <Align hor="center" forwardRef={forwardRef} {...rProps}>
         <Fit.TryTagless
@@ -50,7 +55,7 @@ export const IconButton = withTooltip(({
 
             <Fit.TryTagless width="20px" height="20px">
               <Align vert="center" hor="center">
-                <Icon name={name} fill={fill} {...rest} />
+                <Icon name={icon} fill={fill} {...rest} />
               </Align>
             </Fit.TryTagless>
 
@@ -63,4 +68,5 @@ export const IconButton = withTooltip(({
       </Align>
     )}
   </Reaction>
-))
+  )
+})

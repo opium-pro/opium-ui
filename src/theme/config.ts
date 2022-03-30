@@ -28,7 +28,7 @@ export default {
     critic: '#F2430C',
     criticUp: '#F2430C',
     criticDown: '#F2430C',
-    warning: '#FFB72D',
+    warning: '#FFDD1F',
     success: '#56C839',
   },
 
@@ -112,7 +112,7 @@ export default {
       lg: '18px',
       xl: '22px',
       x2l: '28px',
-      x3l: '34px'
+      x3l: '40px'
     }
   },
 

@@ -42,7 +42,7 @@ export const Component: FC<ComponentProps> = () => {
     <ScreenFit>
       <LimitWidth>
         <Gap size="40px" />
-        <Font size="x3l" weight="900">{component}</Font>
+        <Font size="x3l" weight="800">{component}</Font>
 
         {Component?.description && (<>
           <Gap />
@@ -52,28 +52,28 @@ export const Component: FC<ComponentProps> = () => {
       </LimitWidth>
       <Form>
         <Box fill="base" shadow="md">
-          <Gap size="40px" />
           <LimitWidth>
-            <Font size="xl" weight="700">Props</Font>
-            <Gap size="40px" />
+            <Gap vert="40px">
+              <Font size="xl" weight="700">Props</Font>
+              <Gap size="40px" />
 
-            <Align gapVert="20px" pattern={isSmall ? "1fr" : "1fr 1fr"} gapHor="40px" vert="center">
-              {props}
-            </Align>
-
-            <Gap size="80px" />
-
-            <Font size="xl" weight="700">Result</Font>
-            <Gap size="30px" />
-            <Box radius="md" borderFill="base">
-              <Align hor="center" vert="center" minHeight="300px">
-                <Gap size="40px">
-                  <DemoComponent Component={Component} />
-                </Gap>
+              <Align gapVert="20px" pattern={isSmall ? "1fr" : "1fr 1fr"} gapHor="40px" vert="center">
+                {props}
               </Align>
-            </Box>
+
+              <Gap size="80px" />
+
+              <Font size="xl" weight="700">Result</Font>
+              <Gap size="30px" />
+              <Box radius="md" borderFill="base">
+                <Align hor="center" vert="center" minHeight="300px">
+                  <Gap size="40px">
+                    <DemoComponent Component={Component} />
+                  </Gap>
+                </Align>
+              </Box>
+            </Gap>
           </LimitWidth>
-          <Gap size="40px" />
         </Box>
       </Form>
     </ScreenFit>

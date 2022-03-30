@@ -35,13 +35,13 @@ export const Value = () => {
   }
 
   fields.input = (
-    <Font.TryTagless>
-    <input {...fieldProps} />
-    </Font.TryTagless>
+    <Fit.TryTagless offsetTop="2px">
+      <input {...fieldProps} />
+    </Fit.TryTagless>
   )
 
   fields.textarea = (
-    <Fit.TryTagless cover="parent" style={{resize: 'none'}}>
+    <Fit.TryTagless cover="parent" style={{ resize: 'none' }}>
       <textarea {...fieldProps} />
     </Fit.TryTagless>
   )
@@ -87,9 +87,7 @@ function StyleWrapper({ children, ...rest }) {
       right="0"
       top={label ? '28px' : '13px'}
       offset="0"
-      height={type !== "textarea" && "16px"}
       maxWidth="100%"
-      clip
       {...rest}
     >
       <Box.TryTagless>
