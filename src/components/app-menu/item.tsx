@@ -1,10 +1,10 @@
 import React, { FC } from 'react'
 import { Align, Fit, Box, Font, Line, Gap, Icon, FontProps } from 'themeor'
-import { MakeButton } from '../make-button'
+import { MakeButton, MakeButtonProps } from '../make-button'
 import { withTooltip, WithTooltipProps } from '../tooltip'
 
 
-type Props = WithTooltipProps<React.HTMLAttributes<HTMLElement> & {
+type Props = WithTooltipProps & MakeButtonProps & {
   label?: string
   icon?: string
   active?: boolean
@@ -15,7 +15,7 @@ type Props = WithTooltipProps<React.HTMLAttributes<HTMLElement> & {
   activeFill?: string
   fontSize?: string
   disabled?: boolean
-}>
+}
 
 export const Item: FC<Props> = withTooltip(({
   label,

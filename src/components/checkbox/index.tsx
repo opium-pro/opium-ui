@@ -1,17 +1,17 @@
 import React, { FC } from 'react'
 import { Align, Fit, Box, Font, Gap, Effect } from 'themeor'
-import { MakeButton } from '../make-button'
+import { MakeButton, MakeButtonProps } from '../make-button'
 import { withForm, WithFormProps } from '../form'
 import { call } from '../../utils'
 
-type CheckboxProps = WithFormProps<Omit<React.HTMLAttributes<HTMLElement>, 'onChange'> & {
+type CheckboxProps = WithFormProps & Omit<MakeButtonProps, 'onChange'> & {
   indeterminate?: boolean,
   hint?: any,
   radio?: boolean,
   forwardRef?: any
   valueOn?: any,
   valueOff?: any,
-}>
+}
 
 export const Checkbox: FC<CheckboxProps> = withForm(({
   name,

@@ -1,8 +1,8 @@
 import React, { FC } from 'react'
 import { FitProps, Fit, Box, Reaction, Align, AlignProps } from 'themeor'
-import { withTooltip } from '../tooltip'
+import { withTooltip, WithTooltipProps } from '../tooltip'
 
-export type MakeButtonProps = AlignProps & FitProps & {
+export type MakeButtonProps = WithTooltipProps & AlignProps & FitProps & {
   offset?: string,
   disabled?: boolean,
   radius?: string,

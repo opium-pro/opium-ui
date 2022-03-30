@@ -1,8 +1,8 @@
-import React from 'react'
-import { Align, Fit, Box, Font, IconProps, Gap, Icon, Reaction } from 'themeor'
-import { withTooltip } from '../tooltip'
+import React, { FC } from 'react'
+import { Align, Fit, Box, Font, IconProps, CommonProps, Gap, Icon, Reaction } from 'themeor'
+import { withTooltip, WithTooltipProps } from '../tooltip'
 
-type Props = Omit<IconProps, 'size'> & {
+type Props = WithTooltipProps & Omit<IconProps, 'size'> & CommonProps & {
   icon: string
   fill?: string
   forwardRef?: any
@@ -17,7 +17,7 @@ export const SIZES = {
   md: 48,
 }
 
-export const IconButton = withTooltip(({
+export const IconButton: FC<Props> = withTooltip(({
   forwardRef,
   icon,
   size = 'md',
@@ -30,43 +30,43 @@ export const IconButton = withTooltip(({
 
   return (
     <Reaction track={['hover', 'focus', 'active']}>
-    {(rProps, r) => (
-      <Align hor="center" forwardRef={forwardRef} {...rProps}>
-        <Fit.TryTagless
-          width={SIZES[size] + 'px'}
-          height={SIZES[size] + 'px'}
-          style={{ margin: "-10px" }}
-        >
-          <Align vert="center" hor="center">
+      {(rProps, r) => (
+        <Align hor="center" forwardRef={forwardRef} {...rProps}>
+          <Fit.TryTagless
+            width={SIZES[size] + 'px'}
+            height={SIZES[size] + 'px'}
+            style={{ margin: "-10px" }}
+          >
+            <Align vert="center" hor="center">
 
-            <Fit.TryTagless
-              width={r.hoverOrFocus ? SIZES[size] + 'px' : "0"}
-              height={r.hoverOrFocus ? SIZES[size] + 'px' : "0"}
-              stick="top-left"
-              top={r.hoverOrFocus ? "0" : SIZES[size] / 2 + 'px'}
-              left={r.hoverOrFocus ? "0" : SIZES[size] / 2 + 'px'}
-            >
-              <Box
-                style={{ transition: "all, 0.2s ease" }}
-                radius="max"
-                fill={r.active ? "faint" : "hovereffect"}
-              />
-            </Fit.TryTagless>
+              <Fit.TryTagless
+                width={r.hoverOrFocus ? SIZES[size] + 'px' : "0"}
+                height={r.hoverOrFocus ? SIZES[size] + 'px' : "0"}
+                stick="top-left"
+                top={r.hoverOrFocus ? "0" : SIZES[size] / 2 + 'px'}
+                left={r.hoverOrFocus ? "0" : SIZES[size] / 2 + 'px'}
+              >
+                <Box
+                  style={{ transition: "all, 0.2s ease" }}
+                  radius="max"
+                  fill={r.active ? "faint" : "hovereffect"}
+                />
+              </Fit.TryTagless>
 
-            <Fit.TryTagless width="20px" height="20px">
-              <Align vert="center" hor="center">
-                <Icon name={icon} fill={fill} {...rest} />
-              </Align>
-            </Fit.TryTagless>
+              <Fit.TryTagless width="20px" height="20px">
+                <Align vert="center" hor="center">
+                  <Icon name={icon} fill={fill} {...rest} />
+                </Align>
+              </Fit.TryTagless>
 
-          </Align>
-        </Fit.TryTagless>
-        {label && (<>
-          <Gap size="4px" />
-          <Font fill={fill} size="xs">{label}</Font>
-        </>)}
-      </Align>
-    )}
-  </Reaction>
+            </Align>
+          </Fit.TryTagless>
+          {label && (<>
+            <Gap size="4px" />
+            <Font fill={fill} size="xs">{label}</Font>
+          </>)}
+        </Align>
+      )}
+    </Reaction>
   )
 })

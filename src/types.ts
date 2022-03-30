@@ -5,8 +5,15 @@ export type TypeFields = 'boolean' | 'string' | 'number'
 
 
 export type OpiumComponent<Props> = FC<Props> & {
-  type: 'component' | 'hook'
-  description?: string,
+  type: 'component'
+  description?: string
+  demoProps: {[name: string]: [type: TypeFields, defaultValue: any, options?: any[]]}
+}
+
+export type OpiumCHook<Return> = ((...args: any) => Return) & {
+  type: 'hook'
+  description?: string
+  demoComponent: [Component: any, props?: {[prop: string]: any}]
   demoProps: {[name: string]: [type: TypeFields, defaultValue: any, options?: any[]]}
 }
 

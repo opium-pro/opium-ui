@@ -7,12 +7,12 @@ import { WithFormProps } from '../form'
 import { call } from '../../utils'
 
 
-type Props = WithFormProps<WithTooltipProps<{
+type Props = WithFormProps & WithTooltipProps & {
   hint?: string | ReactNode,
   radio?: boolean,
   valueOn?: any,
   valueOff?: any,
-}>>
+}
 
 export const Toggle: FC<Props> = withForm(withTooltip(({
   name,

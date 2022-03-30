@@ -1,6 +1,6 @@
 import React, { FC } from "react"
 import { Align, Fit, Box, Font, Icon } from "themeor"
-import { withTooltip } from '../tooltip'
+import { withTooltip, WithTooltipProps } from '../tooltip'
 
 export const SIZE = {
   xs: { circle: "30px", font: "x3s" },
@@ -10,7 +10,7 @@ export const SIZE = {
   xl: { circle: "160px", font: "x3l" },
 }
 
-export interface IAvatarProps {
+export type IAvatarProps = WithTooltipProps & {
   name?: string;
   img?: string;
   fill?: string;

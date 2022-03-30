@@ -5,7 +5,7 @@ import { OpiumComponent, Icons } from '../../types'
 import { icons } from '../../theme/iconList'
 
 
-export type BottonProps = WithTooltipProps<BoxProps & {
+export type BottonProps = WithTooltipProps & BoxProps & {
   label?: string
   primary?: boolean
   type?: string
@@ -20,7 +20,7 @@ export type BottonProps = WithTooltipProps<BoxProps & {
   icon?: string
   inverse?: boolean
   fillHover?: string
-}>
+}
 
 export const Button = withTooltip(({
   label,

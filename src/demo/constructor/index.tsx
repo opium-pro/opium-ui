@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react'
 import * as mainMenu from '../index'
 import * as design from '../design'
 import * as logic from '../logic'
-import { AppLayout, AppMenu, IconButton, Search, MakeButton, MarkMatch } from '../../components'
+import { AppLayout, AppMenu, IconButton, Search, MakeButton, MarkMatch, Hotkey, hotkeys } from '../../components'
 import { nav, Path, usePath, config } from 'opium-nav'
 import { Component } from './component'
 import { Align, Line, Gap, Font, Fit, Icon, Box } from 'themeor'
@@ -30,8 +30,10 @@ export function App() {
 
   const filteredItems = filter(allItems, search, { deep: true })
 
-  console.log(filteredItems);
-  
+  hotkeys('/', (e) => {
+    e.preventDefault()
+    document.getElementById('search').querySelector('input').focus()
+  })
 
   return (
     <AppLayout
@@ -43,7 +45,10 @@ export function App() {
               <Gap size="20px" />
               <Align hor="center">
 
-                <MakeButton onClick={() => nav.go('/')} vert="center" row>
+                <MakeButton onClick={() => {
+                  nav.go('/')
+                  setSearch(undefined)
+                }} vert="center" row>
                   <Box fill="warning" radius="max">
                     <Gap size="10px">
                       <Icon size="40px" name="opium-pro" />
@@ -59,7 +64,13 @@ export function App() {
 
               </Align>
               <Gap size="30px" />
-              <Search name="search" label="Search" value={search} onChange={(val) => setSearch(val)} />
+              <Search
+                id="search"
+                name="search"
+                label={(<Align gapHor="4px" vert="center" row>Search<Hotkey trigger="/" /></Align>) as any}
+                value={search}
+                onChange={(val) => setSearch(val)}
+              />
             </Gap>
             <Line fill="faintDown" />
             <Fit.TryTagless scroll>

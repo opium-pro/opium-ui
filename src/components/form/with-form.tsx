@@ -2,7 +2,7 @@ import React, { useEffect, useState, FC, useMemo } from 'react'
 import { useForm } from './context'
 import { getDeepFieldByPath } from '../../utils'
 
-export type WithFormProps<ComponentProps> = ComponentProps & {
+export type WithFormProps = {
   value?: any
   initialValue?: any
   name?: string
@@ -12,11 +12,11 @@ export type WithFormProps<ComponentProps> = ComponentProps & {
   mask?: any
   disabled?: boolean
   required?: boolean
-  label?: string
+  label?: any
   onChange?: (newValue: any) => void,
 }
 
-export type WithForm<ComponentProps> = FC<WithFormProps<ComponentProps>>
+export type WithForm<ComponentProps> = FC<ComponentProps & WithFormProps>
 
 export const withForm = (Component: any) => ({
   onChange = a => a,

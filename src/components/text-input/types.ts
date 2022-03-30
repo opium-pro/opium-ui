@@ -3,13 +3,12 @@ import { WithFormProps } from '../form'
 
 export type TextInputTypes = 'text' | 'search' | 'textarea' | 'phone' | 'email'
 
-export type TextInputProps = WithFormProps<ReactionProps & BoxProps & {
+export type TextInputProps = WithFormProps & ReactionProps & BoxProps & {
   type?: TextInputTypes | string
   height?: string
   valueFont?: any
-  label?: string
   value?: string
-  placeholder?: string
+  placeholder?: any
   onChange?: any
   onFocus?: any
   onBlur?: any
@@ -28,4 +27,4 @@ export type TextInputProps = WithFormProps<ReactionProps & BoxProps & {
   hint?: any
   onDisplayValue?: any
   mask?: any
-}>
+}

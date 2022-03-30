@@ -1,16 +1,18 @@
 import React, { FC } from 'react'
 import { Tooltip, TooltipProps } from './tooltip'
+import { OpiumCHook } from '../../types'
 
-export type WithTooltipProps<ComponentProps> = ComponentProps & {
+
+export type WithTooltipProps = {
   tooltip?: any
   tooltipPlace?: string
   tooltipDelay?: number
 }
 
 
-export type WithTooltip<ComponentProps> = FC<WithTooltipProps<ComponentProps>>
+export type WithTooltip<ComponentProps = {}> = FC<ComponentProps & WithTooltipProps>
 
-export function withTooltip(Component, props?: TooltipProps) {
+export const withTooltip: OpiumCHook<WithTooltip> = (Component, props?: TooltipProps) => {
   return ({ tooltip, tooltipDelay, forwardRef, tooltipPlace, ...rest }: any) => {
 
     return (<>
@@ -26,3 +28,7 @@ export function withTooltip(Component, props?: TooltipProps) {
     </>)
   }
 }
+
+withTooltip.type = 'hook'
+withTooltip.demoComponent = ['Button', { label: 'Label', primary: true }]
+withTooltip.demoProps = { tooltip: ['string', `I'm a tooltip`] }

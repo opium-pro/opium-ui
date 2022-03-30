@@ -55,14 +55,14 @@ export const Wrapper = ({ children }) => {
 
             <Align row vert="center">
               {!textarea && !disabled && isDefined(value) && hoverOrFocus && (<>
-                <IconButton size="xs" name="cross" fill="faintDown" onClick={() => onChange('')} />
+                <IconButton size="xs" icon="cross" fill="faintDown" onClick={() => onChange('')} />
                 {/* {!(hint || insertRight || parentChildren) */}
                   <Gap size="8px" />
                 {/* } */}
               </>)}
 
               {hint && (<>
-                <IconButton size="xs" cursor="help" fill="faint" name="question_circle" />
+                <IconButton size="xs" cursor="help" fill="faint" icon="question_circle" />
                 <Gap />
                 <Tooltip delay={0}>{hint}</Tooltip>
               </>)}

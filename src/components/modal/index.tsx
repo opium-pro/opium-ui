@@ -105,7 +105,7 @@ export const Modal: FC<ModalProps> = ({
                   >
                     <IconButton
                       onClick={handleClose}
-                      name="cross"
+                      icon="cross"
                       fill="faint"
                     />
                   </Fit>

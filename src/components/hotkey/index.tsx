@@ -67,3 +67,5 @@ export const Hotkey = ({
   const value = mainKeys.join(' + ')
   return <Tag label={value} {...props} />
 }
+
+export { hotkeys }
