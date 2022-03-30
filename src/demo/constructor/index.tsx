@@ -38,7 +38,7 @@ export function App() {
           <Align minWidth="300px" maxHeight="100vh">
             <Gap>
               <Gap size="20px" />
-              <Align hor="center">
+              <Align>
 
                 <MakeButton onClick={() => {
                   nav.go('/')
@@ -53,7 +53,7 @@ export function App() {
                   <Align>
                     <Font weight="800" size="xl">opium.pro</Font>
                     <Gap size="8px" />
-                    <Font fill="faint">TypeScript stuff</Font>
+                    <Font fill="faint">web app kit</Font>
                   </Align>
                 </MakeButton>
 
