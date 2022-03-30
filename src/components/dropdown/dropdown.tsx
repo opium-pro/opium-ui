@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect } from 'react'
+import React, { FC, useState, useEffect, useRef } from 'react'
 import { Box, Fit, FitProps, Gap } from 'themeor'
 import { Portal } from '../portal'
 import { useAppLayout } from '../app-layout'
@@ -7,6 +7,7 @@ import { TextInput } from "../text-input"
 import filter from 'opium-filter'
 import { useDropdown } from './context'
 import { Hotkey } from '../hotkey'
+import { LazyScroller } from '../lazy-scroller'
 
 
 export interface DropdownProps extends FitProps {
@@ -26,6 +27,7 @@ export const Dropdown: FC<DropdownProps> = ({
 }) => {
   const [targetNode, setTargetNode]: any = useState()
   const [isReady, setIsReady]: any = useState()
+  const scrollNode = useRef()
   const { contentNode } = useAppLayout()
   const { opened, search, setSearch, setOpened, withSearch } = useDropdown()
   let searchNode
@@ -111,6 +113,7 @@ export const Dropdown: FC<DropdownProps> = ({
               {...rest}
             >
               <Fit.TryTagless
+                forwardRef={n => scrollNode.current = n}
                 scroll
                 maxHeight="500px"
                 maxWidth="600px"
@@ -131,7 +134,9 @@ export const Dropdown: FC<DropdownProps> = ({
                       </Gap>
                     </Fit>
                   )}
+                  <LazyScroller scrollNode={scrollNode.current}>
                   {isMapped ? newChildren : children}
+                  </LazyScroller>
                 </Box>
               </Fit.TryTagless>
             </Gap>

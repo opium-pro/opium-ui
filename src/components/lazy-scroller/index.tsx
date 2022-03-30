@@ -1,30 +1,33 @@
 import React, { FC, useState, Fragment, useEffect } from 'react'
-import { Align } from 'themeor'
+import { Align, AlignProps } from 'themeor'
 import { useAppLayout } from '../app-layout'
 
 
-export interface LazyScrollerProps {
+export type LazyScrollerProps = AlignProps & {
   onLoad?: any
   preloadLength?: number
   loadAfterPercent?: number
-  pattern?: string
-  gap?: string
+  scrollNode?: any
 }
 
 
 export const LazyScroller: FC<LazyScrollerProps> = ({
   children,
   onLoad,
-  preloadLength = 50,
+  preloadLength = 30,
   loadAfterPercent = 50,
-  gap = "md",
   pattern,
+  scrollNode,
   ...rest
 }) => {
   let [chunk, setChunk] = useState(1)
   const [contentNode, setContentNode]: any = useState()
-  const { scrollNode } = useAppLayout()
+  const { scrollNode: appScrollNode } = useAppLayout()
   let fastChunk = chunk
+
+  if (!scrollNode) {
+    scrollNode = appScrollNode
+  }
 
   useEffect(() => {
     onLoad && onLoad(chunk)
@@ -60,8 +63,6 @@ export const LazyScroller: FC<LazyScrollerProps> = ({
   return (
     <Align
       pattern={pattern}
-      gapHor={gap}
-      gapVert={gap}
       forwardRef={setContentNode}
       {...rest}
     >

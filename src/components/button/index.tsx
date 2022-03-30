@@ -124,7 +124,7 @@ Button.type = 'component'
 Button.description = 'Основная кнопка'
 Button.demoProps = {
   label: ['string', `Ooooh, click me, I' a button`],
-  icon: ['string', 'battery-charge4' as Icons, icons],
+  icon: ['select', 'battery-charge4' as Icons, icons],
   hint: ['string', ''],
   fillHover: ['string', ''],
   primary: ['boolean', true],
