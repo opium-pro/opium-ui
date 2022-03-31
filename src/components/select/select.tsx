@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { TextInput, useTextInput } from "../text-input"
-import { Icon, Gap, Effect, Align, Fit, useReaction } from 'themeor'
+import { Icon, Gap, Align, Fit, useReaction } from 'themeor'
 import { useDropdown } from '../dropdown'
 import { SelectContext } from './context'
 import { SelectType } from './types'
@@ -125,6 +125,7 @@ export const Select: SelectType = ({
   )
 }
 
+
 function SelectIcon() {
   const { opened } = useDropdown()
   const { hoverOrFocus } = useReaction()
@@ -135,10 +136,8 @@ function SelectIcon() {
   }
 
   return (
-    <Gap size="12px">
-      <Effect smooth rotate={opened && '180deg'}>
-        <Icon name="chevron_down" />
-      </Effect>
+    <Gap size="12px" rotate={opened && '180deg'}>
+      <Icon name="chevron_down" />
     </Gap>
   )
 }

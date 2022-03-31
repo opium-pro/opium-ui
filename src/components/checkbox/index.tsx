@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { Align, Fit, Box, Font, Gap, Effect } from 'themeor'
+import { Align, Fit, Box, Font, Gap } from 'themeor'
 import { MakeButton, MakeButtonProps } from '../make-button'
 import { withForm, WithFormProps } from '../form'
 import { call } from '../../utils'

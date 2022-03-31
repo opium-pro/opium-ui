@@ -1,7 +1,8 @@
 import React from 'react'
 import { Align, Font, Icon } from 'themeor'
 import { MakeButton, MakeButtonProps } from '../make-button'
-import { OpiumComponent } from '../../types'
+import { OpiumComponent, Icons } from '../../types'
+import { icons } from '../../theme/iconList'
 
 
 
@@ -35,11 +36,12 @@ export const ActionButton: OpiumComponent<ActionButtonProps> = ({
 }
 
 
-ActionButton.type = 'component'
+ActionButton.displayName = 'ActionButton'
 ActionButton.description = 'Кнопка для совершения действия'
 ActionButton.demoProps = {
   label: ['string', 'Click me'],
-  icon: ['string', 'cross'],
+  icon: ['select', 'cross', icons],
   fill: ['string', undefined],
   critic: ['boolean', false],
 }
+ActionButton.extends = ['MakeButton']

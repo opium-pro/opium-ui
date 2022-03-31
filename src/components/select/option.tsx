@@ -20,7 +20,7 @@ export const Option = ({
   ...rest
 }) => {
   const { value, onChange } = useTextInput()
-  const { multi, onCompare } = useSelect()
+  const { multi, onCompare } = useSelect() as any
   const { setOpened } = useDropdown()
   const { search } = useDropdown()
   let checkboxRef

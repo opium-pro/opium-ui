@@ -120,11 +120,11 @@ export const Button = withTooltip(({
 )) as OpiumComponent<BottonProps>
 
 
-Button.type = 'component'
+Button.displayName = 'Button'
 Button.description = 'Основная кнопка'
 Button.demoProps = {
   label: ['string', `Ooooh, click me, I' a button`],
-  icon: ['select', 'battery-charge4' as Icons, icons],
+  icon: ['select', 'airdrop', icons],
   hint: ['string', ''],
   fillHover: ['string', ''],
   primary: ['boolean', true],

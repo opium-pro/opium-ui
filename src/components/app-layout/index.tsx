@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import React, { FC } from 'react'
 import { Provider } from './provider'
 import { Layout } from './layout'
 import { AppLayoutProps } from './types'

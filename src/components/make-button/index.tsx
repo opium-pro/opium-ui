@@ -1,8 +1,10 @@
 import React, { FC } from 'react'
-import { FitProps, Fit, Box, Reaction, Align, AlignProps } from 'themeor'
+import { FitProps, Fit, Box, Reaction, Align, AlignProps, CommonProps } from 'themeor'
 import { withTooltip, WithTooltipProps } from '../tooltip'
+import { OpiumComponent } from '../../types'
 
-export type MakeButtonProps = WithTooltipProps & AlignProps & FitProps & {
+
+export type MakeButtonProps = WithTooltipProps & AlignProps & FitProps & CommonProps & {
   offset?: string,
   disabled?: boolean,
   radius?: string,
@@ -11,7 +13,7 @@ export type MakeButtonProps = WithTooltipProps & AlignProps & FitProps & {
   forwardRef?: any,
 }
 
-export const MakeButton: FC<MakeButtonProps> = withTooltip(({
+export const MakeButton = withTooltip(({
   children,
   offset = "10px",
   disabled,
@@ -24,7 +26,7 @@ export const MakeButton: FC<MakeButtonProps> = withTooltip(({
   row,
   pattern,
   ...rest
-}) => (
+}: MakeButtonProps) => (
   <Reaction
     {...rest}
     disabled={disabled}
@@ -71,4 +73,8 @@ export const MakeButton: FC<MakeButtonProps> = withTooltip(({
       </Fit.TryTagless>
     )}
   </Reaction>
-))
+)) as OpiumComponent<MakeButtonProps>
+
+
+MakeButton.displayName = 'MakeButton'
+MakeButton.demoProps = {}

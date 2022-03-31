@@ -1,32 +1,34 @@
 import React, { FC, useEffect } from 'react'
-import { Font, Box, Gap, Fit } from 'themeor'
+import { Font, Box, Gap, Fit, BoxProps } from 'themeor'
 import { Portal } from '../portal'
 import { useAppLayout } from '../app-layout'
 import { placeNode } from '../../utils'
 import hotkeys from 'hotkeys-js'
 import { tooltipConfig } from './config'
+import { OpiumComponent } from '../../types'
 
 
-export interface TooltipProps {
-  parentNode?: any
+export type TooltipProps = Omit<BoxProps, 'delay'> & {
+  parentNode?: HTMLElement
   delay?: number
   duration?: number
   delayToHide?: number
-  windowNode?: any
-  placeOrder?: Array<'top' | 'right' | 'bottom' | 'left'>
+  windowNode?: HTMLElement | Window & typeof globalThis
+  placeOrder?: Array<'top' | 'bottom' | 'right' | 'left'>
   place?: 'top' | 'top-right' | 'top-left' | 'right' | 'right-top' | 'right-bottom' | 'bottom' | 'bottom-right' | 'bottom-left' | 'left' | 'left-top' | 'left-bottom'
 }
 
-export const Tooltip: FC<TooltipProps> = ({
+export const Tooltip: OpiumComponent<TooltipProps> = ({
   children,
-  placeOrder = ['top', 'bottom', 'right', 'left'],
-  delay = tooltipConfig.delay,
+  placeOrder = tooltipConfig.placeOrder as TooltipProps['placeOrder'],
+  delay = tooltipConfig.delay as TooltipProps['delay'],
   duration = tooltipConfig.duration,
   place,
   delayToHide = tooltipConfig.delayToHide,
   parentNode,
   windowNode,
-}) => {
+  ...rest
+}: TooltipProps) => {
   let { scrollNode } = useAppLayout()
   let targetNode
   let hovered
@@ -176,7 +178,7 @@ export const Tooltip: FC<TooltipProps> = ({
             size="10px"
           >
 
-            <Box.TryTagless blur="md" fill="baseDown" inverse radius="4px">
+            <Box.TryTagless blur="md" fill="baseDown" inverse radius="4px" {...rest}>
               <Font.TryTagless fill="base">
                 <Gap vert="8px" hor="12px">
                   {children}
@@ -190,3 +192,7 @@ export const Tooltip: FC<TooltipProps> = ({
     </Fit>
   )
 }
+
+
+Tooltip.displayName = 'Tooltip'
+Tooltip.demoProps = {}

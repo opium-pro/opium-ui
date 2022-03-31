@@ -1,21 +1,20 @@
 import React from 'react'
-import { Align, Fit, Box, Font, Line, Gap, Icon, Reaction } from 'themeor'
-import { MakeButton, MakeButtonProps } from '../make-button'
+import { ActionButton, ActionButtonProps } from '../action-button'
 import { OpiumComponent } from '../../types'
 
 
-export type BackButtonProps = MakeButtonProps & {}
+export type BackButtonProps = ActionButtonProps & {}
 
 export const BackButton: OpiumComponent<BackButtonProps> = (props: BackButtonProps) => {
   return (
-    <MakeButton radius="max" {...props}>
-      <Align row vert="center" gapHor="md">
-        <Icon name="Placeholder" />
-      </Align>
-    </MakeButton>
+    <ActionButton fill="faint" icon="arrow-left-circle" {...props} />
   )
 }
 
-BackButton.type = 'component'
+
+BackButton.displayName = 'BackButton'
 BackButton.description = 'Кнопка назад'
-BackButton.demoProps = {}
+BackButton.demoProps = {
+  label: ['string', 'Back'],
+}
+BackButton.extends = ['ActionButton']

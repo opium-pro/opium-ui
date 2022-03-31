@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>arrow-left-circle</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="arrow-left-circle">
+            <g id="Group" stroke-linecap="round" stroke-linejoin="round" transform="translate(12.002253, 12.000004) scale(-1, 1) translate(-12.002253, -12.000004) translate(2.999999, 3.000004)" stroke="#323232" stroke-width="1.5">
+                <polyline id="Path" points="8.2620006 6.52499629 10.7380006 8.99999629 8.2620006 11.4749963"></polyline>
+                <path d="M0,9 C0.0752085,4.05744 4.06635,0.0702800002 9.00899,0 C13.9795496,0.00248133 18.0069796,4.03393 18.0045064,9.00449 C18.0020182,13.97505 13.9705696,18.00248 9,18 C4.02944021,18 0,13.9705563 0,9 Z" id="Path"></path>
+            </g>
+            <polygon id="Path" points="0 24 24 24 24 0 0 0"></polygon>
+        </g>
+    </g>
+</svg>
