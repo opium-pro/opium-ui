@@ -5,7 +5,7 @@ import { Router } from 'opium-nav'
 
 
 ReactDOM.render((
-  <Router>
+  <Router saveState>
     <App />
   </Router>
 ), document.getElementById('root'))

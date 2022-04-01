@@ -66,7 +66,7 @@ export const Wrapper = ({ children }) => {
             <Align row vert="center">
               {tooltip && (<>
                 <IconButton size="xs" cursor="help" fill="faintDown" icon="question-circle" />
-                <Tooltip delay={0}>{tooltip}</Tooltip>
+                <Tooltip delay={100}>{tooltip}</Tooltip>
                 <Gap size="16px" />
               </>)}
 

@@ -97,9 +97,9 @@ export const Component: FC = () => {
                   Props
                   {extendMenu.map(([name, path]) => (
                     <Fragment key={name}>
-                      <Gap />
+                      <Gap size="16px" />
                       <Icon fill="faintDown" name="chevron-left" />
-                      <Gap />
+                      <Gap size="16px" />
                       <Link
                         size="md"
                         weight="500"

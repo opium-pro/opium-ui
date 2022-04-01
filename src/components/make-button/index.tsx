@@ -40,8 +40,8 @@ export const MakeButton = withTooltip(({
   function handleClick(e) {
     if (onClick && href) {
       e.preventDefault()
-      onClick(e)
     }
+    onClick?.(e)
   }
 
   return (
@@ -50,7 +50,6 @@ export const MakeButton = withTooltip(({
       onClick={handleClick}
       disabled={disabled}
       button
-      tabIndex={0}
     >
       {(rProps, r) => (
         <Fit.TryTagless

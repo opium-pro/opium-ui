@@ -37,88 +37,85 @@ export const Button = withTooltip(({
   forwardRef,
   inverse,
   icon,
-  fill,
-  fillHover,
+  fill = disabled ? 'faintUp' : (critic && primary) ? 'critic' : primary ? 'accent' : 'base',
+  fillHover = (critic && primary) ? 'criticUp' : primary ? 'accentUp' : 'hovereffect',
+  height,
   ...rest
-}: BottonProps) => (
-  <div>
+}: BottonProps) => {
+  const fillActive = (critic && primary) ? 'criticDown' : primary ? 'accentDown' : 'hovereffect'
+
+  return (
     <Reaction
       smooth
       track={!disabled && ['hover', 'focus', 'active']}
       cursor={disabled ? 'default' : 'pointer'}
     >
       {(rProps, r) => (
-        <Fit.TryTagless inline height={mini ? "32px" : "48px"} stretch={stretch}>
+        <Fit.TryTagless inline stretch={stretch}>
           <Box.TryTagless
             glow={glow && 'md'}
-            fill={(disabled && "faintUp")
-              || fill && (r.hoverOrFocus ? (fillHover || fill) : fill)
-              || (primary && (
-                critic && ((r.active && 'criticDown') || (r.hoverOrFocus ? "criticUp" : "critic"))
-                || ((r.active && 'accentDown') || (r.hoverOrFocus ? "accentUp" : "accent"))
-                || (r.hoverOrFocus && "faint" || light && "none" || "base"))
-              )
-            }
+            fill={r.active ? fillActive : r.hoverOrFocus ? fillHover : fill}
             borderFill={(primary || disabled || light) ? "none" : "faintUp"}
             radius="xs"
             {...rest}
           >
-            <Align.TryTagless row vert="center" hor="center">
-              <Font.TryTagless
-                nowrap
-                fill={(disabled && "faintDown") || (critic && "critic") || "base"}
-                weight={primary ? "600" : "500"}
-                size="sm"
-                family="regular"
-                inverse={disabled ? false : inverse}
-                align={icon ? "left" : "center"}
-              >
-                <Gap.TryTagless hor="xl">
-                  <button
-                    disabled={disabled}
-                    ref={forwardRef}
-                    type={type as any}
-                    {...rProps}
+            <Font.TryTagless
+              nowrap
+              fill={(disabled && "faintDown") || (critic && "critic") || "base"}
+              weight={primary ? "600" : "500"}
+              size="sm"
+              family="regular"
+              inverse={disabled ? false : inverse}
+              align={icon ? "left" : "center"}
+            >
+              <Gap.TryTagless hor="xl">
+                <button
+                  disabled={disabled}
+                  ref={forwardRef}
+                  type={type as any}
+                  {...rProps}
+                >
+                  <Align
+                    row
+                    hor="center"
+                    vert="center"
+                    height={height || (mini ? "32px" : "48px")}
+                    gapHor="8px"
                   >
-                    <Align hor="center">
-                      <Align row vert="center">
-                        {icon && (<>
-                          <Icon
-                            name={icon}
-                            inverse={disabled ? false : inverse}
-                            fill={disabled ? "faintDown" : "base"}
-                          />
-                          {label && <Gap size="8px" />}
-                        </>)}
-                        <Align>
-                          {label}
-                          {hint && (<>
-                            <Gap size="2px" />
-                            <Font
-                              inverse={disabled ? false : inverse}
-                              lineHeight="xs"
-                              size="x2s"
-                              fill="faintDown"
-                              align={icon ? "left" : "center"}
-                              weight="400"
-                            >
-                              {hint}
-                            </Font>
-                          </>)}
-                        </Align>
-                        {children}
-                      </Align>
+                    {icon && (
+                      <Icon
+                        name={icon}
+                        inverse={disabled ? false : inverse}
+                        fill={disabled ? "faintDown" : "base"}
+                      />
+                    )}
+                    <Align>
+                      {label}
+                      {hint && (<>
+                        <Gap size="2px" />
+                        <Font
+                          inverse={disabled ? false : inverse}
+                          lineHeight="xs"
+                          size="x2s"
+                          fill="faintDown"
+                          align={icon ? "left" : "center"}
+                          weight="400"
+                        >
+                          {hint}
+                        </Font>
+                      </>)}
                     </Align>
-                  </button>
-                </Gap.TryTagless>
-              </Font.TryTagless>
-            </Align.TryTagless>
+                    {children}
+                  </Align>
+                </button>
+              </Gap.TryTagless>
+            </Font.TryTagless>
           </Box.TryTagless>
         </Fit.TryTagless>
       )}
     </Reaction>
-  </div>
-)) as OpiumComponent<BottonProps>
+  )
+}) as OpiumComponent<BottonProps>
 
 
 Button.displayName = 'Button'
@@ -126,8 +123,8 @@ Button.description = 'Основная кнопка'
 Button.demoProps = {
   label: ['string', `Ooooh, click me, I' a button`],
   icon: ['select', 'airdrop', icons],
-  hint: ['string', ''],
-  fillHover: ['string', ''],
+  hint: ['string', undefined],
+  fillHover: ['string', undefined],
   primary: ['boolean', true],
   mini: ['boolean', false],
   critic: ['boolean', false],

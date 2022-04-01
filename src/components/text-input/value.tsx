@@ -35,9 +35,7 @@ export const Value = () => {
   }
 
   fields.input = (
-    <Fit.TryTagless offsetTop="2px">
       <input {...fieldProps} />
-    </Fit.TryTagless>
   )
 
   fields.textarea = (
