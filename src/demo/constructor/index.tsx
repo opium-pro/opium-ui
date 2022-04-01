@@ -40,20 +40,22 @@ export function App() {
               <Gap size="20px" />
               <Align>
 
-                <MakeButton onClick={() => {
+                <MakeButton href="/" onClick={() => {
                   nav.go('/')
                   setSearch(undefined)
-                }} vert="center" row>
-                  <Box fill="warning" radius="max">
-                    <Gap size="10px">
-                      <Icon size="40px" name="opium-pro" />
-                    </Gap>
-                  </Box>
-                  <Gap size="8px" />
-                  <Align>
-                    <Font weight="800" size="xl">opium.pro</Font>
-                    <Gap size="8px" />
-                    <Font fill="faint">web app kit</Font>
+                }}>
+                  <Align row vert="center">
+                    <Box fill="warning" radius="max">
+                      <Gap size="10px">
+                        <Icon size="40px" name="opium-pro" />
+                      </Gap>
+                    </Box>
+                    <Gap size="12px" />
+                    <Align>
+                      <Font weight="800" size="xl">opium.pro</Font>
+                      <Gap size="4px" />
+                      <Font fill="faint">web app kit</Font>
+                    </Align>
                   </Align>
                 </MakeButton>
 
@@ -68,7 +70,7 @@ export function App() {
                 tooltip={(<>
                   Поиск по компонентам
                   <Gap size="8px" />
-                  <Hotkey trigger="ctrl + /" />
+                  <Hotkey trigger="ctrl + /" borderFill="accent" inverse />
                 </>)}
               />
             </Gap>
@@ -172,6 +174,7 @@ function MenuItem({ path: activePath, ...rest }) {
   return (
     <AppMenu.Item
       onClick={() => nav.go(activePath)}
+      href={activePath}
       active={isActive}
       {...rest}
     />

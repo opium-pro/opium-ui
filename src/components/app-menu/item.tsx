@@ -38,10 +38,10 @@ export const Item: FC<Props> = withTooltip(({
       disabled={disabled}
       {...rest}
     >
-      <Fit.TryTagless width="100%">
-        <Gap.TryTagless hor={row ? "lg" : "sm"} vert="md" right={row && "x2l"}>
-          <Align row={row} vert="center">
+      <Gap.TryTagless hor={row ? "lg" : "sm"} vert="md" right={row && "x2l"}>
+        <Align row={row} vert="center">
 
+          {(icon || img) && (<>
             <Align hor="center">
               {icon &&
                 <Icon
@@ -58,36 +58,36 @@ export const Item: FC<Props> = withTooltip(({
                 <Gap size="xs" />
               </>}
             </Align>
-
             <Gap size={row ? "md" : "x2s"} />
-            <Font
-              align={row ? "left" : "center"}
-              size={fontSize}
-              transition
-              noselect
-              weight={active ? '600' : '500'}
-              fill={active ? activeFill : disabled ? "faintDown" : "baseDown"}
-            >
-              {label}
-              {hint && (<>
-                <Gap size="x2s" />
-                <Font
-                  align={row ? "left" : "center"}
-                  size="x3s"
-                  noselect
-                  weight="400"
-                  fill="faintDown"
-                >
-                  {hint}
-                </Font>
-              </>)}
-            </Font>
+          </>)}
 
-            {children}
+          <Font
+            align={row ? "left" : "center"}
+            size={fontSize}
+            transition
+            noselect
+            weight={active ? '600' : '500'}
+            fill={active ? activeFill : disabled ? "faintDown" : "baseDown"}
+          >
+            {label}
+            {hint && (<>
+              <Gap size="x2s" />
+              <Font
+                align={row ? "left" : "center"}
+                size="x3s"
+                noselect
+                weight="400"
+                fill="faintDown"
+              >
+                {hint}
+              </Font>
+            </>)}
+          </Font>
 
-          </Align>
-        </Gap.TryTagless>
-      </Fit.TryTagless>
+          {children}
+
+        </Align>
+      </Gap.TryTagless>
     </MakeButton>
   )
 }, { place: 'right' })

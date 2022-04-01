@@ -1,7 +1,7 @@
 import React from 'react'
 import { Align, Fit, Box, Font, Gap, Icon, BoxProps, Reaction } from 'themeor'
 import { withTooltip, WithTooltipProps } from '../tooltip'
-import { OpiumComponent, Icons } from '../../types'
+import { OpiumComponent } from '../../types'
 import { icons } from '../../theme/iconList'
 
 
@@ -76,9 +76,10 @@ export const Button = withTooltip(({
                 <Gap.TryTagless hor="xl">
                   <button
                     disabled={disabled}
-                    {...rProps}
                     ref={forwardRef}
-                    type={type}>
+                    type={type as any}
+                    {...rProps}
+                  >
                     <Align hor="center">
                       <Align row vert="center">
                         {icon && (<>

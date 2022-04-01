@@ -1,16 +1,22 @@
-import React, { FC } from 'react'
-import { FitProps, Fit, Box, Reaction, Align, AlignProps, CommonProps } from 'themeor'
+import React, { ReactNode } from 'react'
+import { FitProps, ReactionContext, Fit, Font, Box, Reaction, Align, AlignProps, FontProps, CommonProps, ReactionProps } from 'themeor'
 import { withTooltip, WithTooltipProps } from '../tooltip'
 import { OpiumComponent } from '../../types'
 
 
-export type MakeButtonProps = WithTooltipProps & AlignProps & FitProps & CommonProps & {
+export type MakeButtonProps = Omit<ReactionProps, 'children'> & WithTooltipProps & FitProps & CommonProps & {
   offset?: string,
   disabled?: boolean,
   radius?: string,
-  track?: string | string[],
   fade?: boolean,
   forwardRef?: any,
+  fillHover?: string
+  fillActive?: string
+  fillEffect?: string
+  href?: string
+  blank?: boolean
+  type?: string
+  children?: ReactNode | ((r: ReactionContext) => ReactNode)
 }
 
 export const MakeButton = withTooltip(({
@@ -18,62 +24,78 @@ export const MakeButton = withTooltip(({
   offset = "10px",
   disabled,
   radius = "md",
-  track = ["hover", "active"],
+  type = "button",
   fade,
   forwardRef,
-  vert, hor,
-  gapVert, gapHor,
-  row,
-  pattern,
+  fillEffect,
+  fillHover = fillEffect || "hovereffect",
+  fillActive = fillEffect || "faint",
+  href,
+  blank,
+  onClick,
   ...rest
-}: MakeButtonProps) => (
-  <Reaction
-    {...rest}
-    disabled={disabled}
-    track={track as any}
-    tabIndex={0}
-  >
-    {(rProps, r) => (
-      <Fit.TryTagless
-        {...rProps}
-        style={{
-          margin: `-${offset.split(' ').join(' -')}`,
-          padding: offset,
-        }}
-        forwardRef={forwardRef}
-      >
-        {!disabled && (
-          <Fit.TryTagless
-            width={r.hoverOrFocus ? "100%" : (!fade ? "0" : undefined)}
-            height={r.hoverOrFocus ? "100%" : (!fade ? "0" : undefined)}
-            stick="top-left"
-            top={r.hoverOrFocus ? "0" : (!fade ? "50%" : undefined)}
-            left={r.hoverOrFocus ? "0" : (!fade ? "50%" : undefined)}
-          >
-            <Box
-              radius={r.hoverOrFocus ? radius as any : 'max'}
-              fill={r.active ? "faint" : "hovereffect"}
-              style={{
-                transition: "all 0.2s ease",
-                opacity: fade ? (r.hoverOrFocus ? "1" : "0") : undefined,
-              }}
-            />
-          </Fit.TryTagless>
-        )}
+}: MakeButtonProps) => {
+  const Tag = href ? 'a' : 'button'
 
-        <Align.TryTagless vert={vert} hor={hor} gapVert={gapVert} gapHor={gapHor} row={row} pattern={pattern}>
-          <Fit>
+  function handleClick(e) {
+    if (onClick && href) {
+      e.preventDefault()
+      onClick(e)
+    }
+  }
+
+  return (
+    <Reaction
+      {...rest}
+      onClick={handleClick}
+      disabled={disabled}
+      button
+      tabIndex={0}
+    >
+      {(rProps, r) => (
+        <Fit.TryTagless
+          {...rProps}
+          style={{
+            margin: `-${offset.split(' ').join(' -')}`,
+            padding: offset,
+          }}
+          forwardRef={forwardRef}
+        >
+          <Tag
+            href={href}
+            rel={href && blank && "nofollow"}
+            target={href && blank && "_blank"}
+            type={(!href ? type : undefined) as any}
+          >
+            {!disabled && (
+              <Fit.TryTagless
+                width={r.hoverOrFocus ? "100%" : (!fade ? "0" : undefined)}
+                height={r.hoverOrFocus ? "100%" : (!fade ? "0" : undefined)}
+                stick="top-left"
+                top={r.hoverOrFocus ? "0" : (!fade ? "50%" : undefined)}
+                left={r.hoverOrFocus ? "0" : (!fade ? "50%" : undefined)}
+              >
+                <Box
+                  radius={r.hoverOrFocus ? radius as any : 'max'}
+                  fill={r.active ? fillActive : fillHover}
+                  style={{
+                    transition: "all 0.2s ease",
+                    opacity: fade ? (r.hoverOrFocus ? "1" : "0") : undefined,
+                  }}
+                />
+              </Fit.TryTagless>
+            )}
             {typeof children === 'function' ? (
               children(r)
             ) : (
               children
             )}
-          </Fit>
-        </Align.TryTagless>
-      </Fit.TryTagless>
-    )}
-  </Reaction>
-)) as OpiumComponent<MakeButtonProps>
+          </Tag>
+        </Fit.TryTagless>
+      )}
+    </Reaction>
+  )
+}) as OpiumComponent<MakeButtonProps>
 
 
 MakeButton.displayName = 'MakeButton'

@@ -63,7 +63,7 @@ function readFiles(dir, level) {
 readFiles(rootDir)
 
 let text = `import React from 'react'
-export default {default:{
+export default {
 `
 
 for (const file of fileList) {
@@ -72,7 +72,7 @@ for (const file of fileList) {
 `
 }
 
-text += `}}
+text += `}
 `
 
 text += `export const icons = [`

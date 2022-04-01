@@ -137,7 +137,7 @@ function SelectIcon() {
 
   return (
     <Gap size="12px" rotate={opened && '180deg'}>
-      <Icon name="chevron_down" />
+      <Icon name="chevron-down" />
     </Gap>
   )
 }

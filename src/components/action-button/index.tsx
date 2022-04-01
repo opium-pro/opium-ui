@@ -28,8 +28,8 @@ export const ActionButton: OpiumComponent<ActionButtonProps> = ({
     <MakeButton inline {...rest}>
       <Align row gapHor="xs" vert="center">
         {icon && <Icon fill={fill} name={icon} />}
-        {label && <Font nowrap fill={fill}>{label}</Font>}
-        {children && <Font.TryTagless fill={fill}>{children}</Font.TryTagless>}
+        {label && <Font size="md" weight="500" nowrap fill={fill}>{label}</Font>}
+        {children && <Font.TryTagless size="md" weight="500" fill={fill}>{children}</Font.TryTagless>}
       </Align>
     </MakeButton>
   )

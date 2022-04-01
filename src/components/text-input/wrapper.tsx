@@ -49,22 +49,25 @@ export const Wrapper = ({ children }) => {
               <Align row vert="center">{insertLeft}</Align>
             )}
 
-            <Fit stretch>
+            <Fit clip stretch>
               {children}
+
+              {!textarea && !disabled && isDefined(value) && hoverOrFocus && (
+                <Fit.TryTagless absolute right="0" height="100%">
+                  <Align.TryTagless vert="center">
+                    <Gap hor="16px">
+                      <IconButton size="xs" icon="cross" fill="faintDown" onClick={() => onChange('')} />
+                    </Gap>
+                  </Align.TryTagless>
+                </Fit.TryTagless>
+              )}
             </Fit>
 
             <Align row vert="center">
-              {!textarea && !disabled && isDefined(value) && hoverOrFocus && (<>
-                <IconButton size="xs" icon="cross" fill="faintDown" onClick={() => onChange('')} />
-                {/* {!(hint || insertRight || parentChildren) */}
-                  <Gap size="8px" />
-                {/* } */}
-              </>)}
-
               {tooltip && (<>
                 <IconButton size="xs" cursor="help" fill="faintDown" icon="question-circle" />
                 <Tooltip delay={0}>{tooltip}</Tooltip>
-                <Gap />
+                <Gap size="16px" />
               </>)}
 
               {insertRight}

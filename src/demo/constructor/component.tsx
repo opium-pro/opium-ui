@@ -1,7 +1,7 @@
-import { FC } from 'react'
-import { Font, Align, Gap, Box } from 'themeor'
-import { usePath } from 'opium-nav'
-import { LimitWidth, TextInput, Toggle, Select, Tag, useScreenFit, Form, ScreenFit, useForm } from '../../components'
+import { FC, Fragment } from 'react'
+import { Font, Align, Gap, Box, Icon } from 'themeor'
+import { usePath, nav } from 'opium-nav'
+import { LimitWidth, TextInput, Toggle, Select, Tag, useScreenFit, Form, ScreenFit, useForm, Link, BackButton } from '../../components'
 import * as components from '../../components'
 import { TypeFields } from '../../types'
 import * as mainMenu from '../index'
@@ -67,7 +67,9 @@ export const Component: FC = () => {
     <ScreenFit>
       <LimitWidth>
         <Gap size="40px" />
-        <Font size="x3l" weight="800">
+        <BackButton label="Back" onClick={() => nav.back()} />
+        <Gap />
+        <Font stretch size="x3l" weight="800">
           {component}
         </Font>
         {isHoc && (<>
@@ -93,12 +95,22 @@ export const Component: FC = () => {
               <Font size="xl" weight="700">
                 <Align row vert="center">
                   Props
-                  {extendMenu.map(([ name, path ]) => (<>
-                    <Gap />
-                    <Font weight="500">
-                      {name}
-                    </Font>
-                  </>))}
+                  {extendMenu.map(([name, path]) => (
+                    <Fragment key={name}>
+                      <Gap />
+                      <Icon fill="faintDown" name="chevron-left" />
+                      <Gap />
+                      <Link
+                        size="md"
+                        weight="500"
+                        fill="faint"
+                        href={path}
+                        onClick={() => nav.go(path)}
+                      >
+                        {name}
+                      </Link>
+                    </Fragment>
+                  ))}
                 </Align>
               </Font>
               <Gap size="40px" />

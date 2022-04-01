@@ -1,16 +1,16 @@
 import React from 'react'
-import { Align, FontProps, Box, BoxProps, Font, Gap, Fit } from 'themeor'
+import { FontProps, Box, BoxProps, Font, Gap, Fit, GapProps } from 'themeor'
 
-export type TagProps = FontProps & {
+export type TagProps = FontProps & BoxProps & GapProps & {
   label?: string,
-  fill?: BoxProps['fill'],
+  fontFill?: FontProps['fill']
 }
 
 export const Tag = (
-  { label, fill = 'base', ...props }: TagProps
+  { label, fontFill = 'faintDown', fill = 'base', ...props }: TagProps
 ) => {
   return (
-    <Fit.TryTagless inline>
+    <Fit.TryTagless inline {...props}>
       <Box.TryTagless
         radius="4px"
         fill={fill}
@@ -19,11 +19,10 @@ export const Tag = (
       >
         <Gap.TryTagless vert="3px" hor="6px" bottom="2px">
           <Font
-            fill="faintDown"
+            fill={fontFill}
             size="9px"
             weight="600"
             uppercase
-            {...props}
           >
             {label}
           </Font>

@@ -129,7 +129,8 @@ export default {
 
   icon: {
     size: {
-      sm: '16px',
+      xs: '16px',
+      sm: '20px',
       md: '24px',
       lg: '32px'
     }
@@ -149,21 +150,8 @@ export default {
   },
 
   reaction: {
-    speed: {
+    duration: {
       md: '0.25s'
     }
   },
-
-  effect: {
-    opacity: {
-      x2s: '0.05',
-      xs: '0.1',
-      sm: '0.3',
-      md: '0.5',
-      lg: '0.2',
-      xl: '0.7',
-      x2l: '0.8',
-      x3l: '0.9'
-    }
-  }
 }

@@ -85,7 +85,7 @@ function StyleWrapper({ children, ...rest }) {
       absolute
       left="0"
       right="0"
-      top={label ? '28px' : '13px'}
+      top={label ? '26px' : '11px'}
       offset="0"
       maxWidth="100%"
       {...rest}

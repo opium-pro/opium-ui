@@ -15,7 +15,7 @@ export const Placeholder = () => {
       absolute
       left="0"
       right="0"
-      top={label ? '28px' : '13px'}
+      top={label ? '26px' : '11px'}
     >
       <Align.TryTagless vert="center">
         <Font.TryTagless

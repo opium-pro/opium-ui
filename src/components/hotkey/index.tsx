@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react'
 import hotkeys from 'hotkeys-js'
-import { AlignProps } from 'themeor'
-import { Tag } from '../tag'
+import { Tag, TagProps } from '../tag'
 
 
-export type HotkeyProps = AlignProps & {
+export type HotkeyProps = TagProps & {
   trigger?: string
   action?: (event?: any) => void
   children?: any

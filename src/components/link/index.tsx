@@ -1,25 +1,42 @@
 import React from 'react'
-import { Font, FontProps, Reaction } from 'themeor'
+import { Font, FontProps, Align, Icon } from 'themeor'
 import { OpiumComponent } from '../../types'
+import { icons } from '../../theme/iconList'
+import { MakeButton, MakeButtonProps } from '../make-button'
 
 
-export type LinkProps = FontProps & {
+export type LinkProps = MakeButtonProps & FontProps & {
   label?: any
-  blank?: boolean
+  icon?: string
+  fillHover?: string
 }
 
-export const Link: OpiumComponent<LinkProps> = ({ label, fill, blank, ...rest }) => (
-  <Reaction {...rest}>
-    {(rProps, r) => (
+export const Link: OpiumComponent<LinkProps> = ({
+  label,
+  fill = 'base',
+  fillHover = 'accent',
+  icon,
+  children,
+  ...rest
+}) => (
+  <MakeButton
+    inline
+    fillEffect="none"
+    {...rest}
+  >
+    {(r) => (
       <Font.TryTagless
-        fill={r.hoverO}
-        inline
-        {...rProps}
+        fill={r.hoverOrFocus ? fillHover : fill}
+        {...r.restProps}
       >
-        <a target={blank && '_blank'}>{label}</a>
+          <Align row gapHor="4px" vert="center">
+            {label}
+            {icon && <Icon size="sm" fill={r.hoverOrFocus ? fillHover : fill} name={icon} />}
+            {children}
+          </Align>
       </Font.TryTagless>
     )}
-  </Reaction>
+  </MakeButton>
 )
 
 Link.displayName = 'Link'
