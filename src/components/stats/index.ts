@@ -1,10 +1,14 @@
-import { Wrapper } from './wrapper'
-import { Item } from './item'
+import { Wrapper, Props as StatsProps } from './wrapper'
+import { Item, Props as StatsItemProps } from './item'
 
-export type StatsType = typeof Wrapper & {
-  Item: typeof Item
+export type StatsItem = typeof Item
+
+export type Stats = typeof Wrapper & {
+  Item: StatsItem
 }
 
-export const Stats: StatsType = Object.assign(Wrapper, {
+export const Stats: Stats = Object.assign(Wrapper, {
   Item
 })
+
+export type { StatsProps, StatsItemProps }

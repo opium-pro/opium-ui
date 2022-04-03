@@ -1,4 +1,4 @@
-import { FC, Fragment } from 'react'
+import { FC, Fragment, useEffect } from 'react'
 import { Font, Align, Gap, Box, Icon } from 'themeor'
 import { usePath, nav } from 'opium-nav'
 import { LimitWidth, TextInput, Toggle, Select, Tag, useScreenFit, Form, ScreenFit, useForm, Link, BackButton } from '../../components'
@@ -140,8 +140,17 @@ export const Component: FC = () => {
 
 
 function DemoComponent({ Component, ...props }) {
-  const { fields } = useForm()
+  const { fields, reset, setFields } = useForm()
+  const { path } = usePath()
   let initialProps = {}
+
+  useEffect(() => {
+    const initialFields = {}
+    for (const prop in Component.demoProps) {
+      initialFields[prop] = Component.demoProps[prop][1]
+    }
+    setFields(initialFields)
+  }, [path])
 
   if (Component.demoComponent) {
     initialProps = Component.demoComponent[1]
@@ -149,6 +158,6 @@ function DemoComponent({ Component, ...props }) {
   }
 
   return (
-    <Component {...initialProps} {...fields} />
+    <Component {...initialProps} {...fields} onClick={reset} />
   )
 }

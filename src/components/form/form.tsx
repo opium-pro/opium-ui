@@ -7,6 +7,7 @@ type Props = React.AllHTMLAttributes<HTMLElement> & {
   onChange?: any
   getContext?: any
   initialValues?: any
+  name?: string
 }
 
 
@@ -16,6 +17,7 @@ export function Form({
   onSubmit,
   onChange,
   getContext,
+  name,
   initialValues: defaultInitialValues = {},
   disabled: initialDisabled,
   ...rest
@@ -43,7 +45,7 @@ export function Form({
       // Парсим имя, если это не просто одно поле, а вложенные объекты
       mutateObjectForFields(fields, parseFieldName(name), value)
     } else {
-      Object.assign(fields, { [name]: value })
+      Object.assign(fields || {}, { [name]: value })
     }
     setFields({...fields})
   }

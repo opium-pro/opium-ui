@@ -42,7 +42,7 @@ export const Layout: FC<AppLayoutProps> = ({
         {menu && (!isSmall || openMenu) && (
           <AppLayoutContext.Provider value={{ ...context, scrollNode: menuNode }}>
             <Animate.TryTagless onMount={isSmall && "fadeInLeft" as any}>
-              <Box.TryTagless fill="base">
+              <Box.TryTagless fill="base" shadow="sm">
                 <Fit.TryTagless
                   zIndex={200}
                   forwardRef={setMenuNode}

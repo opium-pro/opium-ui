@@ -1,18 +1,27 @@
 import React from 'react'
 import { Align, Fit, Box, Font, Line, Gap, Icon, AlignProps } from 'themeor'
 import { MakeButton } from '../make-button'
-import { withTooltip } from '../tooltip'
+import { withTooltip, WithTooltipProps, WithTooltip } from '../tooltip'
 
 
-type Props = AlignProps & {
-  label?: string
+export type Props = WithTooltipProps & AlignProps & {
+  label?: any
   hint?: string
   forwardRef?: any
   value?: string
   nowrap?: boolean
 }
 
-export const Item = withTooltip(({ label, nowrap, onClick, value, forwardRef, hint, children, ...rest }: Props) => {
+export const Item: WithTooltip<Props> = withTooltip(({
+  label,
+  nowrap,
+  onClick,
+  value,
+  forwardRef,
+  hint,
+  children,
+  ...rest
+}: Props) => {
   return (
     <MakeButton
       forwardRef={forwardRef}

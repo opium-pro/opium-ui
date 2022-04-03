@@ -2,7 +2,7 @@ import React from 'react'
 import { Align, Fit, Box, Line, BoxProps } from 'themeor'
 
 
-type Props = BoxProps & {}
+export type Props = BoxProps & {}
 
 export function Wrapper({ children, ...rest }: Props) {
   return (

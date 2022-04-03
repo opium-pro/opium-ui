@@ -1,12 +1,12 @@
-import React, { FC, useState, Fragment, useEffect } from 'react'
+import React, { FC, useState, Fragment, useEffect, useRef } from 'react'
 import { Align, AlignProps } from 'themeor'
 import { useAppLayout } from '../app-layout'
 
 
 export type LazyScrollerProps = AlignProps & {
   onLoad?: any
-  preloadLength?: number
-  loadAfterPercent?: number
+  preload?: number
+  spare?: number
   scrollNode?: any
 }
 
@@ -14,56 +14,62 @@ export type LazyScrollerProps = AlignProps & {
 export const LazyScroller: FC<LazyScrollerProps> = ({
   children,
   onLoad,
-  preloadLength = 30,
-  loadAfterPercent = 50,
-  pattern,
+  preload = 20,
+  spare = 5,
   scrollNode,
   ...rest
 }) => {
-  let [chunk, setChunk] = useState(1)
-  const [contentNode, setContentNode]: any = useState()
+  const chunk = useRef(0)
+  const [update, setUpdate] = useState(chunk.current)
+  const contentNode: any = useRef()
   const { scrollNode: appScrollNode } = useAppLayout()
-  let fastChunk = chunk
 
   if (!scrollNode) {
     scrollNode = appScrollNode
   }
 
-  useEffect(() => {
-    onLoad && onLoad(chunk)
-  }, [chunk])
-
-  function loadChunk() {
-    setChunk(++fastChunk)
+  async function loadChunk() {
+    chunk.current++
+    if (typeof onLoad === 'function') {
+      await onLoad?.(chunk.current)
+    } else {
+      setUpdate(chunk.current)
+    }
   }
 
   useEffect(() => {
     if (!scrollNode) { return }
+    handleScroll()
     scrollNode.addEventListener('scroll', handleScroll)
     return () => scrollNode.removeEventListener('scroll', handleScroll)
-  }, [scrollNode, contentNode])
-
+  }, [scrollNode])
 
   function handleScroll() {
-    const scrolled = scrollNode.scrollTop
-    const currentHeight = contentNode?.offsetHeight
-    const chunkHeight = currentHeight / fastChunk
-    const chunkLoad = chunkHeight * (loadAfterPercent / 100)
-    if (scrolled >= currentHeight - chunkHeight + chunkLoad) {
-      loadChunk()
+    if (hasToLoad()) {
+      loadChunk().then(() => {
+        // handleScroll()
+      })
     }
   }
 
+  function hasToLoad() {
+    const scrolled = scrollNode?.scrollTop
+    const scrollHeight = scrollNode?.offsetHeight
+    const currentHeight = contentNode?.current?.offsetHeight
+    const chunkHeight = (currentHeight / chunk.current) || 0
+    const itemHeight = chunkHeight / preload
+    return currentHeight - scrolled - scrollHeight <= itemHeight * spare
+  }
+
   const newChildren = React.Children.map(children, (child: any, index) => {
-    if (index <= preloadLength * chunk) {
+    if (index < preload * chunk.current) {
       return <Fragment key={index}>{child}</Fragment>
     }
   })
 
   return (
     <Align
-      pattern={pattern}
-      forwardRef={setContentNode}
+      forwardRef={contentNode}
       {...rest}
     >
       {newChildren}
