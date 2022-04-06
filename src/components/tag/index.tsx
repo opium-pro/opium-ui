@@ -10,12 +10,13 @@ export const Tag = (
   { label, fontFill = 'faintDown', fill = 'base', ...props }: TagProps
 ) => {
   return (
-    <Fit.TryTagless inline {...props}>
+    <Fit.TryTagless inline>
       <Box.TryTagless
         radius="4px"
         fill={fill}
         borderFill="faintDown"
         shadow="x3s"
+        {...props}
       >
         <Gap.TryTagless vert="3px" hor="6px" bottom="2px">
           <Font

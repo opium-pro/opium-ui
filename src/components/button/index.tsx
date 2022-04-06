@@ -121,13 +121,18 @@ export const Button = withTooltip(({
 Button.displayName = 'Button'
 Button.description = 'Основная кнопка'
 Button.demoProps = {
-  label: ['string', `Ooooh, click me, I' a button`],
-  icon: ['select', 'airdrop', icons],
-  hint: ['string', undefined],
-  fillHover: ['string', undefined],
-  primary: ['boolean', true],
-  mini: ['boolean', false],
-  critic: ['boolean', false],
-  light: ['boolean', false],
-  disabled: ['boolean', false],
+  Props: {
+    _extends: ['withTooltip'],
+    label: ['string', `Ooooh, click me, I' a button`],
+    icon: ['select', 'airdrop', icons],
+    hint: ['string', undefined],
+    fillHover: ['string', undefined],
+    primary: ['boolean', true],
+    mini: ['boolean', false],
+    critic: ['boolean', false],
+    light: ['boolean', false],
+    disabled: ['boolean', false],
+  }
 }
+Button.usage = `<Button {Props}
+/>`

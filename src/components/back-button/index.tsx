@@ -7,7 +7,12 @@ export type BackButtonProps = ActionButtonProps & {}
 
 export const BackButton: OpiumComponent<BackButtonProps> = (props: BackButtonProps) => {
   return (
-    <ActionButton fill="faint" icon="arrow-left-circle" {...props} />
+    <ActionButton
+      fill="faint"
+      icon="arrow-left-circle"
+      size="xs"
+      {...props}
+    />
   )
 }
 
@@ -15,6 +20,10 @@ export const BackButton: OpiumComponent<BackButtonProps> = (props: BackButtonPro
 BackButton.displayName = 'BackButton'
 BackButton.description = 'Кнопка назад'
 BackButton.demoProps = {
-  label: ['string', 'Back'],
+  Props: {
+    _extends: ['ActionButton'],
+    label: ['string', 'Back'],
+  }
 }
-BackButton.extends = ['ActionButton']
+BackButton.usage = `<BackButton {Props}
+/>`

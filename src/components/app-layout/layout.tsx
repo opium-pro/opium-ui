@@ -16,6 +16,7 @@ export const Layout: FC<AppLayoutProps> = ({
   modals,
   getContentNode,
   footer,
+  fill,
   ...rest
 }) => {
   const { contentNode, menuNode, setContentNode, setMenuNode } = useAppLayout()
@@ -42,7 +43,7 @@ export const Layout: FC<AppLayoutProps> = ({
         {menu && (!isSmall || openMenu) && (
           <AppLayoutContext.Provider value={{ ...context, scrollNode: menuNode }}>
             <Animate.TryTagless onMount={isSmall && "fadeInLeft" as any}>
-              <Box.TryTagless fill="base" shadow="sm">
+              <Box.TryTagless shadow="sm">
                 <Fit.TryTagless
                   zIndex={200}
                   forwardRef={setMenuNode}
@@ -92,7 +93,7 @@ export const Layout: FC<AppLayoutProps> = ({
             clip={isSmall && openMenu}
             forwardRef={contentNodeRef}
           >
-              <Background>
+            <Box fill={fill}>
               <ScreenFit>
                 <Align minHeight="100vh">
                   {header && (
@@ -110,7 +111,7 @@ export const Layout: FC<AppLayoutProps> = ({
                   {footer}
                 </Align>
               </ScreenFit>
-              </Background>
+            </Box>
           </Fit.TryTagless>
         </AppLayoutContext.Provider>
       </Align>

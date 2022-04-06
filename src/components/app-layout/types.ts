@@ -4,4 +4,5 @@ export type AppLayoutProps = {
   footer?: any
   modals?: any
   getContentNode?: any
+  fill?: string
 }

@@ -23,7 +23,7 @@ export const MakeButton = withTooltip(({
   children,
   offset = "10px",
   disabled,
-  radius = "md",
+  radius = "sm",
   type = "button",
   fade,
   forwardRef,

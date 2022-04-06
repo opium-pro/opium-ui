@@ -8,16 +8,17 @@ import filter from 'opium-filter'
 import { useDropdown } from './context'
 import { Hotkey } from '../hotkey'
 import { LazyScroller } from '../lazy-scroller'
+import { OpiumComponent } from '../../types'
 
 
-export interface DropdownProps extends FitProps {
+export type DropdownProps = FitProps & {
   place?: string
   placeOrder?: string[]
   parentNode?: any
 }
 
 
-export const Dropdown: FC<DropdownProps> = ({
+export const Dropdown: OpiumComponent<DropdownProps> = ({
   children,
   place = 'bottom-stretch',
   placeOrder = ['bottom', 'top'],
@@ -119,7 +120,7 @@ export const Dropdown: FC<DropdownProps> = ({
                 maxWidth="600px"
                 minWidth="100px"
               >
-                <Box radius="md" shadow="lg" fill="base">
+                <Box radius="sm" shadow="lg" fill="base">
                   {showSearch && (
                     <Fit sticky top="0" zIndex={1}>
                       <Gap hor="md" vert="sm">
@@ -146,3 +147,9 @@ export const Dropdown: FC<DropdownProps> = ({
     </Fit>
   )
 }
+
+
+Dropdown.displayName = "Dropdown"
+Dropdown.usage = `
+  <div>asdasdasdasdasd</div>
+`

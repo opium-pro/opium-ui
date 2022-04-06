@@ -5,10 +5,10 @@ import { withTooltip, WithTooltipProps } from '../tooltip'
 
 
 type Props = WithTooltipProps & MakeButtonProps & {
-  label?: string
+  label?: any
   icon?: string
   active?: boolean
-  hint?: string
+  hint?: any
   row?: boolean
   forwardRef?: any
   img?: string
@@ -40,7 +40,6 @@ export const Item: FC<Props> = withTooltip(({
     >
       <Gap.TryTagless hor={row ? "lg" : "sm"} vert="md" right={row && "x2l"}>
         <Align row={row} vert="center">
-
           {(icon || img) && (<>
             <Align hor="center">
               {icon &&

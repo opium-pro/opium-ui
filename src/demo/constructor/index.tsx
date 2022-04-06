@@ -2,7 +2,8 @@ import { useMemo, useState } from 'react'
 import * as mainMenu from '../index'
 import * as design from '../design'
 import * as logic from '../logic'
-import { AppLayout, AppMenu, IconButton, Search, MakeButton, MarkMatch, Hotkey, hotkeys } from '../../components'
+import { AppLayout, AppMenu, IconButton, Search, MakeButton, MarkMatch, Hotkey, hotkey } from '../../components'
+import * as components from '../../components'
 import { nav, Path, usePath, config } from 'opium-nav'
 import { Component } from './component'
 import { Align, Line, Gap, Font, Fit, Icon, Box } from 'themeor'
@@ -25,13 +26,21 @@ export function App() {
 
   const filteredItems = filter(allItems, search, { deep: true })
 
-  hotkeys('ctrl + /, command + /', (e) => {
+  hotkey('ctrl + /, command + /', (e) => {
     e.preventDefault()
     document.getElementById('search').querySelector('input').focus()
   })
 
+  const allComponents = []
+  Object.keys(mainMenu).forEach((group) => {
+    Object.keys(mainMenu[group]).forEach((name) => {
+      allComponents.push([`/${group}/${name}`, mainMenu[group][name]])
+    })
+  })
+
   return (
     <AppLayout
+      fill="baseDown"
       footer={(<Footer />)}
       menu={(
         <Line.TryTagless right="md" fill="faintDown">
@@ -46,15 +55,15 @@ export function App() {
                 }}>
                   <Align row vert="center">
                     <Box fill="warning" radius="max">
-                      <Gap size="10px">
+                      <Gap size="8px">
                         <Icon size="40px" name="opium-pro" />
                       </Gap>
                     </Box>
                     <Gap size="12px" />
                     <Align>
-                      <Font weight="800" size="xl">opium.pro</Font>
-                      <Gap size="4px" />
-                      <Font fill="faint">web app kit</Font>
+                      <Font weight="800" size="lg">opium.pro</Font>
+                      <Gap size="2px" />
+                      <Font fill="faint" size="xs">web app kit</Font>
                     </Align>
                   </Align>
                 </MakeButton>
@@ -76,19 +85,33 @@ export function App() {
             </Gap>
             <Line fill="faintDown" />
             <Fit.TryTagless scroll>
-              {search ? filteredItems.map(({ label, hint, path }, index) => (
-                <MenuItem
-                  row
-                  key={index}
-                  hint={(
-                    <MarkMatch target={search}>{hint}</MarkMatch>
-                  )}
-                  label={(
-                    <MarkMatch target={search}>{label}</MarkMatch>
-                  )}
-                  path={path}
-                />
-              )) : (
+              {search ? (
+                <Align>
+                  {filteredItems.map(({ label, hint, path }, index) => (
+                    <MenuItem
+                      row
+                      key={index}
+                      hint={(
+                        <MarkMatch target={search}>{hint}</MarkMatch>
+                      )}
+                      label={(
+                        <MarkMatch target={search}>{label}</MarkMatch>
+                      )}
+                      path={path}
+                    />
+                  ))}
+                  <Gap.TryTagless height="200px">
+                    <Align hor="center" vert="center">
+                      <IconButton
+                        icon="cross"
+                        label="clear filter"
+                        critic
+                        onClick={() => setSearch(undefined)}
+                      />
+                    </Align>
+                  </Gap.TryTagless>
+                </Align>
+              ) : (
                 <Align row stretch vert="stretch">
                   <AppMenu pattern={!group && "1fr 1fr"}>
                     <Align.Span col={2}>
@@ -142,27 +165,19 @@ export function App() {
                 </Align>
               )}
 
-              {search && (<>
-                <Gap.TryTagless height="200px">
-                  <Align hor="center" vert="center">
-                    <IconButton
-                      icon="cross"
-                      label="clear filter"
-                      critic
-                      onClick={() => setSearch(undefined)}
-                    />
-                  </Align>
-                </Gap.TryTagless>
-              </>)}
             </Fit.TryTagless>
           </Align>
         </Line.TryTagless>
       )}>
-      <Path
+
+      {allComponents.map(([path, Comp]) => (
+        <Path key={path} name={path} component={Component} />
+      ))}
+      {/* <Path
         parent
         name={`/:group/:component`}
         component={Component}
-      />
+      /> */}
     </AppLayout>
   )
 }

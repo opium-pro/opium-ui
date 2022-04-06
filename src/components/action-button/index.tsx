@@ -1,7 +1,7 @@
 import React from 'react'
-import { Align, Font, Icon } from 'themeor'
+import { Align, Font, Icon, FontProps } from 'themeor'
 import { MakeButton, MakeButtonProps } from '../make-button'
-import { OpiumComponent, Icons } from '../../types'
+import { OpiumComponent } from '../../types'
 import { icons } from '../../theme/iconList'
 
 
@@ -11,6 +11,8 @@ export type ActionButtonProps = MakeButtonProps & {
   icon?: string
   fill?: string
   critic?: boolean
+  size?: string
+  weight?: FontProps['weight']
 }
 
 
@@ -21,6 +23,8 @@ export const ActionButton: OpiumComponent<ActionButtonProps> = ({
   critic,
   children,
   fill,
+  size = "md",
+  weight = "500",
   ...rest
 }) => {
   fill = fill || (critic ? 'critic' : 'baseDown')
@@ -28,8 +32,7 @@ export const ActionButton: OpiumComponent<ActionButtonProps> = ({
     <MakeButton inline {...rest}>
       <Align row gapHor="xs" vert="center">
         {icon && <Icon fill={fill} name={icon} />}
-        {label && <Font size="md" weight="500" nowrap fill={fill}>{label}</Font>}
-        {children && <Font.TryTagless size="md" weight="500" fill={fill}>{children}</Font.TryTagless>}
+        {label && <Font size={size} weight={weight} nowrap fill={fill}>{label}{children}</Font>}
       </Align>
     </MakeButton>
   )
@@ -39,9 +42,13 @@ export const ActionButton: OpiumComponent<ActionButtonProps> = ({
 ActionButton.displayName = 'ActionButton'
 ActionButton.description = 'Кнопка для совершения действия'
 ActionButton.demoProps = {
-  label: ['string', 'Click me'],
-  icon: ['select', 'cross', icons],
-  fill: ['string', undefined],
-  critic: ['boolean', false],
+  Props: {
+    _extends: ['MakeButton'],
+    label: ['string', 'Click me'],
+    icon: ['select', 'cross', icons],
+    fill: ['string', undefined],
+    critic: ['boolean', false],
+  }
 }
-ActionButton.extends = ['MakeButton']
+ActionButton.usage = `<ActionButton {Props}
+/>`

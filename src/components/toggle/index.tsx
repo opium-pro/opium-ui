@@ -40,7 +40,7 @@ export const Toggle: FC<Props> = withForm(withTooltip(({
     <Reaction track="hover" disabled={disabled} {...props}>
       {(rProps, r) => (
         <Align hor="left">
-          <Align row vert="center" {...rProps} onClick={handleChange}>
+          <Align row vert="center" {...rProps} onClick={handleChange} tabIndex={0}>
 
             <Fit.TryTagless height="20px" width="34px">
               <Box.TryTagless

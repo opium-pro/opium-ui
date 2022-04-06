@@ -6,6 +6,7 @@ import { SelectContext } from './context'
 import { SelectType } from './types'
 import { Tag } from '../tag'
 import { isDefined } from '../../utils'
+import { hotkey } from '../hotkey'
 
 
 export const Select: SelectType = ({
@@ -99,6 +100,19 @@ export const Select: SelectType = ({
   //   }
   // })
 
+  // function handleFocus() {
+  //   hotkey.setScope('select')
+  //   hotkey('space', (e) => {
+  //     e.preventDefault()
+  //   })
+  // }
+
+  // function handleBlur() {
+  //   console.log('BLUR');
+    
+  //   hotkey.deleteScope('select')
+  // }
+
   return (
     <SelectContext.Provider value={{
       onCompare,
@@ -111,6 +125,8 @@ export const Select: SelectType = ({
         insertRight={!disabled && <SelectIcon />}
         options={newChildren}
         type="select"
+        // onFocus={handleFocus}
+        // onBlur={handleBlur}
       />
       {/* {multi &&
         <Fit hidden>

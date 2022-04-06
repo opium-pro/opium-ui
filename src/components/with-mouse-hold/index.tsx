@@ -1,21 +1,27 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, FC } from 'react'
+
 
 export type WIthMouseHoldProps = {
   onMouseHold?: (delay?: number, ...event: any) => any
 }
 
+export type WIthMouseHold<Props = WIthMouseHoldProps> = (args: any) => FC<Props>
+
+
 export function withMouseHold(Component) {
   return ({
-    onMouseHold = (...n) => n,
+    onMouseHold,
     onMouseEnter = (...n) => n,
     onMouseMove = (...n) => n,
     onMouseLeave = (...n) => n,
     ...rest
   }) => {
-    const [state]: any = useState({
+    const state: any = useRef({
       delay: 0,
       interval: undefined,
-    })
+    }).current
+
+    const isActive = typeof onMouseHold === 'function'
 
     function handleMouseHold(...args: any[]) {
       state.delay += 100
@@ -29,8 +35,10 @@ export function withMouseHold(Component) {
 
     function handleMouseMove(event) {
       onMouseMove(event)
-      reset()
-      state.interval = setInterval(handleMouseHold, 100)
+      if (isActive) {
+        reset()
+        state.interval = setInterval(handleMouseHold, 100)
+      }
     }
 
     function reset() {

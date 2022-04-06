@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import hotkeys from 'hotkeys-js'
+import hotkey from 'hotkeys-js'
 import { Tag, TagProps } from '../tag'
 
 
@@ -26,7 +26,7 @@ export const Hotkey = ({
   const mainKeys = options[0].split('+')
 
   useEffect(() => {
-    hotkeys.filter = function (event) {
+    hotkey.filter = function (event) {
       return true
     }
   }, [])
@@ -38,11 +38,11 @@ export const Hotkey = ({
   function bind() {
     if (action instanceof Function) {
       if (scope) {
-        hotkeys.setScope(scope)
-        hotkeys(trigger, scope, finalAction)
+        hotkey.setScope(scope)
+        hotkey(trigger, scope, finalAction)
       } else {
-        hotkeys.setScope('all')
-        hotkeys(trigger, finalAction)
+        hotkey.setScope('all')
+        hotkey(trigger, finalAction)
       }
     }
   }
@@ -53,8 +53,8 @@ export const Hotkey = ({
   }
 
   function unbind() {
-    hotkeys.unbind(trigger, scope)
-    hotkeys.setScope('all')
+    hotkey.unbind(trigger, scope)
+    hotkey.setScope('all')
   }
 
   useEffect(() => () => unbind(), [])
@@ -67,4 +67,4 @@ export const Hotkey = ({
   return <Tag label={value} {...props} />
 }
 
-export { hotkeys }
+export { hotkey }
