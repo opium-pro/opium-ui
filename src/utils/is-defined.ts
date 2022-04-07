@@ -1,3 +1,3 @@
 export function isDefined(value) {
-  return !!value && value != [] && value != {} && value != new Map() && value != new Set()
+  return !([undefined, null, ''].includes(value) || value == new Map() || value == new Set())
 }

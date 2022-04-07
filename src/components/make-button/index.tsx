@@ -12,7 +12,6 @@ export type MakeButtonProps = Omit<ReactionProps, 'children'> & WithTooltipProps
   forwardRef?: any,
   fillHover?: string
   fillActive?: string
-  fillEffect?: string
   href?: string
   blank?: boolean
   type?: string
@@ -27,9 +26,8 @@ export const MakeButton = withTooltip(({
   type = "button",
   fade,
   forwardRef,
-  fillEffect,
-  fillHover = fillEffect || "hovereffect",
-  fillActive = fillEffect || "faint",
+  fillHover = "hovereffect",
+  fillActive = "faint",
   href,
   blank,
   onClick,
@@ -98,4 +96,20 @@ export const MakeButton = withTooltip(({
 
 
 MakeButton.displayName = 'MakeButton'
-MakeButton.demoProps = {}
+MakeButton.demoProps = {
+  Props: {
+    _extends: ['withTooltip'],
+    offset: ['string', undefined, '10px'],
+    radius: ['string', undefined, 'sm'],
+    fillHover: ['string', undefined],
+    fillActive: ['string', undefined],
+    type: ['string', undefined, 'button'],
+    href: ['string', undefined, `If filled, then <a> tag will be used instead of <button>`],
+    blank: ['boolean', false],
+    disabled: ['boolean', false],
+    fade: ['boolean', false],
+  }
+}
+MakeButton.usage = `<MakeButton{Props}>
+  Clickable thing
+</MakeButton>`

@@ -4,7 +4,7 @@ import type * as components from './components'
 
 export type TypeFields = 'boolean' | 'string' | 'number' | 'select'
 export type DemoProps<OriginalProps = {}> = {
-  [name in keyof OriginalProps]?: [type: TypeFields, defaultValue?: OriginalProps[name], options?: any[]]
+  [name in keyof OriginalProps]?: [type: TypeFields, defaultValue?: OriginalProps[name], options?: any[] | string]
 } & {
   _extends?: (keyof typeof components)[]
 }

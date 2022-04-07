@@ -38,3 +38,18 @@ withTooltip.demoProps = {
     tooltipPlace: ['select', undefined, ['top', 'top-left', 'top-right', 'bottom', 'bottom-left', 'bottom-right', 'right', 'right-top', 'right-bottom', 'left', 'left-top', 'left-bottom']],
   }
 }
+withTooltip.usage = `
+{/*
+Wrap your component first
+Button = withTooltip(Button)
+
+Some components from the library are already wrapped
+*/}
+
+<Button{Props}
+  // Props for styling
+  primary
+  width="250px"
+  height="200px"
+  label="Hover me, don't be shy"
+/>`

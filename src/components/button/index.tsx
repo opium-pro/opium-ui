@@ -134,5 +134,4 @@ Button.demoProps = {
     disabled: ['boolean', false],
   }
 }
-Button.usage = `<Button {Props}
-/>`
+Button.usage = `<Button {Props}/>`

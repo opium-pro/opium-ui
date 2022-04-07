@@ -1,5 +1,5 @@
 import { FC, Fragment, useEffect, useState } from 'react'
-import { Font, Align, Gap, Box, Icon } from 'themeor'
+import { Font, Align, Gap, Box, Icon, useConfig } from 'themeor'
 import { usePath, nav } from 'opium-nav'
 import { TextInput, Toggle, Select, Tag, useScreenFit, useForm, Link } from '../../components'
 import * as components from '../../components'
@@ -29,6 +29,7 @@ function extractExtends(componentNames = [], group) {
 export function Example({ Component }) {
   const { fields } = useForm()
   const { isSmall } = useScreenFit()
+  const { currentConfig } = useConfig()
 
   // useEffect(() => {
   //   const initialFields = {}
@@ -46,22 +47,35 @@ export function Example({ Component }) {
     }
 
     const demoProps = { ...initialProps, ...fields[variable] }
-    usage = usage?.replace(`{${variable}}`, Object.keys(demoProps).map((propName) => {
-      if (propName.indexOf('_') === 0) { return }
-
+    let hasProps = false
+    usage = usage?.replace(`{${variable}}`, Object.keys(demoProps).map((propName, index) => {
       let value = demoProps[propName]
       if (typeof value === 'string') {
         value = `${propName}="${value}"`
       } else if (value === true) {
         value = `${propName}`
-      } else if ([undefined, false].includes(value)) {
-        return
+      } else if ([undefined, false, ''].includes(value)) {
+        value = ''
       } else {
         value = `${propName}={${value}}`
       }
 
-      value = `
+      if (![undefined, false, ''].includes(demoProps[propName])) {
+        hasProps = true
+        value = `
   ${value}`
+      } else {
+        value = ''
+      }
+
+      if (propName.indexOf('_') === 0) {
+        value = ''
+      }
+
+      if ((Object.keys(demoProps).length === index + 1) && hasProps) {
+        value += `
+`
+      }
 
       return value
     }).join(''))
@@ -90,48 +104,52 @@ export function Example({ Component }) {
         <Align key={propGroup} pattern={isSmall ? "1fr" : "50% 50%"} gapHor="40px">
           <Align>
             <Font size="lg" weight="700">
-              <Align stack vert="center">
+              <Align stack vert="center" gapHor="4px" gapVert="12px">
                 {propGroup}
-                {extendMenu.map(([name, path]) => (
-                  <Fragment key={name}>
-                    <Gap size="12px" />
-                    <Icon fill="faintDown" name="chevron-left" />
-                    <Gap size="12px" />
+                {!!extendMenu.length && (
+                  <Icon fill="faintDown" name="chevron-left" />
+                )}
+                {extendMenu.map(([name, path], index) => (
+                  <Align row vert="center" key={index}>
                     <Link
-                      size="md"
+                      size="sm"
                       weight="500"
-                      fill="faint"
+                      fill="faintDown"
                       href={path}
                       onClick={() => nav.go(path)}
                     >
                       {name}
+                      {index < extendMenu.length - 1 && ','}
                     </Link>
-                  </Fragment>
+                  </Align>
                 ))}
               </Align>
             </Font>
             <Gap size="20px" />
 
-            <Align gapVert="12px">
+            <Align>
               {Object.keys(Component?.demoProps?.[propGroup] || {}).map((propName) => {
-                console.log(Component?.demoProps[propGroup][propName])
-                if (propName.indexOf('_') === 0) { return }
+                if (propName.indexOf('_') === 0) { return null }
                 const [type, initialValue, options] = Component?.demoProps?.[propGroup]?.[propName] || []
                 const Field = values[type]
 
+                const hasPlaceholder = typeof options === 'string'
+
                 return (
-                  <Field
-                    key={propName}
-                    name={`${propGroup}.${propName}`}
-                    label={propName}
-                    value={initialValue}
-                    autoComplete={options}
-                  >
-                    {type === 'select' && options.map((option) => (
-                      <Select.Option key={option} value={option} />
-                    ))}
-                  </Field>
-                )
+                  <Fragment key={propName}>
+                    <Field
+                      name={`${propGroup}.${propName}`}
+                      label={propName}
+                      value={initialValue}
+                      placeholder={hasPlaceholder ? options : undefined}
+                      autoComplete={!hasPlaceholder && options}
+                    >
+                      {type === 'select' && options.map((option) => (
+                        <Select.Option key={option} value={option} />
+                      ))}
+                    </Field>
+                    <Gap size="12px" />
+                  </Fragment>)
               })}
             </Align>
 
@@ -140,7 +158,7 @@ export function Example({ Component }) {
 
           <Align>
             <Font size="lg" weight="700">Usage</Font>
-            <Gap size="16px" />
+            <Gap size="20px" />
             <Box radius="sm" fill="base" borderFill="faint">
               <CodeEditor
                 value={jsxExample}
@@ -150,7 +168,7 @@ export function Example({ Component }) {
                 onChange={event => setJsxExample(event.target.value)}
                 style={{
                   fontSize: 12,
-                  backgroundColor: "#f5f5f5",
+                  backgroundColor: currentConfig.fillInverse?.faintDown,
                   fontFamily: 'ui-monospace,SFMono-Regular,SF Mono,Consolas,Liberation Mono,Menlo,monospace',
                 }}
               />
@@ -163,7 +181,7 @@ export function Example({ Component }) {
     )}
 
     <Font size="lg" weight="700">Result</Font>
-    <Gap size="16px" />
+    <Gap size="20px" />
     <Box radius="sm" fill="base" borderFill="faint">
       <Align hor="center" vert="center" minHeight="200px">
         <Gap size="40px">

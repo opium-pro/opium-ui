@@ -13,7 +13,7 @@ export type WithFormProps = {
   disabled?: boolean
   required?: boolean
   label?: any
-  onChange?: (newValue: any) => void,
+  onChange?: (newValue: any) => any,
 }
 
 export type WithForm<ComponentProps> = FC<ComponentProps & WithFormProps>
@@ -75,8 +75,7 @@ export const withForm = (Component: any) => ({
     !formChanged && setFormChanged?.(true)
     hasError && setError(false)
     !changed && setChanged(true)
-    const result = onChange(value)
-    let newValue = result !== undefined ? result : value
+    const newValue = onChange(value)
     name && setField?.(name, newValue)
   }
 

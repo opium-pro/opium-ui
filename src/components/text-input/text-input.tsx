@@ -35,7 +35,7 @@ export const TextInput: WithForm<TextInputProps> = withForm(({
 
   function handleChange(event) {
     let value
-    if (isSelect || typeof event === 'string') {
+    if (isSelect || !(event instanceof Object)) {
       value = event
     } else {
       value = event?.target?.value

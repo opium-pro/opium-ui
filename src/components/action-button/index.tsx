@@ -50,5 +50,4 @@ ActionButton.demoProps = {
     critic: ['boolean', false],
   }
 }
-ActionButton.usage = `<ActionButton {Props}
-/>`
+ActionButton.usage = `<ActionButton {Props}/>`

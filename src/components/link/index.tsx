@@ -21,7 +21,8 @@ export const Link: OpiumComponent<LinkProps> = ({
 }) => (
   <MakeButton
     inline
-    fillEffect="none"
+    fillHover="none"
+    fillActive="none"
     {...rest}
   >
     {(r) => (

@@ -41,13 +41,14 @@ export function Form({
   }
 
   function setField(name, value) {
+    const newFields = {...fields}
     if (name?.includes?.('.') || name?.includes?.('[')) {
       // Парсим имя, если это не просто одно поле, а вложенные объекты
-      mutateObjectForFields(fields, parseFieldName(name), value)
+      mutateObjectForFields(newFields, parseFieldName(name), value)
     } else {
-      Object.assign(fields || {}, { [name]: value })
+      newFields[name] = value
     }
-    setFields({...fields})
+    setFields(newFields)
   }
 
   function setInitialValue(name, value) {

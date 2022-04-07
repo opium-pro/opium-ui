@@ -25,5 +25,4 @@ BackButton.demoProps = {
     label: ['string', 'Back'],
   }
 }
-BackButton.usage = `<BackButton {Props}
-/>`
+BackButton.usage = `<BackButton {Props}/>`
