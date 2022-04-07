@@ -42,8 +42,7 @@ withTooltip.usage = `
 {/* Wrap your component first
 Button = withTooltip(Button)
 
-Some components from the library are already wrapped
-*/}
+Some components from the library are already wrapped*/}
 
 <Button{Props}
   // Props for styling

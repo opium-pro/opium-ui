@@ -4,7 +4,7 @@ import { MakeButton, MakeButtonProps } from '../make-button'
 import { withTooltip, WithTooltipProps } from '../tooltip'
 
 
-type Props = WithTooltipProps & MakeButtonProps & {
+export type ItemProps = WithTooltipProps & MakeButtonProps & {
   label?: any
   icon?: string
   active?: boolean
@@ -12,16 +12,16 @@ type Props = WithTooltipProps & MakeButtonProps & {
   row?: boolean
   forwardRef?: any
   img?: string
-  activeFill?: string
+  fill?: string
   fontSize?: string
   disabled?: boolean
 }
 
-export const Item: FC<Props> = withTooltip(({
+export const Item: FC<ItemProps> = withTooltip(({
   label,
   disabled,
   fontSize = 'x2s',
-  activeFill = 'accent',
+  fill,
   forwardRef,
   img,
   active,
@@ -45,7 +45,7 @@ export const Item: FC<Props> = withTooltip(({
               {icon &&
                 <Icon
                   name={icon}
-                  fill={active ? activeFill : disabled ? "faintDown" : "baseDown"}
+                  fill={fill || (active ? "accent" : disabled ? "faintDown" : "baseDown")}
                 />
               }
               {img && <>
@@ -66,7 +66,7 @@ export const Item: FC<Props> = withTooltip(({
             transition
             noselect
             weight={active ? '600' : '500'}
-            fill={active ? activeFill : disabled ? "faintDown" : "baseDown"}
+            fill={fill || (active ? "accent" : disabled ? "faintDown" : "baseDown")}
           >
             {label}
             {hint && (<>

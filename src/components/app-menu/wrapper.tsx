@@ -1,10 +1,10 @@
 import React, { FC } from 'react'
-import { Align, Fit, Box, Line, AlignProps } from 'themeor'
+import { Align, Fit, Box, AlignProps } from 'themeor'
 
 
-type Props = AlignProps & {}
+export type WrapperProps = AlignProps & {}
 
-export const Wrapper: FC<Props> = ({ children, ...rest }) => {
+export const Wrapper: FC<WrapperProps> = ({ children, ...rest }) => {
   return (
     <Fit.TryTagless
       maxHeight="100%"

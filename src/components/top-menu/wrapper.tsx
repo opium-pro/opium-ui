@@ -1,21 +1,22 @@
 import React from 'react'
-import { Align, Box, BoxProps } from 'themeor'
+import { Align, Box, BoxProps, Fit } from 'themeor'
 import { LimitWidth } from '../limit-width'
 
-type Props = BoxProps & {}
+export type WrapperProps = BoxProps & {}
 
-export function Wrapper({ children, ...rest }: Props) {
+export function Wrapper({ children, ...rest }: WrapperProps) {
   return (
-    <Box fill="base" shadow="md" style={{
-      position: 'sticky',
-      top: '0',
-      zIndex: 100,
-    }} {...rest}>
-      <LimitWidth>
-        <Align row vert="center">
-          {children}
-        </Align>
-      </LimitWidth>
-    </Box>
+    <Fit {...rest}>
+      <Box
+        fill="base"
+        shadow="md"
+      >
+        <LimitWidth scroll>
+          <Align row vert="center">
+            {children}
+          </Align>
+        </LimitWidth>
+      </Box>
+    </Fit>
   )
 }

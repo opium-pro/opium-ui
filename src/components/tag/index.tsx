@@ -6,16 +6,18 @@ export type TagProps = FontProps & BoxProps & GapProps & {
   fontFill?: FontProps['fill']
 }
 
-export const Tag = (
-  { label, fontFill = 'faintDown', fill = 'base', ...props }: TagProps
-) => {
+export const Tag = ({
+  label,
+  fontFill = 'base',
+  fill = 'base',
+  ...props
+}: TagProps) => {
   return (
     <Fit.TryTagless inline>
       <Box.TryTagless
         radius="4px"
         fill={fill}
-        borderFill="faintDown"
-        shadow="x3s"
+        borderFill="base"
         {...props}
       >
         <Gap.TryTagless vert="3px" hor="6px" bottom="2px">

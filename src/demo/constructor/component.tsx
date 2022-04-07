@@ -32,12 +32,12 @@ export const Component: FC = () => {
 
               {isHoc && (<>
                 <Gap size="4px" />
-                <Tag label="HOC" fontFill="base" borderFill="base" />
+                <Tag label="HOC" />
               </>)}
 
               {isHook && (<>
                 <Gap size="4px" />
-                <Tag label="Hook" fontFill="base" borderFill="base" />
+                <Tag label="Hook" />
               </>)}
             </Align>
 
