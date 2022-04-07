@@ -1,9 +1,8 @@
-import { useMemo, useState } from 'react'
+import { useState } from 'react'
 import * as mainMenu from '../index'
 import * as design from '../design'
 import * as logic from '../logic'
-import { AppLayout, AppMenu, IconButton, Search, MakeButton, MarkMatch, Hotkey, hotkey } from '../../components'
-import * as components from '../../components'
+import { AppLayout, AppMenu, ActionButton, Search, MakeButton, MarkMatch, Hotkey, hotkey } from '../../components'
 import { nav, Path, usePath, config } from 'opium-nav'
 import { Component } from './component'
 import { Align, Line, Gap, Font, Fit, Icon, Box } from 'themeor'
@@ -80,7 +79,7 @@ export function App() {
                   tooltip={(<>
                     Поиск по компонентам
                     <Gap size="8px" />
-                    <Hotkey trigger="ctrl + /" borderFill="accent" inverse />
+                    <Hotkey trigger="ctrl + /" borderFill="none" inverse />
                   </>)}
                 />
               </Gap>
@@ -103,9 +102,10 @@ export function App() {
                     ))}
                     <Gap.TryTagless height="200px">
                       <Align hor="center" vert="center">
-                        <IconButton
+                        <ActionButton
                           icon="cross"
                           label="clear filter"
+                          col
                           critic
                           onClick={() => setSearch(undefined)}
                         />
@@ -175,11 +175,6 @@ export function App() {
       {allComponents.map(([path, Comp]) => (
         <Path key={path} name={path} component={Component} />
       ))}
-      {/* <Path
-        parent
-        name={`/:group/:component`}
-        component={Component}
-      /> */}
     </AppLayout>
   )
 }

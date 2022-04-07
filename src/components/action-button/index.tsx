@@ -1,5 +1,5 @@
 import React from 'react'
-import { Align, Font, Icon, FontProps } from 'themeor'
+import { Align, Font, Icon, FontProps, Gap } from 'themeor'
 import { MakeButton, MakeButtonProps } from '../make-button'
 import { OpiumComponent } from '../../types'
 import { icons } from '../../theme/iconList'
@@ -13,6 +13,7 @@ export type ActionButtonProps = MakeButtonProps & {
   critic?: boolean
   size?: string
   weight?: FontProps['weight']
+  col?: boolean
 }
 
 
@@ -25,14 +26,19 @@ export const ActionButton: OpiumComponent<ActionButtonProps> = ({
   fill,
   size = "md",
   weight = "500",
+  col,
   ...rest
 }) => {
   fill = fill || (critic ? 'critic' : 'baseDown')
   return (
-    <MakeButton inline {...rest}>
-      <Align row gapHor="xs" vert="center">
+    <MakeButton radius={label ? undefined : "max"} inline {...rest}>
+      <Align row={!col} vert="center" hor="center">
         {icon && <Icon fill={fill} name={icon} />}
-        {label && <Font size={size} weight={weight} nowrap fill={fill}>{label}{children}</Font>}
+        {icon && label && <Gap size="xs" />}
+        {label && <Font size={size} weight={weight} nowrap fill={fill}>
+          {label}
+          {children}
+        </Font>}
       </Align>
     </MakeButton>
   )
@@ -47,6 +53,7 @@ ActionButton.demoProps = {
     label: ['string', 'Click me'],
     icon: ['select', 'cross', icons],
     fill: ['string', undefined],
+    col: ['boolean', false],
     critic: ['boolean', false],
   }
 }

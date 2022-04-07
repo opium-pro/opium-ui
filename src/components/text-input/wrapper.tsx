@@ -5,7 +5,7 @@ import { useTextInput } from './context'
 import { Tooltip } from '../tooltip'
 import { AutoComplete } from './auto-complete'
 import { isDefined } from '../../utils'
-import { IconButton } from '../icon-button'
+import { ActionButton } from '../action-button'
 
 
 export const Wrapper = ({ children }) => {
@@ -53,7 +53,7 @@ export const Wrapper = ({ children }) => {
                   <Fit.TryTagless absolute right="0" height="100%">
                     <Align.TryTagless vert="center">
                       <Gap hor="16px">
-                        <IconButton size="xs" icon="cross" fill="faintDown" onClick={() => onChange('')} />
+                        <ActionButton icon="cross" fill="faintDown" onClick={() => onChange('')} />
                       </Gap>
                     </Align.TryTagless>
                   </Fit.TryTagless>
@@ -62,7 +62,7 @@ export const Wrapper = ({ children }) => {
 
               <Align row vert="center">
                 {tooltip && (<>
-                  <IconButton size="xs" cursor="help" fill="faintDown" icon="question-circle" />
+                  <ActionButton cursor="help" fill="faintDown" icon="question-circle" />
                   <Tooltip delay={100}>{tooltip}</Tooltip>
                   <Gap size="16px" />
                 </>)}

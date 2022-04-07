@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useState } from 'react'
 import { Font, Box, Align, Gap, Animate, Fit, FitProps } from 'themeor'
 import { Cover } from '../cover'
-import { IconButton } from '../icon-button'
+import { ActionButton } from '../action-button'
 import { Portal } from '../portal'
 
 
@@ -103,7 +103,7 @@ export const Modal: FC<ModalProps> = ({
                     right="30px"
                     top="30px"
                   >
-                    <IconButton
+                    <ActionButton
                       onClick={handleClose}
                       icon="cross"
                       fill="faint"

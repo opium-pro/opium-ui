@@ -15,6 +15,7 @@ export type MakeButtonProps = Omit<ReactionProps, 'children'> & WithTooltipProps
   href?: string
   blank?: boolean
   type?: string
+  tabIndex?: number
   children?: ReactNode | ((r: ReactionContext) => ReactNode)
 }
 
@@ -30,6 +31,7 @@ export const MakeButton = withTooltip(({
   fillActive = "faint",
   href,
   blank,
+  tabIndex = 0,
   onClick,
   ...rest
 }: MakeButtonProps) => {
@@ -59,6 +61,7 @@ export const MakeButton = withTooltip(({
           forwardRef={forwardRef}
         >
           <Tag
+            tabIndex={tabIndex}
             href={href}
             rel={href && blank && "nofollow"}
             target={href && blank && "_blank"}
