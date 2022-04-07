@@ -45,10 +45,11 @@ export function Example({ Component }) {
     for (const key in initialProps) {
       initialProps[key] = initialProps[key]?.[1]
     }
+    const indent = Component.demoProps?.[variable]?._indent
 
     const demoProps = { ...initialProps, ...fields[variable] }
     let hasProps = false
-    usage = usage?.replace(`{${variable}}`, Object.keys(demoProps).map((propName, index) => {
+    usage = usage?.replaceAll(`{${variable}}`, Object.keys(demoProps).map((propName, index) => {
       let value = demoProps[propName]
       if (typeof value === 'string') {
         value = `${propName}="${value}"`
@@ -63,7 +64,7 @@ export function Example({ Component }) {
       if (![undefined, false, ''].includes(demoProps[propName])) {
         hasProps = true
         value = `
-  ${value}`
+${(indent || '') + '  '}${value}`
       } else {
         value = ''
       }
@@ -74,7 +75,7 @@ export function Example({ Component }) {
 
       if ((Object.keys(demoProps).length === index + 1) && hasProps) {
         value += `
-`
+${indent || ''}`
       }
 
       return value
@@ -89,96 +90,98 @@ export function Example({ Component }) {
 
   return (<>
     <Gap size="40px" />
-    {Object.keys(Component?.demoProps || {}).map((propGroup) => {
-      const extendFrom = extractExtends(Component.demoProps[propGroup]._extends, propGroup)
-      const extendMenu = []
-      for (const name of extendFrom) {
-        for (const group in mainMenu) {
-          if (name in mainMenu[group]) {
-            extendMenu.push([name, `/${group}/${name}`])
+    <Align pattern={isSmall ? "1fr" : "50% 50%"} gapHor="40px" vert="stretch">
+      <Align>
+        {Object.keys(Component?.demoProps || {}).map((propGroup) => {
+          const extendFrom = extractExtends(Component.demoProps[propGroup]._extends, propGroup)
+          const extendMenu = []
+          for (const name of extendFrom) {
+            for (const group in mainMenu) {
+              if (name in mainMenu[group]) {
+                extendMenu.push([name, `/${group}/${name}`])
+              }
+            }
           }
-        }
-      }
 
-      return (
-        <Align key={propGroup} pattern={isSmall ? "1fr" : "50% 50%"} gapHor="40px">
-          <Align>
-            <Font size="lg" weight="700">
-              <Align stack vert="center" gapHor="4px" gapVert="12px">
-                {propGroup}
-                {!!extendMenu.length && (
-                  <Icon fill="faintDown" name="chevron-left" />
-                )}
-                {extendMenu.map(([name, path], index) => (
-                  <Align row vert="center" key={index}>
-                    <Link
-                      size="sm"
-                      weight="500"
-                      fill="faintDown"
-                      href={path}
-                      onClick={() => nav.go(path)}
-                    >
-                      {name}
-                      {index < extendMenu.length - 1 && ','}
-                    </Link>
-                  </Align>
-                ))}
+          return (
+            <Align key={propGroup}>
+              <Font size="lg" weight="700">
+                <Align stack vert="center" gapHor="4px" gapVert="12px">
+                  {propGroup}
+                  {!!extendMenu.length && (
+                    <Icon fill="faintDown" name="chevron-left" />
+                  )}
+                  {extendMenu.map(([name, path], index) => (
+                    <Align row vert="center" key={index}>
+                      <Link
+                        size="sm"
+                        weight="500"
+                        fill="faintDown"
+                        href={path}
+                        onClick={() => nav.go(path)}
+                      >
+                        {name}
+                        {index < extendMenu.length - 1 && ','}
+                      </Link>
+                    </Align>
+                  ))}
+                </Align>
+              </Font>
+              <Gap size="20px" />
+
+              <Align>
+                {Object.keys(Component?.demoProps?.[propGroup] || {}).map((propName) => {
+                  if (propName.indexOf('_') === 0) { return null }
+                  const [type, initialValue, options] = Component?.demoProps?.[propGroup]?.[propName] || []
+                  const Field = values[type]
+
+                  const hasPlaceholder = typeof options === 'string'
+
+                  return (
+                    <Fragment key={propName}>
+                      <Field
+                        name={`${propGroup}.${propName}`}
+                        label={propName}
+                        value={initialValue}
+                        placeholder={hasPlaceholder ? options : undefined}
+                        autoComplete={!hasPlaceholder && options}
+                      >
+                        {type === 'select' && options.map((option) => (
+                          <Select.Option key={option} value={option} />
+                        ))}
+                      </Field>
+                      <Gap size="12px" />
+                    </Fragment>)
+                })}
               </Align>
-            </Font>
-            <Gap size="20px" />
-
-            <Align>
-              {Object.keys(Component?.demoProps?.[propGroup] || {}).map((propName) => {
-                if (propName.indexOf('_') === 0) { return null }
-                const [type, initialValue, options] = Component?.demoProps?.[propGroup]?.[propName] || []
-                const Field = values[type]
-
-                const hasPlaceholder = typeof options === 'string'
-
-                return (
-                  <Fragment key={propName}>
-                    <Field
-                      name={`${propGroup}.${propName}`}
-                      label={propName}
-                      value={initialValue}
-                      placeholder={hasPlaceholder ? options : undefined}
-                      autoComplete={!hasPlaceholder && options}
-                    >
-                      {type === 'select' && options.map((option) => (
-                        <Select.Option key={option} value={option} />
-                      ))}
-                    </Field>
-                    <Gap size="12px" />
-                  </Fragment>)
-              })}
+              <Gap size="40px" />
             </Align>
+          )
+        }
+        )}
+      </Align>
 
-            <Gap size="40px" />
-          </Align>
-
-          <Align>
-            <Font size="lg" weight="700">Usage</Font>
-            <Gap size="20px" />
-            <Box radius="sm" fill="base" borderFill="faint">
-              <CodeEditor
-                value={jsxExample}
-                language="jsx"
-                placeholder="Please enter JS code."
-                padding={20}
-                onChange={event => setJsxExample(event.target.value)}
-                style={{
-                  fontSize: 12,
-                  backgroundColor: currentConfig.fillInverse?.faintDown,
-                  fontFamily: 'ui-monospace,SFMono-Regular,SF Mono,Consolas,Liberation Mono,Menlo,monospace',
-                }}
-              />
-            </Box>
-            <Gap size="40px" />
-          </Align>
-        </Align>
-      )
-    }
-    )}
+      <Align>
+        <Font size="lg" weight="700">Usage</Font>
+        <Gap size="20px" />
+        <Box stretch radius="sm" fill="base" borderFill="faint">
+          <CodeEditor
+            value={jsxExample}
+            language="jsx"
+            placeholder="Please enter JS code."
+            padding={20}
+            onChange={event => setJsxExample(event.target.value)}
+            style={{
+              height: '100%',
+              fontSize: 12,
+              backgroundColor: currentConfig.fillInverse?.faintDown,
+              fontFamily: 'ui-monospace,SFMono-Regular,SF Mono,Consolas,Liberation Mono,Menlo,monospace',
+            }}
+          />
+        </Box>
+        <Gap size="40px" />
+      </Align>
+    </Align>
 
     <Font size="lg" weight="700">Result</Font>
     <Gap size="20px" />

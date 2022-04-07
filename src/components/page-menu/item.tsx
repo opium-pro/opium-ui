@@ -1,5 +1,5 @@
 import React from 'react'
-import { Align, Fit, Box, Font, Line, Gap, Icon, Reaction } from 'themeor'
+import { Align, Fit, Font, Gap, Icon } from 'themeor'
 import { MakeButton } from '../make-button'
 import { Counter } from '../counter'
 import { withTooltip } from '../tooltip'
@@ -9,8 +9,6 @@ export type Props = React.HTMLAttributes<HTMLElement> & {
   icon?: string,
   counter?: number,
   active?: boolean,
-  link?: string,
-  forwardRef?: any
 }
 
 export const Item = withTooltip(({
@@ -18,20 +16,18 @@ export const Item = withTooltip(({
   active,
   icon,
   counter,
-  link,
   children,
-  forwardRef,
   ...rest
 }: Props) => {
   return (
     <MakeButton
       disabled={active}
-      forwardRef={forwardRef}
       offset="16px 24px"
       {...rest}
     >
       <Fit.TryTagless width="100%">
-        <Align row vert="center">
+        <Align row vert="center" gapHor="xs">
+          {icon && <Icon name={icon} fill={active ? 'base' : 'faintDown'} />}
           <Font
             nowrap
             align="center"
@@ -42,10 +38,9 @@ export const Item = withTooltip(({
           >
             {label}
           </Font>
-          {!!counter && (<>
-            <Gap size="xs" />
+          {!!counter && (
             <Counter attention value={counter} />
-          </>)}
+          )}
 
           {children}
         </Align>
