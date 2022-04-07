@@ -44,7 +44,7 @@ export function App() {
       menu={(
         <Line.TryTagless right="md" fill="faintDown">
           <Box.TryTagless fill="base">
-            <Align minWidth="300px" maxHeight="100vh">
+            <Align width="300px" maxHeight="100vh">
               <Gap>
                 <Gap size="20px" />
                 <Align>

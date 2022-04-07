@@ -162,6 +162,7 @@ ${indent || ''}`
       <Align>
         <Font size="lg" weight="700">Usage</Font>
         <Gap size="20px" />
+        <Fit.TryTagless clip>
         <Box stretch radius="sm" fill="base" borderFill="faint">
           <CodeEditor
             value={jsxExample}
@@ -177,6 +178,7 @@ ${indent || ''}`
             }}
           />
         </Box>
+        </Fit.TryTagless>
         <Gap size="40px" />
       </Align>
     </Align>
