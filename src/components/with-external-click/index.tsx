@@ -1,18 +1,18 @@
-import React, { useEffect, useState, FC, useRef } from 'react'
+import React, { useEffect, FC, useRef } from 'react'
 
 
 export type WithExternalClickProps = {
   onExternalClick?: (...args: any) => any
 }
 
-export type WithExternalClick<Props = WithExternalClickProps> = (arg: FC<any>) => FC<Props>
+export type WithExternalClick<Props = WithExternalClickProps> = FC<Props>
 
 
-export const withExternalClick: WithExternalClick<WithExternalClickProps> = (Component) => {
+export const withExternalClick = (Component) => {
   return ({
     onExternalClick = (...n) => n,
     ...rest
-  }) => {
+  }: WithExternalClickProps) => {
     const node: any = useRef()
 
     function trackExternalClick(...args: any[]) {

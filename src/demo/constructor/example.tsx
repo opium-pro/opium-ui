@@ -1,6 +1,6 @@
-import { FC, Fragment, useEffect, useState } from 'react'
-import { Font, Align, Gap, Box, Icon, useConfig } from 'themeor'
-import { usePath, nav } from 'opium-nav'
+import { Fragment, useEffect, useState } from 'react'
+import { Font, Align, Gap, Box, Icon, useConfig, Line, Fit } from 'themeor'
+import { nav } from 'opium-nav'
 import { TextInput, Toggle, Select, Tag, useScreenFit, useForm, Link } from '../../components'
 import * as components from '../../components'
 import { TypeFields } from '../../types'
@@ -30,14 +30,6 @@ export function Example({ Component }) {
   const { fields } = useForm()
   const { isSmall } = useScreenFit()
   const { currentConfig } = useConfig()
-
-  // useEffect(() => {
-  //   const initialFields = {}
-  //   for (const prop in Component.demoProps) {
-  //     initialFields[prop] = Component.demoProps[prop][1]
-  //   }
-  //   setFields(initialFields)
-  // }, [path])
 
   let usage = Component?.usage
   for (const variable in Component.demoProps) {
@@ -90,6 +82,12 @@ ${indent || ''}`
 
   return (<>
     <Gap size="40px" />
+    {Component?.description && (<>
+      <Font>{Component.description}</Font>
+      <Gap size="40px" />
+      <Line fill="faint" />
+      <Gap size="40px" />
+    </>)}
     <Align pattern={isSmall ? "1fr" : "50% 50%"} gapHor="40px" vert="stretch">
       <Align>
         {Object.keys(Component?.demoProps || {}).map((propGroup) => {
@@ -185,6 +183,7 @@ ${indent || ''}`
 
     <Font size="lg" weight="700">Result</Font>
     <Gap size="20px" />
+    <Fit.TryTagless scroll>
     <Box radius="sm" fill="base" borderFill="faint">
       <Align hor="center" vert="center" minHeight="200px">
         <Gap size="40px">
@@ -195,6 +194,7 @@ ${indent || ''}`
         </Gap>
       </Align>
     </Box>
+    </Fit.TryTagless>
     <Gap size="40px" />
   </>)
 }

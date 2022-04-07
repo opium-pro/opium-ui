@@ -2,19 +2,19 @@ import React, { FC } from 'react'
 import { Align, Fit, Box, Font, IconProps, CommonProps, Gap, Icon, Reaction } from 'themeor'
 import { withTooltip, WithTooltipProps } from '../tooltip'
 
+const SIZES = {
+  xs: 32,
+  sm: 40,
+  md: 48,
+}
+
 type Props = WithTooltipProps & Omit<IconProps, 'size'> & CommonProps & {
   icon: string
   fill?: string
   forwardRef?: any
-  size?: string
+  size?: keyof typeof SIZES
   label?: string
   critic?: boolean
-}
-
-export const SIZES = {
-  xs: 32,
-  sm: 40,
-  md: 48,
 }
 
 export const IconButton: FC<Props> = withTooltip(({

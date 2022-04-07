@@ -3,7 +3,6 @@ import { Dropdown } from '../dropdown'
 import { Font, Align, Gap, Fit } from 'themeor'
 import { useSelect } from './context'
 import { useTextInput } from "../text-input"
-import { useDropdown } from '../dropdown'
 import { Checkbox } from '../checkbox'
 import { MarkMatch } from '../mark-match'
 
@@ -21,8 +20,7 @@ export const Option = ({
 }) => {
   const { value, onChange } = useTextInput()
   const { multi, onCompare } = useSelect() as any
-  const { setOpened } = useDropdown()
-  const { search } = useDropdown()
+  const { setOpened, search } = Dropdown.use()
   let checkboxRef
 
   const selected = active

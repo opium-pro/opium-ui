@@ -3,11 +3,11 @@ import { Item, Props as ItemProps } from './item'
 import { OpiumComponent, DemoProps } from '../../types'
 import { icons } from '../../theme/iconList'
 
-type PageMenuType = typeof Wrapper & OpiumComponent<Props> & {
+export type PageMenu = typeof Wrapper & OpiumComponent<Props> & {
   Item: typeof Item
 }
 
-export const PageMenu = Wrapper as PageMenuType
+export const PageMenu = Wrapper as PageMenu
 
 PageMenu.Item = Item
 PageMenu.Item.displayName = 'PageMenu.Item'

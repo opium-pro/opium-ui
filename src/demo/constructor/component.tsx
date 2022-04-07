@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { Font, Align, Gap, Line } from 'themeor'
+import { Font, Align, Gap, Line, Fit, Box } from 'themeor'
 import { usePath, nav } from 'opium-nav'
 import { LimitWidth, Tag, Form, ScreenFit, BackButton } from '../../components'
 import * as mainMenu from '../index'
@@ -16,40 +16,37 @@ export const Component: FC = () => {
 
   return (
     <ScreenFit>
-      <LimitWidth>
-        <Gap size="20px" />
+      <Fit.TryTagless sticky top="0" zIndex={2}>
+        <Box fill="baseDown" blur="md">
+          <LimitWidth>
+            <Gap size="20px" />
 
-        <Align row vert="center">
-          <BackButton label="Back" onClick={() => nav.back()} />
-          <Gap size="32px" />
-          <Font size="x2l" weight="800">
-            {component}
-          </Font>
+            <Align row vert="center">
+              <BackButton label="Back" onClick={() => nav.back()} />
+              <Gap size="32px" />
+              <Font size="x2l" weight="800">
+                {component}
+              </Font>
 
-          <Gap />
+              <Gap />
 
-          {isHoc && (<>
-            <Gap size="4px" />
-            <Tag label="HOC" fontFill="base" borderFill="base" />
-          </>)}
+              {isHoc && (<>
+                <Gap size="4px" />
+                <Tag label="HOC" fontFill="base" borderFill="base" />
+              </>)}
 
-          {isHook && (<>
-            <Gap size="4px" />
-            <Tag label="Hook" fontFill="base" borderFill="base" />
-          </>)}
+              {isHook && (<>
+                <Gap size="4px" />
+                <Tag label="Hook" fontFill="base" borderFill="base" />
+              </>)}
+            </Align>
 
-          <Gap stretch />
+            <Gap size="20px" />
+          </LimitWidth>
 
-          {Component?.description && (<>
-            <Gap />
-            <Font>{Component.description}</Font>
-          </>)}
-        </Align>
-
-        <Gap size="20px" />
-      </LimitWidth>
-
-      <Line fill="faint" />
+          <Line fill="faintDown" />
+        </Box>
+      </Fit.TryTagless>
       <LimitWidth>
         <Form>
           <Example Component={Component} />

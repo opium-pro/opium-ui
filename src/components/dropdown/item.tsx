@@ -1,13 +1,16 @@
 import React, { FC } from 'react'
 import { Gap, Align, FitProps } from 'themeor'
-import { MakeButton } from '../make-button'
+import { MakeButton, MakeButtonProps } from '../make-button'
 
 
-export interface ItemProps extends FitProps {}
+export type ItemProps = MakeButtonProps & FitProps & {
+  label?: any
+}
 
 
 export const Item: FC<ItemProps> = ({
   children,
+  label,
   ...rest
 }) => {
   return (
@@ -19,6 +22,7 @@ export const Item: FC<ItemProps> = ({
     >
       <Gap.TryTagless vert="4px" hor="16px" minHeight="40px">
         <Align vert="center">
+          {label}
           {children}
         </Align>
       </Gap.TryTagless>

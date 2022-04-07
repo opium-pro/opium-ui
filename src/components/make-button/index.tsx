@@ -96,6 +96,7 @@ export const MakeButton = withTooltip(({
 
 
 MakeButton.displayName = 'MakeButton'
+MakeButton.description = 'Converts anything into a button or a link'
 MakeButton.demoProps = {
   Props: {
     _extends: ['withTooltip'],

@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { TextInput, useTextInput } from "../text-input"
 import { Icon, Gap, Align, Fit, useReaction } from 'themeor'
-import { useDropdown } from '../dropdown'
+import { Dropdown } from '../dropdown'
 import { SelectContext } from './context'
 import { SelectType } from './types'
 import { Tag } from '../tag'
 import { isDefined } from '../../utils'
-import { hotkey } from '../hotkey'
 
 
 export const Select: SelectType = ({
@@ -143,7 +142,7 @@ export const Select: SelectType = ({
 
 
 function SelectIcon() {
-  const { opened } = useDropdown()
+  const { opened } = Dropdown.use()
   const { hoverOrFocus } = useReaction()
   const { value } = useTextInput()
 

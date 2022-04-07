@@ -1,5 +1,12 @@
 import { createContext, useContext } from 'react'
 
-export const DropdownContext: any = createContext({})
+export const DropdownContext = createContext({} as {
+  opened?: boolean
+  setOpened?: any
+  dropdownNode?: any
+  search?: string
+  setSearch?: any
+  withSearch?: boolean
+})
 
-export const useDropdown: any = () => useContext(DropdownContext)
+export const useDropdown = () => useContext(DropdownContext)
