@@ -1,19 +1,22 @@
 import React, { FC, useState } from 'react'
 import { Font, Box, Align, Gap, Fit, Animate, Icon } from 'themeor'
-import { MakeButton } from '../make-button'
+import { ActionButton } from '../action-button'
 import { Portal } from '../portal'
+import { Link } from '../link'
 
 
 export interface NoticeProps {
-  title?: string
-  text?: string
+  title?: any
+  text?: any
   type?: 'base' | 'critic' | 'warning'
   onClose?: any
+  moreLabel?: string
 }
 
 
-export const Notice: FC<NoticeProps> = ({ title, text, type = 'base', onClose, children }) => {
+export const Notice: FC<NoticeProps> = ({ title, text, type = 'base', onClose, moreLabel = 'more', children }) => {
   const [show, setShow] = useState(true)
+  const [opened, setOpened] = useState(false)
 
   function handleClose() {
     setShow(false)
@@ -24,33 +27,46 @@ export const Notice: FC<NoticeProps> = ({ title, text, type = 'base', onClose, c
     <Portal>
       <Animate.TryTagless
         mounted={show}
-        onMount="slideInDown"
-        onUnmount="slideOutUp"
+        onMount="slideInUp"
+        onUnmount="slideOutDown"
       >
         <Fit.TryTagless
           fixed
-          left="0"
-          top="0"
-          width="100%"
+          bottom="0"
+          right="0"
           maxWidth="100%"
-          clip
           zIndex={1000}
         >
-          <Align.TryTagless hor="center">
-            <Box.TryTagless inverse fill={type}>
-              <Gap>
-                {title && <Font weight="700">{title}</Font>}
-                {text && <Font>{text}</Font>}
+          <Align.TryTagless hor="right">
+            <Gap>
 
-                <Fit stick="top-right">
-                  <MakeButton onClick={handleClose}>
-                    <Gap>
-                      <Icon name="cross_circled" />
+              <Fit.TryTagless>
+                <Box inverse fill={type} radius="md" width="400px" maxHeight="400px" maxWidth="100%">
+                  <Fit.TryTagless scroll>
+                    <Gap size="20px">
+                      {title && <Font fill="base" weight="700">{title}</Font>}
+                      {title && text && <Gap size="8px" />}
+                      {text && <Font fill="faint" size="xs">{text}</Font>}
+                      {children && (<>
+                        <Gap size="8px" />
+                        <Font fill="base">
+                        {opened ? children : (
+                          <Link label={moreLabel} onClick={() => setOpened(true)} />
+                        )}
+                        </Font>
+                      </>)}
                     </Gap>
-                  </MakeButton>
-                </Fit>
-              </Gap>
-            </Box.TryTagless>
+                  </Fit.TryTagless>
+
+                  <Fit stick="top-right">
+                    <Gap>
+                      <ActionButton onClick={handleClose} icon="cross_circled" />
+                    </Gap>
+                  </Fit>
+                </Box>
+              </Fit.TryTagless>
+
+            </Gap>
           </Align.TryTagless>
         </Fit.TryTagless>
       </Animate.TryTagless>

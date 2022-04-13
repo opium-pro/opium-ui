@@ -3,7 +3,10 @@ import { WithFormProps } from '../form'
 
 export type TextInputTypes = 'none' | 'text' | 'search' | 'textarea' | 'phone' | 'email' | 'number' | 'tel' | 'url' | 'numeric' | 'decimal'
 
-export type TextInputProps = WithFormProps & ReactionProps & BoxProps & {
+export type TextInputProps = WithFormProps
+& ReactionProps
+& BoxProps
+& {
   type?: TextInputTypes | string
   height?: string
   valueFont?: any

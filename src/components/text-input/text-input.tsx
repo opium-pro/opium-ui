@@ -10,7 +10,7 @@ import { TextInputProps } from './types'
 import { TextInputContext } from './context'
 
 
-export const TextInput: WithForm<TextInputProps> = withForm(({
+export const TextInput = withForm(({
   label,
   type = "text",
   height = label ? '50px' : '40px',
@@ -102,4 +102,4 @@ export const TextInput: WithForm<TextInputProps> = withForm(({
       </TextInputContext.Provider>
     </Reaction>
   )
-})
+}) as WithForm<TextInputProps>

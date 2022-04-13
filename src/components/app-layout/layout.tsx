@@ -31,7 +31,7 @@ export const Layout: FC<AppLayoutProps> = ({
   const context = { contentNode, menuNode }
 
   return (<>
-    <Fit.TryTagless fixed clip left="0" top="0" right="0" bottom="0">
+    <Fit.TryTagless zIndex={100} fixed clip left="0" top="0" right="0" bottom="0">
       <Align pattern={(menu && !isSmall) ? "auto 1fr" : "1fr"} vert="stretch" {...rest}>
         {isSmall && openMenu && (
           <Fit fixed zIndex={190}>
