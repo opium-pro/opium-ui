@@ -1,17 +1,17 @@
 import React from 'react'
 import { Align, Fit, Font, Gap, Icon } from 'themeor'
-import { MakeButton } from '../make-button'
+import { MakeButton, MakeButtonProps } from '../make-button'
 import { Counter } from '../counter'
-import { withTooltip } from '../tooltip'
+import { withTooltip, WithTooltip, WithTooltipProps } from '../tooltip'
 
-export type Props = React.HTMLAttributes<HTMLElement> & {
+export type Props = WithTooltipProps & MakeButtonProps & {
   label?: string,
   icon?: string,
   counter?: number,
   active?: boolean,
 }
 
-export const Item = withTooltip(({
+export const Item: WithTooltip<Props> = withTooltip(({
   label,
   active,
   icon,

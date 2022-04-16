@@ -4,16 +4,16 @@
   "main": "dist/export.js",
   "dependencies": {
     "hotkeys-js": "^3.8.7",
-    "opium-filter": "^1.0.1",
+    "opium-filter": "^1.0.3",
     "react-helmet": "^6.1.0",
     "themeor": "^2.0.0"
   },
   "devDependencies": {
-    "@uiw/react-textarea-code-editor": "^2.0.1",
     "@types/node": "^16.0.0",
     "@types/react": "^17.0.13",
     "@types/react-dom": "^17.0.8",
     "@types/react-helmet": "^6.1.1",
+    "@uiw/react-textarea-code-editor": "^2.0.1",
     "copyfiles": "^2.4.1",
     "nodemon": "^2.0.12",
     "opium-nav": "^1.1.0",

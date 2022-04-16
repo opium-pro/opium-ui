@@ -79,6 +79,6 @@ text += `export const icons = [`
 for (const file of fileList) {
   text += `'${file.name}',`
 }
-text += `]`
+text += `] as const`
 
-fs.writeFile('./src/theme/iconList.jsx', text, () => { })
+fs.writeFile('./src/theme/iconList.tsx', text, () => { })

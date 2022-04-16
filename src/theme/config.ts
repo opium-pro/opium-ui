@@ -6,7 +6,7 @@ export default {
     'success', 'successUp', 'successDown',
     'darkblur',
     'notification',
-    'error'
+    'error',
   ],
 
   fill: {
@@ -33,6 +33,7 @@ export default {
   },
 
   fillInverse: {
+    default: '#fff',
     base: '#fff',
     baseUp: '#fff',
     baseDown: '#fff',
@@ -70,17 +71,17 @@ export default {
       md: '8px',
       lg: '12px',
       xl: '16px',
-      x2l: '20px'
+      x2l: '20px',
     },
     blur: {
-      md: '10px'
+      md: '10px',
     },
     shadow: {
       x3s: '0px 1px 2px 0px rgba(79, 105, 118, 0.05)',
       sm: '0px 4px 10px 0px rgba(79, 105, 118, 0.05)',
       md: '0px 10px 25px 0px rgba(79, 105, 118, 0.03)',
       lg: '0px 10px 30px 0px rgba(79, 105, 118, 0.1)',
-      xl: '0px 10px 40px 0px rgba(79, 105, 118, 0.13)'
+      xl: '0px 10px 40px 0px rgba(79, 105, 118, 0.13)',
     },
     glow: {
       md: '0px 0px 10px 3px rgba(255, 255, 255, 0.5)'
@@ -88,8 +89,11 @@ export default {
   },
 
   font: {
+    fill: {
+      default: 'base',
+    },
     family: {
-      regular: '"Montserrat", sans-serif'
+      regular: '"Montserrat", sans-serif',
     },
     lineHeight: {
       x3s: '1',
@@ -97,7 +101,7 @@ export default {
       xs: '1.2',
       sm: '1.3',
       md: '1.4',
-      lg: '1.5'
+      lg: '1.5',
     },
     letterSpacing: {
       md: '0',
@@ -120,10 +124,10 @@ export default {
     fill: {
       faintDown: '#F3F3F5',
       faint: '#E4E8ED',
-      faintUp: '#D5D5DD'
+      faintUp: '#D5D5DD',
     },
     weight: {
-      md: '1px'
+      md: '1px',
     }
   },
 
@@ -132,7 +136,7 @@ export default {
       xs: '16px',
       sm: '20px',
       md: '24px',
-      lg: '32px'
+      lg: '32px',
     }
   },
 
@@ -146,12 +150,12 @@ export default {
     lg: '20px',
     xl: '24px',
     x2l: '32px',
-    x3l: '40px'
+    x3l: '40px',
   },
 
   reaction: {
     duration: {
-      md: '0.25s'
+      md: '0.25s',
     }
   },
 }

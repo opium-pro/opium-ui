@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState, useCallback } from 'react'
 import { FormContext } from './context'
 import { parseFieldName, mutateObjectForFields } from '../../utils'
 
@@ -60,10 +60,10 @@ export function Form({
     }
   }
 
-  function handleSubmit(e) {
+  const handleSubmit = useCallback((e) => {
     e.preventDefault()
     onSubmit?.(fields)
-  }
+  }, [fields])
 
   useEffect(() => {
     onChange?.(fields)
@@ -82,7 +82,6 @@ export function Form({
     hasError,
     setError,
   }
-
 
   getContext?.(context)
 

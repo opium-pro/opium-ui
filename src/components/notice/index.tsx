@@ -40,9 +40,9 @@ export const Notice: FC<NoticeProps> = ({ title, text, type = 'base', onClose, m
           <Align.TryTagless hor="right">
             <Gap>
 
-              <Fit.TryTagless>
-                <Box inverse fill={type} radius="md" width="400px" maxHeight="400px" maxWidth="100%">
-                  <Fit.TryTagless scroll>
+              <Fit.TryTagless scroll>
+                <Box inverse fill={type} radius="md" width="400px" maxWidth="100%">
+                  <Fit.TryTagless scroll maxHeight="400px">
                     <Gap size="20px">
                       {title && <Font fill="base" weight="700">{title}</Font>}
                       {title && text && <Gap size="8px" />}
