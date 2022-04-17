@@ -3,12 +3,13 @@ import { Align, AlignProps } from 'themeor'
 import { useAppLayout } from '../app-layout'
 
 
-export type LazyScrollerProps = AlignProps & {
+export type LazyScrollerProps<TagProps = {[key: string]: any}> = {
   onLoad?: any
   preload?: number
   spare?: number
   scrollNode?: any
-}
+  Tag?: any
+} & TagProps
 
 
 export const LazyScroller: FC<LazyScrollerProps> = ({
@@ -17,6 +18,7 @@ export const LazyScroller: FC<LazyScrollerProps> = ({
   preload = 20,
   spare = 5,
   scrollNode,
+  Tag = Align,
   ...rest
 }) => {
   const chunk = useRef(0)
@@ -68,11 +70,11 @@ export const LazyScroller: FC<LazyScrollerProps> = ({
   })
 
   return (
-    <Align
-      forwardRef={contentNode}
+    <Tag
+      ref={contentNode}
       {...rest}
     >
       {newChildren}
-    </Align>
+    </Tag>
   )
 }
