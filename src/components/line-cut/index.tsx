@@ -1,14 +1,15 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { Align, Fit, Box, Font, Line, Gap, Icon, Reaction } from 'themeor'
+import { FitProps, Fit, Font } from 'themeor'
+import { withTooltip, WithTooltipProps, Tooltip } from '../tooltip'
 
 
-type Props = React.AllHTMLAttributes<HTMLElement> & {
+export type LineCutProps = FitProps & {
   lines?: number,
   lineHeight?: string,
 }
 
-export const LineCut = ({ children, lines, lineHeight, ...rest }: Props) => {
+export const LineCut = ({ children, lines, lineHeight, ...rest }: LineCutProps) => {
   const [parentSize, setParentSize] = useState(0)
   const [childSize, setChildSize] = useState(0)
 
@@ -31,15 +32,15 @@ export const LineCut = ({ children, lines, lineHeight, ...rest }: Props) => {
     active = false
   }
 
-  return (
+  return (<>
     <Fit
       forwardRef={parentRef}
-      data-tip={(lines || active) ? children : undefined}
     >
       <Fit
-      clip
-      maxHeight={(lines&&lineHeight) ? (lines*parseInt(lineHeight)).toString() + 'px' : undefined}
-    >
+        {...rest}
+        clip
+        maxHeight={(lines && lineHeight) ? (lines * parseInt(lineHeight)).toString() + 'px' : undefined}
+      >
         <Font
           nowrap={!lines}
           forwardRef={childRef}
@@ -49,13 +50,16 @@ export const LineCut = ({ children, lines, lineHeight, ...rest }: Props) => {
       </Fit>
 
       {active && (
-          <Fit
-            stick="bottom-right"
-            right="-10px"
-          >
-            …
-          </Fit>
+        <Fit
+          stick="bottom-right"
+          right="-10px"
+        >
+          …
+        </Fit>
       )}
     </Fit>
-  )
+    {active && <Tooltip>
+      {children}
+    </Tooltip>}
+  </>)
 }

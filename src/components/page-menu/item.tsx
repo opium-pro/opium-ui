@@ -23,7 +23,6 @@ export const Item: WithTooltip<Props> = withTooltip(({
   return (
     <MakeButton
       disabled={active}
-      offset="16px 24px"
       {...rest}
     >
       <Fit.TryTagless width="100%">

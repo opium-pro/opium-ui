@@ -9,7 +9,7 @@ export type WrapperProps = FitProps & {
   title?: string
   link?: string
   onClick?: any
-  header?: string[]
+  header?: any
 }
 
 
@@ -39,9 +39,7 @@ export const Wrapper: FC<WrapperProps> = ({
               <tr>
                 <th />
                 <th />
-                {header.map((item) =>
-                  <th key={item}><Gap>{item}</Gap></th>
-                )}
+                {header}
                 <th />
               </tr>
             </thead>
