@@ -6,9 +6,9 @@ import { withTooltip, WithTooltipProps, WithTooltip } from '../tooltip'
 
 export type Props = WithTooltipProps & AlignProps & {
   label?: any
-  hint?: string
+  hint?: any
   forwardRef?: any
-  value?: string
+  value?: any
   nowrap?: boolean
 }
 

@@ -54,7 +54,7 @@ export const Button = withTooltip(({
         <Fit.TryTagless inline stretch={stretch}>
           <Box.TryTagless
             glow={glow && 'md'}
-            fill={r.active ? fillActive : r.hoverOrFocus ? fillHover : fill}
+            fill={disabled ? 'faintUp' : r.active ? fillActive : r.hoverOrFocus ? fillHover : fill}
             borderFill={(primary || disabled || light) ? "none" : "faintUp"}
             radius="xs"
             {...rest}
