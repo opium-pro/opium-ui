@@ -9,6 +9,7 @@ export type DialogProps = ModalProps & {
   applyLabel?: string
   cancelLabel?: string
   onCancel?: any
+  critic?: boolean
 }
 
 export const Dialog: FC<DialogProps> = ({
@@ -16,6 +17,7 @@ export const Dialog: FC<DialogProps> = ({
   applyLabel = 'Yes',
   cancelLabel = 'No',
   onCancel,
+  critic,
   ...rest
 }) => {
   const [mount, setMount] = useState(true)
@@ -36,15 +38,11 @@ export const Dialog: FC<DialogProps> = ({
       mounted={mount}
       footer={(<>
         {onApply && (
-          <Button stretch primary label={applyLabel} onClick={handleApply}>
-            {/* <Hotkey trigger="enter,y" action={handleApply} /> */}
-          </Button>
+          <Button critic={critic} stretch primary label={applyLabel} onClick={handleApply} />
         )}
         {onApply && onCancel && <Gap right="md" />}
         {onCancel && (
-          <Button stretch label={cancelLabel} onClick={handleCancel}>
-            {/* <Hotkey trigger="n" action={handleCancel} /> */}
-          </Button>
+          <Button stretch label={cancelLabel} onClick={handleCancel} />
         )}
       </>)}
       {...rest}

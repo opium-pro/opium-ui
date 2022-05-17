@@ -24,7 +24,7 @@ export const Toggle: FC<Props> = withForm(withTooltip(({
   hint,
   disabled,
   valueOn = initialValue || true,
-  valueOff = undefined,
+  valueOff = false,
   ...props
 }: Props) => {
   const checked = value === valueOn

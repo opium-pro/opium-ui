@@ -1,14 +1,14 @@
 import React, { FC } from 'react'
-import { Line, Align } from 'themeor'
+import { Line, Align, AlignProps } from 'themeor'
 import { isDefined } from '../../utils'
 
 
-export interface JoinFieldsProps {
+export type JoinFieldsProps = {
   separator?: boolean
 }
 
 
-export const JoinFields: FC<JoinFieldsProps> = ({ children, separator = false }) => {
+export const JoinFields: FC<JoinFieldsProps> = ({ children, separator = false, ...rest }) => {
   const newChildren = []
   const validChildren = []
 

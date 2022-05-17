@@ -41,14 +41,16 @@ export function Form({
   }
 
   function setField(name, value) {
-    const newFields = {...fields}
-    if (name?.includes?.('.') || name?.includes?.('[')) {
-      // Парсим имя, если это не просто одно поле, а вложенные объекты
-      mutateObjectForFields(newFields, parseFieldName(name), value)
-    } else {
-      newFields[name] = value
-    }
-    setFields(newFields)
+    setFields((fields) => {
+      const newFields = {...fields}
+      if (name?.includes?.('.') || name?.includes?.('[')) {
+        // Парсим имя, если это не просто одно поле, а вложенные объекты
+        mutateObjectForFields(newFields, parseFieldName(name), value)
+      } else {
+        newFields[name] = value
+      }
+      return newFields
+    })
   }
 
   function setInitialValue(name, value) {
