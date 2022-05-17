@@ -7,6 +7,9 @@ export const TextArea = ({ ...props }: TextInputProps) => {
     <TextInput
       height="114px"
       type="textarea"
+      valueFont={{
+        prewrap: true,
+      }}
       {...props}
     />
   )

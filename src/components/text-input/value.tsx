@@ -83,9 +83,11 @@ function StyleWrapper({ children, ...rest }) {
       absolute
       left="0"
       right="0"
-      top={label ? '26px' : '11px'}
+      top={label ? '23px' : '4px'}
+      bottom="0"
       offset="0"
       maxWidth="100%"
+      scroll
       {...rest}
     >
       <Box.TryTagless>

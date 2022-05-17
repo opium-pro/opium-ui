@@ -37,14 +37,12 @@ export const Dialog: FC<DialogProps> = ({
       footer={(<>
         {onApply && (
           <Button stretch primary label={applyLabel} onClick={handleApply}>
-            <Gap />
             {/* <Hotkey trigger="enter,y" action={handleApply} /> */}
           </Button>
         )}
         {onApply && onCancel && <Gap right="md" />}
         {onCancel && (
           <Button stretch label={cancelLabel} onClick={handleCancel}>
-            <Gap />
             {/* <Hotkey trigger="n" action={handleCancel} /> */}
           </Button>
         )}

@@ -1,5 +1,11 @@
 import React from 'react'
-import { withForm } from '../form'
+import { TextInput, TextInputProps } from '../text-input'
 
-export const FilePicker = withForm(({ onChange, name }) => 
-  <input onChange={(e) => onChange(e.target.files[0])} type="file" name={name} />)
+
+export const FilePicker = ({ ...props }: TextInputProps) => {
+  return (
+    <TextInput
+      {...props}
+    />
+  )
+}

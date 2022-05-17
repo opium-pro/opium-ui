@@ -3,6 +3,7 @@
   "version": "1.2.0",
   "main": "dist/export.js",
   "dependencies": {
+    "dayjs": "^1.11.2",
     "hotkeys-js": "^3.8.7",
     "opium-filter": "^1.0.3",
     "react-helmet": "^6.1.0",

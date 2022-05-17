@@ -33,7 +33,7 @@ export const Wrapper: FC<WrapperProps> = ({
         fill="base"
         radius="md"
       >
-        <LazyScroller Tag="table" style={{ width: '100%' }}>
+        <table style={{ width: '100%' }}>
           <Fit.TryTagless sticky top="0">
             <thead>
               <tr>
@@ -44,8 +44,10 @@ export const Wrapper: FC<WrapperProps> = ({
               </tr>
             </thead>
           </Fit.TryTagless>
-          {children}
-        </LazyScroller>
+          <LazyScroller Tag="tbody">
+            {children}
+          </LazyScroller>
+        </table>
       </Box>
     </Fit.TryTagless>
   )

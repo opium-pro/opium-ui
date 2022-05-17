@@ -1,14 +1,20 @@
 import React from 'react'
 import {TextInput, TextInputProps} from '../text-input'
+import dayjs from 'dayjs'
 
 
 export const DatePicker = ({ ...props }: TextInputProps) => {
   return (
     <TextInput
-      // placeholder="dd.mm.yy"
-      onDisplayValue={(value) => value.split('-').reverse().join('.')}
-      {...props}
+      onDisplayValue={(value) => {
+        let date = dayjs(value)
+        if (!date.isValid()) {
+          return value
+        }
+        return date.format('DD MMM YYYY')
+      }}
       type="date"
+      {...props}
     />
   )
 }

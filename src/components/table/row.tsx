@@ -37,23 +37,15 @@ export const Row: FC<RowProps> = ({
             <Gap.TryTagless>
               <tr>
                 <td>
-                  <Gap size="4px" />
+                  <Gap size="12px" />
                 </td>
-                <td>
+                <td style={{ verticalAlign: 'top' }}>
+                  <Gap size="12px" />
                   <Avatar size="xs" img={img} name={title} />
                 </td>
-                {/* <Gap />
-                <Font
-                  wrap
-                  size="md"
-                  weight="600"
-                  fill="base"
-                >
-                  {title}
-                </Font> */}
                 {children}
                 <td>
-                  <Gap size="4px" />
+                  <Gap size="12px" />
                 </td>
               </tr>
             </Gap.TryTagless>

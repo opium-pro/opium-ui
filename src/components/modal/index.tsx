@@ -45,13 +45,14 @@ export const Modal: FC<ModalProps> = ({
       <Animate.TryTagless
         onMount="fadeIn"
         onUnmount="fadeOut"
-        duration={500}
+        duration={100}
         mounted={mounted}
       >
         <Cover>
           <Animate.TryTagless
             onMount="slideInUp"
             onUnmount="fadeOutDown"
+            duration={200}
             mounted={mounted}
           >
             <Fit.TryTagless>
@@ -66,7 +67,7 @@ export const Modal: FC<ModalProps> = ({
                   <Box radius="md" fill="base" shadow="lg">
                     <Gap vert="24px" hor="32px">
                       {!!title && (<>
-                        <Font weight="700" size="x2l">
+                        <Font weight="800" size="xl">
                           {title}
                         </Font>
                       </>)}
