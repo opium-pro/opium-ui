@@ -28,6 +28,7 @@ export const TextInput = withForm(({
   onDisplayValue,
   tooltip,
   value,
+  valueFont,
   ...props
 }) => {
   let inputNode
@@ -104,6 +105,7 @@ export const TextInput = withForm(({
     tooltip,
     value,
     isObject,
+    valueFont,
   }
 
   return (

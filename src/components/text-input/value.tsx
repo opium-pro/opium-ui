@@ -84,7 +84,7 @@ function StyleWrapper({ children, ...rest }) {
       left="0"
       right="0"
       top={label ? '23px' : '4px'}
-      bottom="0"
+      bottom={isTextarea ? "none" : "0"}
       offset="0"
       maxWidth="100%"
       scroll
