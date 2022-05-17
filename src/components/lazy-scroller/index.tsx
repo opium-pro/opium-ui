@@ -15,7 +15,7 @@ export type LazyScrollerProps<TagProps = {[key: string]: any}> = {
 export const LazyScroller: FC<LazyScrollerProps> = ({
   children,
   onLoad,
-  preload = 20,
+  preload = 10,
   spare = 5,
   scrollNode,
   Tag = Align,
@@ -63,11 +63,9 @@ export const LazyScroller: FC<LazyScrollerProps> = ({
     return currentHeight - scrolled - scrollHeight <= itemHeight * spare
   }
 
-  const newChildren = React.Children.map(children, (child: any, index) => {
-    if (index < preload * chunk.current) {
-      return <Fragment key={index}>{child}</Fragment>
-    }
-  })
+  const newChildren = React.Children.toArray(children).slice(0, preload * chunk.current).map((child, index) => (
+    <Fragment key={index}>{child}</Fragment>
+  ))
 
   return (
     <Tag
