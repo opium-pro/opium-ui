@@ -36,15 +36,9 @@ export const TextInput = withForm(({
   const isSelect = type === 'select'
 
   let isObject = false
-  let isArray = false
   if (typeof value === 'object' && value !== null) {
-    if (Array.isArray(value)) {
-      isArray = true
-      value = JSON.stringify(value)
-    } else {
-      isObject = true
-      value = JSON.stringify(value)
-    }
+    isObject = true
+    value = JSON.stringify(value)
   }
 
   function handleChange(event) {
@@ -57,9 +51,6 @@ export const TextInput = withForm(({
     (type === 'number') && value && (value = parseInt(value))
 
     if (isObject) {
-      value = JSON.parse(value)
-    }
-    if (isArray) {
       value = JSON.parse(value)
     }
 
@@ -104,7 +95,6 @@ export const TextInput = withForm(({
     error,
     tooltip,
     value,
-    isObject,
     valueFont,
   }
 

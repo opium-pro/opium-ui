@@ -14,12 +14,14 @@ export type WithFormProps = {
   required?: boolean
   label?: any
   onChange?: (newValue: any) => any,
+  onRender?: (newValue: any) => any,
 }
 
 export type WithForm<ComponentProps> = FC<ComponentProps & WithFormProps>
 
 export const withForm = (Component: any) => ({
   onChange = a => a,
+  onRender = a => a,
   value,
   initialValue,
   name,
@@ -43,7 +45,8 @@ export const withForm = (Component: any) => ({
     setInitialValue,
   } = useForm()
 
-  const fieldValue = (changed && formChanged && name) ? getDeepFieldByPath(name, fields) : (value || '')
+  let fieldValue = (changed && formChanged && name) ? getDeepFieldByPath(name, fields) : (value || '')
+  fieldValue = onRender?.(fieldValue)
 
   useEffect(() => {
     name && setInitialValue?.(name, initialValue || value)

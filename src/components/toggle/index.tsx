@@ -53,7 +53,8 @@ export const Toggle: FC<Props> = withForm(withTooltip(({
                   <Fit.TryTagless
                     width="16px"
                     height="16px"
-                    left={checked && '14px'}
+                    transition
+                    left={checked ? '14px' : '0'}
                   >
                     <Box fill="base" radius="max" shadow="sm" />
                   </Fit.TryTagless>

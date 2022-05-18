@@ -6,11 +6,11 @@ export const TextArea = ({ ...props }: TextInputProps) => {
   return (
     <TextInput
       height="114px"
-      type="textarea"
       valueFont={{
         prewrap: true,
       }}
       {...props}
+      type="textarea"
     />
   )
 }

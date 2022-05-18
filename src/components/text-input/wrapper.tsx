@@ -48,22 +48,22 @@ export const Wrapper = ({ children }) => {
 
               <Fit clip stretch>
                 {children}
-
-                {!textarea && !disabled && isDefined(value) && hoverOrFocus && (
-                  <Fit.TryTagless absolute right="0" height="100%">
-                    <Align.TryTagless vert="center">
-                      <Gap hor="16px">
-                        <ActionButton icon="cross" fill="faintDown" onClick={() => onChange('')} />
-                      </Gap>
-                    </Align.TryTagless>
-                  </Fit.TryTagless>
-                )}
               </Fit>
 
-              <Align row vert="center">
+              <Align row vert="center" height="100%">
+                {!textarea && !disabled && isDefined(value) && hoverOrFocus && (<>
+                  <ActionButton icon="cross" fill="faintDown" onClick={() => onChange('')} />
+                  <Gap size="16px" />
+                </>)}
+
                 {tooltip && (<>
                   <ActionButton cursor="help" fill="faintDown" icon="question-circle" />
                   <Tooltip delay={100}>{tooltip}</Tooltip>
+                  <Gap size="16px" />
+                </>)}
+
+                {type === 'url' && isDefined(value) && (<>
+                  <ActionButton icon="share-1" fill="faintDown" href={value} blank />
                   <Gap size="16px" />
                 </>)}
 
