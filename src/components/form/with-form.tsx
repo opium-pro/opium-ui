@@ -1,4 +1,4 @@
-import React, { useEffect, useState, FC, useMemo } from 'react'
+import React, { useEffect, useState, FC } from 'react'
 import { useForm } from './context'
 import { getDeepFieldByPath } from '../../utils'
 
@@ -41,11 +41,13 @@ export const withForm = (Component: any) => ({
     setField,
     changed: formChanged,
     setChanged: setFormChanged,
-    fields,
+    getFields,
     setInitialValue,
   } = useForm()
 
-  let fieldValue = (changed && formChanged && name) ? getDeepFieldByPath(name, fields) : (value || '')
+  let fieldValue = (changed && formChanged && name) ? getDeepFieldByPath(name, getFields()) : (value || '')
+  const [valueState, setValueState]: any = useState(fieldValue)
+
   fieldValue = onRender?.(fieldValue)
 
   useEffect(() => {
@@ -53,7 +55,7 @@ export const withForm = (Component: any) => ({
   }, [])
 
   useEffect(() => {
-    name && setField?.(name, value)
+    name && setField?.(name, value, true)
   }, [value])
 
   function handleBlur(value) {
@@ -80,6 +82,7 @@ export const withForm = (Component: any) => ({
     !changed && setChanged(true)
     const newValue = onChange(value)
     name && setField?.(name, newValue)
+    setValueState(newValue)
   }
 
   if (required && label) {

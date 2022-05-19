@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, useCallback } from 'react'
+import React, { useEffect, useRef, useState, useCallback, memo, useMemo } from 'react'
 import { FormContext } from './context'
 import { parseFieldName, mutateObjectForFields } from '../../utils'
 
@@ -22,12 +22,20 @@ export function Form({
   disabled: initialDisabled,
   ...rest
 }: Props) {
-  const [fields, setFields] = useState(defaultInitialValues)
+  const fields = useRef(defaultInitialValues).current
+  const initialValues = useRef({}).current
   const [disabled, setDisabled] = useState(initialDisabled)
   const [changed, setChanged] = useState(false)
   const [hasError, setError] = useState(false)
 
-  const initialValues = useRef({}).current
+  function setFields(value, silent = false) {
+    Object.assign(fields, value)
+    !silent && onChange?.(fields)
+  }
+
+  function getFields() {
+    return fields
+  }
 
   useEffect(() => {
     if (initialDisabled !== disabled) {
@@ -40,17 +48,15 @@ export function Form({
     setChanged(false)
   }
 
-  function setField(name, value) {
-    setFields((fields) => {
-      const newFields = {...fields}
-      if (name?.includes?.('.') || name?.includes?.('[')) {
-        // Парсим имя, если это не просто одно поле, а вложенные объекты
-        mutateObjectForFields(newFields, parseFieldName(name), value)
-      } else {
-        newFields[name] = value
-      }
-      return newFields
-    })
+  function setField(name, value, silent = false) {
+    const newFields = { ...fields }
+    if (name?.includes?.('.') || name?.includes?.('[')) {
+      // Парсим имя, если это не просто одно поле, а вложенные объекты
+      mutateObjectForFields(newFields, parseFieldName(name), value)
+    } else {
+      newFields[name] = value
+    }
+    setFields(newFields, silent)
   }
 
   function setInitialValue(name, value) {
@@ -62,19 +68,15 @@ export function Form({
     }
   }
 
-  const handleSubmit = useCallback((e) => {
+  const handleSubmit = (e) => {
     e.preventDefault()
     onSubmit?.(fields)
-  }, [fields])
-
-  useEffect(() => {
-    onChange?.(fields)
-  }, [fields])
+  }
 
   const context = {
-    fields,
     setField,
     setFields,
+    getFields,
     initialValues,
     setInitialValue,
     changed,
