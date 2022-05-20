@@ -52,6 +52,7 @@ export const withForm = (Component: any) => ({
 
   useEffect(() => {
     name && setField?.(name, value, false)
+    name && setInitialValue?.(name, initialValue || value)
   }, [value])
 
   function handleBlur(value) {
