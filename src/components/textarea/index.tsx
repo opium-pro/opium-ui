@@ -1,8 +1,8 @@
 import React from 'react'
-import {TextInput, TextInputProps} from '../text-input'
+import { TextInput, TextInputProps } from '../text-input'
 
 
-export const TextArea = ({ ...props }: TextInputProps) => {
+export const TextArea = ({ type, ...props }: TextInputProps) => {
   return (
     <TextInput
       height="114px"
@@ -10,7 +10,7 @@ export const TextArea = ({ ...props }: TextInputProps) => {
         prewrap: true,
       }}
       {...props}
-      type="textarea"
+      type={type || "textarea"}
     />
   )
 }

@@ -45,14 +45,14 @@ export const Modal: FC<ModalProps> = ({
       <Animate.TryTagless
         onMount="fadeIn"
         onUnmount="fadeOut"
-        duration={100}
+        duration={0}
         mounted={mounted}
       >
         <Cover>
           <Animate.TryTagless
             onMount="slideInUp"
             onUnmount="fadeOutDown"
-            duration={200}
+            duration={100}
             mounted={mounted}
           >
             <Fit.TryTagless>

@@ -36,7 +36,7 @@ export const Select: SelectType = ({
         <Align row stretch gapHor="4px">
           {value?.map?.((val, i) => {
             const props = childProps.filter((props) => isEqual(props.value, val))[0]
-            return <Tag nowrap key={i} label={props.label || props.value} fill="base" weight="600" />
+            return <Tag borderFill="faint" shadow="md" nowrap key={i} label={props?.label || props?.value} fill="base" weight="600" />
           })}
         </Align>
       </Fit.TryTagless>

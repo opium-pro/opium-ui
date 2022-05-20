@@ -50,6 +50,7 @@ export function Form({
 
   function reset() {
     setFields(initialValues)
+    for (const key in changedFields) delete changedFields[key]
     setChanged(false)
   }
 

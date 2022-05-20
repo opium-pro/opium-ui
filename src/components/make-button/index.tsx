@@ -16,7 +16,7 @@ export type MakeButtonProps = Omit<ReactionProps, 'children'> & WithTooltipProps
   blank?: boolean
   type?: string
   tabIndex?: number
-  children?: ReactNode | ((r: ReactionContext) => ReactNode)
+  children?: ReactNode | ((r?: ReactionContext, rProps?: any) => ReactNode)
   Tag?: any
 }
 
@@ -35,6 +35,7 @@ export const MakeButton = withTooltip(({
   tabIndex = 0,
   onClick,
   Tag,
+  style,
   ...rest
 }: MakeButtonProps) => {
   if (!Tag) {
@@ -50,6 +51,7 @@ export const MakeButton = withTooltip(({
 
   return (
     <Reaction
+      track={['active', 'focus', 'hover']}
       {...rest}
       onClick={handleClick}
       disabled={disabled}
@@ -57,8 +59,10 @@ export const MakeButton = withTooltip(({
     >
       {(rProps, r) => (
         <Fit.TryTagless
+          inline
           {...rProps}
           style={{
+            ...style,
             margin: `-${offset.split(' ').join(' -')}`,
             padding: offset,
           }}
@@ -89,11 +93,13 @@ export const MakeButton = withTooltip(({
                 />
               </Fit.TryTagless>
             )}
-            {typeof children === 'function' ? (
-              children(r)
-            ) : (
-              children
-            )}
+            <Fit>
+              {typeof children === 'function' ? (
+                children(r, rProps)
+              ) : (
+                children
+              )}
+            </Fit>
           </Tag>
         </Fit.TryTagless>
       )}

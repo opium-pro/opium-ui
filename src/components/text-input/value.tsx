@@ -83,8 +83,8 @@ function StyleWrapper({ children, ...rest }) {
       absolute
       left="0"
       right="0"
-      top={label ? '23px' : '4px'}
-      bottom={isTextarea ? "none" : "0"}
+      top="0"
+      bottom="0"
       offset="0"
       maxWidth="100%"
       scroll
@@ -102,7 +102,11 @@ function StyleWrapper({ children, ...rest }) {
             nowrap
             {...valueFont}
           >
-            <Gap.TryTagless hor="md" FORCE_TAGLESS>
+            <Gap.TryTagless
+              hor="md"
+              top={label ? '23px' : '4px'}
+              FORCE_TAGLESS
+            >
               {children}
             </Gap.TryTagless>
           </Font.TryTagless>
