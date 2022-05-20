@@ -8,7 +8,6 @@ import { MakeButton, MakeButtonProps } from '../make-button'
 export type BottonProps = MakeButtonProps & {
   label?: string
   primary?: boolean
-  type?: string
   mini?: boolean
   critic?: boolean
   hint?: string
@@ -24,7 +23,6 @@ export type BottonProps = MakeButtonProps & {
 export const Button: OpiumComponent<BottonProps> = ({
   label,
   primary,
-  type = "button",
   disabled,
   mini,
   critic,

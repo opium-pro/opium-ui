@@ -80,7 +80,7 @@ export function Form({
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    onSubmit?.(fields, changedFields)
+    onSubmit?.(fields)
   }
 
   const context = {

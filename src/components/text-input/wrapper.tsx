@@ -52,18 +52,18 @@ export const Wrapper = ({ children }) => {
 
               <Align row vert="center" height="100%">
                 {!textarea && !disabled && isDefined(value) && hoverOrFocus && (<>
-                  <ActionButton icon="cross" fill="faintDown" onClick={() => onChange('')} />
+                  <ActionButton tabIndex={-1} icon="cross" fill="faintDown" onClick={() => onChange('')} />
                   <Gap size="16px" />
                 </>)}
 
                 {tooltip && (<>
-                  <ActionButton cursor="help" fill="faintDown" icon="question-circle" />
+                  <ActionButton tabIndex={-1} cursor="help" fill="faintDown" icon="question-circle" />
                   <Tooltip delay={100}>{tooltip}</Tooltip>
                   <Gap size="16px" />
                 </>)}
 
                 {type === 'url' && isDefined(value) && (<>
-                  <ActionButton icon="share-1" fill="faintDown" href={value} blank />
+                  <ActionButton tabIndex={-1} icon="share-1" fill="faintDown" href={value} blank />
                   <Gap size="16px" />
                 </>)}
 
