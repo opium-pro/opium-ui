@@ -17,6 +17,7 @@ export const Select: SelectType = ({
   onDisplayValue,
   onCompare,
   name,
+  value,
   ...rest
 }) => {
   const childProps = React.Children.map(children, (child: any) => child.props)
@@ -100,7 +101,8 @@ export const Select: SelectType = ({
         disabled={disabled}
         onDisplayValue={handleDisplayValue}
         insertRight={!disabled && <SelectIcon />}
-        options={childProps}
+        options={children}
+        value={value}
         type="select"
       // onFocus={handleFocus}
       // onBlur={handleBlur}

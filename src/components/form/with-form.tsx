@@ -46,8 +46,6 @@ export const withForm = (Component: any) => ({
   let fieldValue = (changed && formChanged && name) ? getDeepFieldByPath(name, getFields()) : (value || '')
   const [valueState, setValueState]: any = useState(fieldValue)
 
-  fieldValue = onRender?.(fieldValue)
-
   useEffect(() => {
     name && setInitialValue?.(name, initialValue || value)
   }, [])
@@ -92,7 +90,7 @@ export const withForm = (Component: any) => ({
     setChanged,
     hasError,
     setError,
-    value: valueState,
+    value: fieldValue,
     setValue: handleChange,
     initialValue,
   }
@@ -102,7 +100,7 @@ export const withForm = (Component: any) => ({
       <Component
         {...rest}
         label={label}
-        value={fieldValue}
+        value={onRender(fieldValue)}
         initialValue={value}
         name={name}
         onChange={!disabled && handleChange}

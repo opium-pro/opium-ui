@@ -29,7 +29,7 @@ export const Option: FC<SelectOptionProps> = ({
   displayValue,
   onClick,
   onCheckboxClick,
-  active,
+  // active,
   ...rest
 }) => {
   const { multi, name } = useSelect() as any
@@ -39,18 +39,24 @@ export const Option: FC<SelectOptionProps> = ({
   let checkboxRef
 
   const fullValue = getFields()[name]
+  const active = !!fullValue?.filter?.(val => isEqual(val, value))?.length
 
   function handleClick(event) {
     if (multi) {
       let newValue
-      const matches = fullValue?.filter?.(val => isEqual(val, value))?.length
-
-      if (matches) {
-        newValue = fullValue?.filter?.(val => !isEqual(val, value))
+      if (active) {
+        let index
+        for (const i in fullValue) {
+          if (isEqual(fullValue[i], value)) {
+            index = i
+            break
+          }
+        }
+        newValue = [...fullValue]
+        newValue.splice(index, 1)
       } else {
         newValue = [...fullValue, value]
       }
-      
       setValue?.(newValue)
     } else {
       setOpened(false)
