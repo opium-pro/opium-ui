@@ -28,9 +28,9 @@ export function Form({
   const [changed, setChanged] = useState(false)
   const [hasError, setError] = useState(false)
 
-  function setFields(value, silent = false) {
+  function setFields(value, registerChange = true) {
     Object.assign(fields, value)
-    !silent && onChange?.(fields)
+    registerChange && onChange?.(fields)
   }
 
   function getFields() {
@@ -48,7 +48,7 @@ export function Form({
     setChanged(false)
   }
 
-  function setField(name, value, silent = false) {
+  function setField(name, value, registerChange = true) {
     const newFields = { ...fields }
     if (name?.includes?.('.') || name?.includes?.('[')) {
       // Парсим имя, если это не просто одно поле, а вложенные объекты
@@ -56,7 +56,7 @@ export function Form({
     } else {
       newFields[name] = value
     }
-    setFields(newFields, silent)
+    setFields(newFields, registerChange)
   }
 
   function setInitialValue(name, value) {

@@ -12,5 +12,16 @@ export const FormContext = createContext({} as {
   setError?: (...args: any) => any
   getFields?: () => any
 })
-
 export const useForm = () => useContext(FormContext)
+
+
+export const FieldContext = createContext({} as {
+  changed?: boolean
+  setChanged?: (...args: any) => any
+  hasError?: string | boolean
+  setError?: (...args: any) => any
+  value?: any
+  setValue?: (...args: any) => any
+  initialValue?: any
+})
+export const useField = () => useContext(FieldContext)

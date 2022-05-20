@@ -1,5 +1,5 @@
 import React, { useEffect, useState, FC } from 'react'
-import { useForm } from './context'
+import { useForm, useField, FieldContext } from './context'
 import { getDeepFieldByPath } from '../../utils'
 
 export type WithFormProps = {
@@ -36,7 +36,6 @@ export const withForm = (Component: any) => ({
 }: any) => {
   const [changed, setChanged]: any = useState(false)
   const [hasError, setError]: any = useState(error)
-
   const {
     setField,
     changed: formChanged,
@@ -44,7 +43,6 @@ export const withForm = (Component: any) => ({
     getFields,
     setInitialValue,
   } = useForm()
-
   let fieldValue = (changed && formChanged && name) ? getDeepFieldByPath(name, getFields()) : (value || '')
   const [valueState, setValueState]: any = useState(fieldValue)
 
@@ -55,7 +53,7 @@ export const withForm = (Component: any) => ({
   }, [])
 
   useEffect(() => {
-    name && setField?.(name, value, true)
+    name && setField?.(name, value, false)
   }, [value])
 
   function handleBlur(value) {
@@ -89,17 +87,29 @@ export const withForm = (Component: any) => ({
     label += ' *'
   }
 
+  const context = {
+    changed,
+    setChanged,
+    hasError,
+    setError,
+    value: valueState,
+    setValue: handleChange,
+    initialValue,
+  }
+
   return (
-    <Component
-      {...rest}
-      label={label}
-      value={fieldValue}
-      initialValue={value}
-      name={name}
-      onChange={!disabled && handleChange}
-      onBlur={!disabled && handleBlur}
-      error={hasError}
-      disabled={disabled}
-    />
+    <FieldContext.Provider value={context}>
+      <Component
+        {...rest}
+        label={label}
+        value={fieldValue}
+        initialValue={value}
+        name={name}
+        onChange={!disabled && handleChange}
+        onBlur={!disabled && handleBlur}
+        error={hasError}
+        disabled={disabled}
+      />
+    </FieldContext.Provider>
   )
 }

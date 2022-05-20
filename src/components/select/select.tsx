@@ -6,65 +6,41 @@ import { SelectContext } from './context'
 import { SelectType } from './types'
 import { Tag } from '../tag'
 import { isDefined } from '../../utils'
+import { useField } from '../form'
+import { isEqual } from 'lodash'
 
 
 export const Select: SelectType = ({
   children,
-  onChange,
   disabled,
   multi = false,
   onDisplayValue,
   onCompare,
+  name,
   ...rest
 }) => {
-  const [displayValues, setDisplayValues] = useState(new Map())
-  const [newChildren, setNewChildren]: any = useState(new Map(children))
-  // const [tagsNode, setTagsNode]: any = useState()
-  // const [notFitNode, setNotFitNode]: any = useState()
+  const childProps = React.Children.map(children, (child: any) => child.props)
 
   const handleDisplayValue = (value) => {
-    if (Array.isArray(value)) {
-      let newValue = []
-      for (const val of value) {
-        displayValues.has(val) && newValue.push(displayValues.get(val))
-      }
-      if (onDisplayValue) {
-        return onDisplayValue(newValue)
-      }
-
-      return (
-        <Fit.TryTagless
-          cover="parent"
-          maxWidth="100%"
-          clip
-        // forwardRef={setTagsNode}
-        >
-          <Align row stretch gapHor="4px">
-            {newValue?.map?.((val, i) => val &&
-              <Tag nowrap key={i} label={val} fill="base" weight="600" />
-            )}
-          </Align>
-        </Fit.TryTagless>
-      )
-
+    if (typeof onDisplayValue === 'function') {
+      return onDisplayValue(value)
     }
-    const newValue = displayValues.get(value)
-    return onDisplayValue?.(newValue) || newValue
+
+    return multi ? (
+      <Fit.TryTagless
+        cover="parent"
+        maxWidth="100%"
+        clip
+      >
+        <Align row stretch gapHor="4px">
+          {value?.map?.((val, i) => {
+            const props = childProps.filter((props) => isEqual(props.value, val))[0]
+            return <Tag nowrap key={i} label={props.label || props.value} fill="base" weight="600" />
+          })}
+        </Align>
+      </Fit.TryTagless>
+    ) : value
   }
-
-  useEffect(() => {
-    const newValues = new Map()
-    const newChildren = new Map()
-    React.Children.map(children, (child) => {
-      const { value, children, displayValue, label } = child.props
-      newValues.set(value, displayValue || label || children || value)
-      newChildren.set(child, displayValue || label || value)
-    })
-    if (!displayValues.size) {
-      setDisplayValues(newValues)
-    }
-    setNewChildren(newChildren)
-  }, [children])
 
   // Вставляем счетчик, если что-то не поместилось
   // useEffect(() => {
@@ -108,7 +84,7 @@ export const Select: SelectType = ({
 
   // function handleBlur() {
   //   console.log('BLUR');
-    
+
   //   hotkey.deleteScope('select')
   // }
 
@@ -116,26 +92,19 @@ export const Select: SelectType = ({
     <SelectContext.Provider value={{
       onCompare,
       multi,
+      name,
     }}>
       <TextInput
         {...rest}
+        name={name}
         disabled={disabled}
         onDisplayValue={handleDisplayValue}
         insertRight={!disabled && <SelectIcon />}
-        options={newChildren}
+        options={childProps}
         type="select"
-        // onFocus={handleFocus}
-        // onBlur={handleBlur}
+      // onFocus={handleFocus}
+      // onBlur={handleBlur}
       />
-      {/* {multi &&
-        <Fit hidden>
-          <Tag
-            forwardRef={setNotFitNode}
-            fill="base"
-            weight="600"
-          />
-        </Fit>
-      } */}
     </SelectContext.Provider>
   )
 }

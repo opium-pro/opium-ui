@@ -119,10 +119,10 @@ export const Wrapper: WithExternalClick<WrapperProps> = ({
                 forwardRef={n => scrollNode.current = n}
                 scroll
                 maxHeight="500px"
-                maxWidth="600px"
+                maxWidth="100%"
                 minWidth="100px"
               >
-                <Box radius="sm" shadow="lg" fill="base">
+                <Box radius="sm" shadow="lg" fill="base" borderFill="faintDown">
                   {showSearch && (
                     <Fit sticky top="0" zIndex={1}>
                       <Gap hor="md" vert="sm">

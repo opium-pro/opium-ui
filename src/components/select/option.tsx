@@ -1,55 +1,70 @@
-import React from 'react'
+import React, { FC, useEffect } from 'react'
 import { Dropdown } from '../dropdown'
 import { Font, Align, Gap, Fit } from 'themeor'
 import { useSelect } from './context'
-import { useTextInput } from "../text-input"
+import { useTextInput } from '../text-input'
 import { Checkbox } from '../checkbox'
 import { MarkMatch } from '../mark-match'
+import { useForm, useField } from '../form'
+import { isEqual } from 'lodash'
 
 
-export const Option = ({
-  value: oneValue = undefined as any,
-  label = oneValue || undefined as string,
-  hint = undefined as string,
-  children = undefined,
-  displayValue = undefined,
-  onClick = undefined,
-  onCheckboxClick = undefined,
-  active = false,
+export type SelectOptionProps = {
+  value: any
+  label?: any
+  hint?: any
+  children?: any
+  displayValue?: any
+  onClick?: any
+  onCheckboxClick?: any
+  active?: boolean
+}
+
+
+export const Option: FC<SelectOptionProps> = ({
+  value,
+  label = value,
+  hint,
+  children,
+  displayValue,
+  onClick,
+  onCheckboxClick,
+  active,
   ...rest
 }) => {
-  const { value, onChange } = useTextInput()
-  const { multi, onCompare } = useSelect() as any
+  const { multi, name } = useSelect() as any
   const { setOpened, search } = Dropdown.use()
+  const { getFields } = useForm()
+  const { setValue } = useField()
   let checkboxRef
 
-  const selected = active
-    || (typeof onCompare === 'function' && onCompare(value, oneValue, multi))
-    || (multi ? value?.includes(oneValue) : (value === oneValue))
+  const fullValue = getFields()[name]
 
   function handleClick(event) {
     if (multi) {
-      let newValue: any = new Set(Array.isArray(value) ? value : [value])
-      if (newValue.has(oneValue)) {
-        newValue.delete(oneValue)
+      let newValue
+      const matches = fullValue?.filter?.(val => isEqual(val, value))?.length
+
+      if (matches) {
+        newValue = fullValue?.filter?.(val => !isEqual(val, value))
       } else {
-        newValue.add(oneValue)
+        newValue = [...fullValue, value]
       }
-      newValue = Array.from(newValue)
-      onChange?.(newValue)
+      
+      setValue?.(newValue)
     } else {
       setOpened(false)
-      if (oneValue !== value) {
-        onChange?.(oneValue)
+      if (!isEqual(fullValue, value)) {
+        setValue?.(value)
       }
     }
 
     if (checkboxRef && checkboxRef.contains(event.tagget)) {
-      onCheckboxClick ? onCheckboxClick(event) : (onClick && onClick(event))
+      onCheckboxClick ? onCheckboxClick(event) : (onClick?.(event))
       return
     }
 
-    onClick && onClick(event)
+    onClick?.(event)
   }
 
   return (
@@ -57,13 +72,14 @@ export const Option = ({
       <Align row vert="center">
         {multi && (<>
           <Checkbox
-            value={selected}
+            value={active}
             forwardRef={n => checkboxRef = n}
+            Tag='div'
           />
           <Gap />
         </>)}
         <Fit stretch>
-          <Font fill={selected ? "accent" : "base"} weight={selected ? '600' : '500'}>
+          <Font fill={active ? "accent" : "base"} weight={active ? '600' : '500'}>
             <MarkMatch target={search}>{label}</MarkMatch>
           </Font>
           {!!hint && (<Font size="sm" fill="faintDown">

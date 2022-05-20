@@ -36,7 +36,7 @@ export const TextInput = withForm(({
   const isSelect = type === 'select'
 
   let isObject = false
-  if (typeof value === 'object' && value !== null) {
+  if (type === 'json' && typeof value === 'object' && value !== null) {
     isObject = true
     value = JSON.stringify(value)
   }
