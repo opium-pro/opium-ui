@@ -23,6 +23,7 @@ export function Form({
   ...rest
 }: Props) {
   const fields = useRef(defaultInitialValues).current
+  const changedFields = useRef({}).current
   const initialValues = useRef({}).current
   const [disabled, setDisabled] = useState(initialDisabled)
   const [changed, setChanged] = useState(false)
@@ -35,6 +36,10 @@ export function Form({
 
   function getFields() {
     return fields
+  }
+
+  function getChangedFields() {
+    return changedFields
   }
 
   useEffect(() => {
@@ -50,12 +55,16 @@ export function Form({
 
   function setField(name, value, registerChange = true) {
     const newFields = { ...fields }
+    const newChanged = { ...changedFields }
     if (name?.includes?.('.') || name?.includes?.('[')) {
       // Парсим имя, если это не просто одно поле, а вложенные объекты
       mutateObjectForFields(newFields, parseFieldName(name), value)
+      registerChange && mutateObjectForFields(newChanged, parseFieldName(name), value)
     } else {
       newFields[name] = value
+      registerChange && (newChanged[name] = value)
     }
+    registerChange && Object.assign(changedFields, newChanged)
     setFields(newFields, registerChange)
   }
 
@@ -70,13 +79,14 @@ export function Form({
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    onSubmit?.(fields)
+    onSubmit?.(fields, changedFields)
   }
 
   const context = {
     setField,
     setFields,
     getFields,
+    getChangedFields,
     initialValues,
     setInitialValue,
     changed,

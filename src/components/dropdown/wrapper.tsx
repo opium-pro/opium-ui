@@ -1,5 +1,5 @@
 import React, { FC, useState, useEffect, useRef } from 'react'
-import { Box, Fit, FitProps, Gap } from 'themeor'
+import { Box, Fit, FitProps, Gap, Font } from 'themeor'
 import { Portal } from '../portal'
 import { useAppLayout } from '../app-layout'
 import { placeNode } from '../../utils'
@@ -78,28 +78,16 @@ export const Wrapper: WithExternalClick<WrapperProps> = ({
     }
   }, [opened])
 
-  let newChildren: any = children
-  const isMapped = children instanceof Map
-  if (isMapped) {
-    newChildren = []
-    for (const [child, tags] of Array.from(children as any) as any) {
-      newChildren.push({
-        component: child,
-        tags,
-      })
-    }
-    if (search) {
-      newChildren = filter(newChildren, { tags: search }).map(i => i.component)
-    } else {
-      newChildren = newChildren.map(i => i.component)
-    }
+  const newChildren = React.Children.map(children, (child: any) => ({ props: child.props, Component: child.type }))
+  let filtered
+
+  if (search) {
+    filtered = filter(newChildren, { props: search }, { deep: true })
+  } else {
+    filtered = newChildren
   }
 
-  const showSearch = withSearch && (
-    isMapped && (children as any).size > 10
-    || React.Children.count(children) > 10
-    || (children as any).length > 10
-  )
+  const showSearch = withSearch && newChildren.length > 10
 
   return (
     <Fit forwardRef={handleSourceRef} hidden>
@@ -138,7 +126,10 @@ export const Wrapper: WithExternalClick<WrapperProps> = ({
                     </Fit>
                   )}
                   <LazyScroller scrollNode={scrollNode.current}>
-                  {isMapped ? newChildren : children}
+                    {filtered?.length
+                      ? filtered.map(({ Component, props }, index) => <Component key={index} {...props} />)
+                      : <Gap><Font align="center">Nothing is found</Font></Gap>
+                    }
                   </LazyScroller>
                 </Box>
               </Fit.TryTagless>

@@ -76,7 +76,8 @@ export const withForm = (Component: any) => ({
     !formChanged && setFormChanged?.(true)
     hasError && setError(false)
     !changed && setChanged(true)
-    const newValue = onChange(value)
+    const changedValue = onChange(value)
+    const newValue = changedValue !== undefined ? changedValue : value
     name && setField?.(name, newValue)
     setValueState(newValue)
   }
