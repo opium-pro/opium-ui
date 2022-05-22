@@ -38,7 +38,7 @@ export const Option: FC<SelectOptionProps> = ({
   const { setValue } = useField()
   let checkboxRef
 
-  const fullValue = getFields()[name]
+  const fullValue = getFields()[name] || []
   const active = !!fullValue?.filter?.(val => isEqual(val, value))?.length
 
   function handleClick(event) {

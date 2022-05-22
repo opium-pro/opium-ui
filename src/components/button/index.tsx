@@ -40,7 +40,7 @@ export const Button: OpiumComponent<BottonProps> = ({
   const fillActive = (critic && primary) ? 'criticDown' : primary ? 'accentDown' : 'hovereffect'
 
   return (
-    <MakeButton inline fillHover="none" fillActive="none" style={{display: 'block !important'}} {...rest}>
+    <MakeButton disabled={disabled} inline fillHover="none" fillActive="none" style={{display: 'block !important'}} {...rest}>
       {(r) => (
         <Box.TryTagless
           glow={glow && 'md'}
