@@ -63,7 +63,7 @@ export const TextInput = withForm(({
   }
 
   function handleBlur() {
-    onBlur?.(props.value)
+    onBlur?.(value)
     if (!inputNode) { return }
     inputNode?.blur?.()
   }
