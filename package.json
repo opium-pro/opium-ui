@@ -35,7 +35,7 @@
     "icons:copy": "copyfiles -V -u 1 src/**/*.svg dist",
     "icons:build": "npm run icons:parse && npm run icons:copy",
     "build": "tsc -p tsconfig.dist.json",
-    "publish": "npm run clear && npm run icons:build && npm run build && npm publish"
+    "release": "npm run clear && npm run icons:build && npm run build && npm publish"
   },
   "eslintConfig": {
     "extends": [
