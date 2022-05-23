@@ -20,7 +20,7 @@ export const Select: SelectType = ({
   value,
   ...rest
 }) => {
-  const childProps = React.Children.map(children, (child: any) => child.props)
+  const childProps = React.Children.map(children, (child: any) => child.props) || []
 
   const handleDisplayValue = (value) => {
     if (typeof onDisplayValue === 'function') {
