@@ -13,7 +13,7 @@ export type AppThemeProps = React.AllHTMLAttributes<HTMLElement> & {
 export function AppTheme({ config, icons, children }: AppThemeProps) {
   return (
     <ScreenFit>
-      <Theme config={config || themeConfig} icons={icons || themeIcons}>
+      <Theme reset config={config || themeConfig} icons={icons || themeIcons}>
         <Fit.TryTagless minHeight="100vh">
           <Box.TryTagless fill="base">
             <Font.TryTagless family="regular" fill="base" size="sm" weight="500" lineHeight="md">
