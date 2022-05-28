@@ -4,12 +4,14 @@ import { Button } from '../button'
 import { Gap } from 'themeor'
 import { Hotkey } from '../hotkey'
 
+
 export type DialogProps = ModalProps & {
   onApply?: any
   applyLabel?: string
   cancelLabel?: string
   onCancel?: any
   critic?: boolean
+  hold?: number
 }
 
 export const Dialog: FC<DialogProps> = ({
