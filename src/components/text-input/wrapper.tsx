@@ -21,6 +21,7 @@ export const Wrapper = ({ children }) => {
     value,
     type,
     onChange,
+    autoComplete,
     children: parentChildren,
   } = useTextInput()
   const { passProps, focus, hover, hoverOrFocus } = useReaction()
@@ -79,7 +80,7 @@ export const Wrapper = ({ children }) => {
       )}
       withSearch={isSelect}
     >
-      {isSelect ? options : <AutoComplete />}
+      {isSelect ? options : autoComplete && <AutoComplete />}
     </Dropdown>
   )
 }
