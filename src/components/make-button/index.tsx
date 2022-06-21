@@ -53,7 +53,7 @@ export const MakeButton = withTooltip(({
     <Reaction
       track={['active', 'focus', 'hover']}
       {...rest}
-      onClick={handleClick}
+      onClick={!disabled && handleClick}
       disabled={disabled}
       button
     >
