@@ -48,11 +48,12 @@ export const TextInput = withForm(({
     } else {
       value = event?.target?.value
     }
-    (type === 'number') && value && (value = parseInt(value))
+    (type === 'number') && value && (value = parseFloat(value))
 
     if (isObject) {
       value = JSON.parse(value)
     }
+    
 
     onChange?.(value)
   }

@@ -14,6 +14,7 @@ export const Value = () => {
     autoComplete,
     onDisplayValue,
     handleRef,
+    step,
   } = useTextInput()
 
   const defaultAutocomplete = autoComplete === true ? 'on' : 'off'
@@ -32,6 +33,7 @@ export const Value = () => {
     disabled,
     tabIndex: -1,
     autoComplete: defaultAutocomplete,
+    step,
   }
 
   fields.input = (
