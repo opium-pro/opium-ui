@@ -1,12 +1,12 @@
-import React, { FC, useMemo } from 'react'
+import React, { FC, useMemo, PropsWithChildren } from 'react'
 import { Fit, Box } from 'themeor'
-import { Spot } from './spot'
+import { Spot } from './spot.js'
 
 export interface BackgroundProps {
   fill?: string
 }
 
-export const Background: FC<BackgroundProps> = ({
+export const Background: FC<PropsWithChildren<BackgroundProps>> = ({
   children,
   fill = 'faintDown',
   ...rest

@@ -1,6 +1,6 @@
 import React, { FC } from "react"
 import { Align, Fit, Box, Font, Icon } from "themeor"
-import { withTooltip, WithTooltipProps } from '../tooltip'
+import { withTooltip, WithTooltipProps } from '../tooltip/index.js'
 
 export const SIZE = {
   xs: { circle: "30px", font: "x3s" },

@@ -1,7 +1,7 @@
-import { Wrapper } from './wrapper'
-import { Row } from './row'
-import { Cell } from './cell'
-import { HeadCell } from './head-cell'
+import { Wrapper } from './wrapper.js'
+import { Row } from './row.js'
+import { Cell } from './cell.js'
+import { HeadCell } from './head-cell.js'
 
 export type Table = typeof Wrapper & {
   Cell: typeof Cell

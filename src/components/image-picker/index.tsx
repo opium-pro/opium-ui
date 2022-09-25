@@ -1,5 +1,5 @@
 import React from 'react'
-import { withForm } from '../form'
+import { withForm } from '../form/index.js'
 
 export const ImagePicker = withForm(({
   value,

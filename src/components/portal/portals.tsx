@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import { Fit } from 'themeor'
-import { portals } from './provider'
+import { portals } from './provider.js'
 
 
 export const Portals = () => {

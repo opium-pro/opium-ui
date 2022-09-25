@@ -1,6 +1,6 @@
 import React, { useEffect, useState, FC } from 'react'
-import { useForm, useField, FieldContext } from './context'
-import { getDeepFieldByPath } from '../../utils'
+import { useForm, useField, FieldContext } from './context.js'
+import { getDeepFieldByPath } from '../../utils/index.js'
 
 export type WithFormProps = {
   value?: any

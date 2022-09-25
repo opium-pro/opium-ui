@@ -1,8 +1,8 @@
 import React from 'react'
 import { Align, Fit, Box, Font, Gap, Icon, BoxProps, Reaction } from 'themeor'
-import { OpiumComponent } from '../../types'
-import { icons } from '../../theme/iconList'
-import { MakeButton, MakeButtonProps } from '../make-button'
+import { OpiumComponent } from '../../types.js'
+import { icons } from '../../theme/iconList.js'
+import { MakeButton, MakeButtonProps } from '../make-button/index.js'
 
 
 export type BottonProps = MakeButtonProps & {
@@ -89,7 +89,7 @@ export const Button: OpiumComponent<BottonProps> = ({
                     </Font>
                   </>)}
                 </Align>
-                {children}
+                <>{children}</>
               </Align>
 
             </Gap.TryTagless>

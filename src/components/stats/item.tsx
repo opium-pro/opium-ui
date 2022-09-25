@@ -1,7 +1,7 @@
 import React from 'react'
 import { Align, Fit, Box, Font, Line, Gap, Icon, AlignProps } from 'themeor'
-import { MakeButton } from '../make-button'
-import { withTooltip, WithTooltipProps, WithTooltip } from '../tooltip'
+import { MakeButton } from '../make-button/index.js'
+import { withTooltip, WithTooltipProps, WithTooltip } from '../tooltip/index.js'
 
 
 export type Props = WithTooltipProps & AlignProps & {

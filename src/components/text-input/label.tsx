@@ -1,7 +1,7 @@
 import React from 'react'
 import { Gap, Align, Font, Fit, useReaction } from 'themeor'
-import { useTextInput } from './context'
-import { isDefined } from '../../utils'
+import { useTextInput } from './context.js'
+import { isDefined } from '../../utils/index.js'
 
 
 export const Label = () => {

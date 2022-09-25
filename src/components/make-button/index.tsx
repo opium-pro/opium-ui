@@ -1,10 +1,10 @@
 import React, { ReactNode } from 'react'
 import { FitProps, ReactionContext, Fit, Font, Box, Reaction, Align, AlignProps, FontProps, CommonProps, ReactionProps } from 'themeor'
-import { withTooltip, WithTooltipProps } from '../tooltip'
-import { OpiumComponent } from '../../types'
+import { withTooltip, WithTooltipProps } from '../tooltip/index.js'
+import { OpiumComponent } from '../../types.js'
 
 
-export type MakeButtonProps = Omit<ReactionProps, 'children'> & WithTooltipProps & FitProps & CommonProps & {
+export type MakeButtonProps = Omit<ReactionProps, 'children'> & WithTooltipProps & Omit<FitProps, 'children'> & {
   offset?: string,
   disabled?: boolean,
   radius?: string,
@@ -95,7 +95,7 @@ export const MakeButton = withTooltip(({
             )}
             <Fit>
               {typeof children === 'function' ? (
-                children(r, rProps)
+                (children as any)(r, rProps)
               ) : (
                 children
               )}

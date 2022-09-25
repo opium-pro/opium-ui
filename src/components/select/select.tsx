@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { TextInput, useTextInput } from "../text-input"
+import { TextInput, useTextInput } from "../text-input/index.js"
 import { Icon, Gap, Align, Fit, useReaction } from 'themeor'
-import { Dropdown } from '../dropdown'
-import { SelectContext } from './context'
-import { SelectType } from './types'
-import { Tag } from '../tag'
-import { isDefined } from '../../utils'
-import { useField } from '../form'
+import { Dropdown } from '../dropdown/index.js'
+import { SelectContext } from './context.js'
+import { SelectType } from './types.js'
+import { Tag } from '../tag/index.js'
+import { isDefined } from '../../utils/index.js'
 import { isEqual } from 'lodash'
 
 

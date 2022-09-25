@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { ScreenFitContext } from './context'
-import { SCREEN_FIT, Screen } from './constants'
+import { ScreenFitContext } from './context.js'
+import { SCREEN_FIT, Screen } from './constants.js'
 
 
 export function ScreenFit({ children, ...rest }) {

@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
-import { Provider } from './provider'
-import { Layout } from './layout'
-import { AppLayoutProps } from './types'
+import { Provider } from './provider.js'
+import { Layout } from './layout.js'
+import { AppLayoutProps } from './types.js'
 
 export const AppLayout: FC<AppLayoutProps> = (props) => {
   return (
@@ -9,5 +9,5 @@ export const AppLayout: FC<AppLayoutProps> = (props) => {
   )
 }
 
-export * from './context'
-export * from './types'
+export * from './context.js'
+export * from './types.js'

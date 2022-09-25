@@ -1,14 +1,14 @@
 import React, { FC, useState, useEffect, useRef } from 'react'
 import { Box, Fit, FitProps, Gap, Font } from 'themeor'
-import { Portal } from '../portal'
-import { useAppLayout } from '../app-layout'
-import { placeNode } from '../../utils'
-import { TextInput } from "../text-input"
-import filter from 'opium-filter'
-import { useDropdown } from './context'
-import { Hotkey } from '../hotkey'
-import { LazyScroller } from '../lazy-scroller'
-import { withExternalClick, WithExternalClick, WithExternalClickProps } from '../with-external-click'
+import { Portal } from '../portal/index.js'
+import { useAppLayout } from '../app-layout/index.js'
+import { placeNode } from '../../utils/index.js'
+import { TextInput } from "../text-input/index.js"
+import { filter } from 'opium-filter'
+import { useDropdown } from './context.js'
+import { Hotkey } from '../hotkey/index.js'
+import { LazyScroller } from '../lazy-scroller/index.js'
+import { withExternalClick, WithExternalClick, WithExternalClickProps } from '../with-external-click/index.js'
 
 
 export type WrapperProps = WithExternalClickProps & FitProps & {

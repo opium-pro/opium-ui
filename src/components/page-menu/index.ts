@@ -1,7 +1,7 @@
-import Wrapper, { Props } from './wrapper'
-import { Item, Props as ItemProps } from './item'
-import { OpiumComponent, DemoProps } from '../../types'
-import { icons } from '../../theme/iconList'
+import Wrapper, { Props } from './wrapper.js'
+import { Item, Props as ItemProps } from './item.js'
+import { OpiumComponent, DemoProps } from '../../types.js'
+import { icons } from '../../theme/iconList.js'
 
 export type PageMenu = typeof Wrapper & OpiumComponent<Props> & {
   Item: typeof Item
@@ -24,7 +24,7 @@ PageMenu.demoProps = {
     counter: ['number', 3],
     icon: ['select', undefined, icons],
     active: ['boolean', undefined],
-  } as DemoProps<ItemProps>,
+  } as any,
 }
 
 PageMenu.usage = `<PageMenu{Props}>

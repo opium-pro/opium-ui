@@ -1,7 +1,7 @@
-import { Wrapper, WrapperProps } from './wrapper'
-import { Item, ItemProps } from './item'
-import { OpiumComponent, DemoProps } from '../../types'
-import { icons } from '../../theme/iconList'
+import { Wrapper, WrapperProps } from './wrapper.js'
+import { Item, ItemProps } from './item.js'
+import { OpiumComponent, DemoProps } from '../../types.js'
+import { icons } from '../../theme/iconList.js'
 
 
 export type AppMenuType = typeof Wrapper & OpiumComponent<WrapperProps> & {
@@ -36,7 +36,7 @@ AppMenu.demoProps = {
     row: ['boolean'],
     disabled: ['boolean'],
     blank: ['boolean'],
-  } as DemoProps<ItemProps>,
+  } as any,
 }
 
 AppMenu.usage = `<AppMenu{Props}>

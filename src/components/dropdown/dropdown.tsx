@@ -1,6 +1,6 @@
 import React, { useState, useEffect, FC } from 'react'
-import { Wrapper, WrapperProps } from './wrapper'
-import { DropdownContext } from './context'
+import { Wrapper, WrapperProps } from './wrapper.js'
+import { DropdownContext } from './context.js'
 
 
 export type DropdownProps = WrapperProps & {

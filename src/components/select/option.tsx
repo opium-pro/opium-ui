@@ -1,11 +1,10 @@
 import React, { FC, useEffect } from 'react'
-import { Dropdown } from '../dropdown'
+import { Dropdown } from '../dropdown/index.js'
 import { Font, Align, Gap, Fit } from 'themeor'
-import { useSelect } from './context'
-import { useTextInput } from '../text-input'
-import { Checkbox } from '../checkbox'
-import { MarkMatch } from '../mark-match'
-import { useForm, useField } from '../form'
+import { useSelect } from './context.js'
+import { Checkbox } from '../checkbox/index.js'
+import { MarkMatch } from '../mark-match/index.js'
+import { useForm, useField } from '../form/index.js'
 import { isEqual } from 'lodash'
 
 

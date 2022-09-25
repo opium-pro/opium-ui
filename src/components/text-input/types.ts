@@ -1,5 +1,5 @@
 import { ReactionProps, BoxProps } from 'themeor'
-import { WithFormProps } from '../form'
+import { WithFormProps } from '../form/index.js'
 
 export type TextInputTypes = 'none' | 'text' | 'search' | 'textarea' | 'phone' | 'email' | 'number' | 'tel' | 'url' | 'numeric' | 'decimal'
 

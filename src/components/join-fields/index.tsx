@@ -1,6 +1,6 @@
-import React, { FC } from 'react'
+import React, { FC, PropsWithChildren } from 'react'
 import { Line, Align, AlignProps } from 'themeor'
-import { isDefined } from '../../utils'
+import { isDefined } from '../../utils/index.js'
 
 
 export type JoinFieldsProps = {
@@ -8,7 +8,7 @@ export type JoinFieldsProps = {
 }
 
 
-export const JoinFields: FC<JoinFieldsProps> = ({ children, separator = false, ...rest }) => {
+export const JoinFields: FC<PropsWithChildren<JoinFieldsProps>> = ({ children, separator = false, ...rest }) => {
   const newChildren = []
   const validChildren = []
 

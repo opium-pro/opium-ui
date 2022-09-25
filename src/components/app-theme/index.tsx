@@ -1,8 +1,8 @@
 import React from 'react'
 import { Theme, Fit, Box, Font } from 'themeor'
-import themeConfig from '../../theme/config'
-import themeIcons from '../../theme/iconList'
-import { ScreenFit } from '../screen-fit'
+import themeConfig from '../../theme/config.js'
+import themeIcons from '../../theme/iconList.js'
+import { ScreenFit } from '../screen-fit/index.js'
 
 
 export type AppThemeProps = React.AllHTMLAttributes<HTMLElement> & {

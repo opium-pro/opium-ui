@@ -1,6 +1,6 @@
-import React, { FC } from 'react'
+import React, { FC, PropsWithChildren } from 'react'
 import { Font, Box, Align, Gap, Reaction, Fit } from 'themeor'
-import { Avatar } from '../avatar'
+import { Avatar } from '../avatar/index.js'
 
 
 export interface IWrapperProps {
@@ -11,7 +11,7 @@ export interface IWrapperProps {
 }
 
 
-export const Wrapper: FC<IWrapperProps> = ({
+export const Wrapper: FC<PropsWithChildren<IWrapperProps>> = ({
   title,
   img,
   link,

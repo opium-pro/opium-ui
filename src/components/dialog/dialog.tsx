@@ -1,8 +1,8 @@
 import React, { FC, useState } from 'react'
-import { Modal, ModalProps } from '../modal'
-import { Button } from '../button'
+import { Modal, ModalProps } from '../modal/index.js'
+import { Button } from '../button/index.js'
 import { Gap } from 'themeor'
-import { Hotkey } from '../hotkey'
+import { Hotkey } from '../hotkey/index.js'
 
 
 export type DialogProps = ModalProps & {

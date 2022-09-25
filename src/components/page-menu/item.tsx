@@ -1,8 +1,8 @@
 import React from 'react'
 import { Align, Fit, Font, Gap, Icon, BoxProps } from 'themeor'
-import { MakeButton, MakeButtonProps } from '../make-button'
-import { Counter } from '../counter'
-import { withTooltip, WithTooltip, WithTooltipProps } from '../tooltip'
+import { MakeButton, MakeButtonProps } from '../make-button/index.js'
+import { Counter } from '../counter/index.js'
+import { withTooltip, WithTooltip, WithTooltipProps } from '../tooltip/index.js'
 
 export type Props = WithTooltipProps & MakeButtonProps & BoxProps & {
   label?: string,

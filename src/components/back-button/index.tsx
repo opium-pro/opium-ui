@@ -1,6 +1,6 @@
 import React from 'react'
-import { ActionButton, ActionButtonProps } from '../action-button'
-import { OpiumComponent } from '../../types'
+import { ActionButton, ActionButtonProps } from '../action-button/index.js'
+import { OpiumComponent } from '../../types.js'
 
 
 export type BackButtonProps = ActionButtonProps & {}

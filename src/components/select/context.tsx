@@ -1,6 +1,5 @@
-import React from 'react'
 import { createContext, useContext } from 'react'
-import { SelectContextType, SelectProps } from './types'
+import { SelectContextType, SelectProps } from './types.js'
 
 export const SelectContext: SelectContextType = createContext({} as SelectProps)
 

@@ -1,13 +1,13 @@
 import React, { useState, FC } from 'react'
 import { Reaction } from 'themeor'
-import { withForm, WithForm } from '../form'
-import { Label } from './label'
-import { Placeholder } from './placeholder'
-import { Value } from './value'
-import { Caption } from './caption'
-import { Wrapper } from './wrapper'
-import { TextInputProps } from './types'
-import { TextInputContext } from './context'
+import { withForm, WithForm } from '../form/index.js'
+import { Label } from './label.js'
+import { Placeholder } from './placeholder.js'
+import { Value } from './value.js'
+import { Caption } from './caption.js'
+import { Wrapper } from './wrapper.js'
+import { TextInputProps } from './types.js'
+import { TextInputContext } from './context.js'
 
 
 export const TextInput = withForm(({

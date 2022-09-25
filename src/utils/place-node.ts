@@ -1,4 +1,4 @@
-import { fitNode } from './fit-node'
+import { fitNode } from './fit-node.js'
 
 
 export function placeNode(

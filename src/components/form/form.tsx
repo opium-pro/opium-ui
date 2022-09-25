@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { FormContext } from './context'
-import { parseFieldName, mutateObjectForFields } from '../../utils'
+import { FormContext } from './context.js'
+import { parseFieldName, mutateObjectForFields } from '../../utils/index.js'
 
 type Props = React.AllHTMLAttributes<HTMLElement> & {
   onSubmit?: any

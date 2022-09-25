@@ -1,4 +1,4 @@
-export * from './components'
-export { icons } from './theme/iconList'
-export type { Icons } from './theme/types'
-export { default as config } from './theme/config'
+export * from './components/index.js'
+export { icons } from './theme/iconList.js'
+export type { Icons } from './theme/types.js'
+export { default as config } from './theme/config.js'

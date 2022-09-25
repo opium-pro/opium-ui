@@ -1,7 +1,7 @@
 import React from 'react'
-import { Dropdown } from '../dropdown'
-import { useTextInput } from './context'
-import filter from 'opium-filter'
+import { Dropdown } from '../dropdown/index.js'
+import { useTextInput } from './context.js'
+import { filter } from 'opium-filter'
 
 
 export function AutoComplete() {

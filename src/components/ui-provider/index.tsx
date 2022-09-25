@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
-import { ScreenFit } from '../screen-fit'
-import { PortalsProvider } from '../portal'
-import { AppTheme, AppThemeProps } from '../app-theme'
+import { ScreenFit } from '../screen-fit/index.js'
+import { PortalsProvider } from '../portal/index.js'
+import { AppTheme, AppThemeProps } from '../app-theme/index.js'
 
 export type UIProviderProps = AppThemeProps & {}
 

@@ -1,10 +1,9 @@
-import React, { ReactNode, useEffect } from 'react'
-import { FC } from 'react'
+import React, { ReactNode, FC } from 'react'
 import { Align, Fit, Box, Font, Gap, Reaction } from 'themeor'
-import { withForm } from '../form'
-import { withTooltip, WithTooltipProps } from '../tooltip'
-import { WithFormProps } from '../form'
-import { call } from '../../utils'
+import { withForm } from '../form/index.js'
+import { withTooltip, WithTooltipProps } from '../tooltip/index.js'
+import { WithFormProps } from '../form/index.js'
+import { call } from '../../utils/index.js'
 
 
 type Props = WithFormProps & WithTooltipProps & {

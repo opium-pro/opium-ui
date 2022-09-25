@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
-import hotkey from 'hotkeys-js'
-import { Tag, TagProps } from '../tag'
+import { default as hotkey } from 'hotkeys-js'
+import { Tag, TagProps } from '../tag/index.js'
 
 
 export type HotkeyProps = TagProps & {

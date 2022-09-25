@@ -1,6 +1,6 @@
 import React from 'react'
 import { Align, Fit, Box, Font, Gap } from 'themeor'
-import { LimitWidth } from '../limit-width'
+import { LimitWidth } from '../limit-width/index.js'
 
 
 type Props = React.AllHTMLAttributes<HTMLElement> & {

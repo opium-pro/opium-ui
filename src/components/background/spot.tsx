@@ -4,7 +4,7 @@ import { Box, Fit } from 'themeor'
 import spot1path from './img/spot1.svg'
 // @ts-ignore
 import spot2path from './img/spot2.svg'
-import random from '../../utils/random'
+import random from '../../utils/random.js'
 
 const size = 930
 

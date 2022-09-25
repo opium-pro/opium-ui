@@ -1,5 +1,5 @@
-import { Wrapper, Props as StatsProps } from './wrapper'
-import { Item, Props as StatsItemProps } from './item'
+import { Wrapper, Props as StatsProps } from './wrapper.js'
+import { Item, Props as StatsItemProps } from './item.js'
 
 export type StatsItem = typeof Item
 

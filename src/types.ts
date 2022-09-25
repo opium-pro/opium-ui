@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import type * as components from './components'
+import type * as components from './components/index.js'
 
 
 export type TypeFields = 'boolean' | 'string' | 'number' | 'select'
@@ -22,4 +22,4 @@ export type OpiumComponent<Props = {}> = FC<Props> & OpiumCommon<Props> & {}
 export type OpiumHook<Return, Props = {}> = ((...args: any) => Return) & OpiumCommon<Props> & {}
 export type OpiumHOC<Return, Props = {}> = ((...args: any) => Return) & OpiumCommon<Props> & {}
 
-export * from './theme/types'
+export * from './theme/types.js'

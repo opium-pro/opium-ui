@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { FitProps, Fit, Font } from 'themeor'
-import { withTooltip, WithTooltipProps, Tooltip } from '../tooltip'
+import { withTooltip, WithTooltipProps, Tooltip } from '../tooltip/index.js'
 
 
 export type LineCutProps = FitProps & {

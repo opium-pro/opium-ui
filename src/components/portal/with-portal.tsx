@@ -1,5 +1,5 @@
 import React from 'react'
-import { Portal } from './portal'
+import { Portal } from './portal.js'
 
 export type WithPortalProps = {
   inPortal?: boolean

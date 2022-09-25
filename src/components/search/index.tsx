@@ -1,6 +1,6 @@
 import React from 'react'
 import { Gap, Box, Align, Icon } from 'themeor'
-import { TextInput, TextInputProps } from '../text-input'
+import { TextInput, TextInputProps } from '../text-input/index.js'
 
 
 export const Search = ({ label, ...props }: TextInputProps) => {

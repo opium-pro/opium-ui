@@ -1,11 +1,11 @@
 import React from 'react'
 import { Gap, Box, Align, Fit, useReaction, Icon } from 'themeor'
-import { Dropdown } from '../dropdown'
-import { useTextInput } from './context'
-import { Tooltip } from '../tooltip'
-import { AutoComplete } from './auto-complete'
-import { isDefined } from '../../utils'
-import { ActionButton } from '../action-button'
+import { Dropdown } from '../dropdown/index.js'
+import { useTextInput } from './context.js'
+import { Tooltip } from '../tooltip/index.js'
+import { AutoComplete } from './auto-complete.js'
+import { isDefined } from '../../utils/index.js'
+import { ActionButton } from '../action-button/index.js'
 
 
 export const Wrapper = ({ children }) => {

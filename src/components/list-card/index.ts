@@ -1,5 +1,5 @@
-import {Wrapper} from './wrapper'
-import {Item} from './item'
+import {Wrapper} from './wrapper.js'
+import {Item} from './item.js'
 
 export type ListCardType = typeof Wrapper & {
   Item?: typeof Item

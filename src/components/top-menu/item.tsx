@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import { Align, Font, Gap, Icon } from 'themeor'
-import { MakeButton, MakeButtonProps } from '../make-button'
+import { MakeButton, MakeButtonProps } from '../make-button/index.js'
 
 export type ItemProps = MakeButtonProps & {
   label?: string

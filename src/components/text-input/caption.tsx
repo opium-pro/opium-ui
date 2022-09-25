@@ -1,7 +1,7 @@
 import React from 'react'
 import { Gap, Font } from 'themeor'
-import { useTextInput } from './context'
-import { Tooltip } from '../tooltip'
+import { useTextInput } from './context.js'
+import { Tooltip } from '../tooltip/index.js'
 
 
 export const Caption = () => {

@@ -1,9 +1,8 @@
-import React, { useState } from 'react'
-import { FC } from 'react'
-import { AppLayoutContext } from './context'
+import React, { useState, PropsWithChildren, FC } from 'react'
+import { AppLayoutContext } from './context.js'
 
 
-export const Provider: FC = ({ children }) => {
+export const Provider: FC<PropsWithChildren> = ({ children }) => {
   const [contentNode, setContentNode] = useState()
   const [menuNode, setMenuNode] = useState()
 

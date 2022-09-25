@@ -1,5 +1,5 @@
-import { Select as Wrapper } from './select'
-import { Option } from './option'
+import { Select as Wrapper } from './select.js'
+import { Option } from './option.js'
 
 export type SelectType = typeof Wrapper & {
   Option: typeof Option

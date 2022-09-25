@@ -1,5 +1,5 @@
 import { Context, FC } from 'react'
-import { TextInputProps } from "../text-input"
+import { TextInputProps } from "../text-input/index.js"
 
 export type SelectProps = TextInputProps & {
   multi?: boolean

@@ -1,8 +1,8 @@
 import React from 'react'
 import { Align, Font, Icon, FontProps, Gap } from 'themeor'
-import { MakeButton, MakeButtonProps } from '../make-button'
-import { OpiumComponent } from '../../types'
-import { icons } from '../../theme/iconList'
+import { MakeButton, MakeButtonProps } from '../make-button/index.js'
+import { OpiumComponent } from '../../types.js'
+import { icons } from '../../theme/iconList.js'
 
 
 
@@ -37,7 +37,7 @@ export const ActionButton: OpiumComponent<ActionButtonProps> = ({
         {icon && label && <Gap size="xs" />}
         {label && <Font size={size} weight={weight} nowrap fill={fill}>
           {label}
-          {children}
+          <>{children}</>
         </Font>}
       </Align>
     </MakeButton>

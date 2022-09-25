@@ -1,6 +1,6 @@
 import React from 'react'
 import { Align, Box, BoxProps, Fit } from 'themeor'
-import { LimitWidth } from '../limit-width'
+import { LimitWidth } from '../limit-width/index.js'
 
 export type WrapperProps = BoxProps & {}
 

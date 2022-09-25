@@ -1,9 +1,9 @@
-import React, { FC } from 'react'
-import { withExternalClick, WithExternalClickProps } from '../with-external-click'
-import { withMouseHold, WIthMouseHoldProps } from '../with-mouse-hold'
-import { Portal } from '../portal'
+import React, { FC, PropsWithChildren } from 'react'
+import { withExternalClick, WithExternalClickProps } from '../with-external-click/index.js'
+import { withMouseHold, WIthMouseHoldProps } from '../with-mouse-hold/index.js'
+import { Portal } from '../portal/index.js'
 import { Fit } from 'themeor'
-import { placeNode } from '../../utils'
+import { placeNode } from '../../utils/index.js'
 
 
 export type WithOverlayProps = WIthMouseHoldProps & WithExternalClickProps & {
@@ -11,7 +11,7 @@ export type WithOverlayProps = WIthMouseHoldProps & WithExternalClickProps & {
   placeOrder?: Array<'top' | 'bottom' | 'right' | 'left'>
 }
 
-export type WithOverlay<Props = WithOverlayProps> = (arg: FC<any>) => FC<Props>
+export type WithOverlay<Props = WithOverlayProps> = (arg: FC<any>) => FC<PropsWithChildren<Props>>
 
 
 export const withOverlay: WithOverlay = (Component) => {

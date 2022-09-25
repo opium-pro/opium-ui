@@ -1,5 +1,5 @@
 import React from 'react'
-import { TextInput, TextInputProps } from '../text-input'
+import { TextInput, TextInputProps } from '../text-input/index.js'
 
 
 export const TextArea = ({ type, ...props }: TextInputProps) => {

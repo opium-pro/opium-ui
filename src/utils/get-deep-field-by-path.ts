@@ -1,4 +1,4 @@
-import { parseFieldName } from './parse-field-name'
+import { parseFieldName } from './parse-field-name.js'
 
 export function getDeepFieldByPath(name, object = {}) {
   if (!name.includes('.') && !name.includes('[')) {

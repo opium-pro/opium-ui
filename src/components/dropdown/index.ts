@@ -1,7 +1,7 @@
-import { Item, ItemProps } from './item'
-import { Dropdown as MakeDropdown, DropdownProps } from './dropdown'
-import { DropdownContext, useDropdown } from './context'
-import { OpiumComponent, DemoProps } from '../../types'
+import { Item, ItemProps } from './item.js'
+import { Dropdown as MakeDropdown, DropdownProps } from './dropdown.js'
+import { DropdownContext, useDropdown } from './context.js'
+import { OpiumComponent, DemoProps } from '../../types.js'
 
 
 export type Dropdown = OpiumComponent<DropdownProps> & typeof MakeDropdown & {
@@ -32,7 +32,7 @@ Dropdown.demoProps = {
     label: ['string', 'Item One'],
     disabled: ['boolean', undefined],
     active: ['boolean', undefined],
-  } as DemoProps<ItemProps>,
+  } as any,
 }
 
 Dropdown.usage = `<Dropdown{Props}

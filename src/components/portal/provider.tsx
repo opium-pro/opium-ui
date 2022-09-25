@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import { PortalsContext } from './use-portals'
-import { Portals } from './portals'
+import { PortalsContext } from './use-portals.js'
+import { Portals } from './portals.js'
 import { Fit } from 'themeor'
-import { useForceUpdate } from '../../utils'
+import { useForceUpdate } from '../../utils/index.js'
 
 export const portals = new Map()
 let id = 0

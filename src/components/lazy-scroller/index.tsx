@@ -1,6 +1,6 @@
 import React, { FC, useState, Fragment, useEffect, useRef } from 'react'
 import { Align, AlignProps } from 'themeor'
-import { useAppLayout } from '../app-layout'
+import { useAppLayout } from '../app-layout/index.js'
 
 
 export type LazyScrollerProps<TagProps = {[key: string]: any}> = {

@@ -1,8 +1,7 @@
 import React from 'react'
 import { Font, FontProps, Align, Icon } from 'themeor'
-import { OpiumComponent } from '../../types'
-import { icons } from '../../theme/iconList'
-import { MakeButton, MakeButtonProps } from '../make-button'
+import { OpiumComponent } from '../../types.js'
+import { MakeButton, MakeButtonProps } from '../make-button/index.js'
 
 
 export type LinkProps = MakeButtonProps & FontProps & {

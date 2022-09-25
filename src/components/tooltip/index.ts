@@ -1,3 +1,3 @@
-export * from './tooltip'
-export * from './with-tooltip'
-export * from './with-tooltip'
+export * from './tooltip.js'
+export * from './with-tooltip.js'
+export * from './with-tooltip.js'

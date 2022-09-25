@@ -1,8 +1,8 @@
 import React, { FC } from 'react'
 import { Align, Fit, Box, Font, Gap } from 'themeor'
-import { MakeButton, MakeButtonProps } from '../make-button'
-import { withForm, WithFormProps } from '../form'
-import { call } from '../../utils'
+import { MakeButton, MakeButtonProps } from '../make-button/index.js'
+import { withForm, WithFormProps } from '../form/index.js'
+import { call } from '../../utils/index.js'
 
 type CheckboxProps = WithFormProps & Omit<MakeButtonProps, 'onChange'> & {
   indeterminate?: boolean,

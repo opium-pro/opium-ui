@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
-import { Tooltip, TooltipProps } from './tooltip'
-import { OpiumHOC } from '../../types'
+import { Tooltip, TooltipProps } from './tooltip.js'
+import { OpiumHOC } from '../../types.js'
 
 
 export type WithTooltipProps = {

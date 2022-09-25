@@ -1,15 +1,14 @@
 import React, { useState, PropsWithChildren } from 'react'
 import { FC } from 'react'
 import { Align, Fit, Box, Animate, Icon } from 'themeor'
-import { MakeButton } from '../make-button'
-import { AppLayoutContext, useAppLayout } from './context'
-import { useScreenFit, ScreenFit } from '../screen-fit'
-import { Cover } from '../cover'
-import { Background } from '../background'
-import type { AppLayoutProps } from './types'
+import { MakeButton } from '../make-button/index.js'
+import { AppLayoutContext, useAppLayout } from './context.js'
+import { useScreenFit, ScreenFit } from '../screen-fit/index.js'
+import { Cover } from '../cover/index.js'
+import type { AppLayoutProps } from './types.js'
 
 
-export const Layout: PropsWithChildren<FC<AppLayoutProps>> = ({
+export const Layout: FC<PropsWithChildren<AppLayoutProps>> = ({
   menu,
   header,
   children,

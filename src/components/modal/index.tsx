@@ -1,8 +1,8 @@
 import React, { FC, useEffect, useState } from 'react'
 import { Font, Box, Align, Gap, Animate, Fit, FitProps } from 'themeor'
-import { Cover } from '../cover'
-import { ActionButton } from '../action-button'
-import { Portal } from '../portal'
+import { Cover } from '../cover/index.js'
+import { ActionButton } from '../action-button/index.js'
+import { Portal } from '../portal/index.js'
 
 
 export type ModalProps = FitProps & {

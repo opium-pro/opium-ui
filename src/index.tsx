@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { App } from './demo/constructor'
+import { App } from './demo/constructor/index.js'
 import { Router } from 'opium-nav'
 
 

@@ -1,8 +1,8 @@
-import React, { FC, useState } from 'react'
+import React, { FC, useState, PropsWithChildren } from 'react'
 import { Font, Box, Align, Gap, Fit, Animate, Icon } from 'themeor'
-import { ActionButton } from '../action-button'
-import { Portal } from '../portal'
-import { Link } from '../link'
+import { ActionButton } from '../action-button/index.js'
+import { Portal } from '../portal/index.js'
+import { Link } from '../link/index.js'
 
 
 export interface NoticeProps {
@@ -14,7 +14,7 @@ export interface NoticeProps {
 }
 
 
-export const Notice: FC<NoticeProps> = ({ title, text, type = 'base', onClose, moreLabel = 'more', children }) => {
+export const Notice: FC<PropsWithChildren<NoticeProps>> = ({ title, text, type = 'base', onClose, moreLabel = 'more', children }) => {
   const [show, setShow] = useState(true)
   const [opened, setOpened] = useState(false)
 

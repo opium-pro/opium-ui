@@ -1,6 +1,6 @@
 import React from 'react'
 import { Fit, Gap, GapProps, Align, AlignProps } from 'themeor'
-import { useScreenFit } from '../screen-fit'
+import { useScreenFit } from '../screen-fit/index.js'
 
 type Props = AlignProps & {
   gutter?: any

@@ -1,6 +1,6 @@
 import React from 'react'
-import { usePortals } from '../portal'
-import { Dialog, DialogProps } from './dialog'
+import { usePortals } from '../portal/index.js'
+import { Dialog, DialogProps } from './dialog.js'
 
 
 export function useDialog() {

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Gap, Align, Font, Fit, useReaction } from 'themeor'
-import { useTextInput } from './context'
+import { useTextInput } from './context.js'
 
 
 export const Placeholder = () => {

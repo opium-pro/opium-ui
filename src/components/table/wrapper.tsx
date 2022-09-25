@@ -1,7 +1,6 @@
 import React, { FC, useRef, useState } from 'react'
 import { Font, Box, Align, Gap, Reaction, Fit, FitProps } from 'themeor'
-import { Avatar } from '../avatar'
-import { LazyScroller } from '../lazy-scroller'
+import { LazyScroller } from '../lazy-scroller/index.js'
 
 
 export type WrapperProps = FitProps & {
