@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { default as hotkey } from 'hotkeys-js'
+import { default as hotkey } from 'hotkeys-js/dist/hotkeys.common.js'
 import { Tag, TagProps } from '../tag/index.js'
 
 

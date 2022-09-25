@@ -3,7 +3,7 @@ import { Font, Box, Gap, Fit, BoxProps } from 'themeor'
 import { Portal } from '../portal/index.js'
 import { useAppLayout } from '../app-layout/index.js'
 import { placeNode } from '../../utils/index.js'
-import { default as hotkeys } from 'hotkeys-js'
+import { default as hotkeys } from 'hotkeys-js/dist/hotkeys.esm.js'
 import { tooltipConfig } from './config.js'
 import { OpiumComponent } from '../../types.js'
 
