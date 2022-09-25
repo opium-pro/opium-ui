@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, ReactNode } from 'react'
 import { Font, Box, Align, Gap, Reaction, Fit, FitProps } from 'themeor'
 import { Avatar } from '../avatar'
 
@@ -8,6 +8,7 @@ export type RowProps = FitProps & {
   title?: string
   link?: string
   onClick?: any
+  children?: ReactNode
 }
 
 

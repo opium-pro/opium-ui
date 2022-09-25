@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, PropsWithChildren } from 'react'
 import { FC } from 'react'
 import { Align, Fit, Box, Animate, Icon } from 'themeor'
 import { MakeButton } from '../make-button'
@@ -9,7 +9,7 @@ import { Background } from '../background'
 import type { AppLayoutProps } from './types'
 
 
-export const Layout: FC<AppLayoutProps> = ({
+export const Layout: PropsWithChildren<FC<AppLayoutProps>> = ({
   menu,
   header,
   children,

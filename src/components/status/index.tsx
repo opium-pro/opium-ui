@@ -2,9 +2,10 @@ import React, { FC } from 'react'
 import { Align, Box, Font, Gap, FontProps } from 'themeor'
 
 export type StatusProps = FontProps & {
-  label: string,
-  fill?: string,
-  size?: string,
+  label: string
+  fill?: string
+  size?: string
+  type?: string
 }
 
 export const Status: FC<StatusProps> = ({ label, type = 'base', ...props }) => {

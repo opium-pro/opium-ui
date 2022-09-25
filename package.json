@@ -1,28 +1,29 @@
 {
   "name": "opium-ui",
-  "version": "1.3.0",
+  "version": "2.0.0",
   "main": "dist/export.js",
+  "type": "module",
   "dependencies": {
-    "dayjs": "^1.11.2",
-    "hotkeys-js": "^3.8.7",
-    "opium-filter": "^1.0.3",
-    "react-helmet": "^6.1.0",
-    "themeor": "^2.0.0"
+    "dayjs": "1.*.*",
+    "hotkeys-js": "3.*.*",
+    "opium-filter": "1.*.*",
+    "react-helmet": "6.*.*",
+    "themeor": "3.0.2-beta"
   },
   "devDependencies": {
-    "@types/node": "^16.0.0",
-    "@types/react": "^17.0.13",
-    "@types/react-dom": "^17.0.8",
-    "@types/react-helmet": "^6.1.1",
-    "@uiw/react-textarea-code-editor": "^2.0.1",
-    "copyfiles": "^2.4.1",
-    "nodemon": "^2.0.12",
-    "opium-nav": "^1.1.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-jsx-parser": "^1.29.0",
-    "react-scripts": "4.0.3",
-    "typescript": "^4.3.5"
+    "@types/node": "16.*.*",
+    "@types/react": "18.*.*",
+    "@types/react-dom": "18.*.*",
+    "@types/react-helmet": "6.*.*",
+    "@uiw/react-textarea-code-editor": "2.*.*",
+    "copyfiles": "2.*.*",
+    "nodemon": "2.*.*",
+    "opium-nav": "1.*.*",
+    "react": "18.*.*",
+    "react-dom": "18.*.*",
+    "react-jsx-parser": "1.29.*",
+    "react-scripts": "5.*.*",
+    "typescript": "4.*.*"
   },
   "scripts": {
     "start": "npm run icons:build && react-scripts start",
@@ -35,7 +36,7 @@
     "icons:parse": "node ./scripts/parse-icons",
     "icons:copy": "copyfiles -V -u 1 src/**/*.svg dist",
     "icons:build": "npm run icons:parse && npm run icons:copy",
-    "build": "tsc -p tsconfig.dist.json",
+    "build": "tsc",
     "release": "npm run clear && npm run icons:build && npm run build && npm publish",
     "dist:mobile": "npm run build && copyfiles -V ./dist/* ./dist/**/* ../3p5-mobile/node_modules/opium-ui"
   },
