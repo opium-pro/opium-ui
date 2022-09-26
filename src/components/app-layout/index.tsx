@@ -1,9 +1,9 @@
-import React, { FC } from 'react'
+import React from 'react'
 import { Provider } from './provider.js'
 import { Layout } from './layout.js'
 import { AppLayoutProps } from './types.js'
 
-export const AppLayout: FC<AppLayoutProps> = (props) => {
+export const AppLayout = (props: AppLayoutProps) => {
   return (
     <Provider><Layout {...props} /></Provider>
   )
